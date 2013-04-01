@@ -1,0 +1,31 @@
+
+%table.table.table-bordered.yaopin
+  %tr
+    %th.pihao 批号
+    -unless @hide_yaoming
+      %th.name 名称
+    -#%th.benweima 本位码
+    -#%th 商品名
+    %th.changjia 厂家
+    %th.jixing 剂型
+    %th.leibie 类别
+
+  - @yaopins.each do |yaopin|
+    %tr
+      %td=link_to yaopin.wenhao,yaopin
+      -unless @hide_yaoming
+        %td
+          =link_to yaopin.name,yao_url(yaopin) unless yaopin.name.nil?
+          -unless yaopin.en.nil? or yaopin.en == '－－－－'
+            -#%br
+            -l = 50 - yaopin.name.length
+            -if yaopin.en.length < l
+              =yaopin.en
+            -else
+              %abbr{:title=>yaopin.en}= yaopin.en.truncate(l)
+
+      %td= yaopin.changjia_name
+      %td=link_to yaopin.jixing,jixing_url(yaopin.jixing) unless yaopin.jixing.nil?
+      %td=yaopin.leibie unless yaopin.leibie.nil?
+
+

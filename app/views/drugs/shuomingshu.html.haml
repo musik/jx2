@@ -1,0 +1,9 @@
+-title @title
+-keywords @title
+
+-if @drug.has_shuoming?
+  %table.table.table-bordered
+    -@drug.hashdata(:shuoming).each do |k,v|
+      %tr
+        %th.key=k
+        %td=v

@@ -1,0 +1,9 @@
+-title "国药资讯"
+-@hide_ad_2 = true
+-@posts.each do |p|
+  .post 
+    .fn=link_to p.title,p
+    .summary
+      =strip_tags p.content.truncate(120)
+      %spam.post-meta #{time_ago_in_words p.created_at}前
+=paginate @posts    

@@ -1,0 +1,39 @@
+%h1 Listing yaopins
+
+=paginate @yaopins,:theme=>"twitter-bootstrap"
+%table.table.table-bordered
+  %tr
+    %th 名称
+    %th 文号
+    %th 原文号
+    -#%th 本位码
+    %th 商品名
+    %th 厂家
+    %th 国家
+    -#%th 规格
+    %th 剂型
+    %th 类别
+    %th{:width=>80}
+
+  - @yaopins.each do |yaopin|
+    %tr
+      %td
+        =link_to yaopin.name,yaopin
+        =link_to '同名',yao_url(yaopin),:class=>"btn" unless yaopin.name.nil?
+      %td= yaopin.wenhao
+      %td= yaopin.yuanwenhao
+      -#%td= yaopin.benweima
+      %td= yaopin.shangpin_name
+      %td= yaopin.changjia_name
+      %td= yaopin.changjia_guojia
+      -#%td= yaopin.guige
+      %td= yaopin.jixing
+      %td= yaopin.leibie
+      %td
+        .btn-group
+          = link_to 'E', edit_yaopin_path(yaopin),:class=>"btn btn-small"
+          = link_to 'D', yaopin, :confirm => 'Are you sure?', :method => :delete,:class=>"btn  btn-small btn-danger"
+
+%br
+
+= link_to 'New Yaopin', new_yaopin_path

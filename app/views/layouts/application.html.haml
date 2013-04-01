@@ -4,13 +4,18 @@
     %meta{:charset => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
-    %title= content_for?(:title) ? yield(:title) : "Yl"
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
+    %title
+      -if content_for?(:title)
+        =[yield(:title),@title_suffix || "_国药准字查询网"].join()
+      -else
+        =t('appname')
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    -#=javascript_tag 'var _hmt = _hmt || [];'
     = csrf_meta_tags
     = yield(:head)
+    =render 'layouts/iefix'
+    =javascript_include_tag 'http://cbjs.baidu.com/js/m.js'
+  -@hide_ad_before = true if %w(new edit).include? action_name
   %body
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
@@ -19,8 +24,63 @@
     #main{:role => "main"}
       .container
         .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
+          -unless @hide_bread
+            .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
+          = render 'layouts/messages'
+          -if @col1 
+            -if show_title?
+              %h1#pt=yield :header
+            -unless @hide_ad_before
+              =slotb
+            = yield
+            .clearfix
+            =slotf
+          -else
+            .row
+              .span8
+                -if show_title?
+                  %h1#pt=yield :header
+                =slotb unless @hide_ad_before
+                = yield
+              .span4.sidebar
+                =yield :sidebar
+                = render 'layouts/sidebar' unless @hide_sidebar
+      .belt
+        .container
+          %p
+            =link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
+            =link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
+            =link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
+            =link_to "国药试字",search_yaopins_url(:q=>"国药试字")
+            药品分页索引:
+            -(1..9).to_a.each do |i|
+              -i= 10*i + 1
+              =link_to i,drugs_url(:page=>i),:title=>"第#{i}页_药品大全"
+            首字母索引
+            -("a".."z").to_a.each do |s|
+              =link_to s,drugs_url(:abbr=>s),:title=>"#{s}开头_药品大全"
+            %br
+            批号分页索引:
+            =link_to 1,map_yaopins_url,:title=>"国药准字大全"
+            -(1..37).to_a.each do |i|
+              -i= 10*i + 1
+              =link_to i,map_yaopins_url(:page=>i),:title=>"第#{i}页_国药准字大全"
+
+      %footer
+        .container
+          -if is_home?
+            =render "layouts/links"
+          .pull-left
+            &copy; 2012 www.jxjw.net  蜀ICP备12023975号-3
+            -if !is_home?
+              =link_to "链接","/links"
+              联系 <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">QQ</a>
+          .pull-right
+            =yield(:title) || t('appname')
+    = javascript_include_tag "application"
+    =render 'layouts/iefixjs'
+    -#.hidden=render "layouts/tongji" if Rails.env.production?
+    =render "layouts/ga"
+    ='<script type="text/javascript" src="http://js.tongji.linezing.com/3090156/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3090156/tongji.gif"/></a></noscript>'.html_safe
+
+    = yield(:footer)

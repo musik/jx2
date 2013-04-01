@@ -1,0 +1,2 @@
+#bundle exec rake ts:precompile
+rsync -avzP /home/muzik/as3/yl/public/assets rho:~/yl/public/

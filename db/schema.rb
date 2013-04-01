@@ -11,7 +11,118 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120630143453) do
+ActiveRecord::Schema.define(:version => 20121023140630) do
+
+  create_table "categories", :force => true do |t|
+    t.string  "name"
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
+    t.integer "depth"
+    t.integer "drugs_count", :default => 0
+  end
+
+  add_index "categories", ["lft", "rgt"], :name => "index_lr"
+  add_index "categories", ["parent_id"], :name => "index_parent"
+
+  create_table "chengfens", :force => true do |t|
+    t.string "name"
+    t.text   "meta"
+  end
+
+  add_index "chengfens", ["name"], :name => "index_chengfens_on_name"
+
+  create_table "chengfens_drugs", :id => false, :force => true do |t|
+    t.integer "chengfen_id"
+    t.integer "drug_id"
+  end
+
+  add_index "chengfens_drugs", ["chengfen_id", "drug_id"], :name => "index_chengfens_drugs_on_chengfen_id_and_drug_id"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "drugs", :force => true do |t|
+    t.string   "name"
+    t.string   "en"
+    t.string   "abbr"
+    t.string   "abbr2"
+    t.integer  "yaopins_count"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "category_id"
+    t.text     "shuoming"
+    t.boolean  "has_shuoming"
+    t.text     "meta"
+  end
+
+  add_index "drugs", ["category_id"], :name => "index_drug_category"
+  add_index "drugs", ["name"], :name => "index_drugs_on_name"
+  add_index "drugs", ["yaopins_count"], :name => "index_yaopins_count"
+
+  create_table "links", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.boolean  "published",  :default => true
+    t.integer  "priority",   :default => 5
+    t.string   "context"
+    t.boolean  "inhome",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "page_views", :force => true do |t|
+    t.string   "viewable_type"
+    t.integer  "viewable_id"
+    t.string   "user_agent"
+    t.string   "ip"
+    t.string   "referer"
+    t.string   "visitor_hash"
+    t.integer  "user_id"
+    t.datetime "created_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "publish"
+    t.string   "laiyuan"
+    t.string   "laiyuan_url"
+    t.string   "author"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "excerpt"
+    t.string   "keywords"
+    t.string   "seo_title"
+  end
+
+  add_index "posts", ["publish"], :name => "index_posts_on_publish"
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -53,5 +164,31 @@ ActiveRecord::Schema.define(:version => 20120630143453) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "yaopins", :force => true do |t|
+    t.string   "name"
+    t.string   "en"
+    t.string   "wenhao"
+    t.string   "yuanwenhao"
+    t.string   "benweima"
+    t.string   "benweima_beizhu"
+    t.string   "shangpin_name"
+    t.string   "changjia_name"
+    t.string   "changjia_guojia"
+    t.string   "changjia_dizhi"
+    t.string   "guige"
+    t.string   "jixing"
+    t.string   "leibie"
+    t.date     "pizhunri"
+    t.date     "daoqiri"
+    t.text     "meta"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "drug_id"
+  end
+
+  add_index "yaopins", ["drug_id"], :name => "index_drug_id"
+  add_index "yaopins", ["name"], :name => "index_name"
+  add_index "yaopins", ["wenhao"], :name => "index_yaopins_on_wenhao"
 
 end

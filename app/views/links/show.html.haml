@@ -1,0 +1,20 @@
+-title @link.name
+%p
+  %b Url:
+  = @link.url
+%p
+  %b Published:
+  = @link.published
+%p
+  %b Priority:
+  = @link.priority
+%p
+  %b Context:
+  = @link.context
+%p
+  %b Inhome:
+  = @link.inhome
+
+= link_to 'Edit', edit_link_path(@link)
+\|
+= link_to 'Back', links_path

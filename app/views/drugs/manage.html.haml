@@ -1,0 +1,20 @@
+%h1 Listing drugs
+=paginate @drugs,:theme=>"twitter-bootstrap"
+%table.table.table-bordered
+  %tr
+    %th Name
+    %th En
+    %th
+    %th
+    %th
+
+  - @drugs.each do |drug|
+    %tr
+      %td=link_to  drug.name,yao_url(drug)
+      %td= drug.en
+      %td= link_to 'Edit', edit_drug_path(drug)
+      %td= link_to 'Destroy', drug, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Drug', new_drug_path

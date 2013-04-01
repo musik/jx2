@@ -1,0 +1,50 @@
+-title 'adsense预览工具_谷歌广告预览',nil,false
+.hero-unit
+  %h1.small 谷歌广告预览工具
+  %form.form-search#form-adsense
+    .input-append
+      %input.search-queryx.input-large#url{:name=>'url',:type=>:text,'placeholder'=>'http://',:value=>params[:url] || 'http://'}
+      =select_tag 'hl',options_for_select({'中文'=>'zh_CN','英文'=>'en'},params[:hl]),:class=>"input-mini input-sq"
+      =select_tag 'gl',options_for_select({'中国'=>'CN','美国'=>'US','英国'=>'GB','日本'=>'JP','印度'=>'IN'},params[:gl]),:class=>"input-mini input-sq"
+      %button.btn{:type=>:submit} 预览
+  .muted
+    本页使用非实用的虚拟帐号发布广告,点击不会给任何人产生收益或损耗。
+-if @page_title
+  ='<!-- google_ad_section_start -->'.html_safe
+  %h2=@page_title
+  ='<!-- google_ad_section_end -->'.html_safe
+
+-[[200,200],[250,250],[300,250],[336,280]].each do |pair|
+  -width= pair[0]
+  -height= pair[1]
+  %h4 #{width}x#{height}
+  .row
+    -%w(image flash text).each do |ad_type|
+      .span4 
+        %strong #{width}x#{height}/#{t('ad_type.'+ad_type)}
+        %br
+        %iframe{:width=>(width+10),:height=>(height+30),:src=>"/tools/adsense_preview?language=#{@hl}&ad_type=#{ad_type}&image_size=#{width}x#{height}&gl=#{@gl}&page_url=#{@url}&inframe=1",:scrolling=>'no'}
+  %hr
+        
+%h4
+.row
+  .span8
+    -[[468,60],[728,90]].each do |pair|
+      -width= pair[0]
+      -height= pair[1]
+      %h4 #{width}x#{height}
+      -%w(image flash text).each do |ad_type|
+        .ad
+          %strong #{width}x#{height}/#{t('ad_type.'+ad_type)}
+          %br
+          %iframe{:width=>(width+10),:height=>(height+30),:src=>"/tools/adsense_preview?language=#{@hl}&ad_type=#{ad_type}&image_size=#{width}x#{height}&gl=#{@gl}&page_url=#{@url}&inframe=1",:scrolling=>'no'}
+      %hr
+.row
+  -[[120,600],[160,600]].each do |pair|
+    -width= pair[0]
+    -height= pair[1]
+    -%w(image flash text).each do |ad_type|
+      .span2
+        %strong #{width}x#{height}/#{t('ad_type.'+ad_type)}
+        %br
+        %iframe{:width=>(width+10),:height=>(height+30),:src=>"/tools/adsense_preview?language=#{@hl}&ad_type=#{ad_type}&image_size=#{width}x#{height}&gl=#{@gl}&page_url=#{@url}&inframe=1",:scrolling=>'no'}

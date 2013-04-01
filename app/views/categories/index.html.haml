@@ -1,0 +1,7 @@
+%h1 Listing categories
+
+%ul.categories.unstyled
+  =render :partial=>'tree',:locals=>{:rs => @categories,:parent=>0}
+    
+
+= link_to 'New Category', new_category_path

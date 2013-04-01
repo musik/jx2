@@ -1,0 +1,23 @@
+-title [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name].compact.join('_'),@yaopin.wenhao
+-keywords [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name,@yaopin.changjia_name].compact
+-@desc = "#{@yaopin.wenhao}，名称#{@yaopin.name}，由位于#{@yaopin.changjia_guojia}#{@yaopin.changjia_dizhi}的#{@yaopin.changjia_name}生产，批准于#{@yaopin.pizhunri}。为#{@yaopin.jixing}#{@yaopin.leibie},规格为#{@yaopin.guige}。"
+-meta_desc @desc
+%table.table.table-bordered.yaopin-single
+  %tr
+    %th 名称
+    %td=link_to @yaopin.name,bdapp_drug_link(@yaopin.drug)
+  -i=0
+  -%w(en yuanwenhao benweima shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
+    -if @yaopin[key].present? and @yaopin[key] != '－－－－'
+      -i+=1
+      -unless i.divmod(2)[1].zero?
+        ='<tr>'.html_safe
+        %th=t("yaopin.attrs.#{key}")
+        %td=@yaopin.send(key)
+      -else
+        %th=t("yaopin.attrs.#{key}")
+        %td=@yaopin.send(key)
+        ='</tr>'.html_safe
+  -unless i.divmod(2)[1].zero?
+    ='<td colspan="2"></td></tr>'.html_safe 
+

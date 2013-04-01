@@ -1,0 +1,9 @@
+-title '链接'
+-@hide_ad_before = true
+-@links.each do |context,rs|
+  .link-header= context.present? ? context : "未分类"
+  %p.links
+    -rs.each do |l|
+      = link_to l.name,l.url
+
+

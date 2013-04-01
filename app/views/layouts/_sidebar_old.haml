@@ -1,0 +1,25 @@
+
+-limit = 10
+-cache ["pv-recent",limit],:expires_in=>1.minute do
+  -views = PageView.recent.limit(limit)
+  -if views.present?
+    .wellx
+      %span.label 最近访问
+      %ul.unstyled
+        -views.each do |view|
+          -r = view.viewable
+          -if r.is_a?(Drug)
+            %li=link_to r.name,yao_url(r)
+          -else
+            %li
+              =link_to r.wenhao_and_name,r
+-unless @hide_cjyp              
+  -limit = 20
+  -offset = Digest::MD5.hexdigest(request.url).to_i(16).divmod(TOPDRUGS.size - limit)[1]
+  -cache ["side-cjyp",offset,limit] do
+    .wellx
+      %span.label 常见药品
+      %ul.unstyled.drugs-2cols
+        -TOPDRUGS.keys.slice(offset,limit).each do |str|
+          %li=link_to str,yao_url_str(str)
+        .clearfix

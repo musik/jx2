@@ -1,0 +1,39 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title= content_for?(:title) ? yield(:title) : t('appname')
+    = stylesheet_link_tag    "application", :media => "all"
+    =javascript_tag 'var _hmt = _hmt || [];'
+    = csrf_meta_tags
+    = yield(:head)
+    =render 'layouts/iefix'
+    ='<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>'.html_safe if @adm_baidu
+  %body.home
+    #main{:role => "main"}
+      .container-small
+        .contentx
+          = render 'layouts/messages'
+          -if show_title?
+            %h1=yield :title
+          = yield
+      %footer
+        .container-small
+          -if is_home?
+            =render "layouts/links"
+          .pull-left
+            %span.label 联系
+            ='<a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">QQ</a>'.html_safe
+            %br
+            &copy; 2012 蜀ICP备12023975号-3
+
+          .pull-right
+            -#=render "layouts/alivv"
+            =t('appname')
+    = javascript_include_tag "application"
+    =render 'layouts/iefixjs'
+    .hidden=render "layouts/tongji" if Rails.env.production?
+
+    = yield(:footer)

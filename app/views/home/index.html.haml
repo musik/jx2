@@ -1,3 +1,33 @@
-%h3 Home
-- @users.each do |user|
-  %p User: #{link_to user.name, user}
+-title t('.title'),nil,false
+-meta_desc t('.desc')
+-keywords t('.keywords')
+-@hide_bread = true
+-@hide_cjyp = true
+-@hide_ad_before = true
+-@hide_title_suffix = true
+-@title_suffix = ""
+-@col1 = true
+
+%h1.small= t('appname')
+%p=t('.desc')
+-#=bdshare
+.clearfix
+=slotb
+.row
+  .span9
+    -cache "home-cjyp-80" do
+      %tt 常见药品
+      %ul.unstyled.mlist
+        -TOPDRUGS.keys.slice(0,80).each do |str|
+          %li=link_to str,yao_url_str(str)
+        .clearfix
+  .span3
+    %tt 资讯更新
+    -cache "recent-posts-15" do
+      -results = Post.published.recent.limit(15).all
+      -if results.present?
+        %ul.unstyled
+          -results.each do |r|
+            %li=link_to r.title,r
+
+

@@ -1,0 +1,15 @@
+development:
+      key:    "801242191"
+      secret: "9904d8a2eb9994380e45299491c3d24a"
+      url:    "http://vcap.me:4005"
+      callback: "http://vcap.me:4005/syncs/qq/callback"
+production:
+      key:    "801242191"
+      secret: "9904d8a2eb9994380e45299491c3d24a"
+      url:    "http://vcap.me:4005"
+      callback: "http://vcap.me:4005/syncs/qq/callback"
+test:
+      key:    "801242191"
+      secret: "9904d8a2eb9994380e45299491c3d24a"
+      url:    "http://vcap.me:4005"
+      callback: "http://vcap.me:4005/syncs/qq/callback"

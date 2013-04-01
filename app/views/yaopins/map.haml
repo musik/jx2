@@ -1,0 +1,7 @@
+-title(@title || "国药准字大全")
+
+-@col1 = true
+=paginate @yaopins,:theme=>"twitter-bootstrap",:window=>10
+%p.stack
+  -@yaopins.each do |yaopin|
+    <a href="/pihao/#{yaopin.wenhao}">#{yaopin.wenhao}</a>

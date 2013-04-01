@@ -1,0 +1,15 @@
+-title @title
+
+-if @yaopins.present?
+  %table.table.table-bordered
+    %tr
+      -%w(批号 厂家).each do |key|
+        %th=key
+    -@yaopins.each do |r|
+      %tr
+        %td=link_to r.wenhao,bdapp_pihao_link(r)
+        -%w(changjia_name).each do |key|
+          %td= r.send key
+  =paginate @yaopins,:theme=>"twitter-bootstrap",:window=>3
+-else
+  没有匹配的结果,请调整你的关键词

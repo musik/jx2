@@ -1,0 +1,19 @@
+
+-title @drug.name#,nil,false
+-keywords t('drugs.show.keywords',:drug=>@drug.name)
+-meta_desc t('drugs.show.desc',:drug=>@drug.name)
+
+-rs = @yaopins
+-if rs.present?
+  -#%p=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
+  %table.table.table-bordered
+    %tr
+      -%w(批号 厂家).each do |key|
+        %th=key
+    -rs.each do |r|
+      %tr
+        %td=link_to r.wenhao,bdapp_pihao_link(r)
+        -%w(changjia_name).each do |key|
+          %td= r.send key
+
+=paginate @yaopins,:theme=>"twitter-bootstrap",:window=>3

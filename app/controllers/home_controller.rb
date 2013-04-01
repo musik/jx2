@@ -1,5 +1,7 @@
+# -*- encoding : utf-8 -*-
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @adm_baidu = false
+    render :layout=>"application"
   end
 end

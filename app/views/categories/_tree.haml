@@ -1,0 +1,8 @@
+-rs[parent].each do |r|
+  %li
+    =link_to r.name,r
+    -if rs[r.id].present?
+      %ul.children
+        =render :partial=>'tree',:locals=>{:rs => rs,:parent=>r.id}
+    -else
+      =r.drugs_count

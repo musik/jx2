@@ -1,0 +1,62 @@
+# encoding: utf-8
+
+zh-CN:
+  search: 搜索
+  appname: 国药准字查询
+  breadcrumbs:
+    home: 首页
+    drugs: 药品
+    yaopin: 国药准字列表
+    jixing: 剂型
+    leibie: 类别
+    name: 同名
+    drug_yaopins: 批号
+  drugs:
+    show:
+      title: "%{name}_%{name}批号_%{name}功效与作用"
+      chengfen: "%{name}主要成分"
+      shuoming: "%{name}说明书"
+      yaopins: "%{name}批号"
+      total: "共找到%{count}件%{name}批号"
+      more: "&raquo; 更多%{name}批号"
+      keywords: "%{drug},%{drug}批号,%{drug}说明书"
+      desc: "%{drug},关于%{drug}说明书、%{drug}的功效、用法用量、不良反应、副作用、禁忌，%{drug}的成份，%{drug}的批准文号等信息。"
+  yaopin:
+    attrs:
+      name: 药名
+      en: 英文名
+      wenhao: 批准文号
+      yuanwenhao: 原批准文号
+      benweima: 本位码
+      benweima_beizhu: 备注
+      shangpin_name: 商品名
+      changjia_name: 厂家
+      changjia_guojia: 厂家国家
+      changjia_dizhi: 厂家地址
+      guige: 规格
+      jixing: 剂型
+      leibie: 类别
+      pizhunri: 批准日期
+      daoqiri: 有效日期
+  chengfens:
+    show:
+      drugs: "%{name}为主要成分的药品"
+  auto_complete:
+    not_found: 暂无相关结果,请调整你的输入
+  Not authorized as an administrator: 您不是管理员.
+  footer_left: 淘热点 鲁ICP备05022080号
+  footer_right: '<a href="http://www.sdmec.com">淘宝热点导购</a>'
+  home:
+    index:
+      title: 国药准字查询
+      desc: 本站查询系统采用药监局国药准字号数据，每日同步更新，提供便捷易用的国药准字号查询、药品批号查询、药品本位码查询服务。
+      keywords: 国药准字查询,国药准字号查询,国药准字查询网
+  bdapp:
+    index:
+      title: 国药准字查询_百度应用
+  tools_appname: 工具
+  ad_type:
+    image: 图片广告
+    flash: FLASH多媒体
+    html: HTML广告
+    text: 文本广告

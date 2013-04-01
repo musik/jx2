@@ -1,0 +1,21 @@
+%h1 Listing chengfens
+
+%table
+  %tr
+    %th Name
+    %th Meta
+    %th
+    %th
+    %th
+
+  - @chengfens.each do |chengfen|
+    %tr
+      %td= chengfen.name
+      %td= chengfen.meta
+      %td= link_to 'Show', chengfen
+      %td= link_to 'Edit', edit_chengfen_path(chengfen)
+      %td= link_to 'Destroy', chengfen, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Chengfen', new_chengfen_path

@@ -1,0 +1,13 @@
+= simple_form_for(@link) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :url
+    = f.input :published
+    = f.input :priority
+    = f.input :context
+    = f.input :inhome
+
+  .form-actions
+    = f.button :submit

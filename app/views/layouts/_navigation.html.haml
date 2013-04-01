@@ -1,17 +1,17 @@
-= link_to "Yl", root_path, :class => 'brand'
+= link_to t('appname'), root_path, :class => 'brand'
+%form.navbar-search.pull-left{:action=>'/pihao/search',:method=>'get'}
+  -a={:id=>'q',:type=>"text",:name=>"q"}
+  -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
+  %input.search-query{a}
 %ul.nav
+  %li=link_to "药品",drugs_url
+  %li=link_to "国药准字列表",yaopins_url
+  %li=link_to "资讯",posts_url
+%ul.nav.pull-right
   - if user_signed_in?
     %li
-      = link_to('Logout', destroy_user_session_path, :method=>'delete')
-  - else
+      = link_to('登出', destroy_user_session_path, :method=>'delete')
     %li
-      = link_to('Login', new_user_session_path)
-  - if user_signed_in?
-    %li
-      = link_to('Edit account', edit_user_registration_path)
+      = link_to('设置', edit_user_registration_path)
     - if current_user.has_role? :admin
-      %li
-        = link_to('Admin', users_path)
-  - else
-    %li
-      = link_to('Sign up', new_user_registration_path)
+      %li= link_to('管',rails_admin_path)

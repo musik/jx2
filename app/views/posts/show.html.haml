@@ -1,0 +1,17 @@
+-title @post.title
+-meta :description,@post.description
+-if @post.keywords.present?
+  -meta :keywords,@post.keywords
+
+-@hide_ad_2 = true
+.entry-meta
+  ="来源: #{@post.laiyuan}" if @post.laiyuan.present?
+  ="作者: #{@post.author}" if @post.author.present?
+  ="关键词: #{@post.keywords}" if @post.keywords.present?
+.entry-content  
+  -if @post.excerpt.present?
+    .excerpt=@post.excerpt 
+  =textilize(@post.content).html_safe
+
+-if can? :edit,@post
+  =link_to "编辑",edit_post_url(@post)

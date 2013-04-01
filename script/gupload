@@ -1,0 +1,3 @@
+rsync -avzP /home/muzik/as3/yl inrt:/db/www/ --exclude "log/" --exclude "tmp/" --exclude "tmp2/" --exclude "Gemfile.lock" --exclude "*.sql" --exclude "database.yml" --exclude "tmp/cache" --exclude ".git" --exclude "db/sphinx" --exclude  "public/uploads" --exclude "public/xml" --exclude "script/xml.sh" --exclude "config/environments/production.rb"
+echo GRT5
+rsync -avzP /home/muzik/as3/yl grt5:/home/muzik/www/ --exclude "log/" --exclude "tmp/" --exclude "tmp2/" --exclude "Gemfile.lock" --exclude "*.sql" --exclude "database.yml" --exclude "tmp/cache" --exclude "public/cache" --exclude ".git" --exclude "db/sphinx" --exclude  "public/uploads" --exclude "public/xml" --exclude "script/xml.sh" --exclude "vendor/cache"

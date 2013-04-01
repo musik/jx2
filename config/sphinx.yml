@@ -1,0 +1,19 @@
+development:
+  bin_path: /usr/local/coreseek/bin
+  max_children: 2
+  mem_limit: 128M
+  workers: prefork
+  charset_type: zh_cn.utf-8
+  charset_dictpath: /home/muzik/Aptana/yl/config/etc/ 
+  port: 9322
+  ngram_len: 0
+  indexed_models:
+    - Yaopin
+production:
+  bin_path: /usr/local/coreseek/bin
+  max_children: 4
+  mem_limit: 256M
+  # workers: prefork
+  charset_type: zh_cn.utf-8
+  charset_dictpath: /home/muzik/yl/config/etc/
+  port: 9322

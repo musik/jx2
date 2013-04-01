@@ -1,0 +1,5 @@
+-title t('drugs.show.yaopins',:name=>@drug.name)
+
+%p=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
+=paginate @pihao,:theme=>"twitter-bootstrap"
+= render :partial => 'yaopins/list_inline',:locals=>{:results=>@pihao}

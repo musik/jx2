@@ -1,0 +1,11 @@
+%ul.pihao-list
+  - results.each do |yaopin|
+    %li.pihao{:class=>cycle('odd','even')}
+      .fn
+        =link_to yaopin.wenhao,yaopin
+        -unless yaopin.name.nil?
+          %small
+            /
+            =link_to yaopin.name,yao_url(yaopin)
+      .meta
+        =[yaopin.changjia_name,yaopin.jixing,yaopin.leibie,yaopin.guige].compact.join(' / ')

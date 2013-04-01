@@ -1,0 +1,18 @@
+= simple_form_for(@yaopin) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :en
+    = f.input :wenhao
+    = f.input :yuanwenhao
+    = f.input :benweima
+    = f.input :shangpin_name
+    = f.input :changjia_name
+    = f.input :changjia_dizhi
+    = f.input :guige
+    = f.input :jixing
+    = f.input :leibie
+
+  .form-actions
+    = f.button :submit

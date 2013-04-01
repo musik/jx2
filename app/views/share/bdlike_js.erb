@@ -1,0 +1,20 @@
+<script id="bdlike_shell"></script>
+<script>
+var bdShare_config = {
+	"type":"medium",
+	"color":"orange",
+	"uid":"490604",
+	"likeText":"支持",
+	"likedText":"已支持",
+	"share":"yes"
+};
+document.getElementById("bdlike_shell").src="http://bdimg.share.baidu.com/static/js/like_shell.js?t=" + new Date().getHours();
+$(function () {
+  str = '<div class="message">如果你觉得本站有用，请不吝高抬贵手，<br />投票支持我们一下。谢谢。</div>'
+  $('.bdlikebutton').each(function(){
+    $(this).parent().append(str)
+  })
+
+  //bt.remove()
+})
+</script>

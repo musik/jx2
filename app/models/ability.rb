@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Ability
   include CanCan::Ability
 
@@ -5,6 +6,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
+    else
+      can :read, :all
+      can :track, :all
     end
     # Define abilities for the passed in user here. For example:
     #

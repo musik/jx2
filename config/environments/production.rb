@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Yl::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -7,6 +8,7 @@ Yl::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.cache_store = :redis_store,"redis://localhost:6379/4"
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
@@ -46,7 +48,7 @@ Yl::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile += %w( html5*.js ie6.css ie6.js bdapp.js without_border.css tools.css)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

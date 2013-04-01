@@ -1,0 +1,51 @@
+-title t('.title',:name=>@drug.name),@drug.name
+-keywords t('.keywords',:drug=>@drug.name)
+-meta_desc t('.desc',:drug=>@drug.name)
+
+//.page-header
+//  %h1=@drug.name
+
+-if @drug.has_shuoming?
+  -# %h2=t('.shuoming',:name=>@drug.name)
+  -rs = @drug.hashdata(:shuoming)
+  -%w(用法用量 不良反应 注意事项).each do |str|
+    -next unless rs[str].present?
+    .page-header-2
+      %h2
+        =@drug.name
+        %small=str
+    %p=rs[str]
+  %p
+    &raquo; 查看详细的
+    =link_to t('drugs.show.shuoming',:name=>@drug.name),shuoming_url(@drug),:class=>"badgex"
+
+-rs = @chengfens
+-if rs.present?
+  .page-header-2
+    %h2
+      =@drug.name
+      %small 主要成分
+  %table.table.table-borderedx
+    -rs.uniq.each do |r|
+      %tr
+        %th=link_to r.name,chengfen_url(r.name),:class=>"badge"
+        %td=r.metahash["英文名"]
+        %td=r.metahash["化学名"]
+
+-if @drug.yaopins_count.present?
+  -rs = @yaopins
+  -if rs.present?
+    %h2=t('.yaopins',:name=>@drug.name)
+    %p=t('.total',:count=>@drug.yaopins_count,:name=>@drug.name)
+    =render :partial=>"yaopins/list_inline",:locals=>{:results=>@yaopins}
+    -if @drug.yaopins_count > 10
+      =link_to t('.more',:name=>@drug.name).html_safe,pihao_drug_url(@drug),:rel=>"nofollow"
+
+%p=t('.desc',:drug=>@drug.name)
+=slotf
+-if params[:debug]
+  =debug @drug
+  =debug @drug.hashdata(:shuoming).keys
+-content_for :footer do
+  =javascript_tag "track_data('yaopin','#{@drug.id}','#{request.referer.present? ? CGI.escape(request.referer).reverse : ""}')"
+

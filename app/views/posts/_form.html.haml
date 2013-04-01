@@ -1,0 +1,20 @@
+= simple_form_for(@post) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title,:input_html=>{:class=>"input-xxlarge"}
+    = f.input :content,:input_html=>{:rows=>8,:class=>"input-xxlarge"}
+    = f.input :excerpt,:as=>:text,:input_html=>{:rows=>3,:class=>"input-xxlarge"}
+    = f.input :keywords,:input_html=>{:class=>"input-xxlarge"}
+    = f.input :seo_title,:input_html=>{:class=>"input-xxlarge"}
+    = f.input :laiyuan  do
+      网站
+      =f.input_field :laiyuan,:class=>"input-mini"
+      作者
+      =f.input_field :author,:class=>"input-mini"
+      网址
+      = f.input_field :laiyuan_url
+    = f.input_field :publish,:inline_label=>"立即发布/不选则存为草稿"
+
+  .form-actions
+    = f.button :submit
