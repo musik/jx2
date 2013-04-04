@@ -52,6 +52,7 @@ set :nginx_remote_config,"/etc/nginx/sites-enabled/jxjw.conf"
 set :nginx_local_config, "./lib/templates/nginx.conf.erb"
 set :application_uses_ssl, false
 set :nginx_host_name,"www.jxjw.net"
+#set :nginx_host_uniq,false
 set :nginx_host_uniq,"www.jxjw.net"
 set :nginx_host_alias,"jxjw.net"
 

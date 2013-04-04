@@ -97,6 +97,7 @@ class DrugsController < ApplicationController
   end
   def pihao
     @drug = Drug.find(params[:id])
+    render_404 and return if @drug.nil?
     if @drug.category.present?
       set_category_crumbs @drug.category,false
     end
