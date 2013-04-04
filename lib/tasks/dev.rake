@@ -4,8 +4,8 @@ end
 namespace :jobs do
   desc "取回药品数据前10页"
   task :update_yaopins => :environment do
-    page = ARGV[1] || 10
-    #Yaopin::Sfda.new.get_table_lists 25,10,1
+    page = (ENV["YPAGE"] || 10)
+    Yaopin::Sfda.new.get_table_lists 25,page.to_i,1
   end
   desc "生成xml"
   task :xml => :environment do

@@ -46,8 +46,7 @@
                 =yield :sidebar
                 = render 'layouts/sidebar' unless @hide_sidebar
       .belt
-        -cache "footlinks" do
-          = render :partial => 'layouts/footlinks_static'
+        = render :partial => 'layouts/footlinks_static'
 
       %footer
         .container
