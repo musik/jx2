@@ -67,6 +67,7 @@ class Yaopin < ActiveRecord::Base
     end
     def get_list(table,page=1)
       doc = get_doc(@url + "search.jsp?tableId=#{table}&curstart=#{page}") 
+      #doc = get_doc(@url + "base.jsp?tableId=#{table}&curstart=#{page}") 
       total_page = doc.text.match(/共(\d+)页 共\d+条/)[1].to_i
       total_page = 1 if Rails.env.test? and total_page > 1
       # pp doc if Rails.env.test?
@@ -134,6 +135,9 @@ class Yaopin < ActiveRecord::Base
         end
       end
       
+      return if data[:wenhao].nil?
+      drug = Drug.where(:name=>data[:name]).first_or_create(:en=>data[:en])
+      data[:drug_id] = drug.id
       r = Yaopin.where(:wenhao=>data[:wenhao]).first_or_create data
       pp r if Rails.env.test?
     end
