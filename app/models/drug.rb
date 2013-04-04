@@ -6,7 +6,7 @@ class Drug < ActiveRecord::Base
   belongs_to :category,:counter_cache => true
   has_and_belongs_to_many :chengfens
   
-  scope :inlist,select([:en, :name,:yaopins_count,:category_id,:has_shuoming])
+  scope :inlist,select([:id,:en, :name,:yaopins_count,:category_id,:has_shuoming])
   scope :yaopin_order,order("yaopins_count desc")
   
   resourcify

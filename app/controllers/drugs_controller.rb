@@ -10,7 +10,7 @@ class DrugsController < ApplicationController
   # GET /drugs
   # GET /drugs.json
   def index
-    @drugs = Drug.inlist.yaopin_order.includes(:category).page(params[:page] || 1).per(params[:per] || 200)
+    @drugs = Drug.inlist.includes(:category).page(params[:page] || 1).per(params[:per] || 200)
     if params[:abbr]
       @abbr = params[:abbr]
       @drugs = @drugs.where(:abbr=>params[:abbr])
@@ -100,8 +100,9 @@ class DrugsController < ApplicationController
     if @drug.category.present?
       set_category_crumbs @drug.category,false
     end
-    breadcrumbs.add @drug.name,"/#{@drug.to_param}"
-    breadcrumbs.add :drug_yaopins,nil
+    breadcrumbs.add @drug.name,nil
+    #breadcrumbs.add @drug.name,"/#{@drug.to_param}"
+    #breadcrumbs.add :drug_yaopins,nil
     @pihao = @drug.yaopins.newest.page(params[:page] || 1).per(100)
   end
 

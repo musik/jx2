@@ -4,4 +4,7 @@ class HomeController < ApplicationController
     @adm_baidu = false
     render :layout=>"application"
   end
+  def test
+    render :layout=>"application"
+  end
 end

@@ -1,0 +1,19 @@
+.container
+  %p
+    =link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
+    =link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
+    =link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
+    =link_to "国药试字",search_yaopins_url(:q=>"国药试字")
+    药品分页索引:
+    -(1..9).to_a.each do |i|
+      -i= 10*i + 1
+      =link_to i,drugs_url(:page=>i),:title=>"第#{i}页药品"
+    首字母索引
+    -("a".."z").to_a.each do |s|
+      =link_to s,drugs_url(:abbr=>s),:title=>"#{s}开头药品"
+    %br
+    批号分页索引:
+    =link_to 1,map_yaopins_url,:title=>"国药准字大全"
+    -(1..37).to_a.each do |i|
+      -i= 10*i + 1
+      =link_to i,map_yaopins_url(:page=>i),:title=>"第#{i}页批号"

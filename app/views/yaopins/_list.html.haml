@@ -6,6 +6,6 @@
         -unless yaopin.name.nil?
           %small
             /
-            =link_to yaopin.name,yao_url(yaopin)
+            =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao"
       .meta
         =[yaopin.changjia_name,yaopin.jixing,yaopin.leibie,yaopin.guige].compact.join(' / ')

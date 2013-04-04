@@ -22,12 +22,20 @@
           %li=link_to str,yao_url_str(str)
         .clearfix
   .span3
-    %tt 资讯更新
-    -cache "recent-posts-15" do
-      -results = Post.published.recent.limit(15).all
-      -if results.present?
-        %ul.unstyled
-          -results.each do |r|
-            %li=link_to r.title,r
+    %tt 最新发布
+    -cache "recent-yaopin-15",:expires_in=>15.minutes do
+      -results = Yaopin.newest.inlist.limit(20)
+      %ul.unstyled
+        -results.each do |yaopin|
+          %li 
+            <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao}</a>
+      
+    -#%tt 资讯更新
+    -#-cache "recent-posts-15" do
+      -#-results = Post.published.recent.limit(15).all
+      -#-if results.present?
+        -#%ul.unstyled
+          -#-results.each do |r|
+            -#%li=link_to r.title,r
 
 

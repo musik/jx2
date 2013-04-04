@@ -12,7 +12,7 @@ Yl::Application.routes.draw do
   resources :links
 
   match '/category/:category_id'=>'drugs#category',:as=>"category"
-  resources :chengfens,:path=>'chengfen' #, :only=>[:show]
+  resources :chengfens,:path=>'chengfen' , :only=>[:show]
 
   resources :categories do
     collection do
@@ -59,6 +59,7 @@ Yl::Application.routes.draw do
   end
 
   match '/bdapp(/:action(/:id))'=>"bdapp"
+  #match 'test' => 'home#test'
   match '/:id'=>"drugs#show",:as=>"show_yao"
 
   #match '/:id/说明书'=>"drugs#shuomingshu",:as=>"shuomingshu"#,:constraints=>{:id=> /.+%E8%AF%B4%E6%98%8E%E4%B9%A6/}

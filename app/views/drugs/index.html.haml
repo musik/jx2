@@ -12,11 +12,6 @@
 .drugs
   - @drugs.each do |drug|
     .drug
-      <a href="/#{CGI.escape(drug.name)}">#{drug.name}</a>
-      -#=link_to  drug.name,yao_url(drug)
-      -#-if drug.has_shuoming?
-        -#%small=link_to "说明书",shuoming_url(drug),:title=>"#{drug.name}说明书"
-      -#-if drug.yaopins_count.present?
-        -#%small="#{drug.yaopins_count}种"
+      <a href="/yaopin/#{CGI.escape(drug.name)}/pihao">#{drug.name}</a>
 
 

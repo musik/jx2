@@ -1,4 +1,5 @@
--title t('drugs.show.yaopins',:name=>@drug.name)
+-#-title t('drugs.show.yaopins',:name=>@drug.name)
+-title @drug.name
 
 %p=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
 =paginate @pihao,:theme=>"twitter-bootstrap"

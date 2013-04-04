@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023140630) do
+ActiveRecord::Schema.define(:version => 20130401100744) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20121023140630) do
   end
 
   add_index "categories", ["lft", "rgt"], :name => "index_lr"
+  add_index "categories", ["parent_id", "lft"], :name => "index_plr"
   add_index "categories", ["parent_id"], :name => "index_parent"
 
   create_table "chengfens", :force => true do |t|
@@ -188,7 +189,6 @@ ActiveRecord::Schema.define(:version => 20121023140630) do
   end
 
   add_index "yaopins", ["drug_id"], :name => "index_drug_id"
-  add_index "yaopins", ["name"], :name => "index_name"
   add_index "yaopins", ["wenhao"], :name => "index_yaopins_on_wenhao"
 
 end

@@ -112,7 +112,7 @@ class YaopinsController < ApplicationController
 
     @drug = @yaopin.drug
 
-    breadcrumbs.add @drug.name,"/#{@drug.to_param}" if @drug.present?
+    breadcrumbs.add @drug.name,"/yaopin/#{@drug.to_param}/pihao" if @drug.present?
     breadcrumbs.add @yaopin.wenhao,nil
     respond_to do |format|
       format.html # show.html.erb
