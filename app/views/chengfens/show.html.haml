@@ -1,9 +1,10 @@
 -title @chengfen.name
-%table.table.table-bordered
-  -@chengfen.metahash.each do |k,v|
-    %tr
-      %th.key=k
-      %td=v
+-if @chengfen.metahash.present?
+  %table.table.table-bordered
+    -@chengfen.metahash.each do |k,v|
+      %tr
+        %th.key=k
+        %td=v
 %h2=t('.drugs',:name=>@chengfen.name)      
 %table.table.table-bordered.table-yao
   %tr
