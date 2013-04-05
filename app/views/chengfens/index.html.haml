@@ -1,21 +1,8 @@
-%h1 Listing chengfens
-
-%table
-  %tr
-    %th Name
-    %th Meta
-    %th
-    %th
-    %th
-
+-title "药物成分"
+=paginate @chengfens,:theme=>'twitter-bootstrap'
+.list
   - @chengfens.each do |chengfen|
-    %tr
-      %td= chengfen.name
-      %td= chengfen.meta
-      %td= link_to 'Show', chengfen
-      %td= link_to 'Edit', edit_chengfen_path(chengfen)
-      %td= link_to 'Destroy', chengfen, :confirm => 'Are you sure?', :method => :delete
+    %div
+      %strong=link_to chengfen.name,chengfen
+      %p= chengfen.metahash.values.join(" / ")
 
-%br
-
-= link_to 'New Chengfen', new_chengfen_path

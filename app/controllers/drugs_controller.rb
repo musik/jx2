@@ -90,7 +90,7 @@ class DrugsController < ApplicationController
   def shuomingshu
     #@drug = Drug.find(params[:id].sub(/说明书/,''))
     @drug = Drug.find(params[:id])
-    breadcrumbs.add @drug.name,drug_url(@drug)
+    breadcrumbs.add @drug.name,"/yaopin/#{CGI.escape @drug.name}/pihao"
     @title = "#{@drug.name}说明书"
     breadcrumbs.add @title,nil
 

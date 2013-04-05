@@ -5,7 +5,7 @@ class ChengfensController < ApplicationController
   # GET /chengfens
   # GET /chengfens.json
   def index
-    @chengfens = Chengfen.all
+    @chengfens = Chengfen.page(params[:page] || 1).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

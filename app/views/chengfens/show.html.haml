@@ -15,7 +15,7 @@
   - @drugs.each do |drug|
     %tr
       %td
-        =link_to  drug.name,drug
+        <a href="/yaopin/#{CGI.escape drug.name}/pihao">#{drug.name}</a>
         -if drug.has_shuoming?
           =link_to "说明书",shuoming_url(drug),:title=>"#{drug.name}说明书",:class=>"badge"
       -unless @hide_category

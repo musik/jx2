@@ -19,7 +19,8 @@
       %tt 常见药品
       %ul.unstyled.mlist
         -TOPDRUGS.keys.slice(0,80).each do |str|
-          %li=link_to str,yao_url_str(str)
+          %li
+            <a href="/yaopin/#{CGI.escape str}/pihao">#{str}</a>
         .clearfix
   .span3
     %tt 最新发布
@@ -28,7 +29,7 @@
       %ul.unstyled
         -results.each do |yaopin|
           %li 
-            <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao}</a>
+            <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
       
     -#%tt 资讯更新
     -#-cache "recent-posts-15" do

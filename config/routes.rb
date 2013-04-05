@@ -12,7 +12,7 @@ Yl::Application.routes.draw do
   resources :links
 
   match '/category/:category_id'=>'drugs#category',:as=>"category"
-  resources :chengfens,:path=>'chengfen' , :only=>[:show]
+  resources :chengfens,:path=>'chengfen' , :only=>[:index,:show]
 
   resources :categories do
     collection do
