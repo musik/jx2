@@ -4,5 +4,5 @@
   - @chengfens.each do |chengfen|
     %div
       %strong=link_to chengfen.name,chengfen
-      %p= chengfen.metahash.values.join(" / ")
+      %p= chengfen.metahash.values.join(" / ") rescue nil
 
