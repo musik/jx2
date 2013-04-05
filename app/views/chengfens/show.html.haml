@@ -24,7 +24,3 @@
           =link_to drug.category.name,drug.category if drug.category.present? 
       %td="#{drug.yaopins_count}种" if drug.yaopins_count.present? 
 
--if can? :manage,Chengfen
-  = link_to 'Edit', edit_chengfen_path(@chengfen)
-  \|
-  = link_to 'Back', chengfens_path
