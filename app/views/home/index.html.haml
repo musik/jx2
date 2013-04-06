@@ -17,24 +17,26 @@
 =adsense 1545724241,"jx-home-before"
 .row
   .span7
-    -cache "home-cjyp-80" do
+    -limit= 150
+    -cache "home-cjyp-#{limit}" do
       %tt 常见药品
       %ul.unstyled.mlist
-        -TOPDRUGS.keys.slice(0,80).each do |str|
+        -TOPDRUGS.keys.slice(0,limit).each do |str|
           %li
             <a href="/yaopin/#{CGI.escape str}/pihao">#{str}</a>
         .clearfix
   .span2
-    %tt 最新发布
-    -limit = 28
-    -cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
-      -results = Yaopin.newest.inlist.limit(limit)
-      %ul.unstyled
-        -results.each do |yaopin|
-          %li 
-            <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
+    .pull-right
+      %tt 最新发布
+      -limit = 30
+      -cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
+        -results = Yaopin.newest.inlist.limit(limit)
+        %ul.unstyled
+          -results.each do |yaopin|
+            %li 
+              <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
   .span3
-    =adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
+    .pull-right=adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
       
     -#%tt 资讯更新
     -#-cache "recent-posts-15" do
