@@ -31,7 +31,7 @@
             -#%small=link_to r.name,"/#{CGI.escape(r.name)}"
     
 
-=slotf
+-#=slotf
 
 -content_for :footer do
   =javascript_tag "track_data('pihao','#{@yaopin.id}','#{request.referer.present? ? CGI.escape(request.referer).reverse : ""}')" if Rails.env.production?

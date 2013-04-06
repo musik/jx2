@@ -35,7 +35,7 @@
               =slotb
             = yield
             .clearfix
-            =slotf
+            =slotf unless @hide_slotf
           -else
             .row
               .span8
@@ -43,6 +43,7 @@
                   %h1#pt=yield :header
                 =slotb unless @hide_ad_before
                 = yield
+                =slotf unless @hide_slotf
               .span4.sidebar
                 =yield :sidebar
                 = render 'layouts/sidebar' unless @hide_sidebar

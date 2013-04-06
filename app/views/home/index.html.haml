@@ -4,17 +4,19 @@
 -@hide_bread = true
 -@hide_cjyp = true
 -@hide_ad_before = true
+-@hide_slotf = true
 -@hide_title_suffix = true
 -@title_suffix = ""
+
 -@col1 = true
 
 %h1.small= t('appname')
 %p=t('.desc')
 -#=bdshare
 .clearfix
-=slotb
+=adsense 1545724241,"jx-home-before"
 .row
-  .span9
+  .span7
     -cache "home-cjyp-80" do
       %tt 常见药品
       %ul.unstyled.mlist
@@ -22,14 +24,17 @@
           %li
             <a href="/yaopin/#{CGI.escape str}/pihao">#{str}</a>
         .clearfix
-  .span3
+  .span2
     %tt 最新发布
-    -cache "recent-yaopin-15",:expires_in=>15.minutes do
-      -results = Yaopin.newest.inlist.limit(20)
+    -limit = 28
+    -cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
+      -results = Yaopin.newest.inlist.limit(limit)
       %ul.unstyled
         -results.each do |yaopin|
           %li 
             <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
+  .span3
+    =adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
       
     -#%tt 资讯更新
     -#-cache "recent-posts-15" do
@@ -38,5 +43,6 @@
         -#%ul.unstyled
           -#-results.each do |r|
             -#%li=link_to r.title,r
+=adsense 4499190642,"jx-home-bottom-728",:width=>728,:height=>90
 
 
