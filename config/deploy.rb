@@ -87,6 +87,7 @@ require './lib/recipes/sphinx.rb'
 
 #Unicorn
 set :unicorn_workers,2
+set :unicorn_user,:muzik
 require './lib/recipes/unicorn.rb'
 
 after "deploy:create_symlink","unicorn:symlink"
