@@ -46,6 +46,8 @@
                 =slotf unless @hide_slotf
               .span4.sidebar
                 =yield :sidebar
+                -unless @noliubai
+                  .liubai
                 =adsense 8650188641,"jx-global-side",:width=>300,:height=>600
                 = render 'layouts/sidebar' unless @hide_sidebar
       .belt

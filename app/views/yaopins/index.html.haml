@@ -5,6 +5,5 @@
     -Yaopin.all_leibie.each do |str|
       =link_to str,leibie_url(str),:class=>"badge" unless str.nil?
 
-
 =paginate @yaopins,:theme=>"twitter-bootstrap",:window=>10
 = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
