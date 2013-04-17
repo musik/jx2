@@ -20,6 +20,7 @@ db/sphinx
 # minimal Rails specific artifacts
 db/*.sqlite3
 /log/*.log
+/log/*.pid
 /tmp
 
 # various artifacts

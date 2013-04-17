@@ -7,6 +7,9 @@ module YaopinsHelper
       v
     end 
   end
+  def yaopin_changjia_name v
+    link_to v,"/pihao/search?q=#{CGI.escape v}"
+  end
   def yaopin_jixing v
     link_to v,jixing_url(v)
   end

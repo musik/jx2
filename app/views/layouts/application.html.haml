@@ -48,7 +48,8 @@
                 =yield :sidebar
                 -unless @noliubai
                   .liubai
-                =adsense 8650188641,"jx-global-side",:width=>300,:height=>600
+                -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
+                =ubaidu 1263943,"jx-global-side"
                 = render 'layouts/sidebar' unless @hide_sidebar
       .belt
         = render :partial => 'layouts/footlinks_static'
