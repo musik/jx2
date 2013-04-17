@@ -35,8 +35,9 @@
           -results.each do |yaopin|
             %li 
               <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
-  .span3
-    .pull-right=adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
+  .span3.pull-right
+    -#.pull-right=adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
+    =ubaidu 1263949,"jx-home-side"
       
     -#%tt 资讯更新
     -#-cache "recent-posts-15" do
