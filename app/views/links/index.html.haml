@@ -1,4 +1,4 @@
--title '链接'
+-title '酷站'
 -@hide_ad_before = true
 -@col1 = true
 -manage = can? :manage,Link
@@ -8,7 +8,7 @@
     .row
       -rs.each do |l|
         .span3.site
-          %img{:src=>l.favicon_url}
+          %img{:src=>l.favicon_url,width: 16,height: 16}
           = link_to l.name,l.url,:rel=>l.nofollow? ? "nofollow" : nil
           -if manage
             %small
