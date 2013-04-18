@@ -9,7 +9,7 @@
       -rs.each do |l|
         .site
           %img{:src=>l.favicon_url,width: 16,height: 16}
-          = link_to l.name,l.url,:rel=>l.nofollow? ? "nofollow" : nil
+          = link_to l.name,l.url,:target=>'_blank',:rel=>l.nofollow? ? "nofollow" : nil
           -if manage
             %small
               =link_to "e",edit_link_url(l)
