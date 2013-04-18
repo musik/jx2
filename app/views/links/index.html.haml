@@ -5,11 +5,12 @@
 -@links.each do |context,rs|
   .box
     %h2= context.present? ? context.sub(/\d+\./,'') : "未分类"
-    .row-fluid
+    .sites
       -rs.each do |l|
-        .span3.site
+        .site
           %img{:src=>l.favicon_url,width: 16,height: 16}
           = link_to l.name,l.url,:rel=>l.nofollow? ? "nofollow" : nil
           -if manage
             %small
               =link_to "e",edit_link_url(l)
+      .clearfix
