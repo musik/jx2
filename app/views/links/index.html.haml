@@ -5,7 +5,7 @@
 -@links.each do |context,rs|
   .box
     %h2= context.present? ? context.sub(/\d+\./,'') : "未分类"
-    .row
+    .row-fluid
       -rs.each do |l|
         .span3.site
           %img{:src=>l.favicon_url,width: 16,height: 16}
