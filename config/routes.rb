@@ -9,7 +9,11 @@ Yl::Application.routes.draw do
   get "tools/adsense_preview"
   match '/gad'=>'tools#adsense'
 
-  resources :links
+  resources :links do
+    collection do
+      get :manage
+    end
+  end
 
   match '/category/:category_id'=>'drugs#category',:as=>"category"
   resources :chengfens,:path=>'chengfen' , :only=>[:index,:show]

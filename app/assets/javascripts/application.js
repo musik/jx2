@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//xx= require bootstrap-alert
+//= require bootstrap-alert
 //xxx= require jquery.ui.autocomplete
 //xxx= require ./lib/jquery-ui-1.8.20.custom.min.js
 

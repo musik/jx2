@@ -8,9 +8,13 @@ class ApplicationController < ActionController::Base
   def init_breadcrumbs
     return if request.url.match "admin"
     breadcrumbs.add :home,root_url,:rel=>"nofollow"
+    if %w(registrations links).include? controller_name 
+      @hide_slotf = true
+      @hide_adside = true
+    end
     # vars
     # @adm_baidu
-    @adm_baidu = true
+    #@adm_baidu = true
   end
   protected
   def render_404(exception = nil)

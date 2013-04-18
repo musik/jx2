@@ -18,7 +18,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
   -@hide_ad_before = true if %w(new edit).include? action_name
   %body
-    %header.navbar.navbar-fixed-top
+    %header.navbar.navbar-fixed-top.navbar-inverse
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
@@ -49,8 +49,9 @@
                 -unless @noliubai
                   .liubai
                 -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
-                =ubaidu 1263943,"jx-global-side"
-                <script type="text/javascript">alimama_pid="mm_10894158_3382349_10902005";alimama_width=300;alimama_height=250;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
+                -unless @hide_adside
+                  =ubaidu 1263943,"jx-global-side"
+                  <script type="text/javascript">alimama_pid="mm_10894158_3382349_10902005";alimama_width=300;alimama_height=250;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
                 = render 'layouts/sidebar' unless @hide_sidebar
       .belt
         = render :partial => 'layouts/footlinks_static'

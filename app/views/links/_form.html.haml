@@ -4,10 +4,13 @@
   .form-inputs
     = f.input :name
     = f.input :url
-    = f.input :published
+    = f.input_field :nofollow,inline_label: "nofollow"
+    = f.input_field :published,inline_label: "published"
+    = f.input_field :inhome,inline_label: "inhome"
     = f.input :priority
-    = f.input :context
-    = f.input :inhome
+    = f.input :favicon_type
+    =f.hint "1,自带;2,google;0,无"
+    = f.input :context#,collection: Link.contexts
 
   .form-actions
     = f.button :submit

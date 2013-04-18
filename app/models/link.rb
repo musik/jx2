@@ -1,11 +1,19 @@
 # -*- encoding : utf-8 -*-
 class Link < ActiveRecord::Base
-  attr_accessible :context, :inhome, :name, :priority, :published, :url
+  attr_accessible :context, :inhome, :name, :priority, :published, :url,:nofollow,:favicon_type
   validates_presence_of :name,:url
 
   scope :published,where(:published=>true)
   scope :inhome,where(:inhome=>true)
 
+  def favicon_url
+    favicon_type == 1 ? 
+      url + "/favicon.ico" : 
+        'https://plus.google.com/_/favicon?domain=' + domain
+  end
+  def domain
+    url.match(/http:\/\/([^\/]+)/)[1]
+  end
 
   class << self
     def cached_home
@@ -15,11 +23,14 @@ class Link < ActiveRecord::Base
     end
     def all_grouped
       rs = {}
-      published.order(:priority).all.each do |l|
+      published.order('context desc,priority').all.each do |l|
         rs[l.context] = [] unless rs.has_key? l.context
         rs[l.context] << l
       end
       rs
+    end
+    def contexts
+      group("context").pluck("context")
     end
   end
   class Alivv

@@ -14,12 +14,16 @@ class LinksController < ApplicationController
     @links = Link.all_grouped
     breadcrumbs.add "链接",nil
 
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @links }
     end
   end
+  def manage
+    @links = Link.all_grouped
+    breadcrumbs.add "链接",nil
+  end
+
 
   # GET /links/1
   # GET /links/1.json
