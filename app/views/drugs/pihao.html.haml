@@ -1,6 +1,9 @@
 -#-title t('drugs.show.yaopins',:name=>@drug.name)
 -title @drug.name
 
-%p=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
+%p.pull-left=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
+.tools.pull-right
+  =link_to "PDF",url_for(:format=>'pdf')
+.clearfix
 =paginate @pihao
 = render :partial => 'yaopins/list_inline',:locals=>{:results=>@pihao}
