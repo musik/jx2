@@ -77,4 +77,6 @@ gem 'rails_admin'
 gem 'RedCloth'
 
 gem 'unicorn'
-gem 'wicked_pdf'
+#gem 'wicked_pdf'
+gem 'prawn'
+gem 'prawn_rails'

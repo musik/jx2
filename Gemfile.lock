@@ -8,6 +8,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    Ascii85 (1.0.2)
     RedCloth (4.2.9)
     actionmailer (3.2.5)
       actionpack (= 3.2.5)
@@ -37,6 +38,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.4)
+    afm (0.2.0)
     arel (3.0.2)
     awesome_nested_set (2.1.6)
       activerecord (>= 3.0.0)
@@ -139,6 +141,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    hashery (2.1.0)
     hashie (1.2.0)
     highline (1.6.18)
     hike (1.2.2)
@@ -188,7 +191,19 @@ GEM
     oauth (0.4.7)
     oauth_china (0.5.0)
     orm_adapter (0.4.0)
+    pdf-reader (1.3.3)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     polyglot (0.3.3)
+    prawn (0.12.0)
+      pdf-reader (>= 0.9.0)
+      ttfunk (~> 1.0.2)
+    prawn_rails (0.0.11)
+      prawn (>= 0.11.1)
+      railties (>= 3.0.0)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -287,6 +302,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-rc4 (0.1.5)
     rufus-scheduler (2.0.18)
       tzinfo (>= 0.3.23)
     sass (3.2.7)
@@ -334,6 +350,7 @@ GEM
       polyglot (>= 0.3.1)
     ts-datetime-delta (1.0.3)
       thinking-sphinx (>= 1.3.8)
+    ttfunk (1.0.3)
     twitter-stream (0.1.16)
       eventmachine (>= 0.12.8)
       http_parser.rb (~> 0.5.1)
@@ -355,8 +372,6 @@ GEM
     whenever (0.8.2)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
-    wicked_pdf (0.9.5)
-      rails
 
 PLATFORMS
   ruby
@@ -398,6 +413,8 @@ DEPENDENCIES
   nokogiri
   oauth
   oauth_china
+  prawn
+  prawn_rails
   rails (= 3.2.5)
   rails_admin
   rb-inotify
@@ -417,4 +434,3 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   whenever
-  wicked_pdf
