@@ -1,0 +1,19 @@
+-title @drug.name
+
+本页地址:
+=url_for()
+
+%hr
+
+%table{:border=>1,cellspacing: 0,cellpadding: 0, width: '100%'}
+  %tr
+    %th 
+    %th 批准文号
+    %th 厂家
+  -i = 0
+  -@pihao.each do |yaopin|
+    -i+=1
+    %tr
+      %td= i
+      %td= yaopin.wenhao
+      %td= yaopin.changjia_name

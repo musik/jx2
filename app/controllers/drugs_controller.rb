@@ -102,9 +102,16 @@ class DrugsController < ApplicationController
       set_category_crumbs @drug.category,false
     end
     breadcrumbs.add @drug.name,nil
-    #breadcrumbs.add @drug.name,"/#{@drug.to_param}"
-    #breadcrumbs.add :drug_yaopins,nil
     @pihao = @drug.yaopins.newest.page(params[:page] || 1).per(100)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @pihao = @drug.yaopins.newest
+        render :pdf => @drug.name,
+              #:disposition                    => 'attachment',
+               :layout  => 'pdf.html'
+      end
+    end
   end
 
   # GET /drugs/new
