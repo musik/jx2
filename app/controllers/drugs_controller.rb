@@ -98,21 +98,16 @@ class DrugsController < ApplicationController
   def pihao
     @drug = Drug.find(params[:id])
     render_404 and return if @drug.nil?
-    if @drug.category.present?
-      set_category_crumbs @drug.category,false
+    respond_to do |format|
+      format.html {
+        if @drug.category.present?
+          set_category_crumbs @drug.category,false
+        end
+        breadcrumbs.add @drug.name,nil
+        @pihao = @drug.yaopins.newest.page(params[:page] || 1).per(100)
+      }
+      format.pdf
     end
-    breadcrumbs.add @drug.name,nil
-    @pihao = @drug.yaopins.newest.page(params[:page] || 1).per(100)
-    logger.debug @pihao.first.inspect
-    #respond_to do |format|
-      #format.html
-      #format.pdf do
-        #@pihao = @drug.yaopins.newest
-        #render :pdf => @drug.name,
-              #:disposition                    => 'attachment',
-               #:layout  => 'pdf.html'
-      #end
-    #end
   end
 
   # GET /drugs/new

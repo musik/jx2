@@ -1,5 +1,5 @@
 #coding: utf-8
-@pihao = @drug.yaopins.newest
+@pihao = @drug.yaopins.newest.all
 prawn_document(:filename=>"#{@drug.name}.pdf") do |pdf|
 #prawn_document() do |pdf|
   pdf.font "#{Rails.root}/vendor/fonts/simfang.ttf"
