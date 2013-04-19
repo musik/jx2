@@ -15,19 +15,22 @@
 -#=bdshare
 .clearfix
 =adsense 1545724241,"jx-home-before"
+.belt.box.box-gray
+  = render :partial => 'layouts/footlinks_static'
 .row
   .span7
-    -limit= 150
-    -cache "home-cjyp-#{limit}" do
-      %tt 常见药品
-      %ul.unstyled.mlist
-        -TOPDRUGS.keys.slice(0,limit).each do |str|
-          %li
-            <a href="/yaopin/#{CGI.escape str}/pihao">#{str}</a>
-        .clearfix
+    .box
+      -limit= 150
+      -cache "home-cjyp-#{limit}" do
+        %h2 常见药品
+        %ul.unstyled.mlist
+          -TOPDRUGS.keys.slice(0,limit).each do |str|
+            %li
+              <a href="/yaopin/#{CGI.escape str}/pihao">#{str}</a>
+          .clearfix
   .span2
-    .pull-right
-      %tt 最新发布
+    .box
+      %h2 最新发布
       -limit = 30
       -cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
         -results = Yaopin.newest.inlist.limit(limit)

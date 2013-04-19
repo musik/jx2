@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  resources :entries,:path=>'zhaoshang'
+
   resources :posts,:path=>"news"
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

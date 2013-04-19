@@ -53,13 +53,15 @@
                   =ubaidu 1263943,"jx-global-side"
                   <script type="text/javascript">alimama_pid="mm_10894158_3382349_10902005";alimama_width=300;alimama_height=250;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
                 = render 'layouts/sidebar' unless @hide_sidebar
-      .belt
-        = render :partial => 'layouts/footlinks_static'
+      -unless is_home?                
+        .belt.alert.alert-info
+          = render :partial => 'layouts/footlinks_static'
 
       %footer
         .container
           -if is_home?
-            =render "layouts/links"
+            .box
+              =render "layouts/links"
           .pull-left
             &copy; 2012 www.jxjw.net  蜀ICP备12023975号-3
             -if !is_home?

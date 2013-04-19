@@ -88,3 +88,18 @@ zh-CN:
         excerpt: 摘要
         seo_title: SEO标题
         keywords: 关键词
+      entry:
+        title: 标题
+        chengfen: 成分
+        yongfa: 用法用量
+        zhuzhi: 功能主治
+        name: 品名
+        guige: 规格
+        changjia_name: 厂家
+        pihao: 批准文号
+        tags_input: 标签
+        description: 描述
+    hints:
+      entry:
+        tags_input: 多个标签可用逗号隔开
+        

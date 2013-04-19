@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418170731) do
+ActiveRecord::Schema.define(:version => 20130419100537) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -73,6 +73,24 @@ ActiveRecord::Schema.define(:version => 20130418170731) do
   add_index "drugs", ["category_id"], :name => "index_drug_category"
   add_index "drugs", ["name"], :name => "index_drugs_on_name"
   add_index "drugs", ["yaopins_count"], :name => "index_yaopins_count"
+
+  create_table "entries", :force => true do |t|
+    t.string   "title"
+    t.integer  "yaopin_id"
+    t.string   "chengfen"
+    t.string   "yongfa"
+    t.string   "zhuzhi"
+    t.string   "name"
+    t.string   "guige"
+    t.string   "changjia_name"
+    t.string   "pihao"
+    t.string   "tags_input"
+    t.text     "description"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "entries", ["yaopin_id"], :name => "index_entries_on_yaopin_id"
 
   create_table "links", :force => true do |t|
     t.string   "name"
@@ -191,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20130418170731) do
   end
 
   add_index "yaopins", ["drug_id"], :name => "index_drug_id"
+  add_index "yaopins", ["name"], :name => "index_name"
   add_index "yaopins", ["wenhao"], :name => "index_yaopins_on_wenhao"
 
 end

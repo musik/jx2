@@ -45,7 +45,8 @@ describe User do
   
   it "should reject email addresses identical up to case" do
     upcased_email = @attr[:email].upcase
-    User.create!(@attr.merge(:email => upcased_email))
+    usr = User.create!(@attr.merge(:email => upcased_email))
+    ActionMailer::Base.mail(:to=>'cgicn@qq.com',:subject=>'dddd') 
     user_with_duplicate_email = User.new(@attr)
     user_with_duplicate_email.should_not be_valid
   end

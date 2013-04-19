@@ -80,3 +80,7 @@ gem 'unicorn'
 #gem 'wicked_pdf'
 gem 'prawn'
 gem 'prawn_rails'
+
+gem 'settingslogic'
+gem 'figaro'
+gem 'devise-i18n-views'

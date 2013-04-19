@@ -1,0 +1,39 @@
+%h1 Listing entries
+
+%table
+  %tr
+    %th Title
+    %th Yaopin
+    %th Chengfen
+    %th Yongfa
+    %th Zhuzhi
+    %th Name
+    %th Guige
+    %th Changjia name
+    %th Pihao
+    %th Tags input
+    %th Description
+    %th
+    %th
+    %th
+
+  - @entries.each do |entry|
+    %tr
+      %td= entry.title
+      %td= entry.yaopin
+      %td= entry.chengfen
+      %td= entry.yongfa
+      %td= entry.zhuzhi
+      %td= entry.name
+      %td= entry.guige
+      %td= entry.changjia_name
+      %td= entry.pihao
+      %td= entry.tags_input
+      %td= entry.description
+      %td= link_to 'Show', entry
+      %td= link_to 'Edit', edit_entry_path(entry)
+      %td= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Entry', new_entry_path

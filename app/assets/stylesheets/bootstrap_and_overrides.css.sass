@@ -14,17 +14,22 @@ body
   margin: 0 -20px
 .box  
   background: #fff
-  border: 1px solid #ccc
+  border: 1px solid #ddd
   margin: 0 0 20px 
   padding: 10px
   @include border-radius(5px)
   h2
     font-size: 14px
-    line-height: 24px
+    line-height: 30px
     margin: -10px -10px 10px
     text-indent: 10px
-    border-bottom: 1px solid #ccc
-    @include box-shadow(1px 1px 2px rgba(0,0,0,.15))
+    border-bottom: 1px solid #ddd
+    //@include box-shadow(1px 1px 2px rgba(0,0,0,.15))
+.box-gray    
+  background: #eee
+  border-color: #eee
+.required abbr    
+  color: #f30
 .sites
   margin-left: -20px
 .site
@@ -89,6 +94,10 @@ body.bdapp
   footer,.footer
     margin-top: 5px
     padding: 0
+.nav-small    
+  font-size: 12px
+.navbar .nav-small > li > a  
+  padding: 10px 5px
 .page-header-2
   border: none
   margin: 10px 0 5px

@@ -1,4 +1,9 @@
-%p
-  User: #{@user.name}
-%p
-  Email: #{@user.email if @user.email}
+-title @user.name
+
+%b 登录次数
+=@user.sign_in_count
+%b 上次登录
+=@user.last_sign_in_at.to_formatted_s(:db)
+%b 注册于
+=@user.confirmed_at.to_formatted_s(:db)
+-#=debug @user

@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @entry.title
+%p
+  %b Yaopin:
+  = @entry.yaopin
+%p
+  %b Chengfen:
+  = @entry.chengfen
+%p
+  %b Yongfa:
+  = @entry.yongfa
+%p
+  %b Zhuzhi:
+  = @entry.zhuzhi
+%p
+  %b Name:
+  = @entry.name
+%p
+  %b Guige:
+  = @entry.guige
+%p
+  %b Changjia name:
+  = @entry.changjia_name
+%p
+  %b Pihao:
+  = @entry.pihao
+%p
+  %b Tags input:
+  = @entry.tags_input
+%p
+  %b Description:
+  = @entry.description
+
+= link_to 'Edit', edit_entry_path(@entry)
+\|
+= link_to 'Back', entries_path

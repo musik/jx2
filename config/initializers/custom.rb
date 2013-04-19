@@ -9,4 +9,3 @@ def mz_load_topdrugs(min=51)
     ns
 end
 TOPDRUGS= mz_load_topdrugs
-

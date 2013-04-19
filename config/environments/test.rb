@@ -38,5 +38,14 @@ Yl::Application.configure do
   
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "example.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["smtp_user"],
+    password: ENV["smtp_password"]
+  }
 
 end

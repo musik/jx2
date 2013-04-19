@@ -1,0 +1,12 @@
+defaults: &defaults
+  smtp_user: ***
+  smtp_password: ***
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
