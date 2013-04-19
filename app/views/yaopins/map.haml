@@ -1,11 +1,12 @@
 -title(@title || "国药准字大全")
 
 -@col1 = true
-=paginate @yaopins,:theme=>"twitter-bootstrap",:window=>10
+=paginate @yaopins,:window=>10
 .row
   .span8
     %p.stack
       -@yaopins.each do |yaopin|
         <a href="/pihao/#{yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
   .span4      
-    =adsense 8650188641,"jx-global-side",:width=>300,:height=>600
+    -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
+    =ubaidu 1263943,"jx-global-side"

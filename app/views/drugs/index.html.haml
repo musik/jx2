@@ -8,7 +8,7 @@
         = c.name
       -else
         =link_to c.name,c,:title=>c.name
-=paginate @drugs,:theme=>"twitter-bootstrap",:window=>10
+=paginate @drugs,:window=>10
 .drugs
   - @drugs.each do |drug|
     .drug

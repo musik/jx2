@@ -46,7 +46,7 @@ group :development do
 end
 gem 'stringex'
 gem 'breadcrumbs'
-gem 'kaminari','0.13.0'
+gem 'kaminari','0.14.1'
 gem 'bootstrap-kaminari-views'
 
 gem 'typhoeus','0.3.3'
