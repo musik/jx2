@@ -17,8 +17,8 @@
         %p
           %b 标签
           = @entry.tags_input
-      %p
-        = @entry.description
+      %div
+        =simple_format @entry.description
       %hr
       %p
         =@entry.company_name
