@@ -38,6 +38,9 @@ class ApplicationController < ActionController::Base
   def after_path_for(resource)
     stored_location_for(resource) || root_path
   end
+  def after_confirmation_path_for(resource)
+    after_path_for(resource)
+  end
   protected
   def render_404(exception = nil)
     if exception
