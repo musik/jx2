@@ -3,7 +3,7 @@
   %thead
     %tr
       %th.title 标题
-      %th.num.views 作者
+      %th.num.views 联系人
       %th.num.views 浏览
       %th.num.activity 发布于
 
@@ -12,8 +12,8 @@
       %td= link_to entry.title,entry
       %td
         -#= link_to entry.user.name,entry.user
-        =entry.user.contact
-        \/ #{entry.user.phone}
+        =entry.contact
+        \/ #{entry.phone}
       %td.num
         %span{title: "这条信息已被浏览#{entry.views}次"}=entry.views 
       %td.num

@@ -21,9 +21,11 @@
         = @entry.description
       %hr
       %p
+        =@entry.company_name
+        %br
         %b 联系人
-        =@entry.user.contact
-        \/ #{@entry.user.phone}
+        =@entry.contact
+        \/ #{@entry.phone}
 
       -if can? :edit,@entry
         = link_to '编辑', edit_entry_path(@entry)

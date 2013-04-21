@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
   def after_sign_in_path_for(resource)
     url = after_path_for(resource)
-    resource.contact_empty? ? edit_profile_path(:from=>url) : url
+    resource.name.blank? ? edit_profile_path(:from=>url) : url
   end  
   def after_path_for(resource)
     stored_location_for(resource) || root_path

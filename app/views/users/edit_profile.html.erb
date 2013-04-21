@@ -2,8 +2,9 @@
 <%= simple_form_for(@user, :url =>update_profile_path, :html => { :method => :put }) do |f| %>
   <%= f.input :name,required:true %>
   <legend>联系方式</legend>
-  <%= f.input :contact,:required=>true %>
-  <%= f.input :phone,required:true %>
+  <%= f.input :company_name %>
+  <%= f.input :contact %>
+  <%= f.input :phone %>
   <%=hidden_field_tag :from,params[:from]%>
 
   <div><%= f.button :submit %></div>

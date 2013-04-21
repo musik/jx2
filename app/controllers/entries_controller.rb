@@ -44,7 +44,10 @@ class EntriesController < ApplicationController
       @full = true
       @noform = true
     else
-      @entry = current_user.entries.new
+      @entry = current_user.entries.new(
+          :company_name=>current_user.company_name,
+          :contact=>current_user.contact,
+          phone: current_user.phone)
     end
   end
 

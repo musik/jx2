@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :confirmed_at,:contact,:phone
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :confirmed_at,:contact,:phone,:company_name
   validates_uniqueness_of :name,:email
 
   has_many :entries
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     20
   end
   def contact_empty?
-    name.blank? or contact.blank? or phone.blank?
+    company_name.blank? or contact.blank? or phone.blank?
   end
   def entries_full?
     entries.size >= max_entries

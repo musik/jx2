@@ -4,10 +4,14 @@
   .form-inputs
     = f.input :title,input_html:{class: 'input-xxlarge'}
     = f.input :description,:input_html=>{rows: 6,class: 'input-xxlarge'}
+    = f.input :company_name,required:true
+    = f.input :contact,required:true
+    = f.input :phone,required:true
+    = f.input :tags_input
+    %hr
     = f.input :name
     = f.input :pihao
     = f.input :changjia_name
-    = f.input :tags_input
     = f.input :chengfen
     = f.input :yongfa
     = f.input :zhuzhi

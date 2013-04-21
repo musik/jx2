@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421072209) do
+ActiveRecord::Schema.define(:version => 20130421124101) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -90,6 +90,9 @@ ActiveRecord::Schema.define(:version => 20130421072209) do
     t.datetime "updated_at",                   :null => false
     t.integer  "user_id"
     t.integer  "views",         :default => 0
+    t.string   "contact"
+    t.string   "phone"
+    t.string   "company_name"
   end
 
   add_index "entries", ["yaopin_id"], :name => "index_entries_on_yaopin_id"
@@ -179,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20130421072209) do
     t.integer  "entries_count",          :default => 0
     t.string   "contact"
     t.string   "phone"
+    t.string   "company_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -214,7 +218,6 @@ ActiveRecord::Schema.define(:version => 20130421072209) do
   end
 
   add_index "yaopins", ["drug_id"], :name => "index_drug_id"
-  add_index "yaopins", ["name"], :name => "index_name"
   add_index "yaopins", ["wenhao"], :name => "index_yaopins_on_wenhao"
 
 end
