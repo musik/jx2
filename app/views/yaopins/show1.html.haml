@@ -3,28 +3,21 @@
 -@desc = "#{@yaopin.wenhao}，名称#{@yaopin.name}，由位于#{@yaopin.changjia_guojia}#{@yaopin.changjia_dizhi}的#{@yaopin.changjia_name}生产，批准于#{@yaopin.pizhunri}。为#{@yaopin.jixing}#{@yaopin.leibie},规格为#{@yaopin.guige}。"
 -meta_desc @desc
 -@title_suffix = "_国药准字查询"
--@hide_ad_before = true
--@hide_adside = true
--@noliubai = true
--@spans = 9
-=debug @yaopin if params[:debug]
-.details.box
-  .pull-left
-    =slotb
-  .yaopin-table
-    %table.tablex.table-borderedx.yaopin-single
-      %tr
-        %th 名称
-        %td=link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
-      -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
-        -if @yaopin[key].present? and @yaopin[key] != '－－－－'
-          %tr
-            %th=t("yaopin.attrs.#{key}")
-            %td=yaopin_column key,@yaopin.send(key)
-  .clearfix
 %p=@desc
+=debug @yaopin if params[:debug]
+%table.table.table-bordered.yaopin-single
+  %tr
+    %th 名称
+    %td=link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
+  -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
+    -if @yaopin[key].present? and @yaopin[key] != '－－－－'
+      %tr
+        %th=t("yaopin.attrs.#{key}")
+        %td=yaopin_column key,@yaopin.send(key)
 
--#= link_to 'Edit', edit_yaopin_path(@yaopin),:class=>"btn" if can? :edit,@yaopin
+.btn-group
+  = link_to 'Edit', edit_yaopin_path(@yaopin),:class=>"btn" if can? :edit,@yaopin
+
 -#-cache ['others-by-changjia_name',@yaopin.changjia_name],:expires_in=>1.day do
   -#-results = Yaopin.by_changjia(@yaopin.changjia_name).slimit(10).search
   -#-if results.present?
@@ -40,8 +33,5 @@
 
 -#=slotf
 
--content_for :sidebar do
-  =ubaidu 1263949,"jx-home-side"
-  <script type="text/javascript">alimama_pid="mm_10894158_3382349_11501603";alimama_width=200;alimama_height=200;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
 -content_for :footer do
   =javascript_tag "track_data('pihao','#{@yaopin.id}','#{request.referer.present? ? CGI.escape(request.referer).reverse : ""}')" if Rails.env.production?

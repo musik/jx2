@@ -11,7 +11,8 @@
     %tr
       %td= link_to entry.title,entry
       %td
-        = link_to entry.user.name,entry.user
+        -#= link_to entry.user.name,entry.user
+        =entry.user.contact
         \/ #{entry.user.phone}
       %td.num
         %span{title: "这条信息已被浏览#{entry.views}次"}=entry.views 

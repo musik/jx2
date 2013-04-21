@@ -23,7 +23,7 @@
         .container
           = render 'layouts/navigation'
     -if is_zhaoshang?
-      .container.mt1
+      .container.mt1.sub_nav
         = render :partial => 'layouts/zhaoshang'
     #main{:role => "main"}
       .container
@@ -40,14 +40,15 @@
             .clearfix
             =slotf unless @hide_slotf
           -else
+            -@spans ||= 8
             .row
-              .span8
+              %div{:class=>"span#{@spans}"}
                 -if show_title?
                   %h1#pt=yield :header
                 =slotb unless @hide_ad_before
                 = yield
                 =slotf unless @hide_slotf
-              .span4.sidebar
+              .sidebar{:class=>"span#{12-@spans}"}
                 =yield :sidebar
                 -unless @noliubai
                   .liubai
