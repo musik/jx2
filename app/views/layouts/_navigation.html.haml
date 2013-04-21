@@ -6,7 +6,7 @@
 -classes = nav_classes
 %ul.nav
   %li{:class=>classes[:drugs]}=link_to "药品",drugs_url
-  -#%li{:class=>classes[:entries]}=link_to "招商",entries_url
+  %li.focus{:class=>classes[:entries]}=link_to "招商",entries_url
   %li{:class=>classes[:chengfens]}=link_to "药物成分",chengfens_url
   %li{class: classes[:yaopins]}=link_to "批号",yaopins_url
 %ul.nav.nav-small.pull-right
