@@ -1,39 +1,22 @@
-%h1 Listing entries
-
-%table
-  %tr
-    %th Title
-    %th Yaopin
-    %th Chengfen
-    %th Yongfa
-    %th Zhuzhi
-    %th Name
-    %th Guige
-    %th Changjia name
-    %th Pihao
-    %th Tags input
-    %th Description
-    %th
-    %th
-    %th
+-title @title || "医药招商信息",nil,false
+%table.table.bgwhite.table-bordered
+  %thead
+    %tr
+      %th.title 标题
+      %th.num.views 作者
+      %th.num.views 浏览
+      %th.num.activity 发布于
 
   - @entries.each do |entry|
     %tr
-      %td= entry.title
-      %td= entry.yaopin
-      %td= entry.chengfen
-      %td= entry.yongfa
-      %td= entry.zhuzhi
-      %td= entry.name
-      %td= entry.guige
-      %td= entry.changjia_name
-      %td= entry.pihao
-      %td= entry.tags_input
-      %td= entry.description
-      %td= link_to 'Show', entry
-      %td= link_to 'Edit', edit_entry_path(entry)
-      %td= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to entry.title,entry
+      %td
+        = link_to entry.user.name,entry.user
+        \/ #{entry.user.phone}
+      %td.num
+        %span{title: "这条信息已被浏览#{entry.views}次"}=entry.views 
+      %td.num
+        %span{title: "发布于#{entry.created_at.to_formatted_s(:db)}"} #{time_ago_in_words(entry.created_at)}前
+      -#%td= link_to 'Edit', edit_entry_path(entry)
+      -#%td= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Entry', new_entry_path

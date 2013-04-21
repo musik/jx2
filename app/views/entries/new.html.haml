@@ -1,5 +1,12 @@
--title "招商信息发布"
-%hr
-= render 'form'
+-title "招商信息发布",nil,false
+-@col1 = true
+.box
+  %h1 招商信息发布
+  %hr
+  -if @full
+    .alert.alert-error
+      抱歉，你的发布限额已满。如需继续，请升级账户。
+  -unless @noform
+    = render 'form'
 
-= link_to 'Back', entries_path
+  = link_to '返回', entries_path

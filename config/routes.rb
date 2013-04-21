@@ -1,7 +1,11 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
-  resources :entries,:path=>'zhaoshang'
+  resources :entries,:path=>'zhaoshang' do
+    collection do 
+      get :hot
+    end
+  end
 
   resources :posts,:path=>"news"
 
@@ -51,6 +55,8 @@ Yl::Application.routes.draw do
 
   devise_for :users
   resources :users, :only => [:show, :index]
+  get '/profile/edit'=>"users#edit_profile",:as=>'edit_profile'
+  put '/profile'=>"users#update_profile",:as=>'update_profile'
   match '/:id/%e8%af%b4%e6%98%8e%e4%b9%a6'=>"drugs#shuomingshu",:as=>"shuomingshu"#,:constraints=>{:id=> /.+%E8%AF%B4%E6%98%8E%E4%B9%A6/}
   match '/:id/%E8%AF%B4%E6%98%8E%E4%B9%A6'=>"drugs#shuomingshu"
   resources :drugs,:path=>'yaopin' do

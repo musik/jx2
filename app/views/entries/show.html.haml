@@ -1,39 +1,32 @@
-%p#notice= notice
+-title @entry.title,nil,false
+.breadcrumb=breadcrumbs.render :format=>'inline'
+.row
+  .span9
+    .box
+      %h1=@entry.title
+      .metas
+        -%w(name changjia_name pihao chengfen guige zhuzhi yongfa).each do |k|
+          -val = @entry.send k
+          -next if val.blank?
+          %p
+            %strong=t("simple_form.labels.entry.#{k}")
+            %br
+            =val
+      %hr
+      -if @entry.tags_input.present?
+        %p
+          %b 标签
+          = @entry.tags_input
+      %p
+        = @entry.description
+      %hr
+      %p
+        %b 联系人
+        =@entry.user.contact
+        \/ #{@entry.user.phone}
 
-%p
-  %b Title:
-  = @entry.title
-%p
-  %b Yaopin:
-  = @entry.yaopin
-%p
-  %b Chengfen:
-  = @entry.chengfen
-%p
-  %b Yongfa:
-  = @entry.yongfa
-%p
-  %b Zhuzhi:
-  = @entry.zhuzhi
-%p
-  %b Name:
-  = @entry.name
-%p
-  %b Guige:
-  = @entry.guige
-%p
-  %b Changjia name:
-  = @entry.changjia_name
-%p
-  %b Pihao:
-  = @entry.pihao
-%p
-  %b Tags input:
-  = @entry.tags_input
-%p
-  %b Description:
-  = @entry.description
-
-= link_to 'Edit', edit_entry_path(@entry)
-\|
-= link_to 'Back', entries_path
+      -if can? :edit,@entry
+        = link_to '编辑', edit_entry_path(@entry)
+        \|
+      = link_to '返回', entries_path,:rel=>"nofollow"
+  .span3

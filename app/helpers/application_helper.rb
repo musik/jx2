@@ -1,5 +1,14 @@
 # -*- encoding : utf-8 -*-
 module ApplicationHelper
+  def is_zhaoshang?
+    controller_name == "entries"
+  end
+  def nav_classes
+    classes = {controller_name.to_sym => 'active'}
+  end
+  def zhaoshang_classes
+    classes = {action_name.to_sym => 'active'}
+  end
   def adsense slot,name,args={}
     defaults={
       :width => 336,

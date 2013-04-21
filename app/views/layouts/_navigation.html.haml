@@ -3,12 +3,13 @@
   -a={:id=>'q',:type=>"text",:name=>"q"}
   -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
   %input.search-query{a}
+-classes = nav_classes
 %ul.nav
-  %li=link_to "药品",drugs_url
-  %li=link_to "招商",entries_url
-  %li=link_to "药物成分",chengfens_url
-  %li=link_to "批号列表",yaopins_url
-  %li=link_to "资讯",posts_url
+  %li{:class=>classes[:drugs]}=link_to "药品",drugs_url
+  %li{:class=>classes[:entries]}=link_to "招商",entries_url
+  %li{:class=>classes[:chengfens]}=link_to "药物成分",chengfens_url
+  %li{class: classes[:yaopins]}=link_to "批号",yaopins_url
+  %li{class: classes[:posts]}=link_to "资讯",posts_url
 %ul.nav.nav-small.pull-right
   - if user_signed_in?
     %li= link_to current_user.name,current_user

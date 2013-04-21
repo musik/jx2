@@ -209,6 +209,11 @@ zh-CN:
 
   activerecord:
     errors:
+      models:
+        user:
+          attributes:
+            name:
+              taken: 此名称已被注册
       full_messages:
         format: "%{attribute} %{message}"
       messages:

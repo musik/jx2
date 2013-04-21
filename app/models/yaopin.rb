@@ -11,7 +11,7 @@ class Yaopin < ActiveRecord::Base
   
   # default_scope order("wenhao asc")
   scope :wenhao_order,order("wenhao asc")
-  scope :newest,order("id desc")
+  scope :newest,order("pizhunri desc")
   scope :inlist,select('id,wenhao')
   
   define_index do

@@ -17,17 +17,20 @@
     -#=javascript_include_tag 'http://cbjs.baidu.com/js/m.js'
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
   -@hide_ad_before = true if %w(new edit).include? action_name
-  %body
+  %body{:class=>@body_class}
     %header.navbar.navbar-fixed-top.navbar-inverse
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
+    -if is_zhaoshang?
+      .container.mt1
+        = render :partial => 'layouts/zhaoshang'
     #main{:role => "main"}
       .container
         .content
+          = render 'layouts/messages'
           -unless @hide_bread
             .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
-          = render 'layouts/messages'
           -if @col1 
             -if show_title?
               %h1#pt=yield :header
@@ -67,12 +70,15 @@
             -if !is_home?
               =link_to "链接","/links"
               联系 <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">QQ</a>
+
+            =link_to "资讯",posts_url
           .pull-right
             =yield(:title) || t('appname')
     = javascript_include_tag "application"
     =render 'layouts/iefixjs'
     -#.hidden=render "layouts/tongji" if Rails.env.production?
-    =render "layouts/ga"
-    ='<script type="text/javascript" src="http://js.tongji.linezing.com/3090156/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3090156/tongji.gif"/></a></noscript>'.html_safe
+    -if Rails.env.production?
+      =render "layouts/ga"
+      ='<script type="text/javascript" src="http://js.tongji.linezing.com/3090156/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3090156/tongji.gif"/></a></noscript>'.html_safe
 
     = yield(:footer)

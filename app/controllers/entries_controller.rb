@@ -1,20 +1,31 @@
-
+#encoding: utf-8
 class EntriesController < ApplicationController
+  load_and_authorize_resource :except=>%w(hot)
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    @title = "医药招商"
+    @entries = Entry.recent.includes(:user).page(params[:page] || 1).per(30)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @entries }
     end
   end
+  def hot
+    @title = "热门招商信息"
+    @entries = Entry.hot.includes(:user).page(params[:page] || 1).per(30)
+    render :index
+  end
 
   # GET /entries/1
   # GET /entries/1.json
   def show
     @entry = Entry.find(params[:id])
+    @entry.viewed
+    breadcrumbs.add "医药招商",entries_url
+    breadcrumbs.add nil
+    #breadcrumbs.add @entry.title
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,11 +36,15 @@ class EntriesController < ApplicationController
   # GET /entries/new
   # GET /entries/new.json
   def new
-    @entry = Entry.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @entry }
+    if current_user.contact_empty?
+      redirect_to edit_profile_path(:from=>request.url),:notice=>"请先设置你的联系方式."
+      return
+    end
+    if current_user.entries_full? 
+      @full = true
+      @noform = true
+    else
+      @entry = current_user.entries.new
     end
   end
 
@@ -41,7 +56,12 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new(params[:entry])
+    if current_user.entries_full?
+      @full = true
+      render action: "new"
+      return
+    end
+    @entry = current_user.entries.new(params[:entry])
 
     respond_to do |format|
       if @entry.save

@@ -1,15 +1,22 @@
 -title [@q,"搜索"].join("_"),@q
 -@title_suffix = "_国药准字查询"
 
--@col1 =true
--if @yaopins.respond_to? :total_entries
-  %p.stats
-    ="找到#{@yaopins.total_entries}项结果,耗时(#{@yaopins.query_time * 1000}毫秒)"
--unless @hide_leibie
-  %p
-    -Yaopin.all_leibie.each do |str|
-      =link_to str,leibie_url(str),:class=>"badge" unless str.nil?
+-unless @yaopins.present?
+  -@hide_ad_before = true
+  -@hide_adside = true
+  .alert
+    没找到相关结果，请尝试搜索其它关键词。
+-else 
+  -if @yaopins.respond_to? :total_entries
+    %p.stats
+      ="找到#{@yaopins.total_entries}项结果,耗时(#{@yaopins.query_time * 1000}毫秒)"
+  -unless @hide_leibie
+    %p
+      -Yaopin.all_leibie.each do |str|
+        =link_to str,leibie_url(str),:class=>"badge" unless str.nil?
 
 
-=paginate @yaopins,:window=>6
-= render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
+  -if @yaopins.present?
+    =paginate @yaopins,:window=>6
+    = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
+
