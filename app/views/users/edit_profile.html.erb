@@ -1,7 +1,5 @@
-<%=title "设置"%>
+<%=title "设置联系方式"%>
 <%= simple_form_for(@user, :url =>update_profile_path, :html => { :method => :put }) do |f| %>
-  <%= f.input :name,required:true %>
-  <legend>联系方式</legend>
   <%= f.input :company_name %>
   <%= f.input :contact %>
   <%= f.input :phone %>

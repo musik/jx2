@@ -19,5 +19,5 @@
     %li
       = link_to('登出', destroy_user_session_path, :method=>'delete')
   -else
-    -#%li.first= link_to('登录', new_user_session_url(:subdomain=>"www"),:rel=>"nofollow")
-    -#%li= link_to('注册', new_user_registration_url(:subdomain=>"www"),:rel=>"nofollow")
+    %li.first= link_to('登录', new_user_session_url(:subdomain=>"www"),:rel=>"nofollow")
+    %li= link_to('注册', new_user_registration_url(:subdomain=>"www"),:rel=>"nofollow")

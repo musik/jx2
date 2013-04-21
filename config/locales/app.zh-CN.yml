@@ -214,6 +214,8 @@ zh-CN:
           attributes:
             name:
               taken: 此名称已被注册
+            email:
+              taken: 此邮箱已注册
       full_messages:
         format: "%{attribute} %{message}"
       messages:
