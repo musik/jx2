@@ -27,6 +27,16 @@ var cpro_id = "u#{id}";
 <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
 AD
   end
+  def usogou id,width=200,height=200
+    <<-Ad.html_safe
+    <script type="text/javascript">
+var sogou_ad_id=#{id};
+var sogou_ad_height=#{height};
+var sogou_ad_width=#{width};
+</script>
+<script language='JavaScript' type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+    Ad
+  end
   def slotb
     #rand(2) > 0 ?
       #"<div class='slot' id='slotb'></div>".html_safe :
