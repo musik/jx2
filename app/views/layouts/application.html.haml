@@ -50,8 +50,8 @@
                 =slotf unless @hide_slotf
               .sidebar{:class=>"span#{12-@spans}"}
                 =yield :sidebar
-                -unless @noliubai
-                  .liubai
+                -#-unless @liubai
+                  -#.liubai
                 -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
                 -unless @hide_adside
                   =ubaidu 1270008,"jx-global-side-200"
