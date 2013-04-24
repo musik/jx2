@@ -40,7 +40,7 @@
             .clearfix
             =slotf unless @hide_slotf
           -else
-            -@spans ||= 8
+            -@spans ||= 9
             .row
               %div{:class=>"span#{@spans}"}
                 -if show_title?
@@ -54,8 +54,9 @@
                   .liubai
                 -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
                 -unless @hide_adside
-                  =ubaidu 1263943,"jx-global-side"
-                  <script type="text/javascript">alimama_pid="mm_10894158_3382349_10902005";alimama_width=300;alimama_height=250;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
+                  =ubaidu 1270008,"jx-global-side-200"
+                  =usogou 194506,200,200
+                  =ubaidu 1270011,"jx-global-side-2"
                 = render 'layouts/sidebar' unless @hide_sidebar
       -unless is_home?                
         .belt.alert.alert-info
