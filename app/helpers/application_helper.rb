@@ -37,6 +37,27 @@ var sogou_ad_width=#{width};
 <script language='JavaScript' type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
     Ad
   end
+  def bdshare
+    content_for :footer do
+      <<-Bd.html_safe
+  <!-- Baidu javascript BEGIN -->
+  <script type="text/javascript" id="bdshare_js" data="type=button&amp;uid=490604" ></script>
+  <script type="text/javascript" id="bdshell_js"></script>
+  <script type="text/javascript">
+  document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+  </script>
+  <!-- Baidu javascript END -->    
+      Bd
+    end
+    <<-Bd.html_safe
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_b" style="line-height: 12px;">
+<img src="http://bdimg.share.baidu.com/static/images/type-button-2.jpg?cdnversion=20120831" />
+<a class="shareCount"></a>
+</div>
+<!-- Baidu Button END -->    
+    Bd
+  end
   def slotb
     #rand(2) > 0 ?
       #"<div class='slot' id='slotb'></div>".html_safe :
@@ -47,4 +68,5 @@ var sogou_ad_width=#{width};
       #"<div class='slot' id='slotf'></div>".html_safe :
         adsense('5659159841','jx-bottom')
   end
+
 end

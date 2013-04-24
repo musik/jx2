@@ -1,4 +1,4 @@
--title [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name].compact.join('_'),@yaopin.wenhao
+-title [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name].compact.join('_'),@yaopin.wenhao,false
 -keywords [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name,@yaopin.changjia_name].compact
 -@desc = "#{@yaopin.wenhao}，名称#{@yaopin.name}，由位于#{@yaopin.changjia_guojia}#{@yaopin.changjia_dizhi}的#{@yaopin.changjia_name}生产，批准于#{@yaopin.pizhunri}。为#{@yaopin.jixing}#{@yaopin.leibie},规格为#{@yaopin.guige}。"
 -meta_desc @desc
@@ -8,6 +8,9 @@
 -@noliubai = true
 -@spans = 9
 =debug @yaopin if params[:debug]
+%h1=@yaopin.wenhao
+.pull-right.mt-1e=bdshare
+.clearfix
 .details.box
   .pull-left
     =slotb
