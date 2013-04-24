@@ -1,8 +1,8 @@
--title [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name].compact.join('_'),@yaopin.wenhao,false
+-title [@yaopin.wenhao,[@yaopin.shangpin_name,@yaopin.name,@yaopin.changjia_name].compact.join(',')].join("——"),@yaopin.wenhao,false
 -keywords [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name,@yaopin.changjia_name].compact
 -@desc = "#{@yaopin.wenhao}，名称#{@yaopin.name}，由位于#{@yaopin.changjia_guojia}#{@yaopin.changjia_dizhi}的#{@yaopin.changjia_name}生产，批准于#{@yaopin.pizhunri}。为#{@yaopin.jixing}#{@yaopin.leibie},规格为#{@yaopin.guige}。"
 -meta_desc @desc
--@title_suffix = "_国药准字查询"
+-@title_suffix = ""
 -@hide_ad_before = true
 -#-@hide_adside = true
 -@noliubai = true
@@ -27,6 +27,11 @@
   .clearfix
 %p=@desc
 
+%hr
+  .btn-group.align-center
+    <a href="/" rel="nofollow" class="btn">网站首页</a>
+    <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
+%hr
 -#= link_to 'Edit', edit_yaopin_path(@yaopin),:class=>"btn" if can? :edit,@yaopin
 -#-cache ['others-by-changjia_name',@yaopin.changjia_name],:expires_in=>1.day do
   -#-results = Yaopin.by_changjia(@yaopin.changjia_name).slimit(10).search
