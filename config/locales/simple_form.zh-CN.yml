@@ -105,6 +105,8 @@ zh-CN:
         company_name: 企业名称
         contact: 联系人
         phone: 电话
+      comment:
+        body: 评论
     hints:
       entry:
         tags_input: 多个关键词可用逗号隔开

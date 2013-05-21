@@ -69,5 +69,8 @@ module Yl
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.rakismet.key = 'e81f016a321e'
+    config.rakismet.url = 'http://www.jxjw.net/'
   end
 end

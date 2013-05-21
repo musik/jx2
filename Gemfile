@@ -84,3 +84,6 @@ gem 'prawn_rails'
 gem 'settingslogic'
 gem 'figaro'
 gem 'devise-i18n-views'
+
+gem 'acts_as_commentable_with_threading'
+gem 'rakismet'

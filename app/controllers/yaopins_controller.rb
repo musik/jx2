@@ -114,6 +114,7 @@ class YaopinsController < ApplicationController
 
     breadcrumbs.add @drug.name,"/yaopin/#{@drug.to_param}/pihao" if @drug.present?
     breadcrumbs.add @yaopin.wenhao,nil
+    session["user_return_to"] = request.url
     #render [0,1].sample==1 ? "show" : "show1"
   end
 

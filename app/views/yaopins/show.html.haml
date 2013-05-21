@@ -32,6 +32,12 @@
     <a href="/" rel="nofollow" class="btn">网站首页</a>
     <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
 %hr
+%strong 网友跟贴
+= render :partial => 'comment_form',locals:{:obj=>@yaopin}
+%strong 最新跟贴
+= render :partial => 'comments',locals:{:obj=>@yaopin}
+%hr
+
 -#= link_to 'Edit', edit_yaopin_path(@yaopin),:class=>"btn" if can? :edit,@yaopin
 -#-cache ['others-by-changjia_name',@yaopin.changjia_name],:expires_in=>1.day do
   -#-results = Yaopin.by_changjia(@yaopin.changjia_name).slimit(10).search

@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  resources :comments,:only=>%w(index create show)
+
   resources :entries,:path=>'zhaoshang' do
     collection do 
       get :hot

@@ -1,0 +1,19 @@
+#comments
+  -comments = obj.comment_threads.includes(:user)
+  -if comments.empty?
+    .alert
+      暂无跟贴.
+  -else
+    %ul.comments
+      -comments.each do |c|
+        %li{:class=>c.spam? ? "spam" : nil}
+          -#=debug c.akismet_response
+          -#=debug c
+          %cite #{c.user.name}
+          %date.muted #{c.created_at.to_formatted_s(:db)}
+          %p #{c.body}
+
+
+
+
+

@@ -13,6 +13,7 @@ class Yaopin < ActiveRecord::Base
   scope :wenhao_order,order("wenhao asc")
   scope :newest,order("pizhunri desc")
   scope :inlist,select('id,wenhao')
+  acts_as_commentable
   
   define_index do
     indexes :name,:shangpin_name,:wenhao,:changjia_name,:yuanwenhao,:en
