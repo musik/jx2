@@ -1,17 +1,16 @@
-%h1 Listing comments
+-title "comments"
+.comments
+  -if @comments.empty?
+    .alert
+      暂无跟贴.
+  -else
+    %ul.comments
+      -@comments.each do |c|
+        %li{:class=>c.spam? ? "spam" : nil}
+          -#=debug c.akismet_response
+          -#=debug c
+          %cite #{c.user.name}
+          %date.muted=link_to c.created_at.to_formatted_s(:db),"/redirect/#{c.commentable_type}/#{c.commentable_id}"
+          %p #{c.body}
+=paginate @comments          
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @comments.each do |comment|
-    %tr
-      %td= link_to 'Show', comment
-      %td= link_to 'Edit', edit_comment_path(comment)
-      %td= link_to 'Destroy', comment, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Comment', new_comment_path

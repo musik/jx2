@@ -1,5 +1,5 @@
 #comments
-  -comments = obj.comment_threads.includes(:user)
+  -comments = obj.comment_threads.includes([:commentable,:user])
   -if comments.empty?
     .alert
       暂无跟贴.
@@ -12,8 +12,3 @@
           %cite #{c.user.name}
           %date.muted #{c.created_at.to_formatted_s(:db)}
           %p #{c.body}
-
-
-
-
-

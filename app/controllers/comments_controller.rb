@@ -1,9 +1,9 @@
-
 class CommentsController < ApplicationController
+  authorize_resource
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.includes(:user).page(params[:page] || 1).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

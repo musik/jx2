@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  match "/goto/:class_name/:id"=>'home#goto'
   resources :comments,:only=>%w(index create show)
 
   resources :entries,:path=>'zhaoshang' do
