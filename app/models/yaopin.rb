@@ -11,7 +11,7 @@ class Yaopin < ActiveRecord::Base
   
   # default_scope order("wenhao asc")
   scope :wenhao_order,order("wenhao asc")
-  scope :newest,order("pizhunri desc")
+  scope :newest,order("id desc")
   scope :inlist,select('id,wenhao')
   acts_as_commentable
   
