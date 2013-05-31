@@ -1,0 +1,18 @@
+%h1=@yaopin.wenhao
+.pull-right.mt-1e=bdshare
+.clearfix
+.details.box
+  .pull-left
+    =adsense 9225377446,'jx-yaopin-before2'
+  .yaopin-table
+    %table.tablex.table-borderedx.yaopin-single
+      %tr
+        %th 名称
+        %td=link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
+      -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
+        -if @yaopin[key].present? and @yaopin[key] != '－－－－'
+          %tr
+            %th=t("yaopin.attrs.#{key}")
+            %td=yaopin_column key,@yaopin.send(key)
+  .clearfix
+%p=@desc

@@ -8,29 +8,19 @@
 -@noliubai = true
 -@spans = 9
 =debug @yaopin if params[:debug]
-%h1=@yaopin.wenhao
-.pull-right.mt-1e=bdshare
-.clearfix
-.details.box
-  .pull-left
-    =slotb
-  .yaopin-table
-    %table.tablex.table-borderedx.yaopin-single
-      %tr
-        %th 名称
-        %td=link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
-      -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
-        -if @yaopin[key].present? and @yaopin[key] != '－－－－'
-          %tr
-            %th=t("yaopin.attrs.#{key}")
-            %td=yaopin_column key,@yaopin.send(key)
-  .clearfix
-%p=@desc
+= render :partial => ['details_a','details_b'].sample
 
 %hr
-  .btn-group.align-center
-    <a href="/" rel="nofollow" class="btn">网站首页</a>
-    <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
+  -#.btn-group.align-center
+    -#<a href="/" rel="nofollow" class="btn">网站首页</a>
+    -#<a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
+-if @yaopins.present?    
+  %h2 更多#{@yaopin.name}    
+  .yaopins
+    -@yaopins.each do |r|
+      =link_to r.wenhao,r
+  <br />
+  <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow">更多</a>
 %hr
 %strong 网友跟贴
 = render :partial => 'comment_form',locals:{:obj=>@yaopin}
