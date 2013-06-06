@@ -72,7 +72,7 @@ class Yaopin < ActiveRecord::Base
       #doc = get_doc(@url + "base.jsp?tableId=#{table}&curstart=#{page}") 
       total_page = doc.text.match(/共(\d+)页 共\d+条/)[1].to_i
       total_page = 1 if Rails.env.test? and total_page > 1
-      # pp doc if Rails.env.test?
+      #pp doc if Rails.env.test?
       doc.css('p[align=left] a').each do |node|
         ms = node.attr("href").match(/tableId=(\d+).+?Id=(\d+)/)
         next if ms.nil?
@@ -145,6 +145,7 @@ class Yaopin < ActiveRecord::Base
       pp r if Rails.env.test?
     end
     def get_doc url
+      Rails.logger.info "curl:#{url}"
       res = Typhoeus::Request.get(url)
       Nokogiri::HTML(res.body)
     end
