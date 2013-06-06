@@ -62,7 +62,8 @@ class Yaopin < ActiveRecord::Base
     end
     def get_table_lists table,pages,page=1
       while page <= pages
-        delay(:priority=>10).get_list(table,page)
+        get_list(table,page)
+        #delay(:priority=>10).get_list(table,page)
         page+=1
       end
     end
@@ -75,7 +76,8 @@ class Yaopin < ActiveRecord::Base
       doc.css('p[align=left] a').each do |node|
         ms = node.attr("href").match(/tableId=(\d+).+?Id=(\d+)/)
         next if ms.nil?
-        delay.get_item ms[1],ms[2]
+        #delay.get_item ms[1],ms[2]
+        get_item ms[1],ms[2]
         # break
       end
       return total_page > page
