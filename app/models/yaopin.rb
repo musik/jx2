@@ -138,7 +138,7 @@ class Yaopin < ActiveRecord::Base
         end
       end
       
-      return if data[:wenhao].nil?
+      (Rails.logger.info "get_list:wenhao null #{[table,id]}" and return) if data[:wenhao].nil?
       drug = Drug.where(:name=>data[:name]).first_or_create(:en=>data[:en])
       data[:drug_id] = drug.id
       r = Yaopin.where(:wenhao=>data[:wenhao]).first_or_create data
