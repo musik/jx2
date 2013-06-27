@@ -29,8 +29,8 @@
     -rs.uniq.each do |r|
       %tr
         %th=link_to r.name,chengfen_url(r.name),:class=>"badge"
-        %td=r.metahash["英文名"]
-        %td=r.metahash["化学名"]
+        %td=r.metaval "英文名" 
+        %td=r.metaval "化学名"
 
 -if @drug.yaopins_count.present?
   -rs = @yaopins
@@ -42,7 +42,7 @@
       =link_to t('.more',:name=>@drug.name).html_safe,pihao_drug_url(@drug),:rel=>"nofollow"
 
 %p=t('.desc',:drug=>@drug.name)
-=slotf
+-#=slotf
 -if params[:debug]
   =debug @drug
   =debug @drug.hashdata(:shuoming).keys

@@ -10,6 +10,9 @@ class Chengfen < ActiveRecord::Base
   def metahash
     YAML.load(meta) rescue nil
   end
+  def metaval key
+    metahash[key]  rescue nil
+  end
   
   class << self
     def find *args
