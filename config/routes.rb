@@ -9,6 +9,7 @@ Yl::Application.routes.draw do
       get :hot
     end
   end
+  match '/archive/:date'=>'home#date',:as=>'date'
   match '/archive'=>'home#archive',:as=>'archive'
 
   resources :posts,:path=>"news"

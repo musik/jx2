@@ -15,6 +15,29 @@ class HomeController < ApplicationController
       @groups << [group,count]
     end
     @groups.sort!{|a,b| a[0]<=> b[0]}
+    breadcrumbs.add "存档",nil
+  end
+  def date
+    if params[:date].length == 8
+      @range = 'day'
+      @datestr = params[:date]
+      @format = "%Y-%m-%d"
+      @date = Date.parse @datestr
+      @next = @date + 1.day
+    elsif params[:date].length == 6
+      @range = 'month'
+      @datestr = params[:date] + "01"
+      @format = "%Y-%m"
+      @date = Date.parse @datestr
+      @next = @date + 1.month
+    end
+    @yaopins = Yaopin.search(
+      :with => {:pizhunri => @date..@next},
+      :page => params[:page],
+      :per_page => 100
+    )
+    breadcrumbs.add "存档",'/archive'
+    breadcrumbs.add @date.strftime(@format),nil
   end
   def test
     render :layout=>"application"

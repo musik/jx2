@@ -2,6 +2,7 @@
 
 $iconSpritePath: asset-url('glyphicons-halflings.png', image)
 $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image)
+$linkColor: #47a
 @import "bootstrap"
 body
   padding-top: 40px
@@ -52,7 +53,8 @@ body.c-entries
   font-size: 12px
   @include box-shadow(none)
   a
-    color: #999
+    color: #444
+    text-decoration: underline
 .container-small
   width: 728px
   margin: 0 auto
@@ -316,6 +318,7 @@ ul.comments
 .buylink    
   color: #080
 ul.archive  
+  margin-left: 0
   li
     list-style: inside
   li.header

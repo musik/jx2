@@ -29,35 +29,38 @@
       .container
         .content
           = render 'layouts/messages'
-          -unless @hide_bread
-            .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
           -if @col1 
-            -if show_title?
-              %h1#pt=yield :header
             -unless @hide_ad_before
               =slotb
+            -if show_title?
+              %h1#pt=yield :header
+            -unless @hide_bread
+              .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
             = yield
             .clearfix
             =slotf unless @hide_slotf
           -else
-            -@spans ||= 9
+            -@spans ||= 8
             .row
               %div{:class=>"span#{@spans}"}
+                =slotb unless @hide_ad_before
                 -if show_title?
                   %h1#pt=yield :header
-                =slotb unless @hide_ad_before
+                -unless @hide_bread
+                  .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
                 = yield
                 =slotf unless @hide_slotf
               .sidebar{:class=>"span#{12-@spans}"}
-                =yield :sidebar
-                -#-unless @liubai
-                  -#.liubai
-                -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
-                -unless @hide_adside
-                  =ubaidu 1270008,"jx-global-side-200"
-                  =usogou 194506,200,200
-                  =ubaidu 1270011,"jx-global-side-2"
-                = render 'layouts/sidebar' unless @hide_sidebar
+                .inside
+                  =yield :sidebar
+                  -#-unless @liubai
+                    -#.liubai
+                  -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
+                  -unless @hide_adside
+                    =ubaidu 1270008,"jx-global-side-200"
+                    =usogou 194506,200,200
+                    =ubaidu 1270011,"jx-global-side-2"
+                  = render 'layouts/sidebar' unless @hide_sidebar
       -unless is_home?                
         .belt.alert.alert-info
           = render :partial => 'layouts/footlinks_static'
@@ -73,6 +76,8 @@
               =link_to "链接","/links"
               联系 <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">QQ</a> 5826-5826
 
+            =link_to "医药招商",entries_url
+            =link_to "按批准日期规档",posts_url
             =link_to "资讯",posts_url
           .pull-right
             =yield(:title) || t('appname')
