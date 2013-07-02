@@ -4,6 +4,18 @@ class HomeController < ApplicationController
     @adm_baidu = false
     render :layout=>"application"
   end
+  def archive
+    @yaopins = Yaopin.search(nil,
+        :group_by => 'pizhunri',
+        :group_function => :month,
+        :order => 'pizhunri ASC',
+        :per_page=>1000)
+    @groups = []
+    @yaopins.each_with_group_and_count do |t,group,count|
+      @groups << [group,count]
+    end
+    @groups.sort!{|a,b| a[0]<=> b[0]}
+  end
   def test
     render :layout=>"application"
   end

@@ -1,0 +1,6 @@
+-title '存档'
+%ul
+  -@groups.each do |v|
+    %li
+      =link_to Date.parse("#{v[0]}01").strftime("%Y-%m"),"/archive/#{v[0]}"
+      %small=v[1]
