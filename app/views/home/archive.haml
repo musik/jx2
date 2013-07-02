@@ -1,6 +1,12 @@
 -title '存档'
-%ul
+-year = nil
+%ul.archive
   -@groups.each do |v|
+    -date = Date.parse("#{v[0]}01")
+    -if year.nil? or year != date.year
+      -year = date.year
+      %li.header
+        #{date.year}年
     %li
-      =link_to Date.parse("#{v[0]}01").strftime("%Y-%m"),"/archive/#{v[0]}"
+      =link_to "#{date.month}月","/archive/#{v[0]}",:title=>date.strftime("%Y-%m")
       %small=v[1]
