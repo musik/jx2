@@ -4,8 +4,8 @@ module YaopinsHelper
     if respond_to? "yaopin_#{k}"
       send "yaopin_#{k}",v
     else
-      v
-    end 
+      v.is_a?(String) ? v.gsub(/；|;/,'<br />').html_safe : v
+    end
   end
   def yaopin_changjia_name v
     link_to v,"/pihao/search?q=#{CGI.escape v}"
