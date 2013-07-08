@@ -5,10 +5,10 @@ set :repository,  "git@gitcafe.com:muzik/jxjw.git"
 
 set :scm, :git
 
-set :deploy_to, "/home/muzik/jxjw"
-role :web, "rho"                          # Your HTTP server, Apache/etc
-role :app, "rho"                          # This may be the same as your `Web` server
-role :db,  "rho", :primary => true # This is where Rails migrations will run
+set :deploy_to, "/dat/www/jxjw"
+role :web, "gxr"                          # Your HTTP server, Apache/etc
+role :app, "gxr"                          # This may be the same as your `Web` server
+role :db,  "gxr", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 set :user, "muzik"
 set :group, "muzik"
@@ -66,7 +66,7 @@ set :environment, 'production'
 require './lib/recipes/db.rb'
 after "deploy:finalize_update","app:yml"
 after "deploy:finalize_update","app:symlink"
-after "deploy:finalize_update","deploy:migrate"
+#after "deploy:finalize_update","deploy:migrate"
 require './lib/recipes/custom.rb'
 
 #after 'app:symlink', 'db:migrate'
@@ -102,8 +102,8 @@ after 'deploy:restart', 'unicorn:restart' # app IS NOT preloaded
 #set :resque_service,'resque-sdmec'
 #require './lib/recipes/resque.rb'
 #before 'deploy:restart','resque:restart'
-#role :resque_worker, "rho"
-#role :resque_scheduler, "rho"
+#role :resque_worker, "gxr"
+#role :resque_scheduler, "gxr"
 #set :workers, { "update_keywords,update_items" => 1 }
 #require 'capistrano-resque'
 

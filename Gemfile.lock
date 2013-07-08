@@ -6,7 +6,7 @@ GIT
       capistrano
 
 GEM
-  remote: http://rubygems.org/
+  remote: http://ruby.taobao.org/
   specs:
     Ascii85 (1.0.2)
     RedCloth (4.2.9)
