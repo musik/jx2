@@ -8,6 +8,12 @@ class HomeController < ApplicationController
     @files = Dir.entries("#{Rails.root}/public/sitemap")
     @files -= ['.','..']
     logger.debug @files
+    respond_to do |format|
+      format.xml
+      format.text {
+        render text: @files.collect{|f| root_url + 'sitemap/' + f}.join("\r\n")
+      }
+    end
   end
   def archive
     @yaopins = Yaopin.search(nil,
