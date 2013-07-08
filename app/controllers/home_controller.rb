@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   def sitemap
     @files = Dir.entries("#{Rails.root}/public/sitemap")
     @files -= ['.','..']
+    @files.sort!
     logger.debug @files
     respond_to do |format|
       format.xml
