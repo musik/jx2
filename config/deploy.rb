@@ -66,7 +66,7 @@ set :environment, 'production'
 require './lib/recipes/db.rb'
 after "deploy:finalize_update","app:yml"
 after "deploy:finalize_update","app:symlink"
-#after "deploy:finalize_update","deploy:migrate"
+after "deploy:finalize_update","deploy:migrate"
 require './lib/recipes/custom.rb'
 
 #after 'app:symlink', 'db:migrate'

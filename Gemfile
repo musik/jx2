@@ -25,7 +25,7 @@ gem "rolify", ">= 3.1.0"
 #gem "bootstrap-sass", ">= 2.0.3"
 gem "bootstrap-sass", "~> 2.1.0.0"
 gem "simple_form"
-#gem "therubyracer", :group => :assets, :platform => :ruby
+gem "therubyracer", :group => :assets, :platform => :ruby
 
 group :development do
   gem 'libnotify', :group => :development
