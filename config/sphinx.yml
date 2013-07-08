@@ -15,5 +15,5 @@ production:
   mem_limit: 256M
   # workers: prefork
   charset_type: zh_cn.utf-8
-  charset_dictpath: /home/muzik/yl/config/etc/
+  charset_dictpath: /dat/jxjw/config/etc/
   port: 9322
