@@ -7,6 +7,22 @@ namespace :jobs do
     page = (ENV["YPAGE"] || 10)
     Yaopin::Sfda.new.get_table_lists 25,page.to_i,1
   end
+  desc "生成sitemap"
+  task :sitemap => :environment do
+    hosts =  Rails.env.production? ? "http://www.jxjw.net" : "http://vcap.me:4005"
+    size = Yaopin.count
+    per = 5000
+    total_pages = (size.to_f / per).ceil
+    i = 1
+    cmd = ""
+    while i <= total_pages
+      url = "#{hosts}/pihao/map.xml"
+      file = "#{Rails.root}/public/sitemap/pihao-page-#{i}.xml"
+      cmd += "curl -o #{file} -d \"per=#{per}&page=#{i}\" -G #{url};\n"
+      i += 1
+    end
+    exec cmd
+  end
   desc "生成xml"
   task :xml => :environment do
     hosts =  Rails.env.production? ? "http://www.jxjw.net" : "http://vcap.me:4005"

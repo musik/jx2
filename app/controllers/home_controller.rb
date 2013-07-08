@@ -4,6 +4,11 @@ class HomeController < ApplicationController
     @adm_baidu = false
     render :layout=>"application"
   end
+  def sitemap
+    @files = Dir.entries("#{Rails.root}/public/sitemap")
+    @files -= ['.','..']
+    logger.debug @files
+  end
   def archive
     @yaopins = Yaopin.search(nil,
         :group_by => 'pizhunri',

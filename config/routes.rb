@@ -76,7 +76,7 @@ Yl::Application.routes.draw do
   end
 
   match '/bdapp(/:action(/:id))'=>"bdapp"
-  #match 'test' => 'home#test'
+  match 'sitemap' => 'home#sitemap'
   match '/:id'=>"drugs#show",:as=>"show_yao"
 
   #match '/:id/说明书'=>"drugs#shuomingshu",:as=>"shuomingshu"#,:constraints=>{:id=> /.+%E8%AF%B4%E6%98%8E%E4%B9%A6/}

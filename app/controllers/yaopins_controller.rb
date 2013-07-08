@@ -15,8 +15,16 @@ class YaopinsController < ApplicationController
 
   end
   def map
-    @yaopins = Yaopin.page(params[:page] || 1).per(params[:per] || 500).select(%w(id wenhao))
-    breadcrumbs.add "第#{params[:page]}页",nil if params[:page]
+    respond_to do |format|
+      format.html {
+        @yaopins = Yaopin.page(params[:page] || 1).per(params[:per] || 500).select(%w(id wenhao))
+        breadcrumbs.add "第#{params[:page]}页",nil if params[:page]
+      }
+      format.xml {
+        @yaopins = Yaopin.page(params[:page] || 1).per(params[:per] || 5000).select(%w(id wenhao))
+        
+      }
+    end
   end
   def track
     @yaopin = Yaopin.where(:id=>params[:id]).first
