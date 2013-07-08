@@ -16,7 +16,7 @@ db/sphinx
 *~
 /.bundle
 /vendor/bundle/
-public/sitemap/*
+/public/sitemap/*.xml
 
 # minimal Rails specific artifacts
 db/*.sqlite3
