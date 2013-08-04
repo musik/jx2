@@ -61,8 +61,13 @@ Capistrano::Configuration.instance.load do
     end  
     
     desc "||DarkRecipes|| Restarts unicorn directly"
-    task :restart, :roles => :app do
+    task :reload, :roles => :app do
       run unicorn_restart_cmd
+    end
+    desc "||DarkRecipes|| Restarts unicorn directly"
+    task :restart, :roles => :app do
+      run unicorn_stop_cmd
+      run unicorn_start_cmd
     end
     
     desc <<-EOF
