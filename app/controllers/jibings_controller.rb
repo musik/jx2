@@ -1,0 +1,93 @@
+#encoding: utf-8
+class JibingsController < ApplicationController
+  # GET /jibings
+  # GET /jibings.json
+  def index
+    @jibings = Jibing.all
+    breadcrumbs.add "常见疾病"
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @jibings }
+    end
+  end
+
+  # GET /jibings/1
+  # GET /jibings/1.json
+  def show
+    @jibing = Jibing.find(params[:id])
+    breadcrumbs.add "常见疾病",jibings_path
+    breadcrumbs.add "#{@jibing.name}"
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @jibing }
+    end
+  end
+  def suggest
+    @jibing = Jibing.find(params[:id])
+    breadcrumbs.add "常见疾病",jibings_path
+    breadcrumbs.add "#{@jibing.name}",jibing_path
+    breadcrumbs.add "建议"
+  end
+
+  # GET /jibings/new
+  # GET /jibings/new.json
+  def new
+    @jibing = Jibing.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @jibing }
+    end
+  end
+
+  # GET /jibings/1/edit
+  def edit
+    @jibing = Jibing.find(params[:id])
+  end
+
+  # POST /jibings
+  # POST /jibings.json
+  def create
+    @jibing = Jibing.new(params[:jibing])
+
+    respond_to do |format|
+      if @jibing.save
+        format.html { redirect_to @jibing, notice: 'Jibing was successfully created.' }
+        format.json { render json: @jibing, status: :created, location: @jibing }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @jibing.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /jibings/1
+  # PUT /jibings/1.json
+  def update
+    @jibing = Jibing.find(params[:id])
+
+    respond_to do |format|
+      if @jibing.update_attributes(params[:jibing])
+        format.html { redirect_to @jibing, notice: 'Jibing was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @jibing.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /jibings/1
+  # DELETE /jibings/1.json
+  def destroy
+    @jibing = Jibing.find(params[:id])
+    @jibing.destroy
+
+    respond_to do |format|
+      format.html { redirect_to jibings_url }
+      format.json { head :no_content }
+    end
+  end
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424174241) do
+ActiveRecord::Schema.define(:version => 20130808113100) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -113,6 +113,25 @@ ActiveRecord::Schema.define(:version => 20130424174241) do
   end
 
   add_index "entries", ["yaopin_id"], :name => "index_entries_on_yaopin_id"
+
+  create_table "ji_items", :force => true do |t|
+    t.integer  "jibing_id"
+    t.integer  "drug_id"
+    t.integer  "position",   :default => 1
+    t.integer  "likes",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "ji_items", ["drug_id"], :name => "index_ji_items_on_drug_id"
+  add_index "ji_items", ["jibing_id"], :name => "index_ji_items_on_jibing_id"
+
+  create_table "jibings", :force => true do |t|
+    t.string   "name",                       :null => false
+    t.integer  "items_count", :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "links", :force => true do |t|
     t.string   "name"

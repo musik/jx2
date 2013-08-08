@@ -1,0 +1,8 @@
+-title "常见疾病吃什么药好"
+%p
+  - @jibings.each do |jibing|
+    = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
+
+-#%br
+
+-#= link_to 'New Jibin', new_jibing_path

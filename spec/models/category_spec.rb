@@ -15,9 +15,9 @@ describe Category do
       # # break
     # end
     
-    c = Category.create  :name => '内脏系统用药'
-    pp Category.find c.id
-    pp Category.find '内脏系统用药'
+    #c = Category.create  :name => '内脏系统用药'
+    #pp Category.find c.id
+    #pp Category.find '内脏系统用药'
     # Category::Robot.new.get_page '/html/database/drugmanual/580',c 
   end
 end

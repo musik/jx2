@@ -1,6 +1,12 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  resources :jibings,:path=>'jibing' do
+    member do 
+      get 'suggest'
+    end
+  end
+
   match "/goto/:class_name/:id"=>'home#goto'
   resources :comments,:only=>%w(index create show)
 

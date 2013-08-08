@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Yaopin do
   it "should sdfa" do
     #Yaopin::Sfda.new.run
-    Yaopin::Sfda.new.get_list(25,2)
+    #Yaopin::Sfda.new.get_list(25,2)
     #Yaopin::Sfda.new.get_item(25,78298)
     # Drug.import_yaopins  
     #Yaopin::Sfda.new.get_table_lists 25,10,1

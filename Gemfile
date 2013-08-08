@@ -2,7 +2,7 @@ require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 source 'http://ruby.taobao.org'
 #source 'http://rubygems.org'
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.10'
 gem 'mysql2'
 gem 'execjs'
 group :assets do
@@ -87,3 +87,4 @@ gem 'devise-i18n-views'
 
 gem 'acts_as_commentable_with_threading'
 gem 'rakismet'
+gem 'acts_as_list'
