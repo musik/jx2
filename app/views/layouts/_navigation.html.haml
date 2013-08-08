@@ -11,6 +11,8 @@
 %ul.nav.nav-small.pull-right
   - if user_signed_in?
     %li= link_to current_user.name,current_user
+    %li=link_to "医药招商",entries_url
+    %li.smart=link_to "发布",new_entry_url,:rel=>"nofollow"
     %li
       = link_to('设置', edit_user_registration_path)
     - if current_user.has_role? :admin
