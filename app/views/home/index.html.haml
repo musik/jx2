@@ -25,6 +25,16 @@
 
 .alert.alert-info
   = render :partial => 'layouts/footlinks_static'
+-num = 48
+-cache "home-cjjb-#{num}" do 
+  .linklist.jibing
+    %h2 常见疾病吃什么药好
+    - Jibing.where('items_count > 0').limit(num).each do |jibing|
+      .i
+        = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
+        %small= jibing.items_count
+    .clearfix
+%hr
 .row
   .span7
     .box
