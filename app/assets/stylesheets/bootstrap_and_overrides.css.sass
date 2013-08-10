@@ -103,6 +103,8 @@ body.bdapp
     padding: 0
 .nav-small    
   font-size: 12px
+.navbar-search  
+  margin-right: 1em
 .navbar .nav-small > li > a  
   padding: 10px 5px
 .page-header-2
@@ -119,6 +121,9 @@ h1.appname
     text-decoration: none
   a:hover
     color: #999
+h1.sitename    
+  font-size: 14px
+  display: inline
 h1#pt
   font-family: "微软雅黑"
   font-size: 26px
@@ -231,12 +236,15 @@ p.stack
     white-space: nowrap
 .belt
   font-size: 12px
+  a
+    color: #666
 .drugs  
+  margin-right: -10px
   .drug
     //display: inline
     float: left
-    width: 30%
-    margin-right: 20px
+    width: 125px
+    margin-right: 10px
     small
       color: #ccc
       a
@@ -328,3 +336,67 @@ ul.archive
     font-weight: 600
     margin-top: 1em
   
+ol.ranks  
+  list-style: none
+  margin: 1em 0
+  border-bottom: 1px solid #eee
+  li
+    //padding-left: 60px
+    position: relative
+    //margin: 0 0 2em
+    border-top: 1px solid #eee
+    padding: 1em
+  .flag
+    position: absolute
+    right: 0 
+    top: 0
+    a
+      color: #ccc
+  .details
+    margin-left: 55px
+    small a
+      color: #666
+    p
+      margin: 5px 0 0
+    //float: left
+  .vote
+    text-align: center
+    float: left
+    .num
+      line-height: 14px
+      width: 40px
+      padding: 5px 0
+      //height: 40px
+      background: #999
+      color: #fff
+      @include border-radius(4px 4px 0 0)
+      span
+        display: block
+        font-size: 12px
+    .action
+      //background: #999
+      margin: 2px 0 0
+      font-size: 12px
+      a
+        display: block
+        @include border-radius(0 0 4px 4px)
+        //color: #ccc
+    
+.linklist    
+  margin-right: -10px
+  .i  
+    float: left
+    width: 40px
+    margin-right: 10px
+    small
+      font-size: 9px
+.shouzi    
+  .i
+    float: left
+    width: 40px
+    margin-right: 1em
+    small
+      font-size: 9px
+.jibing      
+  .i
+    width: 108px

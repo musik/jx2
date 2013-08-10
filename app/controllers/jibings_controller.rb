@@ -3,7 +3,8 @@ class JibingsController < ApplicationController
   # GET /jibings
   # GET /jibings.json
   def index
-    @jibings = Jibing.all
+    str = params.has_key?(:empty) ? "=" : ">"
+    @jibings = Jibing.where("items_count #{str} 0").all
     breadcrumbs.add "常见疾病"
 
     respond_to do |format|
@@ -16,6 +17,7 @@ class JibingsController < ApplicationController
   # GET /jibings/1.json
   def show
     @jibing = Jibing.find(params[:id])
+    @items = @jibing.ji_items
     breadcrumbs.add "常见疾病",jibings_path
     breadcrumbs.add "#{@jibing.name}"
 
@@ -26,6 +28,7 @@ class JibingsController < ApplicationController
   end
   def suggest
     @jibing = Jibing.find(params[:id])
+    @items = @jibing.suggest
     breadcrumbs.add "常见疾病",jibings_path
     breadcrumbs.add "#{@jibing.name}",jibing_path
     breadcrumbs.add "建议"

@@ -1,3 +1,22 @@
--title "#{@jibing.name}吃什么药好"
-.actions
-  =link_to 'suggest',suggest_jibing_path
+-title "#{@jibing.name}吃什么药_治疗#{@jibing.name}的药物","#{@jibing.name}吃什么药好"
+-if @items.present?
+  %ol.ranks
+    -@items.each do |item|
+      -drug = item.drug
+      %li
+        .vote
+          .num
+            %abbr{:title=>"589人赞"}
+              =rand(5)
+          .action
+            %a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
+        .details
+          %i #{item.position}. 
+          =link_to drug.name,yao_url(drug)
+          %small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
+          %p=drug.description
+        -#.flag
+          -#%a{:href=>'#'} 举报
+-if can? :manage,Jibing        
+  .actions
+    =link_to "建议",suggest_jibing_path

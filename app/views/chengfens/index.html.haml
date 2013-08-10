@@ -1,8 +1,23 @@
--title "药物成分"
+-title @title
+-#.alert.alert-info
+  -#-@groups.each do |g|
+    -#=link_to g[0],url_for(:shouzi=>g[0])
+    -#%small=g[1]
+  -#%br
+  -#=link_to "更多",shouzi_chengfens_url
+.shouzi.box
+  %div
+    首字索引
+    =link_to "更多",shouzi_chengfens_url
+  -@groups.each do |g|
+    .i
+      =link_to g[0],url_for(:shouzi=>g[0])
+      %small=g[1]
+  .clearfix
 =paginate @chengfens
 .list
   - @chengfens.each do |chengfen|
-    %div
-      %strong=link_to chengfen.name,chengfen
-      %p= chengfen.metahash.values.join(" / ") rescue nil
+    -#%div
+    =link_to chengfen.name,chengfen
+    -#%p= chengfen.metahash.values.join(" / ") rescue nil
 

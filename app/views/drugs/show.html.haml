@@ -1,7 +1,9 @@
 -title t('.title',:name=>@drug.name),@drug.name
 -keywords t('.keywords',:drug=>@drug.name)
--meta_desc t('.desc',:drug=>@drug.name)
+-meta_desc t('.desc',:drug=>@drug.name,:description=>@drug.description)
 
+-if @drug.description.present?
+  %p= @drug.description
 //.page-header
 //  %h1=@drug.name
 
@@ -41,7 +43,7 @@
     -if @drug.yaopins_count > 10
       =link_to t('.more',:name=>@drug.name).html_safe,pihao_drug_url(@drug),:rel=>"nofollow"
 
-%p=t('.desc',:drug=>@drug.name)
+%p=t('.desc',:drug=>@drug.name,:description=>@drug.description)
 -#=slotf
 -if params[:debug]
   =debug @drug

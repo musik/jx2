@@ -13,14 +13,14 @@ zh-CN:
     drug_yaopins: 批号
   drugs:
     show:
-      title: "%{name}_%{name}批号_%{name}功效与作用"
+      title: "%{name}_%{name}功效与作用"
       chengfen: "%{name}主要成分"
       shuoming: "%{name}说明书"
       yaopins: "%{name}批号"
       total: "共找到%{count}件%{name}批号"
       more: "&raquo; 更多%{name}批号"
       keywords: "%{drug},%{drug}批号,%{drug}说明书"
-      desc: "%{drug},关于%{drug}说明书、%{drug}的功效、用法用量、不良反应、副作用、禁忌，%{drug}的成份，%{drug}的批准文号等信息。"
+      desc: "%{drug},%{description} %{drug}说明书、功效、用法用量、不良反应、副作用、禁忌，%{drug}的成份，%{drug}的批准文号等信息。"
   yaopin:
     attrs:
       name: 药名

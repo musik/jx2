@@ -5,12 +5,29 @@ class ChengfensController < ApplicationController
   # GET /chengfens
   # GET /chengfens.json
   def index
-    @chengfens = Chengfen.page(params[:page] || 1).per(10)
+    @chengfens = Chengfen.page(params[:page] || 1).per(100)
+    @title = "药物成分"
+    breadcrumbs.add "药物成分",chengfens_url
+    if params[:shouzi].present?
+      @shouzi = params[:shouzi]
+      @title = "#{@shouzi}开头的药物成分"
+      @chengfens = @chengfens.where(:shouzi=>params[:shouzi]) 
+      breadcrumbs.add "#{@shouzi}开头"
+    end
+    @groups = Chengfen.group(:shouzi).having('count_all > 5').
+                count.sort{|a,b| b[1] <=> a[1]}
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @chengfens }
     end
+  end
+  def shouzi
+    @groups = Chengfen.group(:shouzi).
+                count.sort#{|a,b| b[1] <=> a[1]}
+    @title = "药物成分首字索引"
+    breadcrumbs.add "药物成分",chengfens_url
+    breadcrumbs.add @title
   end
 
   # GET /chengfens/1

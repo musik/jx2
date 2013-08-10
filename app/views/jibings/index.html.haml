@@ -1,7 +1,10 @@
 -title "常见疾病吃什么药好"
-%p
+-@col1 = true
+.linklist.jibing
   - @jibings.each do |jibing|
-    = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
+    .i
+      = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
+      %small= jibing.items_count
 
 -#%br
 

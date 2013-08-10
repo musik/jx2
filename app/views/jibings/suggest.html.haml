@@ -1,3 +1,8 @@
 -title "建议"
 
-.actions
+-#=debug @items.first
+%ul
+  -@items.each do |name,item|
+    %li
+      .fn= item[:drug].present? ? link_to(item[:drug].name,item[:drug]) : name
+      .desc=highlight item[:desc],@jibing.name

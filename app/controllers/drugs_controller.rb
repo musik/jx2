@@ -16,6 +16,11 @@ class DrugsController < ApplicationController
       @drugs = @drugs.where(:abbr=>params[:abbr])
       @title = "#{@abbr}开头的药品"
       breadcrumbs.add "#{@abbr}开头"
+    elsif params[:shouzi].present?
+      @shouzi = params[:shouzi]
+      @title = "#{@shouzi}开头的药物成分"
+      @drugs = @drugs.where(:shouzi=>params[:shouzi]) 
+      breadcrumbs.add "#{@shouzi}开头"
     else
       @categories = Category.roots
     end
@@ -25,6 +30,13 @@ class DrugsController < ApplicationController
       format.json { render json: @drugs }
       format.text { render text: Drug.yaopin_order.page(params[:page] || 1).per(params[:per] || 100).pluck(:name).join("\r\n") }
     end
+  end
+  def shouzi
+    @groups = Drug.group(:shouzi).
+                count.sort#{|a,b| b[1] <=> a[1]}
+    @title = "药品首字索引"
+    breadcrumbs.add "药品",drugs_url
+    breadcrumbs.add @title
   end
   def track
     @drug = Drug.where(:id=>params[:id]).first

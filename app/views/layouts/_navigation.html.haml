@@ -8,6 +8,7 @@
   %li{:class=>classes[:drugs]}=link_to "药品",drugs_url
   %li{:class=>classes[:chengfens]}=link_to "药物成分",chengfens_url
   %li{class: classes[:yaopins]}=link_to "批号",yaopins_url
+  %li{:class=>classes[:jibing]}=link_to "适应症",jibings_url
 %ul.nav.nav-small.pull-right
   - if user_signed_in?
     %li= link_to current_user.name,current_user

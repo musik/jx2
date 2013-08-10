@@ -33,7 +33,9 @@ Yl::Application.routes.draw do
   end
 
   match '/category/:category_id'=>'drugs#category',:as=>"category"
-  resources :chengfens,:path=>'chengfen' , :only=>[:index,:show]
+  resources :chengfens,:path=>'chengfen' , :only=>[:index,:show] do
+    get :shouzi,:on=>:collection
+  end
 
   resources :categories do
     collection do
@@ -73,6 +75,7 @@ Yl::Application.routes.draw do
   resources :drugs,:path=>'yaopin' do
     collection do
       get :manage
+      get :shouzi
     end
     member do
       get :pihao

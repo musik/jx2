@@ -1,0 +1,7 @@
+-title @title
+.shouzi
+  -@groups.each do |g|
+    .i
+      =link_to g[0],chengfens_url(:shouzi=>g[0])
+      %small=g[1]
+  .clearfix

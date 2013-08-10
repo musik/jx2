@@ -42,6 +42,12 @@ class Drug < ActiveRecord::Base
       return find_by_name(args[0]) if args.size == 1 and args[0].is_a? String
       super
     end
+    def shouzis min=0
+      r = group(:shouzi)
+      r = r.having('count_all > ?',min)
+      r = r.count
+      r.sort{|a,b| b[1] <=> a[1]}
+    end
     # 药品对应的产品剂型、类别
     def test_leixing
       require 'pp'

@@ -10,8 +10,8 @@
 
 -@col1 = true
 
-%h1.small= t('appname')
-%p=t('.desc')
+%h1.sitename= t('appname')
+=t('.desc')
 -#=bdshare
 .clearfix
 .row  
@@ -23,12 +23,21 @@
         =ubaidu 1270004,"jx-home-before"
       .clearfix  
 
-.belt.box.box-gray
+.alert.alert-info
   = render :partial => 'layouts/footlinks_static'
 .row
   .span7
     .box
-      -limit= 150
+      -limit= 50
+      -cache "home-sjyp-#{limit}",:expires_in=>1.minutes do
+        %h2 随机药品
+        %ul.unstyled.mlist
+          -Drug.random_by_id_shuffle(limit).each do |d|
+            %li
+              <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
+          .clearfix
+    .box
+      -limit= 74
       -cache "home-cjyp-#{limit}" do
         %h2 常见药品
         %ul.unstyled.mlist

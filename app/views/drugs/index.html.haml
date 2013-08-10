@@ -1,6 +1,22 @@
 -title @title || "药品"
 
 -@col1= true
+.alert.alert-info
+  <b>首字母索引</b>
+  -("A".."Z").to_a.each do |s|
+    =link_to s,drugs_url(:abbr=>s),:title=>"#{s}开头药品"
+-min = 10
+-cache "drug-shouzi-#{min}" do
+  -groups = Drug.shouzis(62)
+  .shouzi.box
+    %div
+      首字索引
+      =link_to "更多",shouzi_drugs_url
+    -groups.each do |g|
+      .i
+        =link_to g[0],url_for(:shouzi=>g[0])
+        %small=g[1]
+    .clearfix
 -if @categories
   %p.cats
     -@categories.each do |c|
@@ -12,6 +28,6 @@
 .drugs
   - @drugs.each do |drug|
     .drug
-      <a href="/yaopin/#{CGI.escape(drug.name)}/pihao">#{drug.name}</a>
+      <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(8,:omission=>'..')}</a>
 
 

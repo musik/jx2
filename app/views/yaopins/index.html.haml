@@ -1,9 +1,13 @@
 -title(@title || "国药准字列表")
 
--unless @hide_leibie
-  %p
+.alert.alert-info
+  =link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
+  =link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
+  =link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
+  =link_to "国药试字",search_yaopins_url(:q=>"国药试字")
+  -unless @hide_leibie
     -Yaopin.all_leibie.each do |str|
-      =link_to str,leibie_url(str),:class=>"badge" unless str.nil?
+      =link_to str,leibie_url(str) unless str.nil?
 
 =paginate @yaopins,:window=>10
 = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
