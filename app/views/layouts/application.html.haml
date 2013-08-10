@@ -70,6 +70,11 @@
           -if is_home?
             .box
               =render "layouts/links"
+          .debug
+            .time Index time: #{Time.now}
+            -#.url=request.url
+            -#.user_agent=request.user_agent
+          %hr
           .pull-left
             &copy; 2012 www.jxjw.net 粤ICP备13051267号-1
             -if !is_home?
