@@ -18,7 +18,7 @@ class DrugsController < ApplicationController
       breadcrumbs.add "#{@abbr}开头"
     elsif params[:shouzi].present?
       @shouzi = params[:shouzi]
-      @title = "#{@shouzi}开头的药物成分"
+      @title = "#{@shouzi}开头的药品"
       @drugs = @drugs.where(:shouzi=>params[:shouzi]) 
       breadcrumbs.add "#{@shouzi}开头"
     else
