@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class ChengfensController < ApplicationController
-  load_and_authorize_resource :except=>[]
+  load_and_authorize_resource :except=>[:shouzi]
   # GET /chengfens
   # GET /chengfens.json
   def index

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 #encoding: utf-8
 class DrugsController < ApplicationController
-  load_and_authorize_resource :except=>[:category,:pihao,:shuomingshu,:track]
+  load_and_authorize_resource :except=>[:category,:pihao,:shuomingshu,:track,:shouzi]
 
   before_filter :this_init
   def this_init
