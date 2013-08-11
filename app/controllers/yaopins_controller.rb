@@ -38,7 +38,8 @@ class YaopinsController < ApplicationController
     if @q.match(/[a-z0-9]/i)
       @yaopins = Yaopin.where(["name like ? or wenhao like ?","%#{params[:q]}%","%#{params[:q]}%"]).page(params[:page] || 1).per(20)
     else
-      @yaopins = Yaopin.search @q,:per_page=>20, :page=>params[:page] || 1
+      @yaopins = Yaopin.search @q,
+          :per_page=>20, :page=>params[:page] || 1
     end
     @title="搜索\"#{@q}\""
     @hide_leibie = true
