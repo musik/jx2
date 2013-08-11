@@ -41,6 +41,7 @@
             =slotf unless @hide_slotf
           -else
             -@spans ||= 9
+            =adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"links"
             .row
               %div{:class=>"span#{@spans}"}
                 .box.box-c
@@ -62,6 +63,7 @@
                     -#=usogou 194506,200,200
                     =ubaidu 1270011,"jx-global-side-2"
                   = render 'layouts/sidebar' unless @hide_sidebar
+            =adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"links"
       -unless is_home?                
         .alert.alert-info
           = render :partial => 'layouts/footlinks_static'

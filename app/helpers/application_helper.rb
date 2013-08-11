@@ -14,7 +14,8 @@ module ApplicationHelper
       :width => 336,
       :height => 280,
       :slot => slot,
-      :name => name
+      :name => name,
+      :cls => "slot"
     }
     render :partial=>'layouts/adsense',:locals=>defaults.merge(args)
   end

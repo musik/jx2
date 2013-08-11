@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class HomeController < ApplicationController
+  caches_action :index
   def index
     @adm_baidu = false
     render :layout=>"application"

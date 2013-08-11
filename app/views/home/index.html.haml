@@ -57,14 +57,22 @@
           .clearfix
   .span2
     .box
-      %h2 最新发布
+      %h2 随机批号
       -limit = 30
-      -cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
-        -results = Yaopin.newest.inlist.limit(limit)
+      -cache "random-yaopin-#{limit}",:expires_in=>5.minutes do
+        -results = Yaopin.random_by_id_shuffle(limit)
         %ul.unstyled
           -results.each do |yaopin|
             %li 
-              <a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
+              <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
+      -#%h2 最新发布
+      -#-limit = 30
+      -#-cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
+        -#-results = Yaopin.newest.inlist.limit(limit)
+        -#%ul.unstyled
+          -#-results.each do |yaopin|
+            -#%li 
+              -#<a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
   .span3.pull-right
     -#.pull-right=adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
     =ubaidu 1263949,"jx-home-side"
