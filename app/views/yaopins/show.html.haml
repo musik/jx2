@@ -19,7 +19,7 @@
   %h2 更多#{@yaopin.name}    
   .yaopins
     -@yaopins.each do |r|
-      =link_to r.wenhao,r
+      =link_to r.wenhao[4,9],r,:title=>r.wenhao unless r.id == @yaopin.id
   <br />
   <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow">更多</a>
 %hr

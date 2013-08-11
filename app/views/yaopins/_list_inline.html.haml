@@ -3,5 +3,7 @@
   - results.each do |yaopin|
     %li.pihao{:class=>cycle('odd','even')}
       =link_to yaopin.wenhao,yaopin
-      %small
-        =[yaopin.changjia_name,yaopin.jixing,yaopin.leibie,yaopin.guige].compact.join(' / ')
+      -
+      =yaopin.changjia_name
+      -#%small
+        -#=[yaopin.changjia_name,yaopin.jixing,yaopin.leibie,yaopin.guige].compact.join(' / ')

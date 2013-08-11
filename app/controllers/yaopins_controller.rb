@@ -120,7 +120,7 @@ class YaopinsController < ApplicationController
     @q = @yaopin.wenhao
 
     @drug = @yaopin.drug
-    @yaopins = @drug.yaopins.newest.limit(10).all
+    @yaopins = @drug.yaopins.newest.limit(10).all if @drug.yaopins_count > 1
 
     breadcrumbs.add @drug.name,"/yaopin/#{@drug.to_param}/pihao" if @drug.present?
     breadcrumbs.add @yaopin.wenhao,nil

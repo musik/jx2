@@ -10,6 +10,7 @@
         %th 名称
         %td
           =link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
+          %small #{@drug.yaopins_count}种
           -#<a href="http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape @yaopin.name}" rel="nofollow" target="_blank" class="buylink btn btn-small">购买</a>
       %tr
         %th 购买链接
@@ -17,6 +18,14 @@
           =link_to_360kad @yaopin.name
           -#%br
           -#=link_to_111 @yaopin.name
+
+      -@jibings = @drug.jibings.all
+      -if @jibings.present?
+        %tr
+          %th 适应症
+          %td
+            -@jibings.each do |jibing|
+              =link_to jibing.name,jibing
       -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
         -if @yaopin[key].present? and @yaopin[key] != '－－－－'
           %tr
