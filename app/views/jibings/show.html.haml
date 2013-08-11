@@ -12,8 +12,10 @@
             %a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
         .details
           %i #{item.position}. 
-          =link_to drug.name,yao_url(drug)
-          %small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
+          -#=link_to drug.name,yao_url(drug)
+          -#%small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
+          =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao"
+          %small=drug.yaopins_count.to_s + "种"
           %p=drug.description
         -#.flag
           -#%a{:href=>'#'} 举报
