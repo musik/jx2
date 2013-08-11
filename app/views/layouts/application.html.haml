@@ -40,16 +40,17 @@
             .clearfix
             =slotf unless @hide_slotf
           -else
-            -@spans ||= 8
+            -@spans ||= 9
             .row
               %div{:class=>"span#{@spans}"}
-                =slotb unless @hide_ad_before
-                -if show_title?
-                  %h1#pt=yield :header
-                -unless @hide_bread
-                  .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
-                = yield
-                =slotf unless @hide_slotf
+                .box.box-c
+                  =slotb unless @hide_ad_before
+                  -if show_title?
+                    %h1#pt=yield :header
+                  -unless @hide_bread
+                    .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
+                  = yield
+                  =slotf unless @hide_slotf
               .sidebar{:class=>"span#{12-@spans}"}
                 .inside
                   =yield :sidebar
@@ -58,7 +59,7 @@
                   -#=adsense 8650188641,"jx-global-side",:width=>300,:height=>600
                   -unless @hide_adside
                     =ubaidu 1270008,"jx-global-side-200"
-                    =usogou 194506,200,200
+                    -#=usogou 194506,200,200
                     =ubaidu 1270011,"jx-global-side-2"
                   = render 'layouts/sidebar' unless @hide_sidebar
       -unless is_home?                
