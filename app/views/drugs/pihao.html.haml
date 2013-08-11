@@ -2,6 +2,9 @@
 -title @drug.name,nil,false
 -#<a href="http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape @drug.name}" rel="nofollow" target="_blank" class="buylink btn">购买#{@drug.name}</a>
 %h1=@drug.name
+-if @drug.description.present?
+  =debug @drug.jibings
+  %p= @drug.description
 %p
   %strong 购买链接: 
   =link_to_360kad @drug.name

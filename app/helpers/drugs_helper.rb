@@ -10,4 +10,10 @@ module DrugsHelper
   def yao_url_str str
     "/#{CGI.escape(str)}"
   end
+  def autolink_to_jibing(text)
+    @jibing_names ||= begin
+                        Regexp.new(Jibing.pluck(:name).join("|"))
+                      end
+    text.sub(@jibing_names,'<a href="/jibing?name=\0">\0</a>')
+  end
 end

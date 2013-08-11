@@ -8,6 +8,8 @@ class Drug < ActiveRecord::Base
   
   scope :inlist,select([:id,:en, :name,:yaopins_count,:category_id,:has_shuoming])
   scope :yaopin_order,order("yaopins_count desc")
+  has_many :ji_items,:include=>:jibing
+  has_many :jibings,:through=>:ji_items,:uniq=>true
   
   resourcify
   
@@ -47,6 +49,14 @@ class Drug < ActiveRecord::Base
       r = r.having('count_all > ?',min)
       r = r.count
       r.sort{|a,b| b[1] <=> a[1]}
+    end
+    def last_words
+      words = {}
+      find_each do |r|
+        str = r.name[-1]
+        words.has_key?(str) ? words[str]+=1 : words[str]=1
+      end
+      words
     end
     # 药品对应的产品剂型、类别
     def test_leixing

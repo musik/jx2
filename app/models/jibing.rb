@@ -1,16 +1,23 @@
 #encoding: utf-8
 class Jibing < ActiveRecord::Base
   attr_accessible :name,:items_count
-  has_many :ji_items,:include=>:drug
+  has_many :ji_items,:include=>:drug,:dependent=>:delete_all
   has_many :drugs,:through=>:ji_items,:uniq=>true
   def add_drug drug
     JiItem.where(:jibing_id=>id,:drug_id => drug.id).first_or_create
   end
   def self.init_all_items
     where('items_count < 2').find_each do |r|
-      pp r
       r.suggest
-      sleep 1
+      sleep 3
+    end
+  end
+  def self.remove_duplicats
+    counts = Jibing.group(:name).having('count_all > 1').count
+    counts.each do |name,count|
+      where(:name=>name).limit(count - 1).order('id desc').all.each do |r|
+        r.destroy
+      end
     end
   end
   def suggest
