@@ -23,6 +23,7 @@
   <br />
   <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow">更多</a>
 %hr
+  
 %strong 网友跟贴
 = render :partial => 'comment_form',locals:{:obj=>@yaopin}
 %strong 最新跟贴
