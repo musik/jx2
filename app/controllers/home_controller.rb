@@ -1,9 +1,13 @@
 # -*- encoding : utf-8 -*-
 class HomeController < ApplicationController
-  caches_action :index
+  #caches_action :index,:expires_in=>3.minutes
   def index
     @adm_baidu = false
     render :layout=>"application"
+  end
+  def flush
+    expire_action :index
+    redirect_to :action=>:index
   end
   def sitemap
     @files = Dir.entries("#{Rails.root}/public/sitemap")
