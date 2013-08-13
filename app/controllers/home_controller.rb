@@ -22,6 +22,7 @@ class HomeController < ApplicationController
     end
   end
   def souyao
+    breadcrumbs.add "搜索网上药店"
     @hide_ad_before = @hide_slotf = @col1 = true
   end
   def archive
