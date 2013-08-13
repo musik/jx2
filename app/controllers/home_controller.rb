@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
   #caches_action :index,:expires_in=>3.minutes
   def index
-    _parse_referer
+    #_parse_referer
     @adm_baidu = false
     render :layout=>"application"
   end
