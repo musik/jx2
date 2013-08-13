@@ -21,6 +21,9 @@ class HomeController < ApplicationController
       }
     end
   end
+  def souyao
+    @hide_ad_before = @hide_slotf = @col1 = true
+  end
   def archive
     @yaopins = Yaopin.search(nil,
         :group_by => 'pizhunri',

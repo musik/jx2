@@ -16,7 +16,10 @@
         %th 购买链接
         %td
           =link_to_360kad @yaopin.name
-          -#%br
+      %tr
+        %td
+        %td
+          =link_to "34家网上药店搜索","/souyao?q=#{CGI.escape(@yaopin.name)}",:rel=>"nofollow",:target=>"_blank"
           -#=link_to_111 @yaopin.name
 
       -@jibings = @drug.jibings.all
