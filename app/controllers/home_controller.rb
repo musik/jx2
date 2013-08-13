@@ -23,7 +23,7 @@ class HomeController < ApplicationController
   end
   def souyao
     breadcrumbs.add "搜索网上药店"
-    @hide_ad_before = @hide_slotf = @col1 = true
+    @hide_ad_before = @hide_slotf = @col5 = true
   end
   def archive
     @yaopins = Yaopin.search(nil,
