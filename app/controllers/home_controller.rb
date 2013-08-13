@@ -75,7 +75,11 @@ class HomeController < ApplicationController
     @referer = request.referer
     #@referer = 'http://www.baidu.com/s?wd=%E5%9B%BD%E8%8D%AF%E5%87%86%E5%AD%97%E6%9F%A5%E8%AF%A2&rsv_bp=0&ch=33&tn=ppsbaibu_oem_dg&bar=&rsv_spt=3&ie=utf-8&rsv_sug3=2&rsv_sug=0&rsv_sug1=2&rsv_sug4=1248&oq=%E5%9B%BD%E8%8D%AF&rsp=0&f=3&rsv_sug2=1&rsv_sug5=0&inputT=13963' if Rails.env.development?
     #@referer = 'http://www.baidu.com/s?tn=56060048_4_pg&ch=1&ie=utf-8&bs=%E4%BA%BA%E5%8F%82%E5%81%A5%E8%84%BE%E7%89%87%200.25g*48%E7%B2%92%E7%9A%84%E5%9B%BD%E8%8D%AF%E5%87%86%E5%AD%97&f=3&rsv_bp=1&wd=%E5%9B%BD%E8%8D%AF%E5%87%86%E5%AD%97%E6%9F%A5%E8%AF%A2%E7%BD%91&rsv_sug3=8&rsv_sug4=5688&rsv_sug=0&rsv_sug1=4&oq=%E5%9B%BD%E8%8D%AF%E5%87%86%E5%AD%97&rsp=7&rsv_sug2=1&rsv_sug5=0&inputT=18781'
-    #@referer = 'http://so.360.cn/s?q=%E5%9B%BD%E8%8D%AF%E5%87%86%E5%AD%97B20050050&pq=%E5%8C%97%E8%8A%AA%E5%8F%A3%E6%9C%8D%E6%B6%B2&src=srp'
-    @ref_keywords = Hash[@referer.scan(/[\?\&](bs|wd|q|pq)\=([^\&]+)/)]
+    #@referer = 'http://www.soso.com/q?unc=i400044&cid=union.s.wh&ie=utf-8&w=国药准字&searchRadio=on'
+    @ref_keywords = Hash[@referer.scan(/[\?\&](bs|wd|q|pq|w)\=([^\&]+)/)].values
+    @ref_keywords.each do |v|
+      @ref_keywords.delete(v) if CGI.unescape(v) == "国药准字"
+      @ref_keywords.delete(v) if CGI.unescape(v).match("查询")
+    end
   end
 end
