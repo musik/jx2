@@ -12,6 +12,13 @@
 
 %h1.sitename= t('appname')
 =t('.desc')
+-if @ref_keywords.present?
+  .alert
+    你是不是要找
+    -@ref_keywords.each do |n,str|
+      =link_to CGI.unescape(str),"/pihao/search?q=#{str}",:target=>'_blank'
+    ?
+
 -#=bdshare
 .clearfix
 .row  
