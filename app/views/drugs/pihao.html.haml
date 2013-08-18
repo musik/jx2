@@ -11,11 +11,12 @@
   %p= @drug.description
 .well  
   %h2 在哪买#{@drug.name}
-  -@items = @drug.items
+  -@items = @drug.items.select("items.*,yaopins.shangpin_name,yaopins.changjia_name").all
   -if @items.present?
     -@items.each do |item|
       =eval("item_link_#{item.scope}(item)")
       %span.price=number_to_currency(item.price)
+      %span.wenhao=[item.shangpin_name,item.changjia_name].compact.join('-')
       %br
     %hr
   %p
