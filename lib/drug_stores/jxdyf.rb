@@ -24,7 +24,7 @@ module DrugStores
         yaopin = Yaopin.find wenhao
         #pp url
         if yaopin.present?
-          price = doc.at_css('#show_mprice').text.sub('¥','').to_f
+          price = doc.at_css('#show_mprice').text.gsub(/[¥,]/,'').to_f
           title = doc.at_css('h1').text
           url = url.match(/product-(\d+)/)[1]
           conditions = {url: url, scope: 'jxdyf'}

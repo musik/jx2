@@ -15,13 +15,14 @@
       %tr
         %th{:valign=>'top'} 购买链接
         %td
-          -@items = @drug.items
+          -@items = @drug.items.all
           -if @items.present?
             .well  
               %h2 在哪买#{@drug.name}
               -@items.each do |item|
                 =eval("item_link_#{item.scope}(item)")
                 %span.price=number_to_currency(item.price)
+                %span.wenhao=item.wenhao
                 %br
             %p
               %strong 搜索

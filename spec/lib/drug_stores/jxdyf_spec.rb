@@ -8,6 +8,6 @@ describe DrugStores::Jxdyf do
       d.yaopins.create :wenhao=>str,:name=>d.name
     end
     #DrugStores::Jxdyf.new.search "氧"
-    #DrugStores::Jxdyf.new.parse_item "http://www.jxdyf.com/product-5154.html"
+    DrugStores::Jxdyf.new.parse_item "http://www.jxdyf.com/product-25362.html"
   end
 end
