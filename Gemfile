@@ -72,6 +72,12 @@ gem 'redis-rails'
 gem 'thinking-sphinx', '2.0.13'
 gem 'ts-datetime-delta', '1.0.3',:require => 'thinking_sphinx/deltas/datetime_delta'
 gem 'resque'
+#gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
+gem 'resque-ensure-connected'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+gem 'resque-retry'
+gem 'resque-cleaner'
+gem 'resque-pool'
 
 gem 'rails_admin'
 gem 'RedCloth'

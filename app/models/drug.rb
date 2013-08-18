@@ -62,9 +62,9 @@ class Drug < ActiveRecord::Base
     end
     def update_all_items store_name='jxdyf'
       find_each do |r|
-        pp "UPDATE_ITEMS:#{r.name}" if Rails.env.development?
+        #pp "UPDATE_ITEMS:#{r.name}" if Rails.env.development?
         next if r.name.length < 2
-        eval "DrugStores::#{store_name.classify}.new.search(\"#{r.name}\")"
+        eval "DrugStores::#{store_name.classify}.new.async_search(\"#{r.name}\")"
       end
     end
     # 药品对应的产品剂型、类别

@@ -102,9 +102,9 @@ document.write(\'<A href="mailto:\' + emailE + \'">\' + emailE + \'</a>\')
     '<div class="alert alert-like clearfix"><div class="bdlikebutton"></div></div>'.html_safe
   end
   def link_to_360kad name,title='康爱多网上药店'
-      "<a href=\"http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape name}\" rel=\"nofollow\" target=\"_blank\" class=\"buylink btn btn-small\">#{title}</a>".html_safe
+      "<a href=\"http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape name}\" rel=\"nofollow\" target=\"_blank\" class=\"buylink btnx btnx-small\">#{title}</a>".html_safe
   end
   def link_to_111 name,title='1号药网'
-      "<a href=\"http://search.111.com.cn/s2/c0-0/k#{CGI.escape name}/24/?tracker_u=2081374\" rel=\"nofollow\" target=\"_blank\" class=\"buylink btn btn-small\">#{title}</a>".html_safe
+      "<a href=\"http://search.111.com.cn/s2/c0-0/k#{CGI.escape name}/24/?tracker_u=2081374\" rel=\"nofollow\" target=\"_blank\" class=\"buylink btnx btnx-small\">#{title}</a>".html_safe
   end
 end

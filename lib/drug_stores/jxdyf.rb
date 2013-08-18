@@ -1,6 +1,9 @@
 #encoding: utf-8
 module DrugStores
   class Jxdyf < Base
+    def async_search name
+      Resque.enqueue(JxdyfJob,name)
+    end
     def search name
       url = "http://www.jxdyf.com/search-#{CGI.escape name}.html"
       doc = fetch_page url 

@@ -88,6 +88,15 @@ Yl::Application.routes.draw do
   match 'sitemap' => 'home#sitemap'
   match 'flush' => 'home#flush'
   match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao/}
+  resque_constraint = lambda do |request|
+    Rails.env.development? or 
+    (request.env['warden'].authenticate? and
+      request.env['warden'].user.has_role?(:admin))
+  end
+  constraints resque_constraint do
+    mount Resque::Server.new, :at => "/resque"
+  end
+
   match '/:id'=>"drugs#show",:as=>"show_yao"
 
   #match '/:id/说明书'=>"drugs#shuomingshu",:as=>"shuomingshu"#,:constraints=>{:id=> /.+%E8%AF%B4%E6%98%8E%E4%B9%A6/}
