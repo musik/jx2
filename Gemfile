@@ -2,7 +2,7 @@ require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 source 'http://ruby.taobao.org'
 #source 'http://rubygems.org'
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'execjs'
 group :assets do
@@ -52,7 +52,7 @@ gem 'bootstrap-kaminari-views'
 gem 'typhoeus','0.3.3'
 gem 'nokogiri'
 
-gem "mocha", :group => :test
+gem "mocha", :group => :test,:require=>false
 
 gem 'daemons'
 gem 'delayed_job_active_record'

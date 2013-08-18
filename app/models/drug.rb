@@ -3,6 +3,7 @@ class Drug < ActiveRecord::Base
   attr_accessible :en, :name,:abbr,:abbr2,:yaopins_count,:category_id,
                   :shuoming, :has_shuoming, :meta
   has_many :yaopins
+  has_many :items,:through=>:yaopins,:uniq=>true
   belongs_to :category,:counter_cache => true
   has_and_belongs_to_many :chengfens
   
@@ -50,6 +51,7 @@ class Drug < ActiveRecord::Base
       r = r.count
       r.sort{|a,b| b[1] <=> a[1]}
     end
+    #全体更新last word
     def last_words
       words = {}
       find_each do |r|
@@ -57,6 +59,13 @@ class Drug < ActiveRecord::Base
         words.has_key?(str) ? words[str]+=1 : words[str]=1
       end
       words
+    end
+    def update_all_items store_name='jxdyf'
+      find_each do |r|
+        pp "UPDATE_ITEMS:#{r.name}" if Rails.env.development?
+        next if r.name.length < 2
+        eval "DrugStores::#{store_name.classify}.new.search(\"#{r.name}\")"
+      end
     end
     # 药品对应的产品剂型、类别
     def test_leixing

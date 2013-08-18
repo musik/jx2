@@ -8,6 +8,7 @@ class Yaopin < ActiveRecord::Base
     :drug_id
   resourcify
   belongs_to :drug,:counter_cache=>true
+  has_many :items
   
   # default_scope order("wenhao asc")
   scope :wenhao_order,order("wenhao asc")
