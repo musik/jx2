@@ -15,7 +15,7 @@
       %tr
         %th{:valign=>'top'} 购买链接
         %td
-          -@items = @drug.items.all
+          -@items = @drug.items.all.sort{|a,b| b.scope<=>a.scope}
           -if @items.present?
             .well  
               %h2 在哪买#{@drug.name}
