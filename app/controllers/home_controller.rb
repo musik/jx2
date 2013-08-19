@@ -26,6 +26,20 @@ class HomeController < ApplicationController
     breadcrumbs.add "搜索网上药店"
     @hide_ad_before = @hide_slotf = @col5 = true
   end
+  def stats
+    @hide_ad_before = @hide_slotf = @col1 = true
+    @data = {
+      items_count: Item.count,
+      items_grouped: Item.group(:scope).count,
+      drugs_count: Drug.count,
+      drugs_yaopins_empty_count: Drug.where("yaopins_count = 0").count,
+      drugs_items_present_count: Drug.where("items_count > 0").count,
+      drugs_description_present_count: Drug.where("description is not null").count,
+      yaopins_count: Yaopin.count,
+      jibings_count: Jibing.count,
+      jibings_items_present_count: Jibing.where("items_count > 0").count,
+    }
+  end
   def archive
     @yaopins = Yaopin.search(nil,
         :group_by => 'pizhunri',
