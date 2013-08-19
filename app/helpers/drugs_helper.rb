@@ -19,4 +19,7 @@ module DrugsHelper
   def item_link_jxdyf r
     link_to("金象大药房","http://www.jxdyf.com/?2b18310b60#{r.url}",:rel=>"nofollow",:target=>"_blank").html_safe
   end
+  def item_link_kad r
+    link_to("康爱多药店","http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com/product/#{r.url}.shtml",:rel=>"nofollow",:target=>"_blank").html_safe
+  end
 end

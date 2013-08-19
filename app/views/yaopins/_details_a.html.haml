@@ -23,13 +23,7 @@
                 =eval("item_link_#{item.scope}(item)")
                 %span.price=number_to_currency(item.price)
                 %br
-            %p
-              %strong 搜索
-              %br
-              =link_to_360kad @drug.name
-              =link_to_111 @drug.name
-              %br
-              =link_to "34家网上药店搜索","/souyao?q=#{CGI.escape(@drug.name)}",:rel=>"nofollow",:target=>"_blank"
+              %small=link_to "34家网上药店搜索","/souyao?q=#{CGI.escape(@drug.name)}",:rel=>"nofollow",:target=>"_blank"
           -else
             %p
               -#%span 搜索: 
