@@ -48,8 +48,10 @@
       -limit= 50
       -cache "home-sjyp-#{limit}",:expires_in=>1.minutes do
         %h2 随机药品
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
         %ul.unstyled.mlist
-          -Drug.random_by_id_shuffle(limit).each do |d|
+          -#-Drug.random_by_id_shuffle(limit).each do |d|
+          -results.each do |d|
             %li
               <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
           .clearfix
@@ -67,7 +69,8 @@
       %h2 随机批号
       -limit = 30
       -cache "random-yaopin-#{limit}",:expires_in=>5.minutes do
-        -results = Yaopin.random_by_id_shuffle(limit)
+        -#-results = Yaopin.random_by_id_shuffle(limit)
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
         %ul.unstyled
           -results.each do |yaopin|
             %li 
