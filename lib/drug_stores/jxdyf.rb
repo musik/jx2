@@ -1,8 +1,12 @@
 #encoding: utf-8
 module DrugStores
   class Jxdyf < Base
+    @queue = 'stores_search'
+    def self.perform name
+      self.new.search name
+    end
     def async_search name
-      Resque.enqueue(JxdyfJob,name)
+      Resque.enqueue(Jxdyf,name)
     end
     def search name
       url = "http://www.jxdyf.com/search-#{CGI.escape name}.html"

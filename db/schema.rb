@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813123307) do
+ActiveRecord::Schema.define(:version => 20130819115733) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -80,14 +80,15 @@ ActiveRecord::Schema.define(:version => 20130813123307) do
     t.string   "abbr"
     t.string   "abbr2"
     t.integer  "yaopins_count"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "category_id"
     t.text     "shuoming"
     t.boolean  "has_shuoming"
     t.text     "meta"
     t.string   "description"
     t.string   "shouzi"
+    t.integer  "items_count",   :default => 0
   end
 
   add_index "drugs", ["category_id"], :name => "index_drug_category"

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Drug < ActiveRecord::Base
   attr_accessible :en, :name,:abbr,:abbr2,:yaopins_count,:category_id,
-                  :shuoming, :has_shuoming, :meta
+                  :shuoming, :has_shuoming, :meta,:items_count
   has_many :yaopins
   has_many :items,:through=>:yaopins,:uniq=>true#,:include=>:yaopin
   belongs_to :category,:counter_cache => true
@@ -39,6 +39,9 @@ class Drug < ActiveRecord::Base
     self[:has_shuoming] = self[:shuoming].present?
     self
   end
+  def update_items_count
+    update_attribute :items_count,items.count
+  end
 
   class << self
     def find *args
@@ -65,6 +68,11 @@ class Drug < ActiveRecord::Base
         #pp "UPDATE_ITEMS:#{r.name}" if Rails.env.development?
         next if r.name.length < 2
         eval "DrugStores::#{store_name.classify}.new.async_search(\"#{r.name}\")"
+      end
+    end
+    def update_all_items_count 
+      find_each do |r|
+        r.update_attribute :items_count,r.items.count
       end
     end
     # 药品对应的产品剂型、类别
