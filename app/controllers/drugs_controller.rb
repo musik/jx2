@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 #encoding: utf-8
 class DrugsController < ApplicationController
+  caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },
+    :cache_path => Proc.new{params}
   load_and_authorize_resource :except=>[:category,:pihao,:shuomingshu,:track,:shouzi]
 
   before_filter :this_init
