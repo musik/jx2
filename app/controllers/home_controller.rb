@@ -34,6 +34,7 @@ class HomeController < ApplicationController
       drugs_count: Drug.count,
       drugs_yaopins_empty_count: Drug.where("yaopins_count = 0").count,
       drugs_items_present_count: Drug.where("items_count > 0").count,
+      drugs_shuoming_present_count: Drug.where("shuoming is not null").count,
       drugs_description_present_count: Drug.where("description is not null").count,
       yaopins_count: Yaopin.count,
       jibings_count: Jibing.count,
