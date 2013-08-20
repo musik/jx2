@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
       @hide_bread = true
       @col1 = true 
     elsif %w(jibings).include? controller_name
-      @hide_ad_before = true
-      @hide_slotf = true
-      @hide_adside = true
+      #@hide_ad_before = true
+      #@hide_slotf = true
+      #@hide_adside = true
     end
     #logger.debug session
     @body_class = "c-#{controller_name} a-#{action_name}"

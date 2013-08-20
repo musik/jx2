@@ -1,5 +1,6 @@
 #encoding: utf-8
 class JibingsController < ApplicationController
+  load_and_authorize_resource :except=>%w()
   # GET /jibings
   # GET /jibings.json
   def index
