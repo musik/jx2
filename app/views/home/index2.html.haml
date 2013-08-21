@@ -1,6 +1,6 @@
--title t('home.index.title'),nil,false
--meta_desc t('home.index.desc')
--keywords t('home.index.keywords')
+-title t('.title'),nil,false
+-meta_desc t('.desc')
+-keywords t('.keywords')
 -@hide_bread = true
 -@hide_cjyp = true
 -@hide_ad_before = true
@@ -11,7 +11,7 @@
 -@col1 = true
 
 %h1.sitename= t('appname')
-=t('home.index.desc')
+=t('.desc')
 -#-if @ref_keywords.present?
   -#.alert
     -#你是不是要找
@@ -22,21 +22,25 @@
 -#=bdshare
 .clearfix
 .row  
-  .a328
-    =adsense 1545724241,"jx-home-before"
-  .ma328
-    -num = 55
-    -cache "home-cjjb-#{num}" do 
-      .linklist.jibing
-        %h2 常见疾病吃什么药好
-        - Jibing.where('items_count > 0').limit(num).each do |jibing|
-          .i
-            = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
-            %small= jibing.items_count
-        .clearfix
+  .span12
+    .bros
+      .pull-left
+        =adsense 1545724241,"jx-home-before"
+      .pull-right
+        -#=ubaidu 1270004,"jx-home-before"
+      .clearfix  
 
 .alert.alert-info
   = render :partial => 'layouts/footlinks_static'
+-num = 48
+-cache "home-cjjb-#{num}" do 
+  .linklist.jibing
+    %h2 常见疾病吃什么药好
+    - Jibing.where('items_count > 0').limit(num).each do |jibing|
+      .i
+        = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
+        %small= jibing.items_count
+    .clearfix
 %hr
 .row
   .span7

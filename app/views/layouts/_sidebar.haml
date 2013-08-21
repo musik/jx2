@@ -1,18 +1,13 @@
 -limit = 10
 -url_key = Digest::MD5.hexdigest(request.url)
--cache "random-yaopins-#{url_key}",:expires_in => 3.day do
+-cache "random-sidebar-#{url_key}",:expires_in => 3.day do
   %h3 随机药品
+  -results = Yaopin.search(:order=>'@random',:per_page=>10)
   %ul.unstyled
-    -#-Drug.random_by_id_shuffle(limit).each do |d|
-    -results = Yaopin.search(:order=>'@random',:per_page=>10)
     -results.each do |d|
       %li
         <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
--limit = 10
--cache "random-pihaos-#{url_key}",:expires_in=>5.days do
   %h3 随机批号
-  -#-results = Yaopin.random_by_id_shuffle(limit)
-  -results = Yaopin.search(:order=>'@random',:per_page=>10)
   %ul.unstyled
     -results.each do |yaopin|
       %li 

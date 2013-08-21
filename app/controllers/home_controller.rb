@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     #_parse_referer
     @adm_baidu = false
-    render :layout=>"application"
+    render 'index',:layout=>"application"
   end
   def flush
     expire_action :index

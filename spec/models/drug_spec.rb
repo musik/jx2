@@ -15,10 +15,10 @@ describe Drug do
     #end
   end
   it "should items" do
-    d= Drug.create :name=> "芬必得"
-    y = d.yaopins.create :name=>d.name,:wenhao=>'国药准字H19990155'
-    i = y.items.create :url=>'http://www.jxdyf.com/?2b18310b602444',:price=>20.70,:scope=>'jxdyf'
-    pp y,d,i
-    pp d.items
+    #d= Drug.create :name=> "芬必得"
+    #y = d.yaopins.create :name=>d.name,:wenhao=>'国药准字H19990155'
+    #i = y.items.create :url=>'http://www.jxdyf.com/?2b18310b602444',:price=>20.70,:scope=>'jxdyf'
+    #pp y,d,i
+    #pp d.items
   end
 end
