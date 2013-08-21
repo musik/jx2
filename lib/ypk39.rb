@@ -13,7 +13,7 @@ class Ypk39
       begin
         run_page i
       rescue Exception=>e
-        Rails.logger.info "ERROR:YPK39.run_page #{page} failed #{e.inspect}" unless @success
+        Rails.logger.info "ERROR:YPK39.run_page #{i} failed #{e.inspect}" unless @success
       end
       i += 1
       sleep 1
@@ -26,8 +26,9 @@ class Ypk39
     
     ]
 
+    @success = false
     items = {}
-    for i in 1..3
+    for i in 1..5
       response  = Typhoeus::Request.get "http://ypk.39.net/search/all/0-0-0-0-0-1-9-9-0-#{page}/",
             :headers=>{"User-Agent" => agents.sample},:follow_location=>true
       Rails.logger.info "YPK39.URL " + response.effective_url
