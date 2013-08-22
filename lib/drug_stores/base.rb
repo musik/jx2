@@ -1,7 +1,7 @@
 module DrugStores
   class Base
     def fetch_page url
-      response = Typhoeus::Request.get url
+      response = Typhoeus::Request.get url,:follow_location=>true
       if response.success?
         return Nokogiri::HTML(response.body)
         else
