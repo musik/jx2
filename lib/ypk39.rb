@@ -53,7 +53,7 @@ class Ypk39
         end
         @success = true
         if queues
-          Range.new(page,last_page).each do |j|
+          Range.new(page+1,last_page).each do |j|
             Ypk39.async_run j
           end
         end
@@ -63,7 +63,7 @@ class Ypk39
       end
       sleep i
     end
-    raise "retried 5 times #{url} #{response.inspect}" unless @success
+    raise "retried 5 times #{response.inspect}" unless @success
     items
   end
   def last_page
