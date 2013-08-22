@@ -54,7 +54,7 @@ class Ypk39
         @success = true
         break
       else
-        #Rails.logger.info "ERROR:YPK39.run_page #{page} retry #{response.inspect}"
+        Rails.logger.debug "ERROR:YPK39.run_page #{page} retry #{response.inspect}"
       end
       sleep i
     end

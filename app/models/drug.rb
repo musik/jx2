@@ -9,8 +9,10 @@ class Drug < ActiveRecord::Base
   
   scope :inlist,select([:id,:en, :name,:yaopins_count,:category_id,:has_shuoming])
   scope :yaopin_order,order("yaopins_count desc")
+  scope :items_empty,where("items_count = 0")
   has_many :ji_items,:include=>:jibing
   has_many :jibings,:through=>:ji_items,:uniq=>true
+
   
   resourcify
   
@@ -64,7 +66,7 @@ class Drug < ActiveRecord::Base
       words
     end
     def update_all_items store_name='jxdyf'
-      find_each do |r|
+      items_empty.find_each do |r|
         #pp "UPDATE_ITEMS:#{r.name}" if Rails.env.development?
         next if r.name.length < 2
         eval "DrugStores::#{store_name.classify}.new.async_search(\"#{r.name}\")"
