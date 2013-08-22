@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 class Ypk39
   @queue = 'stores_search'
-  def self.perform
-    self.new.run
+  def self.perform page
+    self.new.run_page page
   end
-  def self.async_run
-    Resque.enqueue Ypk39
+  def self.async_run page = 1
+    Resque.enqueue Ypk39,page
   end
   def run
     i = 1
@@ -19,7 +19,7 @@ class Ypk39
       sleep 1
     end while has_next_page?
   end
-  def run_page page = 1
+  def run_page page = 1,queues  = false
     agents = [
       'Mozilla/5.0 (MSIE 9.0; Windows NT 6.1; Trident/5.0)',
       'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5'
@@ -52,14 +52,22 @@ class Ypk39
           items[drug_name] = item
         end
         @success = true
+        if queues
+          Range.new(page,last_page).each do |j|
+            Ypk.async_run j
+          end
+        end
         break
       else
         Rails.logger.debug "ERROR:YPK39.run_page #{page} retry #{response.inspect}"
       end
       sleep i
     end
-    raise "retried 3 times" unless @success
+    raise "retried 5 times #{url} #{response.inspect}" unless @success
     items
+  end
+  def last_page
+    @doc.at_css('.pages script').text().match(/num\>(\d+)\)/)[1].to_i
   end
   def has_next_page?
     @doc.at_css('.pages a.next').present?
