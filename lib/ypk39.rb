@@ -54,7 +54,7 @@ class Ypk39
         @success = true
         if queues
           Range.new(page,last_page).each do |j|
-            Ypk.async_run j
+            Ypk39.async_run j
           end
         end
         break
