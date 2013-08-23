@@ -66,7 +66,7 @@ class Drug < ActiveRecord::Base
       words
     end
     def update_all_items store_name='jxdyf'
-      items_empty.find_each do |r|
+      find_each do |r|
         #pp "UPDATE_ITEMS:#{r.name}" if Rails.env.development?
         next if r.name.length < 2
         eval "DrugStores::#{store_name.classify}.new.async_search(\"#{r.name}\")"

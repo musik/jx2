@@ -14,12 +14,12 @@ Capistrano::Configuration.instance.load do
       set(:pool_pid) { File.join(pids_path, "pool.pid") } unless exists?(:pool_pid)
       desc "Restart all workers"
       task :restart, :roles => :app do
-        <<-CMD
+        run <<-CMD
           if [ -f '#{pool_pid}' ];then
-            kill -QUIT `cat #{unicorn_pid}`;
+            kill -QUIT `cat #{pool_pid}`;
           fi;
-          cd #{current_path} && resque-pool -p #{pool_pid} -d
         CMD
+        run "cd #{current_path} && RAILS_ENV=production bundle exec resque-pool -p #{pool_pid} --daemon"
       end  
     end
     namespace :worker do

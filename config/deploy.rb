@@ -81,7 +81,6 @@ require './lib/recipes/custom.rb'
 after 'deploy:create_symlink', 'sphinx:symlink'
 #after 'deploy:create_symlink', 'sphinx:config'
 before 'deploy:start','sphinx:start'
-before 'deploy:start','resque:pool:restart'
 #before 'deploy:restart','sphinx:index'
 #before 'deploy:restart','sphinx:restart'
 require './lib/recipes/sphinx.rb'
@@ -101,8 +100,9 @@ after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
 #Resque
 
 #set :resque_service,'resque-sdmec'
-#require './lib/recipes/resque.rb'
-#before 'deploy:restart','resque:restart'
+require './lib/recipes/resque.rb'
+#before 'deploy:start','resque:pool:restart'
+before 'deploy:restart','resque:pool:restart'
 #role :resque_worker, "gxr"
 #role :resque_scheduler, "gxr"
 #set :workers, { "update_keywords,update_items" => 1 }
