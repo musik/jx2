@@ -23,6 +23,6 @@ module DrugsHelper
     link_to("康爱多药店","http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com/product/#{r.url}.shtml",:rel=>"nofollow",:target=>"_blank").html_safe
   end
   def item_link_dada360 r
-    link_to("九洲药店","##{r.url}.shtml",:rel=>"nofollow",:target=>"_blank").html_safe
+    link_to("九洲药店","http://p.yiqifa.com/c?s=f0022d6b&w=653687&c=5680&i=14462&l=0&e=&t=http://www.dada360.com/#{r.url}.html",:rel=>"nofollow",:target=>"_blank").html_safe
   end
 end
