@@ -22,4 +22,7 @@ module DrugsHelper
   def item_link_kad r
     link_to("康爱多药店","http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com/product/#{r.url}.shtml",:rel=>"nofollow",:target=>"_blank").html_safe
   end
+  def item_link_dada360 r
+    link_to("九洲药店","##{r.url}.shtml",:rel=>"nofollow",:target=>"_blank").html_safe
+  end
 end

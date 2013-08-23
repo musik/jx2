@@ -18,8 +18,9 @@ Capistrano::Configuration.instance.load do
           if [ -f '#{pool_pid}' ];then
             kill -QUIT `cat #{pool_pid}`;
           fi;
+          cd #{current_path} && RAILS_ENV=production bundle exec resque-pool -p #{pool_pid} --daemon
         CMD
-        run "cd #{current_path} && RAILS_ENV=production bundle exec resque-pool -p #{pool_pid} --daemon"
+        #run "cd #{current_path} && RAILS_ENV=production bundle exec resque-pool -p #{pool_pid} --daemon"
       end  
     end
     namespace :worker do
