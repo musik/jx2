@@ -24,19 +24,19 @@
 .a328
   =adsense 1545724241,"jx-home-before"
 .ma328
-  -num = 55
-  -cache "home-cjjb-#{num}" do 
-    .linklist.jibing
-      %h2 常见疾病吃什么药好
-      - Jibing.where('items_count > 0').limit(num).each do |jibing|
-        .i
-          = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
-          %small= jibing.items_count
-      .clearfix
 .clearfix
 
 .alert.alert-info
   = render :partial => 'layouts/footlinks_static'
+-num = 56
+-cache "home-cjjb-#{num}" do 
+  .linklist.jibing
+    %h2 常见疾病吃什么药好
+    - Jibing.where('items_count > 0').limit(num).each do |jibing|
+      .i
+        = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
+        %small= jibing.items_count
+    .clearfix
 %hr
 .row
   .span7
