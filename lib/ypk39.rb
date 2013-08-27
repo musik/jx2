@@ -66,6 +66,15 @@ class Ypk39
     raise "retried 5 times #{response.inspect}" unless @success
     items
   end
+  def test
+      agents = [
+      'Mozilla/5.0 (MSIE 9.0; Windows NT 6.1; Trident/5.0)',
+      'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5'
+      ]
+      response  = Typhoeus::Request.get "http://ypk.39.net/search/all/0-0-0-0-0-1-9-9-0-1/",
+            :headers=>{"User-Agent" => agents.sample},:follow_location=>true
+      p response.inspect
+  end
   def last_page
     @doc.at_css('.pages script').text().match(/num\>(\d+)\)/)[1].to_i
   end
