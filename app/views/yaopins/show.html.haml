@@ -12,9 +12,9 @@
 = render :partial => 'details_a'
 
 %hr
-  -#.btn-group.align-center
-    -#<a href="/" rel="nofollow" class="btn">网站首页</a>
-    -#<a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
+  .btn-group.align-center
+    <a href="/" rel="nofollow" class="btn">网站首页</a>
+    <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
 -if @yaopins.present?    
   %h2 更多#{@yaopin.name}    
   .yaopins
@@ -24,10 +24,9 @@
   <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow">更多</a>
 %hr
   
-%strong 网友跟贴
-= render :partial => 'comment_form',locals:{:obj=>@yaopin}
-%strong 最新跟贴
 = render :partial => 'comments',locals:{:obj=>@yaopin}
+%strong 发表留言
+= render :partial => 'comment_form',locals:{:obj=>@yaopin}
 %hr
 
 -#= link_to 'Edit', edit_yaopin_path(@yaopin),:class=>"btn" if can? :edit,@yaopin

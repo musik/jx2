@@ -42,8 +42,11 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @obj = Comment.find_commentable(params[:atype],params[:aid].to_i)
-    @comment = Comment.build_from(@obj,current_user.id,params[:comment][:body])
-    logger.info @comment.spam?
+    params[:comment][:author_ip] = request.remote_ip
+    params[:comment][:user_id] = user_signed_in? ? current_user.id : 0
+    #logger.info params
+    @comment = Comment.build_from(@obj,params[:comment])
+    #logger.info @comment.spam?
 
     respond_to do |format|
       if @comment.save

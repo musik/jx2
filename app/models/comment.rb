@@ -2,30 +2,29 @@ class Comment < ActiveRecord::Base
   include Rakismet::Model
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
+  validates_presence_of :author_name
+  validates_presence_of :author_email
   validates_presence_of :body
-  validates_presence_of :user_id
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.
   #acts_as_voteable
-  attr_accessible :body,:commentable_id,:commentable_type,:user_id
+  attr_accessible :body,:commentable_id,:commentable_type,:user_id,:author_name,:author_email,:author_ip
 
   belongs_to :commentable, :polymorphic => true
 
   # NOTE: Comments belong to a user
   belongs_to :user
   #rakismet_attrs :author=>proc{user.name},:author_email=>proc{user.email}
-  rakismet_attrs :author=>'Sacramento computer repair',:author_email=>'leroy_denny@hotmail.de',:content=>:body
+  #rakismet_attrs :author=>'Sacramento computer repair',:author_email=>'leroy_denny@hotmail.de',:content=>:body
 
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme
-  def self.build_from(obj, user_id, comment)
-    c = self.new
+  def self.build_from(obj, data)
+    c = self.new data
     c.commentable_id = obj.id
     c.commentable_type = obj.class.base_class.name
-    c.body = comment
-    c.user_id = user_id
     c
   end
 

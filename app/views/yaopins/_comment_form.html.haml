@@ -1,11 +1,17 @@
+-allow_guests = true
 #comment
-  -if user_signed_in?
+  -if allow_guests || user_signed_in?
     -@comment = Comment.new
+    -if user_signed_in?
+      -@comment.author_name = current_user.name
+      -@comment.author_email = current_user.email
     =simple_form_for(@comment) do |f|
       .form-inputs
         =hidden_field_tag "atype",obj.class.name
         =hidden_field_tag "aid",obj.id
         =hidden_field_tag "aurl","#{request.url}#comment"
+        =f.input :author_name
+        =f.input :author_email
         =f.input_field :body,rows: 5,class:'input-xxlarge'
       =f.button :submit,"马上发表"
   -else    

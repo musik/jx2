@@ -14,6 +14,7 @@ class Ability
       can :edit,Entry,:user_id=>user.id
       can :create,Comment
     else #guest
+      can :create,Comment
     end
     # Define abilities for the passed in user here. For example:
     #

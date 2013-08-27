@@ -107,6 +107,8 @@ zh-CN:
         phone: 电话
       comment:
         body: 评论
+        author_name: 名称
+        author_email: EMAIL
     hints:
       entry:
         tags_input: 多个关键词可用逗号隔开
