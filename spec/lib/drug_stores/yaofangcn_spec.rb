@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe DrugStores::Yaofangcn do
   it "should" do
-    name = "布洛芬缓释胶囊"
+    name = "硫辛酸"
     d= Drug.create :name=> name
     ["国药准字H20043430","国药准字H10950286","国药准字H10900089","国药准字H19991011"].each do |str|
       d.yaopins.create :wenhao=>str,:name=>d.name
