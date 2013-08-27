@@ -40,6 +40,7 @@ class HomeController < ApplicationController
       jibings_count: Jibing.count,
       jibings_items_present_count: Jibing.where("items_count > 0").count,
     }
+    @items = Item.group(:scope).includes(:yaopin).all
   end
   def archive
     @yaopins = Yaopin.search(nil,

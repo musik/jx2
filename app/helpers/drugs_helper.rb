@@ -25,4 +25,7 @@ module DrugsHelper
   def item_link_dada360 r
     link_to("九洲药店","http://p.yiqifa.com/c?s=f0022d6b&w=653687&c=5680&i=14462&l=0&e=&t=http://www.dada360.com/#{r.url}.html",:rel=>"nofollow",:target=>"_blank").html_safe
   end
+  def item_link_yaofangcn r
+    link_to("药房网","http://p.yiqifa.com/c?s=7638421e&w=653687&c=5951&i=23462&l=0&e=&t=http://www.yaofang.cn/goods-#{r.url}.html",:rel=>"nofollow",:target=>"_blank").html_safe
+  end
 end
