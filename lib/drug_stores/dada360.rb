@@ -27,7 +27,7 @@ module DrugStores
       if wenhao.present?
         yaopin = Yaopin.find wenhao
         if yaopin.present?
-          price = doc.at_css('#vip-price').text.to_f
+          price = doc.at_css('#vip-price').text.to_f rescue doc.at_css('#promotion-price').text.split(' - ')[0].to_f
           title = doc.at_css('h1').text
           url = url.match(/(\d+)\.html/)[1]
           conditions = {url: url, scope: 'dada360'}
@@ -40,7 +40,7 @@ module DrugStores
             e.update_attributes hash
             else
             yaopin.items.create hash.merge(conditions)
-            description = doc.at_css('#table-descip').text.gsub(/\r\n/,'').match(/适应症】(.+?)【/)[1].strip rescue nil
+            description = doc.at_css('#table-descip').text.gsub(/[\r\n\t]/,'').match(/适应症】(.+?)【/)[1].strip rescue nil
             if description.present?
               drug = yaopin.drug
               drug.update_attribute :description,description if drug.description.nil?
