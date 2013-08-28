@@ -62,12 +62,13 @@ var sogou_ad_width=#{width};
   def slotb
     #rand(2) > 0 ?
       #"<div class='slot' id='slotb'></div>".html_safe :
-        adsense('1368561048','jx-before')
+        #adsense('1368561048','jx-before')
+      ubaidu 1356188,'jx-before'
   end
   def slotf
     #rand(2) > 0 ?
       #"<div class='slot' id='slotf'></div>".html_safe :
-        adsense('5659159841','jx-bottom')
+        #adsense('5659159841','jx-bottom')
   end
 
 end
