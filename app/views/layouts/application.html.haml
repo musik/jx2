@@ -29,7 +29,8 @@
       .container
         .content
           = render 'layouts/messages'
-          .toplinks=ubaidu 1363378,'jx-top-links'
+          -unless @hide_toplinks
+            .toplinks=ubaidu 1363378,'jx-top-links'
           -if @col1 
             -unless @hide_ad_before
               =slotb
@@ -65,7 +66,8 @@
                     =ubaidu 1270011,"jx-global-side-2"
                   = render 'layouts/sidebar' unless @hide_sidebar
             -#=adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"botlinks"
-          .bottomlinks=ubaidu 1363390,'jx-bottom-links'
+          -unless @hide_bottomlinks
+            .bottomlinks=ubaidu 1363390,'jx-bottom-links'
       -unless is_home?                
         .alert.alert-info
           = render :partial => 'layouts/footlinks_static'
