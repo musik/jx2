@@ -1,6 +1,7 @@
 -#-title t('drugs.show.yaopins',:name=>@drug.name)
 -title @drug.name,nil,false
 -#<a href="http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape @drug.name}" rel="nofollow" target="_blank" class="buylink btn">购买#{@drug.name}</a>
+-@hide_toplinks = true
 %h1=@drug.name
 -if @drug.description.present?
   -@jibings = @drug.jibings.all
