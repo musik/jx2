@@ -87,7 +87,7 @@ Yl::Application.routes.draw do
   match '/bdapp(/:action(/:id))'=>"bdapp"
   match 'sitemap' => 'home#sitemap'
   match 'flush' => 'home#flush'
-  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats/}
+  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg/}
   resque_constraint = lambda do |request|
     Rails.env.development? or 
     (request.env['warden'].authenticate? and

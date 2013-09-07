@@ -15,6 +15,6 @@ production:
   mem_limit: 256M
   # workers: prefork
   charset_type: zh_cn.utf-8
-  #charset_dictpath: /dat/jxjw/current/config/etc/
-  charset_dictpath: /usr/local/mmseg3/etc/
+  charset_dictpath: /dat/www/jxjw/current/config/etc/
+  #charset_dictpath: /usr/local/mmseg3/etc/
   port: 9322

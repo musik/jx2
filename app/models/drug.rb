@@ -124,5 +124,16 @@ class Drug < ActiveRecord::Base
       e.update_attribute :shuoming,data if e.shuoming.nil?
       e
     end
+    #mmseg
+    def mmseg
+      #exec("/usr/local/mmseg3/bin/mmseg -d config/etc tmp/desc.txt > tmp/desc2.txt")
+      str = File.read("#{Rails.root}/tmp/desc2.txt")
+      arr = str.gsub(/\n/,'').split("/x ")
+      hash = {}
+      arr.each do |v|
+        hash[v] = hash.has_key?(v) ? hash[v]+1 : 1
+      end
+      Hash[hash.sort{|a,b| b[1]<=>a[1]}]
+    end
   end
 end

@@ -1,5 +1,16 @@
 #encoding: utf-8
 namespace :dev do
+  desc "dump drug descriptions"
+  task :dump_desc => :environment do
+    File.open("#{Rails.root}/tmp/desc.txt",'w') do |f|
+      str = Drug.pluck(:description).compact.join("")
+      f.write str
+    end
+    exec("/usr/local/mmseg3/bin/mmseg -d config/etc tmp/desc.txt > tmp/desc2.txt")
+  desc "mmseg"
+  task :mmseg => :environment do
+    exec("/usr/local/mmseg3/bin/mmseg -d config/etc tmp/desc.txt > tmp/desc2.txt")
+  end
 end
 namespace :jobs do
   desc "取回药品数据前10页"
