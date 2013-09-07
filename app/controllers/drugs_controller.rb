@@ -34,6 +34,7 @@ class DrugsController < ApplicationController
     end
   end
   def desc
+    @drugs = Drug.select(:description).where("description is not null").page(params[:page] || 1).per(100)
   end
   def desc_preview
     @q = params[:name]

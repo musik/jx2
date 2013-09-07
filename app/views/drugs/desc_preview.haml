@@ -9,10 +9,14 @@
   -@drugs.each do |drug|
     %li
       %strong=drug.name
-      %p=drug.description
+      %p=highlight drug.description,@q
 </div>
 <div class="modal-footer">
-<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<button class="btn btn-primary">Create</button>
+-#<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+=simple_form_for Jibing.new(:name=>@q),:remote=>true,:html=>{:class=>"form-inline"} do |f|
+  =f.input_field :name,:type=>:hidden
+  .span#modal-message
+  =f.button :submit,:remote=>true,:class=>"btn btn-primary"
+-#=link_to "Create",jibings_url + "?name=#{@q}",:remote=>true,:class=>"btn btn-primary"
 </div>
       

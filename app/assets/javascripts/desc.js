@@ -11,8 +11,10 @@ function getSelectionText() {
 $(document).ready(function (){
    $('#desc').mouseup(function (e){
        name = getSelectionText()
-       $('#modal').load("/yaopin/desc_preview?name=" + name,function() {
-         $('#modal').modal('show')
-       })
+       if(name.length > 0){
+         $('#modal').load("/yaopin/desc_preview?name=" + name,function() {
+           $('#modal').modal('show')
+         })
+       }
    })
 });
