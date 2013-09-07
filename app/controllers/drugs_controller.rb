@@ -33,6 +33,13 @@ class DrugsController < ApplicationController
       format.text { render text: Drug.yaopin_order.page(params[:page] || 1).per(params[:per] || 100).pluck(:name).join("\r\n") }
     end
   end
+  def desc
+  end
+  def desc_preview
+    @q = params[:name]
+    @drugs = Drug.where("description like '%#{@q}%'").page(params[:page] || 1).per(30)
+    render :layout=>false
+  end
   def shouzi
     @groups = Drug.group(:shouzi).
                 count.sort#{|a,b| b[1] <=> a[1]}

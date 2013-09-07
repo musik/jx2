@@ -1,0 +1,9 @@
+-@col1 = @hide_ad_before = true
+#desc
+  -Drug.pluck(:description).compact.each do |str|
+    %p=str
+<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+  
+-content_for :footer do  
+  =javascript_include_tag "desc"

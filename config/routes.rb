@@ -76,6 +76,8 @@ Yl::Application.routes.draw do
     collection do
       get :manage
       get :shouzi
+      get :desc
+      get :desc_preview
     end
     member do
       get :pihao
