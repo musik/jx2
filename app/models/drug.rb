@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Drug < ActiveRecord::Base
   attr_accessible :en, :name,:abbr,:abbr2,:yaopins_count,:category_id,
-                  :shuoming, :has_shuoming, :meta,:items_count
+                  :shuoming, :has_shuoming, :meta,:items_count,:description
   has_many :yaopins
   has_many :items,:through=>:yaopins,:uniq=>true#,:include=>:yaopin
   belongs_to :category,:counter_cache => true

@@ -59,7 +59,7 @@ class JibingsController < ApplicationController
     respond_to do |format|
       if @jibing.save
         format.html { redirect_to @jibing, notice: 'Jibing was successfully created.' }
-        format.js { @message = "#{@jibing.name} 创建成功。"}
+        format.js { @message = "#{@jibing.name} 创建成功。<a href='#{jibing_url(@jibing)}'>查看</a>".html_safe}
         format.json { render json: @jibing, status: :created, location: @jibing }
       else
         format.html { render action: "new" }
