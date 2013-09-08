@@ -7,6 +7,7 @@ namespace :dev do
       f.write str
     end
     exec("/usr/local/mmseg3/bin/mmseg -d config/etc tmp/desc.txt > tmp/desc2.txt")
+  end
   desc "mmseg"
   task :mmseg => :environment do
     exec("/usr/local/mmseg3/bin/mmseg -d config/etc tmp/desc.txt > tmp/desc2.txt")
