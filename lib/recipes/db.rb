@@ -35,7 +35,7 @@ Capistrano::Configuration.instance.load do
       end
       task :push_dump, :roles => :db, :only => { :primary => true } do
         prepare_from_yaml
-        upload "tmp/dump.sql.bz2",db_remote_file, :via => :scp
+        upload db_local_file,db_remote_file, :via => :scp
       end
     
       desc "|DarkRecipes| Create MySQL database and user for this environment using prompted values"
