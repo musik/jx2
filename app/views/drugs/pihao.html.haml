@@ -10,12 +10,8 @@
     -@jibings.each do |jibing|
       =link_to jibing.name,jibing
   %p= @drug.description
-<<<<<<< HEAD
-.well  
-=======
 #buylink  
 .well
->>>>>>> 604178480e257454e6e8c409639859c4affeaee2
   %h2 在哪买#{@drug.name}
   -@items = @drug.items.select("items.*,yaopins.shangpin_name,yaopins.changjia_name").all.sort{|a,b| b.scope<=>a.scope}
   -if @items.present?
