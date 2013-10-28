@@ -16,9 +16,9 @@ class Jibing < ActiveRecord::Base
     JiItem.where(:jibing_id=>id,:drug_id => drug.id).first_or_create
   end
   def self.init_all_items
-    where('items_count < 2').find_each do |r|
-      r.suggest
-      sleep 3
+    find_each do |r|
+      r.detect_drugs
+      sleep 1
     end
   end
   def self.remove_duplicats

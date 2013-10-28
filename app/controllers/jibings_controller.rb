@@ -19,6 +19,13 @@ class JibingsController < ApplicationController
   def show
     @jibing = Jibing.find(params[:id])
     @items = @jibing.ji_items
+    @jibings = Jibing.select("id,name").all.collect{|item|
+      [item.id,item.name]
+    }
+    @jibings = Hash[@jibings]
+    @names = @jibings.values.sort{|a,b|b.length <=> a.length}
+    @names.delete(@jibing.name)
+    @names = Regexp.new(@names.join('|'))
     breadcrumbs.add "常见疾病",jibings_path
     breadcrumbs.add "#{@jibing.name}"
 

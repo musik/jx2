@@ -34,7 +34,7 @@
               -#%small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
               =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao",:target=>'_blank'
               %small=drug.yaopins_count.to_s + "种"
-              %p=drug.description
+              %p=drug.description.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
             -#.flag
               -#%a{:href=>'#'} 举报
     -if can? :manage,Jibing        
