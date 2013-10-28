@@ -18,7 +18,6 @@ class Jibing < ActiveRecord::Base
   def self.init_all_items
     find_each do |r|
       r.detect_drugs
-      sleep 1
     end
   end
   def self.remove_duplicats
