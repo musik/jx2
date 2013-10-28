@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     @results = Drug.mmseg
   end
   def flush
-    expire_action :index
+    expire_action :action=>:index
     redirect_to root_url
   end
   def sitemap
