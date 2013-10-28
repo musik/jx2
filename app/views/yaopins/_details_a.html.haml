@@ -14,22 +14,28 @@
           %small #{@drug.yaopins_count}种
           -#<a href="http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape @yaopin.name}" rel="nofollow" target="_blank" class="buylink btn btn-small">购买</a>
       %tr
-        %th{:valign=>'top'} 购买链接
-        %td
-          -@items = @drug.items.all.sort{|a,b| b.scope<=>a.scope}
-          -if @items.present?
-            .well  
-              %h2 在哪买#{@drug.name}
-              -@items.each do |item|
-                =eval("item_link_#{item.scope}(item)")
-                %span.price=number_to_currency(item.price)
-                %br
-          -else
-            %p
-              %span 搜索: 
-              -#%br
-              =link_to_360kad @drug.name
-              =link_to_111 @drug.name
+        -scopes = %w(kad yaofangcn dada360 jxdyf)
+        -@items = @drug.items.select("items.scope,price,url").all.sort{|a,b| scopes.index(a.scope)<=>scopes.index(b.scope)}
+        -@items.reject!{|a| a.scope == 'dada360'}
+        -if @items.present?
+          %td{:colspan=>2}
+            .well 
+              %table.table
+                %caption
+                  %h2 在哪买#{@drug.name}
+                -@items.each do |item|
+                  %tr
+                    %td
+                      =eval("item_link_#{item.scope}(item)")
+                    %td
+                      %span.price=number_to_currency(item.price)
+        -else
+          %th{:valign=>'top'} 购买链接
+          %td
+            %span 搜索: 
+            -#%br
+            =link_to_360kad @drug.name
+            -#=link_to_111 @drug.name
 
 
       -@jibings = @drug.jibings.all

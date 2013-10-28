@@ -17,7 +17,8 @@ module DrugsHelper
     text.sub(@jibing_names,'<a href="/jibing?name=\0">\0</a>')
   end
   def item_link_jxdyf r
-    link_to("金象大药房","http://www.jxdyf.com/?2b18310b60#{r.url}",:rel=>"nofollow",:target=>"_blank").html_safe
+    #link_to("金象大药房","http://www.jxdyf.com/?2b18310b60#{r.url}",:rel=>"nofollow",:target=>"_blank").html_safe
+    link_to("金象大药房","http://p.yiqifa.com/c?s=381b023f&w=653687&c=305&i=225&l=0&e=&t=http://www.jxdyf.com/product-#{r.url}.html",:rel=>"nofollow",:target=>"_blank").html_safe
   end
   def item_link_kad r
     link_to("康爱多药店","http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com/product/#{r.url}.shtml",:rel=>"nofollow",:target=>"_blank").html_safe
