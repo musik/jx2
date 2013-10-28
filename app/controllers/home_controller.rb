@@ -6,9 +6,12 @@ class HomeController < ApplicationController
     @adm_baidu = false
     render 'index',:layout=>"application"
   end
+  def mmseg
+    @results = Drug.mmseg
+  end
   def flush
     expire_action :index
-    redirect_to :action=>:index
+    redirect_to root_url
   end
   def sitemap
     @files = Dir.entries("#{Rails.root}/public/sitemap")

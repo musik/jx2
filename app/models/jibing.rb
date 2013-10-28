@@ -3,6 +3,15 @@ class Jibing < ActiveRecord::Base
   attr_accessible :name,:items_count
   has_many :ji_items,:include=>:drug,:dependent=>:delete_all
   has_many :drugs,:through=>:ji_items,:uniq=>true
+  validates_presence_of :name
+  validates_uniqueness_of :name
+  after_create :detect_drugs
+  def detect_drugs
+    Drug.select(:id).where("description like '%#{name}%'").find_each do |drug|
+      add_drug drug
+    end
+  end
+  async_method :detect_drugs
   def add_drug drug
     JiItem.where(:jibing_id=>id,:drug_id => drug.id).first_or_create
   end

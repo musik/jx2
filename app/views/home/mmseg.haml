@@ -1,0 +1,8 @@
+-title "mmseg"
+-@hide_ad_before = @col1 = true
+%ol
+  -@results.each do |k,v|
+    -next if k.length < 2
+    %li
+      =k
+      %small (#{v})

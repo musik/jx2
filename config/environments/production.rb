@@ -48,7 +48,7 @@ Yl::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( html5*.js ie6.css ie6.js bdapp.js without_border.css tools.css pdf.css)
+  config.assets.precompile += %w( html5*.js ie6.css ie6.js bdapp.js without_border.css tools.css pdf.css desc.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

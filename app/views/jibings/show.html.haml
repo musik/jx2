@@ -1,24 +1,42 @@
--title "#{@jibing.name}吃什么药_治疗#{@jibing.name}的药物","#{@jibing.name}吃什么药好"
--if @items.present?
-  %ol.ranks
-    -@items.each do |item|
-      -drug = item.drug
-      %li
-        .vote
-          .num
-            %abbr{:title=>"589人赞"}
-              =rand(5)
-          .action
-            %a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
-        .details
-          %i #{item.position}. 
-          -#=link_to drug.name,yao_url(drug)
-          -#%small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
-          =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao"
-          %small=drug.yaopins_count.to_s + "种"
-          %p=drug.description
-        -#.flag
-          -#%a{:href=>'#'} 举报
--if can? :manage,Jibing        
-  .actions
-    =link_to "建议",suggest_jibing_path
+-title "#{@jibing.name}吃什么药_治疗#{@jibing.name}的药物",nil,false
+-#-@col1 = true
+-@hide_ad_before= true
+.row-fluid
+  .span3.sidebar
+    -num = 50
+    -cache "jibings-side-#{num}" do
+      -jibings = Jibing.where("items_count > 0").limit(num)
+      %ul.cats
+        -jibings.each do |jibing|
+          %li
+            %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+              =jibing.name
+              %small= jibing.items_count
+        %li.more
+          <a href="#{jibings_url}" rel="nofollow">更多...</a>
+  .span9
+    %h1 #{@jibing.name}吃什么药好
+    .slotb=ubaidu 1363750,'jx-jibing-before'
+    -if @items.present?
+      %ol.ranks
+        -@items.each do |item|
+          -drug = item.drug
+          %li
+            .vote
+              .num
+                %abbr{:title=>"589人赞"}
+                  =rand(5)
+              .action
+                %a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
+            .details
+              %i #{item.position}. 
+              -#=link_to drug.name,yao_url(drug)
+              -#%small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
+              =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao",:target=>'_blank'
+              %small=drug.yaopins_count.to_s + "种"
+              %p=drug.description
+            -#.flag
+              -#%a{:href=>'#'} 举报
+    -if can? :manage,Jibing        
+      .actions
+        =link_to "建议",suggest_jibing_path

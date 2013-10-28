@@ -1,0 +1,22 @@
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">#{@q}</h3>
+共#{@drugs.total_count}条
+</div>
+<div class="modal-body" id="results">
+-#=paginate @drugs
+%ol.ranks
+  -@drugs.each do |drug|
+    %li
+      %strong=drug.name
+      %p=highlight drug.description,@q
+</div>
+<div class="modal-footer">
+-#<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+=simple_form_for Jibing.new(:name=>@q),:remote=>true,:html=>{:class=>"form-inline"} do |f|
+  =f.input_field :name,:type=>:hidden
+  .span#modal-message
+  =f.button :submit,:remote=>true,:class=>"btn btn-primary"
+-#=link_to "Create",jibings_url + "?name=#{@q}",:remote=>true,:class=>"btn btn-primary"
+</div>
+      

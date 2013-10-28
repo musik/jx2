@@ -38,10 +38,12 @@ body.c-entries
   background: #eee
   border-color: #eee
 .box-c  
-  margin-top: 1em
+  margin-top: 15px
 .required abbr    
   color: #f30
 .sidebar  
+  .inside
+    margin: 15px 0 0
   h3
     font:
       size: 14px
@@ -288,6 +290,9 @@ p.stack
   height: 205px
 #slotf  
   height: 305px
+.slotb  
+  margin: 10px 0
+  
 .liubai  
   height: 330px
 .pdf  
@@ -340,6 +345,8 @@ ul.comments
     background: #eee
 .buylink    
   color: #080
+#buylink  
+  margin-top: 0px
 ul.archive  
   margin-left: 0
   li
@@ -413,11 +420,35 @@ ol.ranks
 .jibing      
   .i
     width: 108px
-.toplinks    
-  margin: 8px 0 -8px
+.toplinks,.bottomlinks
+  margin: 8px 0 0px
 .a328  
   float: left
   width: 340px
   margin: 10px 0
 .ma328
   margin-left: 350px
+  margin-top: 10px
+ul.cats  
+  margin: 10px 0
+  list-style: none
+  li
+    margin: 1px 0
+  a
+    display: block
+    border: 1px solid #eee
+    position: relative
+    padding: 0 3px
+    small
+      position: absolute
+      right: 3px
+      top: 1px
+      color: #ccc
+      font-size: 9px
+  li.more a
+    border: none
+    text-align: right
+
+  
+.highlight  
+  color: #c60

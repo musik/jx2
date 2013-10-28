@@ -20,5 +20,6 @@ describe Drug do
     #i = y.items.create :url=>'http://www.jxdyf.com/?2b18310b602444',:price=>20.70,:scope=>'jxdyf'
     #pp y,d,i
     #pp d.items
+    #Drug.mmseg
   end
 end
