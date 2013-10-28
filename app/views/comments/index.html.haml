@@ -9,7 +9,7 @@
         %li{:class=>c.spam? ? "spam" : nil}
           -#=debug c.akismet_response
           -#=debug c
-          %cite #{c.user.name}
+          %cite #{c.author_name}
           %date.muted=link_to c.created_at.to_formatted_s(:db),"/redirect/#{c.commentable_type}/#{c.commentable_id}"
           %p #{c.body}
 =paginate @comments          
