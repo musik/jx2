@@ -29,7 +29,7 @@
       =ubaidu 1270012,"jx-home-before-a-500x200"
     %section
       -num = 200
-      -cache "home-cjjb-#{num}" do 
+      -cache "home-cjjb-#{num}",:expires_in=>1.day do 
         .jibings_all
           %h2 常见疾病吃什么药
           -@jibings = Jibing.all_with_az
@@ -43,19 +43,19 @@
     %section
       %h2 随机批号
       -limit = 24
-      -cache "random-yaopin-#{limit}",:expires_in=>5.minutes do
+      -cache "random-yaopin-#{limit}",:expires_in=>33.minutes do
         -#-results = Yaopin.random_by_id_shuffle(limit)
         -results = Yaopin.search(:order=>'@random',:per_page=>limit)
         .unstyled.normal.links
           -results.each do |yaopin|
             <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
   .span4.sidebar
-    .box= render :partial => 'layouts/footlinks_sidebar'
+    .boxa= render :partial => 'layouts/footlinks_sidebar'
     .boxa=ubaidu 1398557,'jx-home-cloud-300x200'
-    .box
+    .boxa
       -limit= 50
-      -cache "home-sjyp-#{limit}",:expires_in=>1.minutes do
-        %h2 随机药品
+      -cache "home-sjyp-#{limit}",:expires_in=>13.minutes do
+        %h3 随机药品
         -results = Yaopin.search(:order=>'@random',:per_page=>limit)
         .normal.links
           -#-Drug.random_by_id_shuffle(limit).each do |d|
@@ -63,4 +63,12 @@
             <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
           .clearfix
     .boxa=ubaidu 1263949,"jx-home-side-300x250"
+    .boxa
+      %h3 资讯更新
+      -cache "recent-posts-15",:expires_in=>17.minutes do
+        -results = Post.published.recent.limit(15).all
+        -if results.present?
+          %ul.unstyled
+            -results.each do |r|
+              %li=link_to r.title,r
 
