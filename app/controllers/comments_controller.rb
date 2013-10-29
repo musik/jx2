@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.includes(:user).page(params[:page] || 1).per(10)
+    @comments = Comment.recent.includes(:user).page(params[:page] || 1).per(10)
+    breadcrumbs.add :comments
 
     respond_to do |format|
       format.html # index.html.erb

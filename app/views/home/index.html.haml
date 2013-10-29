@@ -68,7 +68,9 @@
       -cache "recent-posts-15",:expires_in=>17.minutes do
         -results = Post.published.recent.limit(15).all
         -if results.present?
-          %ul.unstyled
+          %ul.unstyled.normal
             -results.each do |r|
               %li=link_to r.title,r
 
+.mt1e.mb1e
+  =ubaidu 1356177,'jx-home-bottom'

@@ -12,6 +12,7 @@ zh-CN:
     name: 同名
     drug_yaopins: 批号
     news: 新闻资讯
+    comments: 评论
   drugs:
     show:
       title: "%{name}_%{name}功效与作用"
