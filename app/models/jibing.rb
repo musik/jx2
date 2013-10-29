@@ -28,6 +28,18 @@ class Jibing < ActiveRecord::Base
       end
     end
   end
+  def self.all_with_az
+    rs = {}
+    ("a".."z").each do |k|
+      rs[k] = []
+    end
+    select("name,items_count,id").where('items_count').all.
+      each do |item|
+        k = item.name.to_url[0,1]
+        rs[k] << item
+    end
+    rs
+  end
   def suggest
     q = ActiveSupport::JSON::Encoding.escape(name).gsub(/\"/,'').gsub("\\",'%')
     url = 'http://ypk.39.net/search/all'

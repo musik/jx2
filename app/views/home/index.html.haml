@@ -20,72 +20,56 @@
       -#=link_to CGI.unescape(str),"/pihao/search?q=#{str}",:target=>'_blank'
     -#?
 
--#=bdshare
 .clearfix
-.a328
-  -#=adsense 1545724241,"jx-home-before"
-  =ubaidu 1270004,'jx-home-before'
-.ma328
-  =ubaidu 1363715,'jx-home-cloud'
-.clearfix
-
-.alert.alert-info
-  = render :partial => 'layouts/footlinks_static'
--num = 56
--cache "home-cjjb-#{num}" do 
-  .linklist.jibing
-    %h2 常见疾病吃什么药好
-    - Jibing.where('items_count > 0').limit(num).each do |jibing|
-      .i
-        = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药"
-        %small= jibing.items_count
-    .clearfix
-%hr
 .row
-  .span7
+  .span8
+    =ubaidu 1270004,'jx-home-before'
+    %section
+      -num = 200
+      -cache "home-cjjb-#{num}" do 
+        .jibings_all
+          %h2 常见疾病吃什么药
+          -@jibings = Jibing.all_with_az
+          -@jibings.each do |k,jibings|
+            -next if jibings.empty?
+            %dl
+              %dt=k.upcase
+              %dd
+                -jibings.each do |jibing|
+                  = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药",:target=>'_blank'
+    %section
+      %h2 随机批号
+      -limit = 24
+      -cache "random-yaopin-#{limit}",:expires_in=>5.minutes do
+        -#-results = Yaopin.random_by_id_shuffle(limit)
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+        .unstyled.normal.links
+          -results.each do |yaopin|
+            <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
+  .span4.sidebar
+    .box= render :partial => 'layouts/footlinks_sidebar'
+    .boxa=ubaidu 1398557,'jx-home-cloud-300x200'
     .box
       -limit= 50
       -cache "home-sjyp-#{limit}",:expires_in=>1.minutes do
         %h2 随机药品
         -results = Yaopin.search(:order=>'@random',:per_page=>limit)
-        %ul.unstyled.mlist
+        .normal.links
           -#-Drug.random_by_id_shuffle(limit).each do |d|
           -results.each do |d|
-            %li
-              <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
+            <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
           .clearfix
-    .box
-      -limit= 74
-      -cache "home-cjyp-#{limit}" do
-        %h2 常见药品
-        %ul.unstyled.mlist
-          -TOPDRUGS.keys.slice(0,limit).each do |str|
-            %li
-              <a href="/yaopin/#{CGI.escape str}/pihao">#{str}</a>
-          .clearfix
+    .boxa=ubaidu 1263949,"jx-home-side-300x250"
+-#.ma328
+  -#=ubaidu 1363715,'jx-home-cloud'
+.clearfix
+
+%hr
+.row
+  .span7
   .span2
-    .box
-      %h2 随机批号
-      -limit = 30
-      -cache "random-yaopin-#{limit}",:expires_in=>5.minutes do
-        -#-results = Yaopin.random_by_id_shuffle(limit)
-        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
-        %ul.unstyled
-          -results.each do |yaopin|
-            %li 
-              <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
-      -#%h2 最新发布
-      -#-limit = 30
-      -#-cache "recent-yaopin-#{limit}",:expires_in=>15.minutes do
-        -#-results = Yaopin.newest.inlist.limit(limit)
-        -#%ul.unstyled
-          -#-results.each do |yaopin|
-            -#%li 
-              -#<a href="/pihao/#{CGI.escape yaopin.wenhao}">#{yaopin.wenhao.sub('国药','')}</a>
   .span3.pull-right
     -#.pull-right=adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
-    =ubaidu 1363716,'jx-side-cloud'
-    =ubaidu 1263949,"jx-home-side"
     -#=usogou 192407
     -#=ubaidu 1270011,"jx-home-side-2"
       
