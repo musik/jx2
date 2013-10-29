@@ -18,6 +18,7 @@
     %h1 #{@jibing.name}吃什么药好
     .slotb=ubaidu 1363750,'jx-jibing-before'
     -if @items.present?
+      =paginate @items
       %ol.ranks
         -@items.each do |item|
           -drug = item.drug
