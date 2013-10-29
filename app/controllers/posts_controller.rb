@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.page(params[:page] || 1).per(30)
+    @posts = Post.recent.page(params[:page] || 1).per(15)
+    breadcrumbs.add :news
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,6 +18,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    breadcrumbs.add :news,posts_url
     breadcrumbs.add @post.title
 
     respond_to do |format|

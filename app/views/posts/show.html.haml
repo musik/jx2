@@ -11,7 +11,7 @@
 .entry-content  
   -if @post.excerpt.present?
     .excerpt=@post.excerpt 
-  =textilize(@post.content).html_safe
+  =textilize(@post.content).gsub(/国药准字[A-Z]\d{8}/,'<a href="/pihao/\0" target="_blank">\0</a>').html_safe
 
 -if can? :edit,@post
   =link_to "编辑",edit_post_url(@post)

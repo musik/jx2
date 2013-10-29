@@ -11,6 +11,7 @@ zh-CN:
     leibie: 类别
     name: 同名
     drug_yaopins: 批号
+    news: 新闻资讯
   drugs:
     show:
       title: "%{name}_%{name}功效与作用"

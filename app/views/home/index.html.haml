@@ -23,7 +23,10 @@
 .clearfix
 .row
   .span8
-    =ubaidu 1270004,'jx-home-before'
+    -if [0,1].sample.zero?
+      =ubaidu 1270004,'jx-home-before'
+    -else
+      =ubaidu 1270012,"jx-home-before-a-500x200"
     %section
       -num = 200
       -cache "home-cjjb-#{num}" do 
