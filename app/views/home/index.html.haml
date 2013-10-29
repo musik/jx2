@@ -60,26 +60,4 @@
             <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
           .clearfix
     .boxa=ubaidu 1263949,"jx-home-side-300x250"
--#.ma328
-  -#=ubaidu 1363715,'jx-home-cloud'
-.clearfix
-
-%hr
-.row
-  .span7
-  .span2
-  .span3.pull-right
-    -#.pull-right=adsense 1406123442,"jx-home-rightside",:width=>160,:height=>600
-    -#=usogou 192407
-    -#=ubaidu 1270011,"jx-home-side-2"
-      
-    -#%tt 资讯更新
-    -#-cache "recent-posts-15" do
-      -#-results = Post.published.recent.limit(15).all
-      -#-if results.present?
-        -#%ul.unstyled
-          -#-results.each do |r|
-            -#%li=link_to r.title,r
--#=adsense 4499190642,"jx-home-bottom-728",:width=>728,:height=>90
-
 
