@@ -2,13 +2,11 @@
   - results.each do |yaopin|
     %li.pihao{:class=>cycle('odd','even')}
       .fn
-        =link_to yaopin.wenhao,yaopin
+        =link_to yaopin.wenhao,yaopin,:target=>'_blank'
         -unless yaopin.name.nil?
-          %small
-            /
-            =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao"
-
-          -#<a href="http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape yaopin.name}" rel="nofollow" target="_blank" class="buylink btn btn-mini">购买</a>
-          <a href="/yaopin/#{CGI.escape yaopin.name}/pihao#buylink" rel="nofollow" target="_blank" class="buylink btn btn-mini">购买</a>
-      .meta
+          \-
+          =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao",:target=>'_blank'
+          .pull-right
+            <a href="/yaopin/#{CGI.escape yaopin.name}/pihao#buylink" rel="nofollow" target="_blank" class="buylink btn btn-mini">购买</a>
+      %small
         =[yaopin.changjia_name,yaopin.jixing,yaopin.leibie,yaopin.guige].compact.join(' / ')
