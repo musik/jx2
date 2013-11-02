@@ -1,9 +1,19 @@
-= link_to t('appname'), '/', :class => 'brand'
-%form.navbar-search.pull-left{:action=>'/pihao/search',:method=>'get'}
+<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+= link_to t('appname_short'), root_path, :class => 'brand'
+%form.navbar-form.pull-left{:action=>'/pihao/search',:method=>'get'}
   -a={:id=>'q',:type=>"text",:name=>"q"}
   -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
-  %input.search-query{a}
-  %button.btn 搜索
+  %input{a}
+    %button.btn{:type=>'submiti'} 搜索
+-classes = nav_classes
 .nav-collapse.collapse
   %ul.nav
-    %li=link_to "适应症",jibings_url
+    %li{:class=>classes[:jibing]}=link_to "适应症",jibings_url
+    -#%li{:class=>classes[:drugs]}=link_to "药品",drugs_url
+    -#%li{:class=>classes[:chengfens]}=link_to "药物成分",chengfens_url
+    -#%li{class: classes[:yaopins]}=link_to "批号",yaopins_url
+-#= render :partial => 'users/menu'

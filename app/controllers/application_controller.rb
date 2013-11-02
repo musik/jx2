@@ -9,11 +9,17 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_url , :alert => I18n.t("unauthorized.sign_in")
     end
   end
-  before_filter :init_breadcrumbs
+  before_filter :init_breadcrumbs,:_tablet_to_mobile
   #after_filter :store_location
   #def store_location
     #session["user_return_to"] = request.url
   #end
+  def _tablet_to_mobile
+    if respond_to?(:is_tablet_device?) && is_tablet_device?
+      session[:tablet_view] = false
+      #force_mobile_format
+    end
+  end
   def init_breadcrumbs
     return if request.url.match "admin"
     session["init"] = true

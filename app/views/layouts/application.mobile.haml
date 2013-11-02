@@ -10,16 +10,16 @@
     = csrf_meta_tags
     = yield(:head)
   %body.mobile
-    #page
-      %header.navbar
-        %nav.navbar-inner
+    %header.navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container
           = render 'layouts/navigation'
-      #main{:role => "main"}
-        .content
-          -if show_title?
-            %h1=yield :header
-          = yield
-        %footer
-      = javascript_include_tag "mobile"
-      = yield(:footer)
-      .hidden=render "layouts/tongji"# if Rails.env.production?
+    #main.container{:role => "main"}
+      .content
+        -if show_title?
+          %h1=yield :header
+        = yield
+      %footer
+    = javascript_include_tag "mobile"
+    = yield(:footer)
+    .hidden=render "layouts/tongji"# if Rails.env.production?
