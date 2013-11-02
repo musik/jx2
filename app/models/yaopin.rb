@@ -5,7 +5,7 @@ class Yaopin < ActiveRecord::Base
     :changjia_dizhi, :changjia_name, :changjia_guojia, 
     :en, :guige, :jixing, :leibie, :name, :shangpin_name, 
     :wenhao, :yuanwenhao, :pizhunri,:daoqiri,:meta,
-    :drug_id
+    :drug_id,:found_at
   resourcify
   belongs_to :drug,:counter_cache=>true
   has_many :items
@@ -46,13 +46,32 @@ class Yaopin < ActiveRecord::Base
     end
   end
   class Sfda
+    #include Resque::Plugins::Async::Method
+    @queue = :sfda
+    def self.perform method,*args
+      self.new.send method,*args
+    end
+    def async_get_list table,page
+      Resque.enqueue Yaopin::Sfda,:get_list,table,page
+    end
+    def async_get_item table,id
+      Resque.enqueue Yaopin::Sfda,:get_item,table,id
+    end
     def initialize
       @url = 'http://app1.sfda.gov.cn/datasearch/face3/'
     end
     def run
       # get_table 25,s
-      get_table_lists 25,12563,3176
+      get_table_lists 25,11097
       # get_table 36
+    end
+    def process start=1
+      get_list 25,start
+      i = start + 1
+      while i <= @total_page
+        async_get_list 25,i
+        i+=1
+      end
     end
     def get_table table,page=1
       begin
@@ -71,9 +90,18 @@ class Yaopin < ActiveRecord::Base
     def get_list(table,page=1)
       doc = get_doc(@url + "search.jsp?tableId=#{table}&curstart=#{page}") 
       #doc = get_doc(@url + "base.jsp?tableId=#{table}&curstart=#{page}") 
-      total_page = doc.text.match(/共(\d+)页 共\d+条/)[1].to_i
-      total_page = 1 if Rails.env.test? and total_page > 1
+      @total_page ||= doc.text.match(/共(\d+)页 共\d+条/)[1].to_i
       #pp doc if Rails.env.test?
+      doc.css('p[align=left] a').each do |node|
+        ms = node.attr("href").match(/tableId=(\d+).+?Id=(\d+)/)
+        next if ms.nil?
+        #delay.get_item ms[1],ms[2]
+        async_get_item ms[1],ms[2]
+        # break
+      end
+    end
+    def search keyword
+      doc = get_doc(@url + "search.jsp?tableId=25&keyword=#{CGI.escape(keyword)}") 
       doc.css('p[align=left] a').each do |node|
         ms = node.attr("href").match(/tableId=(\d+).+?Id=(\d+)/)
         next if ms.nil?
@@ -81,7 +109,6 @@ class Yaopin < ActiveRecord::Base
         get_item ms[1],ms[2]
         # break
       end
-      return total_page > page
     end
     def get_item table,id
       doc = get_doc (@url + "content.jsp?tableId=#{table}&tableName=TABLE#{table}&Id=#{id}")
@@ -139,14 +166,24 @@ class Yaopin < ActiveRecord::Base
         end
       end
       
-      (Rails.logger.info "get_list:wenhao null #{[table,id]}" and return) if data[:wenhao].nil?
+      (Rails.logger.debug "get_list:wenhao null #{[table,id]}" and return) if data[:wenhao].nil?
       drug = Drug.where(:name=>data[:name]).first_or_create(:en=>data[:en])
       data[:drug_id] = drug.id
-      r = Yaopin.where(:wenhao=>data[:wenhao]).first_or_create data
-      pp r if Rails.env.test?
+      data[:found_at] = Time.now
+      r = Yaopin.where(:wenhao=>data[:wenhao]).first
+      if r.nil?
+        r = Yaopin.create data
+        Rails.logger.tagged("Yaopin New"){
+          Rails.logger.debug [r.id,r.wenhao,r.pizhunri]
+        }
+      else
+        r.update_attributes data
+        Rails.logger.debug ["Exists",r.id,r.wenhao,r.pizhunri]
+      end
     end
+    #async_method :get_list#,:get_item
     def get_doc url
-      Rails.logger.info "curl:#{url}"
+      Rails.logger.debug "curl:#{url}"
       res = Typhoeus::Request.get(url)
       Nokogiri::HTML(res.body)
     end
