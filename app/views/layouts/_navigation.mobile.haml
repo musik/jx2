@@ -1,0 +1,6 @@
+= link_to t('appname'), '/', :class => 'brand'
+%form.navbar-search.pull-left{:action=>'/pihao/search',:method=>'get'}
+  -a={:id=>'q',:type=>"text",:name=>"q"}
+  -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
+  %input.search-query{a}
+  %button.btn 搜索

@@ -183,6 +183,9 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.24)
+    mobile-fu (1.2.2)
+      rack-mobile-detect
+      rails
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     mono_logger (1.1.0)
@@ -221,6 +224,8 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-mobile-detect (0.4.0)
+      rack
     rack-pjax (0.7.0)
       nokogiri (~> 1.5)
       rack (~> 1.3)
@@ -449,6 +454,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari (= 0.14.1)
   libnotify
+  mobile-fu
   mocha
   mysql2
   nokogiri

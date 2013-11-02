@@ -97,3 +97,5 @@ gem 'acts_as_commentable_with_threading'
 gem 'rakismet'
 gem 'acts_as_list'
 gem 'randumb'
+
+gem 'mobile-fu'
