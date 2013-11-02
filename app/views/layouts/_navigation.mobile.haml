@@ -4,3 +4,6 @@
   -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
   %input.search-query{a}
   %button.btn 搜索
+.nav-collapse.collapse
+  %ul.nav
+    %li=link_to "适应症",jibings_url

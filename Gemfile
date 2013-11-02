@@ -22,8 +22,8 @@ gem "email_spec", ">= 1.2.1", :group => :test
 gem "devise", ">= 2.1.0"
 gem "cancan", ">= 1.6.7"
 gem "rolify", ">= 3.1.0"
-#gem "bootstrap-sass", ">= 2.0.3"
-gem "bootstrap-sass", "~> 2.1.0.0"
+gem "bootstrap-sass", ">= 2.3"
+#gem "bootstrap-sass", "~> 3.0.1.0.rc"
 gem "simple_form"
 gem "therubyracer", :group => :assets, :platform => :ruby
 
@@ -54,8 +54,8 @@ gem 'nokogiri'
 
 gem "mocha", :group => :test,:require=>false
 
-gem 'daemons'
-gem 'delayed_job_active_record'
+#gem 'daemons'
+#gem 'delayed_job_active_record'
 gem 'whenever', :require => false
 
 gem 'simple_enum'
@@ -81,7 +81,7 @@ gem 'resque-retry'
 gem 'resque-cleaner'
 gem 'resque-pool'
 
-gem 'rails_admin'
+gem 'rails_admin','0.4.2'
 gem 'RedCloth'
 
 gem 'unicorn'
