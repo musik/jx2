@@ -2,10 +2,10 @@
   - results.each do |yaopin|
     %li.pihao{:class=>cycle('odd','even')}
       .fn
-        =link_to yaopin.wenhao,yaopin
+        =link_to yaopin.wenhao,yaopin,:target=>'_blank'
         -unless yaopin.name.nil?
           \-
-          =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao"
+          =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao",:target=>'_blank'
 
       %small
         =[yaopin.changjia_name,yaopin.jixing,yaopin.guige].compact.join(' / ')
