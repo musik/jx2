@@ -35,7 +35,7 @@
           -@jibings = Jibing.all_with_az
           -@jibings.each do |k,jibings|
             -next if jibings.empty?
-            %dl
+            %dl{:class=>cycle('a','b')}
               %dt=k.upcase
               %dd
                 -jibings.each do |jibing|
@@ -50,9 +50,9 @@
           -results.each do |yaopin|
             <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
   .span4.sidebar
-    .boxa= render :partial => 'layouts/footlinks_sidebar'
+    .box= render :partial => 'layouts/footlinks_sidebar'
     .boxa=ubaidu 1398557,'jx-home-cloud-300x200'
-    .boxa
+    .box
       -limit= 50
       -cache "home-sjyp-#{limit}",:expires_in=>13.minutes do
         %h3 随机药品
@@ -63,7 +63,7 @@
             <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
           .clearfix
     .boxa=ubaidu 1263949,"jx-home-side-300x250"
-    .boxa
+    .box
       %h3 资讯更新
       -cache "recent-posts-15",:expires_in=>17.minutes do
         -results = Post.published.recent.limit(15).all

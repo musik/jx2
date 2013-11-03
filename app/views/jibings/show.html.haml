@@ -37,7 +37,9 @@
               =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao",:target=>'_blank'
               %small=drug.yaopins_count.to_s + "种"
               %br
-              %small=drug.description.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
+              -txt = highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name) rescue drug.description
+              %small=txt.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
+              -#%small=highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name).gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
             -#.flag
               -#%a{:href=>'#'} 举报
     .slotb=ubaidu 1403033,'jx-jibing-bottom'
