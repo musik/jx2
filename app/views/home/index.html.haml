@@ -40,15 +40,6 @@
               %dd
                 -jibings.each do |jibing|
                   = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药",:target=>'_blank'
-    %section
-      %h2 随机批号
-      -limit = 24
-      -cache "random-yaopin-#{limit}",:expires_in=>33.minutes do
-        -#-results = Yaopin.random_by_id_shuffle(limit)
-        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
-        .unstyled.normal.links
-          -results.each do |yaopin|
-            <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
   .span4.sidebar
     .box= render :partial => 'layouts/footlinks_sidebar'
     .boxa=ubaidu 1398557,'jx-home-cloud-300x200'
@@ -71,6 +62,15 @@
           %ul.unstyled.normal
             -results.each do |r|
               %li=link_to r.title,r
+    .box
+      %h3 随机批号
+      -limit = 24
+      -cache "random-yaopin-#{limit}",:expires_in=>33.minutes do
+        -#-results = Yaopin.random_by_id_shuffle(limit)
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+        .unstyled.links
+          -results.each do |yaopin|
+            <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
 
 .mt1e.mb1e.hidden-phone
   =ubaidu 1356177,'jx-home-bottom'
