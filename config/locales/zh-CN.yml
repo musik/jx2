@@ -3,6 +3,7 @@
 zh-CN:
   search: 搜索
   appname: 国药准字查询
+  appname_short: 国药准字
   breadcrumbs:
     home: 首页
     drugs: 药品
@@ -11,6 +12,8 @@ zh-CN:
     leibie: 类别
     name: 同名
     drug_yaopins: 批号
+    news: 新闻资讯
+    comments: 评论
   drugs:
     show:
       title: "%{name}_%{name}功效与作用"

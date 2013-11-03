@@ -12,6 +12,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :body,:commentable_id,:commentable_type,:user_id,:author_name,:author_email,:author_ip
 
   belongs_to :commentable, :polymorphic => true
+  scope :recent,order('id desc')
 
   # NOTE: Comments belong to a user
   belongs_to :user

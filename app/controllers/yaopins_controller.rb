@@ -6,6 +6,8 @@ class YaopinsController < ApplicationController
   load_and_authorize_resource :except=>%w(name jixing leibie auto_complete search track map)
   before_filter :init_breadcrumbs#,:except=>[:show]
 
+  has_mobile_fu
+  has_mobile_fu_for :search
 
   # GET /yaopins
   # GET /yaopins.json

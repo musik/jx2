@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class HomeController < ApplicationController
-  caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 }
+  #caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 }
+  has_mobile_fu 
+  has_mobile_fu_for :index
   def index
     #_parse_referer
     @adm_baidu = false
@@ -10,7 +12,7 @@ class HomeController < ApplicationController
     @results = Drug.mmseg
   end
   def flush
-    expire_action :index
+    expire_action :action=>:index
     redirect_to root_url
   end
   def sitemap

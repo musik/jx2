@@ -1,4 +1,4 @@
--title "comments"
+-title "评论"
 .comments
   -if @comments.empty?
     .alert
@@ -6,9 +6,9 @@
   -else
     %ul.comments
       -@comments.each do |c|
-        %li{:class=>c.spam? ? "spam" : nil}
+        %li
           %cite #{c.author_name}
-          %date.muted=link_to c.created_at.to_formatted_s(:db),"/goto/#{c.commentable_type}/#{c.commentable_id}",:rel=>"nofollow"
+          %date.muted=link_to c.created_at.to_formatted_s(:db),"/goto/#{c.commentable_type}/#{c.commentable_id}",:rel=>'nofollow',:target=>'_blank'
           %p #{c.body}
 =paginate @comments          
 

@@ -13,18 +13,23 @@
 #buylink  
 .well
   %h2 在哪买#{@drug.name}
-  -@items = @drug.items.select("items.*,yaopins.shangpin_name,yaopins.changjia_name").all.sort{|a,b| b.scope<=>a.scope}
+  -scopes = %w(kad yaofangcn dada360 jxdyf)
+  -@items = @drug.items.select("items.*,yaopins.shangpin_name,yaopins.changjia_name").all.sort{|a,b| scopes.index(a.scope)<=>scopes.index(b.scope)}
+  -@items.reject!{|a| a.scope == 'dada360'}
   -if @items.present?
-    -@items.each do |item|
-      =eval("item_link_#{item.scope}(item)")
-      %span.price=number_to_currency(item.price)
-      %span.wenhao=[item.shangpin_name,item.changjia_name].compact.join('-')
-      %br
+    %table.table
+      -@items.each do |item|
+        %tr
+          %td=eval("item_link_#{item.scope}(item)")
+          %td
+            %span.price=number_to_currency(item.price)
+          %td
+            %span.wenhao=[item.shangpin_name,item.changjia_name].compact.join('-')
   -else
     %p
       %span 搜索: 
       =link_to_360kad @drug.name
-      =link_to_111 @drug.name
+      -#=link_to_111 @drug.name
 
 %p.pull-left=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
 .tools.pull-right

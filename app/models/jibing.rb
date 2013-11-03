@@ -16,9 +16,8 @@ class Jibing < ActiveRecord::Base
     JiItem.where(:jibing_id=>id,:drug_id => drug.id).first_or_create
   end
   def self.init_all_items
-    where('items_count < 2').find_each do |r|
-      r.suggest
-      sleep 3
+    find_each do |r|
+      r.detect_drugs
     end
   end
   def self.remove_duplicats
@@ -28,6 +27,18 @@ class Jibing < ActiveRecord::Base
         r.destroy
       end
     end
+  end
+  def self.all_with_az
+    rs = {}
+    ("a".."z").each do |k|
+      rs[k] = []
+    end
+    select("name,items_count,id").where('items_count').all.
+      each do |item|
+        k = item.name.to_url[0,1]
+        rs[k] << item
+    end
+    rs
   end
   def suggest
     q = ActiveSupport::JSON::Encoding.escape(name).gsub(/\"/,'').gsub("\\",'%')

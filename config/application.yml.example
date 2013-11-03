@@ -1,5 +1,5 @@
 defaults: &defaults
-  smtp_user: ***
+  smtp_user: noreply@jxjw.net
   smtp_password: ***
 
 development:

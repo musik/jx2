@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827103922) do
+ActiveRecord::Schema.define(:version => 20131102113816) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -275,10 +275,10 @@ ActiveRecord::Schema.define(:version => 20130827103922) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "drug_id"
+    t.datetime "found_at"
   end
 
   add_index "yaopins", ["drug_id"], :name => "index_drug_id"
-  add_index "yaopins", ["name"], :name => "index_name"
   add_index "yaopins", ["wenhao"], :name => "index_yaopins_on_wenhao"
 
 end
