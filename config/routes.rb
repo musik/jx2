@@ -90,7 +90,7 @@ Yl::Application.routes.draw do
   match 'sitemap' => 'home#sitemap'
   match 'flush' => 'home#flush'
   match 'index' => 'home#index'
-  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg/}
+  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg|test/}
   resque_constraint = lambda do |request|
     Rails.env.development? or 
     (request.env['warden'].authenticate? and

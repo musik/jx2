@@ -44,6 +44,16 @@ class Yaopin < ActiveRecord::Base
         Yaopin.group(:leibie).pluck(:leibie)
       end
     end
+    def test
+      n = 100
+      limit = 50
+      Benchmark.bm(7) do |x|
+        #x.report("search:") { n.times {|i| Yaopin.search(:order=>'@random',:per_page=>limit).all } }
+        #x.report("id shuffle:")  { n.times {|i| Yaopin.random_by_id_shuffle(limit) } }
+        x.report("Jibing random")  { n.times {|i| Jibing.order("rand()").limit(limit).all } }
+        x.report("Jibing shuffle")  { n.times {|i| Jibing.random_by_id_shuffle(limit) } }
+      end
+    end
   end
   class Sfda
     #include Resque::Plugins::Async::Method

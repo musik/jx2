@@ -4,8 +4,8 @@
 .row-fluid
   .span3.sidebar
     -num = 50
-    -cache "jibings-side-#{num}" do
-      -jibings = Jibing.where("items_count > 0").limit(num)
+    -cache "jibings-side-#{num}-#{rand(10)}" do
+      -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
       %ul.cats
         -jibings.each do |jibing|
           %li
@@ -25,8 +25,9 @@
           %li
             .vote
               .num
-                %abbr{:title=>"589人赞"}
-                  =rand(5)
+                -i = rand(5)
+                %abbr{:title=>"#{i}人赞"}
+                  =i
               .action
                 %a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
             .details
@@ -35,9 +36,11 @@
               -#%small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
               =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao",:target=>'_blank'
               %small=drug.yaopins_count.to_s + "种"
-              %p=drug.description.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
+              %br
+              %small=drug.description.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
             -#.flag
               -#%a{:href=>'#'} 举报
+    .slotb=ubaidu 1403033,'jx-jibing-bottom'
     -if can? :manage,Jibing        
       .actions
         =link_to "建议",suggest_jibing_path
