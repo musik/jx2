@@ -19,6 +19,6 @@
       ="找到#{@yaopins.total_entries}项结果,耗时(#{@yaopins.query_time * 1000}毫秒)"
 
   -if @yaopins.present?
-    =paginate @yaopins,:window=>4
+    =paginate @yaopins,:params=>{:format=>nil},:window=>4
     = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
 
