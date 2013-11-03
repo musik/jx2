@@ -19,13 +19,13 @@ module ApplicationHelper
     }
     render :partial=>'layouts/adsense',:locals=>defaults.merge(args)
   end
-  def ubaidu id,name
+  def ubaidu id,name,t=''
     <<-AD.html_safe
 <script type="text/javascript">
 /*#{name}*/
 var cpro_id = "u#{id}";
 </script>
-<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c#{t}.js" type="text/javascript"></script>
 AD
   end
   def usogou id,width=200,height=200
