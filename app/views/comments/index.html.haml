@@ -7,10 +7,8 @@
     %ul.comments
       -@comments.each do |c|
         %li{:class=>c.spam? ? "spam" : nil}
-          -#=debug c.akismet_response
-          -#=debug c
-          %cite #{c.user.name}
-          %date.muted=link_to c.created_at.to_formatted_s(:db),"/redirect/#{c.commentable_type}/#{c.commentable_id}"
+          %cite #{c.author_name}
+          %date.muted=link_to c.created_at.to_formatted_s(:db),"/goto/#{c.commentable_type}/#{c.commentable_id}",:rel=>"nofollow"
           %p #{c.body}
 =paginate @comments          
 
