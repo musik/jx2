@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class YaopinsController < ApplicationController
-  caches_action :index,:search,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },
+  caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },
     :cache_path => Proc.new{params}
 
   load_and_authorize_resource :except=>%w(name jixing leibie auto_complete search track map)
