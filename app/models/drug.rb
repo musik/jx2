@@ -57,6 +57,11 @@ class Drug < ActiveRecord::Base
       r = r.count
       r.sort{|a,b| b[1] <=> a[1]}
     end
+    def fix_shouzis
+      Drug.where(:shouzi=>nil).find_each do |c|
+        c.update_attribute :shouzi,c.name[0]
+      end
+    end
     #全体更新last word
     def last_words
       words = {}

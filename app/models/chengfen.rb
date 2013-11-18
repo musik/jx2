@@ -4,6 +4,12 @@ class Chengfen < ActiveRecord::Base
   has_and_belongs_to_many :drugs
   resourcify
   
+  before_save :gen_abbrs
+  
+  def gen_abbrs
+    self[:shouzi] = name[0,1]
+    self
+  end
   def to_param
     (name.present? and name.match(/\//).nil?) ? name : id
   end
