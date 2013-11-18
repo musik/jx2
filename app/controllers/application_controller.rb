@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
       @hide_slotf = true
       @hide_adside = true
       @hide_bread = true
+      @hide_xuanfu = true
       @col1 = true 
     elsif %w(jibings).include? controller_name
       #@hide_ad_before = true
