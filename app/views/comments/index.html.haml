@@ -7,8 +7,6 @@
     %ul.comments
       -@comments.each do |c|
         %li
-          -#=debug c.akismet_response
-          -#=debug c
           %cite #{c.author_name}
           %date.muted=link_to c.created_at.to_formatted_s(:db),"/goto/#{c.commentable_type}/#{c.commentable_id}",:rel=>'nofollow',:target=>'_blank'
           %p #{c.body}

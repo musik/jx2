@@ -18,7 +18,7 @@ class JibingsController < ApplicationController
   # GET /jibings/1.json
   def show
     @jibing = Jibing.find(params[:id])
-    @items = @jibing.ji_items.page(params[:page] || 1)
+    @items = @jibing.ji_items.page(params[:page] || 1).per(15)
     @jibings = Jibing.select("id,name").all.collect{|item|
       [item.id,item.name]
     }

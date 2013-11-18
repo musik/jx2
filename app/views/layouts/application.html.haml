@@ -96,11 +96,7 @@
             =yield(:title) || t('appname')
     = javascript_include_tag "application"
     =render 'layouts/iefixjs'
-    -#.hidden=render "layouts/tongji" if Rails.env.production?
-    -if Rails.env.production?
-      =render "layouts/ga"
-      ='<script type="text/javascript" src="http://js.tongji.linezing.com/3090156/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3090156/tongji.gif"/></a></noscript>'.html_safe
-
+    .hidden=render "layouts/tongji" if Rails.env.production?
     = yield(:footer)
     -unless @hide_xuanfu
       <script type="text/javascript">

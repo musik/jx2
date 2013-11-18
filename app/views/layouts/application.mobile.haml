@@ -22,4 +22,5 @@
       %footer
     = javascript_include_tag "mobile"
     = yield(:footer)
-    .hidden=render "layouts/tongji"# if Rails.env.production?
+    .hidden=render "layouts/tongji" if Rails.env.production?
+
