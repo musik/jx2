@@ -1,4 +1,5 @@
--title(@title || "国药准字列表")
+-@title_suffix = @title ? "_药品批号查询" : ""
+-title(@title || "药品批号查询")
 
 .alert.alert-info
   =link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")

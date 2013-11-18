@@ -32,6 +32,7 @@ class DrugsController < ApplicationController
       format.json { render json: @drugs }
       format.text { render text: Drug.yaopin_order.page(params[:page] || 1).per(params[:per] || 100).pluck(:name).join("\r\n") }
     end
+    @page_title = "药品" if @title.nil?
   end
   def desc
     @drugs = Drug.select(:description).where("description is not null").page(params[:page] || 1).per(100)

@@ -6,12 +6,12 @@ zh-CN:
   appname_short: 国药准字
   breadcrumbs:
     home: 首页
-    drugs: 药品
-    yaopin: 国药准字列表
+    drugs: 药品查询
+    yaopin: 药品批号查询
     jixing: 剂型
     leibie: 类别
     name: 同名
-    drug_yaopins: 批号
+    drug_yaopins: 药品批号查询
     news: 新闻资讯
     comments: 评论
   drugs:
