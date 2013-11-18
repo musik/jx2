@@ -35,6 +35,7 @@ class Drug < ActiveRecord::Base
   before_save :gen_abbrs
   
   def gen_abbrs
+    self[:shouzi] = name[0,1]
     str = name.to_url
     self[:abbr] = str[0,1]
     self[:abbr2] = str[0,2]

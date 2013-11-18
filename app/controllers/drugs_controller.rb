@@ -42,10 +42,8 @@ class DrugsController < ApplicationController
     render :layout=>false
   end
   def shouzi
-    @groups = Drug.group(:shouzi).
-                count.sort#{|a,b| b[1] <=> a[1]}
+    @groups = Drug.group(:shouzi).count.sort{|a,b| b[1] <=> a[1]}
     @title = "药品首字索引"
-    breadcrumbs.add "药品",drugs_url
     breadcrumbs.add @title
   end
   def track

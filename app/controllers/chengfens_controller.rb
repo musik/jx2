@@ -24,7 +24,7 @@ class ChengfensController < ApplicationController
   end
   def shouzi
     @groups = Chengfen.group(:shouzi).
-                count.sort#{|a,b| b[1] <=> a[1]}
+                count.sort{|a,b| b[1] <=> a[1]}
     @title = "药物成分首字索引"
     breadcrumbs.add "药物成分",chengfens_url
     breadcrumbs.add @title

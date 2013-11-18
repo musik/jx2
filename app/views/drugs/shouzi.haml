@@ -2,6 +2,7 @@
 -@col1 = true
 .shouzi
   -@groups.each do |g|
+    -next if g[0].nil?
     .i
       =link_to g[0],drugs_url(:shouzi=>g[0])
       %small=g[1]

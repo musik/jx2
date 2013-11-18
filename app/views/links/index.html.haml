@@ -5,7 +5,7 @@
 -manage = can? :manage,Link
 -@links.each do |context,rs|
   .box
-    %h2= context.present? ? context.sub(/\d+\./,'') : "未分类"
+    %h3= context.present? ? context.sub(/\d+\./,'') : "未分类"
     .sites
       -rs.each do |l|
         .site
