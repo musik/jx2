@@ -102,8 +102,9 @@
       ='<script type="text/javascript" src="http://js.tongji.linezing.com/3090156/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3090156/tongji.gif"/></a></noscript>'.html_safe
 
     = yield(:footer)
-    <script type="text/javascript">
-    /*jx-xuanfu*/
-    var cpro_id = "u1398295";
-    </script>
-    <script src="http://cpro.baidustatic.com/cpro/ui/f.js" type="text/javascript"></script>
+    -unless @hide_xuanfu
+      <script type="text/javascript">
+      /*jx-xuanfu*/
+      var cpro_id = "u1398295";
+      </script>
+      <script src="http://cpro.baidustatic.com/cpro/ui/f.js" type="text/javascript"></script>

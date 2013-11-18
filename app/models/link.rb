@@ -8,8 +8,8 @@ class Link < ActiveRecord::Base
 
   def favicon_url
     favicon_type == 1 ? 
-      url + "/favicon.ico" : 
-        'https://plus.google.com/_/favicon?domain=' + domain
+      url + "/favicon.ico" : '/blank-ico.png'
+        #'https://plus.google.com/_/favicon?domain=' + domain
   end
   def domain
     url.match(/http:\/\/([^\/]+)/)[1]
