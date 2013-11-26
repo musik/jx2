@@ -1,0 +1,9 @@
+-num ||= 40
+-cache "jibings-footer-#{num}-#{rand(10)}" do
+  -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
+  %strong 常见疾病
+  <a href="#{jibings_url}" rel="nofollow" class="more">更多...</a>
+  %p.links
+    -jibings.each do |jibing|
+      %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+        =jibing.name

@@ -69,31 +69,40 @@
             -#=adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"botlinks"
           -unless @hide_bottomlinks
             .hidden-phone.bottomlinks=ubaidu 1363390,'jx-bottom-links'
-      -unless is_home?                
-        .alert.alert-info
-          = render :partial => 'layouts/footlinks_static'
-
+      -#.debug.text-right
+      -#.time 当前时间: #{Time.now}
+      -#.url=request.url
+      -#.user_agent=request.user_agent
       %footer
         .container
-          -if is_home?
-            .box
-              =render "layouts/links"
-          .debug
-            .time 当前时间: #{Time.now}
-            -#.url=request.url
-            -#.user_agent=request.user_agent
-          %hr
+          %dl.f-widgets
+            %dd.logo
+              =link_to "国药准字查询",root_url
+            %dd.links
+              -if is_home?
+                =render "layouts/links"
+              -else
+                =render "parts/jibings"
+              -unless is_home?                
+                = render :partial => 'layouts/footlinks_static'
+            .clearfix
+      .bottom
+        .container
           .pull-left
-            &copy; 2012 www.jxjw.net 粤ICP备13051267号-1
-            -if !is_home?
-              =link_to "链接","/links"
-              联系 <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">QQ</a> 5826-5826
+            %span &copy; 2012 www.jxjw.net 粤ICP备13051267号-1
+            \|
+            =link_to "友情链接","/links"
+            联系QQ <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">5826-5826</a>
+            \|
 
             =link_to "医药招商",entries_url
+            \|
             =link_to "按批准日期规档",archive_url
+            \|
             =link_to "资讯",posts_url
           .pull-right
             =yield(:title) || t('appname')
+
     = javascript_include_tag "application"
     =render 'layouts/iefixjs'
     .hidden=render "layouts/tongji" if Rails.env.production?

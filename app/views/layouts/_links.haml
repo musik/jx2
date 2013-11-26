@@ -1,7 +1,8 @@
 -ls = Link.cached_home
 -if ls.present?
-  .links
-    =link_to "链接","/links"
-    -ls.each do |l|
-      =link_to l.name,l.url,:target=>"_blank"
-    联系 <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd">QQ</a> 5826-5826
+  %strong 友情链接
+  =link_to "更多...","/links"
+  交换链接请联系QQ <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=0d784cb4250c9b1f2776e449b0a843fb4a9a6b876bbfaddd"> 5826-5826</a>
+  %br
+  -ls.each do |l|
+    =link_to l.name,l.url,:target=>"_blank"

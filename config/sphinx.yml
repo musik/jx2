@@ -4,7 +4,7 @@ development:
   mem_limit: 128M
   #workers: prefork
   charset_type: zh_cn.utf-8
-  charset_dictpath: /usr/local/mmseg4/etc/
+  charset_dictpath: /usr/local/mmseg3/etc/
 #charset_dictpath: /home/muzik/Aptana/yl/config/etc/ 
   port: 9322
   ngram_len: 0
