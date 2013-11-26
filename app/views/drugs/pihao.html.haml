@@ -36,9 +36,11 @@
           =link_to jibing.name,jibing
       %p= @drug.description
 
-    %p.pull-left=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name)
+    %p.pull-left=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name).html_safe
     .tools.pull-right
       %small=link_to "PDF",url_for(:format=>'pdf')
     .clearfix
-    =paginate @pihao
+    -#=paginate @pihao
     = render :partial => 'yaopins/list_inline',:locals=>{:results=>@pihao}
+    =xpaginate @pihao
+    .slotb=ubaidu 1420750,'jx-dpihao-bottom'
