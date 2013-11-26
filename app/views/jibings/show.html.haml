@@ -3,6 +3,7 @@
 -@hide_ad_before= true
 .row-fluid
   .span3.sidebar
+    .sidelink=ubaidu 1420700,'jx-jibing-sidelink'
     -num = 50
     -cache "jibings-side-#{num}-#{rand(10)}" do
       -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
