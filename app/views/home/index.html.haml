@@ -27,8 +27,7 @@
   .span8
     =ubaidu 1270004,'jx-home-before'
     %section
-      -num = 200
-      -cache "home-cjjb-#{num}",:expires_in=>1.day do 
+      -cache "home-cjjb",:expires_in=>1.day do 
         .jibings_all
           %h2.hd2 常见疾病吃什么药
           -@jibings = Jibing.all_with_az
