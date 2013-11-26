@@ -1,14 +1,30 @@
 -@title_suffix = @title ? "_药品批号查询" : ""
--title(@title || "药品批号查询")
+-title (@title || "药品批号查询"),nil,false
 
-.alert.alert-info
-  =link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
-  =link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
-  =link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
-  =link_to "国药试字",search_yaopins_url(:q=>"国药试字")
-  -unless @hide_leibie
-    -Yaopin.all_leibie.each do |str|
-      =link_to str,leibie_url(str) unless str.nil?
-
-=paginate @yaopins,:window=>10
-= render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
+-@hide_ad_before = true
+.row-fluid
+  .span3.sidebar
+    .sidelink=ubaidu 1420736,'jx-yaopins-sidelink'
+    %ul.cats
+      %li=link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
+      %li=link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
+      %li=link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
+      %li=link_to "国药试字",search_yaopins_url(:q=>"国药试字")
+      -unless @hide_leibie
+        -Yaopin.all_leibie.each do |str|
+          %li=link_to str,leibie_url(str) unless str.nil?
+  .span9
+    %h1.pd=yield :header
+    .slotb=ubaidu 1420733,'jx-pihaos-before'
+    %ul.pihao-list
+      - @yaopins.each do |yaopin|
+        %li.pihao{:class=>cycle('odd','even')}
+          .fn
+            =link_to yaopin.wenhao,yaopin,:target=>'_blank'
+            -unless yaopin.name.nil?
+              \-
+              =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao",:target=>'_blank'
+              .pull-right
+                <a href="/yaopin/#{CGI.escape yaopin.name}/pihao#buylink" rel="nofollow" target="_blank" class="buylink btn btn-mini">购买</a>
+    =xpaginate @yaopins,:window=>100
+    .slotb=ubaidu 1420735,'jx-pihaos-bottom'

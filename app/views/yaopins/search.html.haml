@@ -1,29 +1,31 @@
--title [@q,"搜索"].join("_"),@q
+-title [@q,"搜索"].join("_"),@q,false
 -@title_suffix = "_国药准字查询"
 
-.alert.alert-info
-  =link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
-  =link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
-  =link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
-  =link_to "国药试字",search_yaopins_url(:q=>"国药试字")
-  -Yaopin.all_leibie.each do |str|
-    =link_to str,leibie_url(str) unless str.nil?
--unless @yaopins.present?
-  -@hide_ad_before = true
-  -@hide_adside = true
-  .alert
-    没找到相关结果，请尝试搜索其它关键词。
--else 
-  -if @yaopins.respond_to? :total_entries
-    %p.stats
-      ="找到#{@yaopins.total_entries}项结果,耗时(#{@yaopins.query_time * 1000}毫秒)"
-  -unless @hide_leibie
-    %p
-      -Yaopin.all_leibie.each do |str|
-        =link_to str,leibie_url(str),:class=>"badge" unless str.nil?
-
-
-  -if @yaopins.present?
-    =paginate @yaopins,:window=>6
-    = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
-
+-@hide_ad_before = true
+.row-fluid
+  .span3.sidebar
+    .sidelink=ubaidu 1420747,'jx-search-sidelink'
+    %ul.cats
+      %li=link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
+      %li=link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
+      %li=link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
+      %li=link_to "国药试字",search_yaopins_url(:q=>"国药试字")
+      -unless @hide_leibie
+        -Yaopin.all_leibie.each do |str|
+          %li=link_to str,leibie_url(str) unless str.nil?
+  .span9
+    %h1.pd=yield :header
+    -unless @yaopins.present?
+      -@hide_ad_before = true
+      -@hide_adside = true
+      .alert
+        没找到相关结果，请尝试搜索其它关键词。
+    -else 
+      .slotb=ubaidu 1420744,'jx-search-before'
+      -if @yaopins.respond_to? :total_entries
+        %p.stats
+          ="找到#{@yaopins.total_entries}项结果,耗时(#{@yaopins.query_time * 1000}毫秒)"
+      -if @yaopins.present?
+        = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
+        =xpaginate @yaopins,:window=>100
+      .slotb=ubaidu 1420745,'jx-search-bottom'
