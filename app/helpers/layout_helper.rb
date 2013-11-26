@@ -74,6 +74,10 @@ module LayoutHelper
     def nofollow_sub str
     str.gsub(/<(a href="[^"]+?")>/,'<\1 rel="">').gsub(/rel\=\"/,"rel=\"nofollow ").html_safe
   end
+  def xpaginate scope, options = {}, &block
+    paginator = Xpaginator.new self, options.reverse_merge(:current_page => scope.current_page, :total_pages => scope.total_pages, :per_page => scope.limit_value, :param_name => Kaminari.config.param_name, :remote => false, :theme=>"etao",:window=>100)
+    paginator.to_s
+  end
   def jsemail(str)
     ('<SCRIPT TYPE="text/javascript">
 emailE=("'+str.reverse+'").split("").reverse().join("");
