@@ -1,14 +1,22 @@
-=adsense 3318444648,'jx-yaopin-before'
 %h1=@yaopin.wenhao
+.slotb=ubaidu 1420632,'jx-yaopin-before'
 %p=@desc
-=debug @yaopin if params[:debug]
 %table.table.table-bordered.yaopin-single
   %tr
     %th 名称
-    %td=link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
+    %td
+      =link_to @yaopin.name,"/yaopin/#{CGI.escape @yaopin.name}/pihao"
+      %small #{@drug.yaopins_count}种
+  -@jibings = @drug.jibings.all
+  -if @jibings.present?
+    %tr
+      %th 适应症
+      %td
+        -@jibings.each do |jibing|
+          =link_to jibing.name,jibing
   -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
     -if @yaopin[key].present? and @yaopin[key] != '－－－－'
       %tr
         %th=t("yaopin.attrs.#{key}")
         %td=yaopin_column key,@yaopin.send(key)
-
+.slotb=ubaidu 1420696,'jx-yaopin-bottom'

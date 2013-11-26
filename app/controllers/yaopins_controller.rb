@@ -128,6 +128,7 @@ class YaopinsController < ApplicationController
     breadcrumbs.add @yaopin.wenhao,nil
     session["user_return_to"] = request.url
     #render [0,1].sample > 0 ? "show" : "show1"
+    render "show_3col"
   end
 
   # GET /yaopins/new

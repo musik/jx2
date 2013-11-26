@@ -1,0 +1,75 @@
+-title [@yaopin.wenhao,[@yaopin.shangpin_name,@yaopin.name,@yaopin.changjia_name].compact.join(',')].join("——"),@yaopin.wenhao,false
+-keywords [@yaopin.wenhao,@yaopin.shangpin_name,@yaopin.name,@yaopin.changjia_name].compact
+-@desc = "#{@yaopin.wenhao}，名称#{@yaopin.name}，由位于#{@yaopin.changjia_guojia}#{@yaopin.changjia_dizhi}的#{@yaopin.changjia_name}生产，批准于#{@yaopin.pizhunri}。为#{@yaopin.jixing}#{@yaopin.leibie},规格为#{@yaopin.guige}。"
+-meta_desc @desc
+-@title_suffix = ""
+-@hide_ad_before = true
+-#-@hide_adside = true
+-@noliubai = true
+-@spans = 9
+=debug @yaopin if params[:debug]
+-#= render :partial => ['details_a','details_b'].sample
+.row-fluid
+  .span3.sidebar
+    -scopes = %w(kad yaofangcn dada360 jxdyf)
+    -@items = @drug.items.select("items.scope,price,url").all.sort{|a,b| scopes.index(a.scope)<=>scopes.index(b.scope)}
+    -@items.reject!{|a| a.scope != 'kad'} if @items.collect{|r| r.scope}.include?("kad")
+    -@items.reject!{|a| a.scope == 'dada360'}
+    -if @items.present?
+      %h3 #{@drug.name}价格
+      %table.table
+        -@items.each do |item|
+          %tr
+            %td
+              =eval("item_link_#{item.scope}(item)")
+            %td
+              %span.price=number_to_currency(item.price)
+    .sidelink=ubaidu 1420650,'jx-yaopin-sidelink'
+    -if @items.empty?
+      %h3.small #{@yaopin.name}购买链接
+      %p
+        %span 搜索: 
+        =link_to_360kad @drug.name
+  .span9
+    = render :partial => 'details_b'
+
+%hr
+  .btn-group.align-center
+    <a href="/" rel="nofollow" class="btn">网站首页</a>
+    <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow" class="btn">#{@yaopin.name}</a>
+-if @yaopins.present?    
+  %h2 更多#{@yaopin.name}    
+  .yaopins
+    -@yaopins.each do |r|
+      =link_to r.wenhao[4,9],r,:title=>r.wenhao unless r.id == @yaopin.id
+  <br />
+  <a href="/yaopin/#{CGI.escape @yaopin.name}/pihao" rel="nofollow">更多</a>
+%hr
+  
+= render :partial => 'comments',locals:{:obj=>@yaopin}
+%strong 发表留言
+= render :partial => 'comment_form',locals:{:obj=>@yaopin}
+%hr
+
+-#= link_to 'Edit', edit_yaopin_path(@yaopin),:class=>"btn" if can? :edit,@yaopin
+-#-cache ['others-by-changjia_name',@yaopin.changjia_name],:expires_in=>1.day do
+  -#-results = Yaopin.by_changjia(@yaopin.changjia_name).slimit(10).search
+  -#-if results.present?
+    -#%h3 #{@yaopin.changjia_name}生产的其它药品
+    -#%p.stats 共找到#{results.total_entries}项结果
+    -#%ul.oxox
+      -#-results.each do |r|
+        -#%li
+          -#=link_to r.wenhao,r
+          -#-if r.name
+            -#%small=link_to r.name,"/#{CGI.escape(r.name)}"
+    
+
+-#=slotf
+
+-#-content_for :sidebar do
+  -#=ubaidu 1263949,"jx-home-side"
+  -#=usogou 192407
+  -#<script type="text/javascript">alimama_pid="mm_10894158_3382349_11501603";alimama_width=200;alimama_height=200;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
+-content_for :footer do
+  =javascript_tag "track_data('pihao','#{@yaopin.id}','#{request.referer.present? ? CGI.escape(request.referer).reverse : ""}')" if Rails.env.production?
