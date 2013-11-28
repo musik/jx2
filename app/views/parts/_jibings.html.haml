@@ -1,5 +1,6 @@
 -num ||= 40
--cache "jibings-footer-#{num}-#{rand(10)}" do
+-token = Digest::MD5.hexdigest(request.url)[0,2]
+-cache "jibings-footer-#{num}-#{token}" do
   -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
   %strong 常见疾病
   <a href="#{jibings_url}" rel="nofollow" class="more">更多...</a>

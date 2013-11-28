@@ -2,12 +2,13 @@
 -@hide_ad_before = true
 -@col1 = true
 -@hide_xuanfu = true
+-@hide_bottomlinks = true
 %p
   交换链接请联系QQ 5826-5826
 -manage = can? :manage,Link
 -@links.each do |context,rs|
   .box
-    %h3= context.present? ? context.sub(/\d+\./,'') : "未分类"
+    %h3.head= context.present? ? context.sub(/\d+\./,'') : "未分类"
     .sites
       -rs.each do |l|
         .site
