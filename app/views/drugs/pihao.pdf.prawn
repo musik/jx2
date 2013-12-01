@@ -10,12 +10,13 @@ prawn_document(:filename=>"#{@drug.name}.pdf") do |pdf|
   pdf.text "来源: <color rgb='0066cc'><link href='http://www.jxjw.net'>国药准字查询网</link></color>",:inline_format=>true
   pdf.text "网址: <color rgb='0066cc'><link href='http://www.jxjw.net/yaopin/#{CGI.escape @drug.name}/pihao'>http://www.jxjw.net/yaopin/#{@drug.name}/pihao</link></color>",:inline_format=>true
   pdf.move_down 5
-  pdf.table [
-    ['剂型',@pihao.first.jixing],
-    ['类别',@pihao.first.leibie],
-    ['规格',@pihao.first.guige],
-  
-  ]
+  if @pihao.first.present?
+    pdf.table [
+      ['剂型',@pihao.first.jixing],
+      ['类别',@pihao.first.leibie],
+      ['规格',@pihao.first.guige],
+    ]
+  end
   pdf.move_down 10
   pdf.text "批准文号 #{@pihao.size}个"
   pdf.move_down 10

@@ -3,6 +3,7 @@
 -#<a href="http://cps.360kad.com//cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://search.360kad.com/?pagetext=#{CGI.escape @drug.name}" rel="nofollow" target="_blank" class="buylink btn">购买#{@drug.name}</a>
 -@hide_toplinks = true
 -@hide_ad_before = true
+-@hide_adside = true if @pihao.empty?
 .row-fluid
   .span3.sidebar
     -scopes = %w(kad yaofangcn dada360 jxdyf)
@@ -18,7 +19,8 @@
             %td=eval("item_link_#{item.scope}(item)")
             %td
               %span.price=number_to_currency(item.price)
-    .sidelink=ubaidu 1420705,'jx-dpihao-sidelink'
+    -unless @pihao.empty?
+      .sidelink=ubaidu 1420705,'jx-dpihao-sidelink'
     -if @items.empty?
       #buylink
       %h3.small #{@drug.name.truncate(9)}购买链接
@@ -27,7 +29,8 @@
         =link_to_360kad @drug.name
   .span9
     %h1.pd=@drug.name
-    .slotb=ubaidu 1420702,'jx-dpihao-before'
+    -unless @pihao.empty?
+      .slotb=ubaidu 1420702,'jx-dpihao-before'
     -if @drug.description.present?
       -@jibings = @drug.jibings.all
       -if @jibings.present?
@@ -36,11 +39,16 @@
           =link_to jibing.name,jibing
       %p= @drug.description
 
-    %p.pull-left=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name).html_safe
-    .tools.pull-right
-      %small=link_to "PDF",url_for(:format=>'pdf')
-    .clearfix
+    -unless @pihao.empty?
+      %p.pull-left=t('drugs.show.total',:count=>@drug.yaopins_count,:name=>@drug.name).html_safe
+      .tools.pull-right
+        %small=link_to "PDF",url_for(:format=>'pdf')
+      .clearfix
+      = render :partial => 'yaopins/list_inline',:locals=>{:results=>@pihao}
+    -else
+      没有相应的记录
+
     -#=paginate @pihao
-    = render :partial => 'yaopins/list_inline',:locals=>{:results=>@pihao}
     =xpaginate @pihao
-    .slotb=ubaidu 1420750,'jx-dpihao-bottom'
+    -unless @pihao.empty?
+      .slotb=ubaidu 1420750,'jx-dpihao-bottom'
