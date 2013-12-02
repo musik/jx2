@@ -99,6 +99,9 @@ document.write(\'<A href="mailto:\' + emailE + \'">\' + emailE + \'</a>\')
     end
     render :file=>"share/bdshare"
   end
+  def qq_link number,site='jxjw',text=nil
+    '<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin='+number+'&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:'+number+':51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>'.html_safe
+  end
   def bdlike
     content_for:footer do
       render :file=>"share/bdlike_js"
