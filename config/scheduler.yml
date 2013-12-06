@@ -1,0 +1,4 @@
+sfdajob:
+  cron: "*/1 * * * *"
+  class: SfdaJob
+  queue: 'sfda'
