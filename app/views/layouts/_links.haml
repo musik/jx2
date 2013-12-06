@@ -2,7 +2,9 @@
 -if ls.present?
   %strong 友情链接
   =link_to "更多...","/links"
-  交换链接请联系QQ <a href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" title="点击这里给我发消息"> 5826-5826</a>
+  交换链接请联系QQ <a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" title="点击这里给我发消息"> 5826-5826</a>
+  =link_to image_tag("http://seo.chinaz.com/template/default/images/ranks/Rank_4.gif"),"http://seo.chinaz.com/?host=jxjw.net",rel: "nofollow", target: "_blank"
+  =link_to image_tag("http://seo.chinaz.com/template/default/images/baiduapp/3.gif"),"http://mytool.chinaz.com/baidusort.aspx?host=jxjw.net",rel: "nofollow", target: "_blank"
   %br
   -ls.each do |l|
     =link_to l.name,l.url,:target=>"_blank"
