@@ -39,6 +39,7 @@
       - @drugs.each do |drug|
         .drug
           <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+    .clearfix
     =xpaginate @drugs,:window=>20
     .slotb=ubaidu 1420725,'jx-drugs-bottom'
 

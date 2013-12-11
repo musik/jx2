@@ -22,10 +22,10 @@
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
-    -if is_zhaoshang?
-      .container.mt1.sub_nav
-        = render :partial => 'layouts/zhaoshang'
     #main{:role => "main"}
+      -if is_zhaoshang?
+        .container.mt1.sub_nav
+          = render :partial => 'layouts/zhaoshang'
       .container
         .content
           = render 'layouts/messages'
