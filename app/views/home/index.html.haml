@@ -11,7 +11,7 @@
 
 -@col1 = true
 
-.box
+.well.mt1e
   %h1.sitename= t('appname')
   =t('home.index.desc')
   = render :partial => 'layouts/footlinks_static'
@@ -38,7 +38,7 @@
               %dd
                 -jibings.each do |jibing|
                   = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药",:target=>'_blank'
-    =ubaidu 1420254,"jx-home-bottom-500"
+    .slot=ubaidu 1420254,"jx-home-bottom-500"
   .span4.sidebar
     .boxa
       <!-- 广告位：jxjw.net首页右侧栏顶部 -->
