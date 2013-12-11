@@ -99,3 +99,4 @@ gem 'acts_as_list'
 gem 'randumb'
 
 gem 'mobile-fu'
+gem 'high_voltage'

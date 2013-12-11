@@ -5,12 +5,15 @@ $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image)
 $linkColor: #47a
 @import "bootstrap"
 body
-  padding-top: 45px
+  padding-top: 40px
+  background: #333
+#main
   background: #fff
 body.c-entries  
-  background: #eee 
   .content
     background: transparent
+  #main
+    padding-top: 10px
 //@import "bootstrap-responsive"
 @import "bootstrap/responsive-utilities"
 @import "bootstrap/responsive-768px-979px"
@@ -146,8 +149,8 @@ body.bdapp
 
 .sec
   margin: 2em 0 0
-//h1
-  //font-family: "微软雅黑"
+h1,h2,h3
+  font-family: "microsoft yahei","Helvetica Neue", Helvetica, Arial, sans-serif
 h1.appname
   margin: 0 auto
   a
@@ -155,22 +158,16 @@ h1.appname
     text-decoration: none
   a:hover
     color: #999
+h1
+  font-size: 24px
+  line-height: 1.5
+  margin: 0
 h1.sitename    
   font-size: 14px
   line-height: 1.5em
   display: inline
 h1#pt
-  font-family: "微软雅黑"
-  font-size: 26px
-  line-height: 34px
-  margin: 0
-  color: #333
-h1.pd
-  font-family: "微软雅黑"
-  font-size: 32px
-  line-height: 48px
-  margin: 0
-  color: #333
+  margin-top: 20px
 h2
   font:
     size: 18px
