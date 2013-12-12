@@ -7,7 +7,8 @@
     -if year.nil? or year != date.year
       -year = date.year
       %li.header
-        #{date.year}年
+        = year == 1970 ? "未知" : "#{year}年"
     %li
       =link_to "#{date.month}月","/archive/#{v[0]}",:title=>date.strftime("%Y-%m")
       %small=v[1]
+.clearfix
