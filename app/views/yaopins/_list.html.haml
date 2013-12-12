@@ -7,6 +7,9 @@
           \-
           =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao",:target=>'_blank'
           .pull-right
-            <a href="/yaopin/#{CGI.escape yaopin.name}/pihao#buylink" rel="nofollow" target="_blank" class="buylink btn btn-mini">购买</a>
+            -#<a href="/yaopin/#{CGI.escape yaopin.name}/pihao#buylink" rel="nofollow" target="_blank" class="buylink btn btn-mini">购买</a>
+            =link_to_360kad yaopin.name
+
+
 -#%small
   -#=[yaopin.changjia_name,yaopin.jixing,yaopin.leibie,yaopin.guige].compact.join(' / ')
