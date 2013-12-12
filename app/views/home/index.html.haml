@@ -11,10 +11,6 @@
 
 -@col1 = true
 
-.well.mt1e
-  %h1.sitename= t('appname')
-  =t('home.index.desc')
-  = render :partial => 'layouts/footlinks_static'
 -#-if @ref_keywords.present?
   -#.alert
     -#你是不是要找
@@ -74,5 +70,6 @@
         -results = Yaopin.search(:order=>'@random',:per_page=>limit)
         .unstyled.links
           -results.each do |yaopin|
+            -next if yaopin.nil?
             <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
 

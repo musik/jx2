@@ -1,23 +1,15 @@
 -title @title || "医药招商信息",nil,false
-%table.table.bgwhite.table-bordered
-  %thead
-    %tr
-      %th.title 标题
-      %th.num.views 联系人
-      %th.num.views 浏览
-      %th.num.activity 发布于
-
-  - @entries.each do |entry|
-    %tr
-      %td= link_to entry.title,entry
-      %td
-        -#= link_to entry.user.name,entry.user
-        =entry.contact
-        \/ #{entry.phone}
-      %td.num
-        %span{title: "这条信息已被浏览#{entry.views}次"}=entry.views 
-      %td.num
-        %span{title: "发布于#{entry.created_at.to_formatted_s(:db)}"} #{time_ago_in_words(entry.created_at)}前
-      -#%td= link_to 'Edit', edit_entry_path(entry)
-      -#%td= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.row
+  .span8
+    %h1 医药招商信息
+    #entries-search-results.paginated
+      .results
+        %ul
+          - @entries.each do |entry|
+            %li{'data-id'=> entry.id}
+              %a.star{href: "#"}
+              = link_to entry.title,entry,class: "title"
+              %span.company #{entry.company_name}
+              %span.created{title: "发布于#{entry.created_at.to_formatted_s(:db)}"} #{entry.created_at.strftime("%m-%d")}
+              %span.views{title: "这条信息已被浏览#{entry.views}次"}#{entry.views}次
+              

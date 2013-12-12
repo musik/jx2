@@ -16,12 +16,19 @@ class User < ActiveRecord::Base
   has_many :entries
   
   def max_entries
-    20
+    has_role?(:admin) ? 999999 : 5
   end
   def contact_empty?
     company_name.blank? or contact.blank? or phone.blank?
   end
   def entries_full?
     entries.size >= max_entries
+  end
+  def update_contact_from_entry entry
+    update_attributes ({
+          :company_name=>entry.company_name,
+          :contact=>entry.contact,
+          :phone=>entry.phone
+    })
   end
 end

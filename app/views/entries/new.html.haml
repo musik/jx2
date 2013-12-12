@@ -5,7 +5,7 @@
   %hr
   -if @full
     .alert.alert-error
-      抱歉，你的发布限额已满。如需继续，请升级账户。
+      抱歉，你的发布限额(#{current_user.max_entries}条)已满。如需继续，请升级账户。
   -unless @noform
     = render 'form'
 

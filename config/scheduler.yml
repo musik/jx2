@@ -1,4 +1,4 @@
 sfdajob:
-  cron: "17 */2 * * *"
+  cron: "47 1 */2 * *"
   class: SfdaJob
   queue: 'sfda'

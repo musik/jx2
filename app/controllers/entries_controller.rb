@@ -1,6 +1,17 @@
 #encoding: utf-8
 class EntriesController < ApplicationController
   load_and_authorize_resource :except=>%w(hot)
+  before_filter :init_entries
+  def init_entries
+    @hide_bottomlinks = true
+    @hide_ad_before = true
+    @hide_slotf = true
+    @hide_adside = true
+    @hide_bread = true
+    @hide_xuanfu = true
+    @col1 = true
+    @hide_subnav =true
+  end
   # GET /entries
   # GET /entries.json
   def index
@@ -36,10 +47,10 @@ class EntriesController < ApplicationController
   # GET /entries/new
   # GET /entries/new.json
   def new
-    if current_user.contact_empty?
-      redirect_to edit_profile_path(:from=>request.url),:notice=>"请先设置你的联系方式."
-      return
-    end
+    #if current_user.contact_empty?
+      #redirect_to edit_profile_path(:from=>request.url),:notice=>"请先设置你的联系方式."
+      #return
+    #end
     if current_user.entries_full? 
       @full = true
       @noform = true
@@ -68,7 +79,8 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        current_user.update_contact_from_entry(@entry) if current_user.contact_empty?
+        format.html { redirect_to @entry, notice: "发布成功" }
         format.json { render json: @entry, status: :created, location: @entry }
       else
         format.html { render action: "new" }

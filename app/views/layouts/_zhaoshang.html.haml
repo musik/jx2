@@ -1,6 +1,6 @@
 -classes = zhaoshang_classes
-%ul.nav.nav-pills
-  %li{:class=>classes[:index]}=link_to "最新",entries_url
-  %li{class: classes[:hot]}=link_to "最热",hot_entries_url
+%ul.nav
+  %li{:class=>classes[:index]}=link_to "最新",entries_url,rel: "nofollow"
+  -#%li{class: classes[:hot]}=link_to "最热",hot_entries_url
   -#%li=link_to "分类"
   %li.smart=link_to "发布",new_entry_url,:rel=>"nofollow"

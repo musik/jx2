@@ -9,6 +9,7 @@ body
   background: #333
 #main
   background: #fff
+  padding-top: 10px
 body.c-entries  
   .content
     background: transparent
@@ -19,6 +20,11 @@ body.c-entries
 @import "bootstrap/responsive-768px-979px"
 @import "bootstrap/responsive-767px-max"
 @import "bootstrap/responsive-navbar"
+
+a
+  color: #47a
+a:visited
+  color: #999
 
 .content
   background-color: #fff
@@ -354,11 +360,6 @@ p.stack
 .span8
   section
     margin-right: 20px
-section
-  .hd2
-    font-weight: 500
-    border-bottom: 2px solid #c10d0c
-    padding: 0 10px 0 8px
 .slot
   margin: 20px 0
 .bros  
@@ -399,6 +400,18 @@ section
     color: #f00
   > a:hover
     color: #c30
+.navbar-sub
+  background: #eee
+  //height: 24px
+  line-height: 24px
+  padding: 5px 0
+  border-bottom: 1px solid #d0d0d0
+  color: #666
+  b,h1
+    color: #666
+.navbar-zhaoshang
+  background: #eee
+    
 .c-entries  
   table
     thead
@@ -536,8 +549,16 @@ ul.cats
 .highlight  
   color: #c60
 .jibings_all
+  h2.hd2
+    font-weight: 500
+    border-bottom: 1px solid #c10d0c
+    border-color: #dedede
+    padding: 0 10px 0 8px
+    margin: 20px 0 0
   dl
-    margin: 0 0 8px
+    margin: 0
+    padding: 8px 0
+    border-bottom: 1px solid #dedede
   dt
     float: left
     color: #080
@@ -545,14 +566,17 @@ ul.cats
     padding: 1px 0 0 8px
     color: #c10d0c
   dd
-    margin-left: 34px
+    padding-left: 34px
     font-size: 13px
+    margin-left: 0
     a
       color: #444
       margin-right: 5px
+    a:visited
+      color: #ccc
   dl.b
     a
-      color: #777
+      //color: #777
 .normal
   font-size: 12px
 .links
@@ -591,3 +615,36 @@ ul.cats
     li.active a
       background: #06c
       color: #fff
+      
+#entries-search-results 
+  ul
+    margin: 0
+    border-bottom: 1px solid #dedede
+  li 
+    position: relative
+    list-style: none
+    display: block
+    height: 39px
+    border-top: 1px solid #dedede
+    overflow: hidden
+    > a,> span
+      float: left
+      height: 26px
+      padding: 10px 0
+      vertical-align: text-top
+      //color: #242424
+      text-decoration: none
+      overflow: hidden
+      white-space: nowrap
+      padding-left: 2px
+      margin-right: 5px
+    > a:visited
+      color: #ccc
+    a.title
+      width: 238px
+    .company
+      width: 148px
+    > span.views
+      float: right
+    > span.created
+      float: right
