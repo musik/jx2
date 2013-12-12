@@ -8,7 +8,7 @@
           - @entries.each do |entry|
             %li{'data-id'=> entry.id}
               %a.star{href: "#"}
-              = link_to entry.title,entry,class: "title"
+              = link_to entry.title,entry,class: "title",title: entry.title
               %span.company #{entry.company_name}
               %span.created{title: "发布于#{entry.created_at.to_formatted_s(:db)}"} #{entry.created_at.strftime("%m-%d")}
               %span.views{title: "这条信息已被浏览#{entry.views}次"}#{entry.views}次

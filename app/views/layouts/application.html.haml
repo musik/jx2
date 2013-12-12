@@ -98,8 +98,8 @@
                 =render "layouts/links"
               -else
                 =render "parts/jibings"
-              -unless is_home?                
-                = render :partial => 'layouts/footlinks_static'
+              -#-if @hide_subnav
+                -#= render :partial => 'layouts/footlinks_static'
             .clearfix
       .bottom
         .container

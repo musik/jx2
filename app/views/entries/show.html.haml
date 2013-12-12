@@ -2,16 +2,23 @@
 .breadcrumb=breadcrumbs.render :format=>'inline'
 .row
   .span9
-    .box
+    .boxx
       %h1=@entry.title
+      .align-right
+        #{@entry.views}次浏览
       .metas
         -%w(name changjia_name pihao chengfen guige zhuzhi yongfa).each do |k|
           -val = @entry.send k
           -next if val.blank?
           %p
             %strong=t("simple_form.labels.entry.#{k}")
-            %br
             =val
+      %hr
+      %h3=@entry.company_name
+      %p
+        %b 联系人
+        =@entry.contact
+        \/ #{@entry.phone}
       %hr
       -if @entry.tags_input.present?
         %p
@@ -19,13 +26,6 @@
           = @entry.tags_input
       %div
         =simple_format @entry.description
-      %hr
-      %p
-        =@entry.company_name
-        %br
-        %b 联系人
-        =@entry.contact
-        \/ #{@entry.phone}
 
       -if can? :edit,@entry
         = link_to '编辑', edit_entry_path(@entry)
