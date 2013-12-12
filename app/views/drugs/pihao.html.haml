@@ -12,13 +12,14 @@
     -@items.reject!{|a| a.scope == 'dada360'}
     -if @items.present?
       #buylink
-      %h3 #{@drug.name}价格
-      %table.table
-        -@items.each do |item|
-          %tr
-            %td=eval("item_link_#{item.scope}(item)")
-            %td
-              %span.price=number_to_currency(item.price)
+      .price-widget
+        %h2 #{@drug.name}价格
+        %table.table
+          -@items.each do |item|
+            %tr
+              %td=eval("item_link_#{item.scope}(item)")
+              %td
+                %span.price=number_to_currency(item.price)
     -unless @pihao.empty?
       .sidelink=ubaidu 1420705,'jx-dpihao-sidelink'
     -if @items.empty?

@@ -48,6 +48,4 @@
 -if params[:debug]
   =debug @drug
   =debug @drug.hashdata(:shuoming).keys
--content_for :footer do
-  =javascript_tag "track_data('yaopin','#{@drug.id}','#{request.referer.present? ? CGI.escape(request.referer).reverse : ""}')"
 

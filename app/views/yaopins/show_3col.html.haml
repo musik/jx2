@@ -16,14 +16,15 @@
     -@items.reject!{|a| a.scope != 'kad'} if @items.collect{|r| r.scope}.include?("kad")
     -@items.reject!{|a| a.scope == 'dada360'}
     -if @items.present?
-      %h3 #{@drug.name}价格
-      %table.table
-        -@items.each do |item|
-          %tr
-            %td
-              =eval("item_link_#{item.scope}(item)")
-            %td
-              %span.price=number_to_currency(item.price)
+      .price-widget
+        %h2 #{@drug.name}价格
+        %table.table
+          -@items.each do |item|
+            %tr
+              %td
+                =eval("item_link_#{item.scope}(item)")
+              %td
+                %span.price=number_to_currency(item.price)
     .sidelink=ubaidu 1420650,'jx-yaopin-sidelink'
     -if @items.empty?
       %h3.small #{@yaopin.name}购买链接
