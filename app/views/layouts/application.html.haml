@@ -68,13 +68,13 @@
                   -#-unless @liubai
                     -#.liubai
                   -#.sponsor=link_to image_tag("/images/ggw200.jpg"),"/pages/ad"
-                  .sponsor
+                  -#.sponsor
                     <!-- 广告位：jxjw.net右侧栏 -->
-                    <script type="text/javascript" >BAIDU_CLB_SLOT_ID = "827834";</script>
-                    <script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
-                    <script type="text/javascript" >document.write('<div class="" style="width:200px"><a href="javascript://" title="全站(首页除外)广告位200*200px.￥200一月，有意请洽QQ58265826.">购买此处广告</a></div>')</script>
-                  -#-unless @hide_adside
-                    -#=ubaidu 1363716,'jx-side-cloud'
+                    -#<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "827834";</script>
+                    -#<script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
+                    -#<script type="text/javascript" >document.write('<div class="" style="width:200px"><a href="javascript://" title="全站(首页除外)广告位200*200px.￥200一月，有意请洽QQ58265826.">购买此处广告</a></div>')</script>
+                  -unless @hide_adside
+                    =ubaidu 1363716,'jx-side-cloud'
                   = render 'layouts/sidebar' unless @hide_sidebar
                   -#-unless @hide_adside
                     -#=ubaidu 1270008,"jx-global-side-200"

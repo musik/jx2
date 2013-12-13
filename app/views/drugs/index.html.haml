@@ -6,10 +6,6 @@
 -@hide_slotf = true
 .row-fluid
   .span3.sidebar
-    .boxx
-      %h3 首字母索引
-      -("A".."Z").to_a.each do |s|
-        =link_to s,drugs_url(:abbr=>s),:title=>"#{s}开头药品"
     .sidelink=ubaidu 1420726,'jx-drugs-sidelink'
     -min = 10
     -cache "drug-shouzi-#{min}" do
