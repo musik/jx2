@@ -28,4 +28,5 @@
       -if @yaopins.present?
         = render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}
         =xpaginate @yaopins,:window=>100
-      .slotb=ubaidu 1420745,'jx-search-bottom'
+      -if @yaopins.size > 5
+        .slotb=ubaidu 1420745,'jx-search-bottom'

@@ -43,7 +43,8 @@
               -#%small=highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name).gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
             -#.flag
               -#%a{:href=>'#'} 举报
-    .slotb=ubaidu 1403033,'jx-jibing-bottom'
+    -if @items.size > 4
+      .slotb=ubaidu 1403033,'jx-jibing-bottom'
     -if can? :manage,Jibing        
       .actions
         =link_to "建议",suggest_jibing_path

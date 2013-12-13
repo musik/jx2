@@ -14,3 +14,5 @@
       -next if yaopin.nil?
       %li 
         <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
+-unless @hide_adside
+  =ubaidu 1363716,'jx-side-cloud'
