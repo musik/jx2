@@ -1,0 +1,27 @@
+-@q = params[:q]
+-@max = params[:max].present? ? params[:max].to_i : nil
+-@min = params[:min].present? ? params[:min].to_i : nil
+-@before = params[:before]
+=form_tag "/pages/domain",class: "form-inline",method: "GET" do
+  =label_tag :max,"最长"
+  =select_tag :max,options_for_select(2..6,@max),prompt: "MAX",class: "input-small"
+  =label_tag :min,"最短"
+  =select_tag :min,options_for_select(2..6,@min),prompt: "MIN",class: "input-small"
+  =label_tag :before,"前置"
+  =select_tag :before,options_for_select(0..1,@before),prompt: "before",class: "input-small"
+  =label_tag :q,"关键词"
+  =text_field_tag :q,@q,class: "input-mini"
+  =submit_tag "提交",class: "btn"
+
+- arr = File.read("#{Rails.root}/db/pinyindb.txt").split(" ")
+-arr.uniq!
+-arr.delete_if{|r| r.length > @max} if @max.present?
+-arr.delete_if{|r| r.length < @min} if @min.present?
+%p=arr.size
+%textarea{cols: 40,rows: 10}
+  -if @before.present?
+    -arr.each do |str|
+      ="#{@q}#{str}.com"
+  -else
+    -arr.each do |str|
+      ="#{str}#{@q}.com"

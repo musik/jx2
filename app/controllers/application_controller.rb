@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     return if request.url.match "admin"
     session["init"] = true
     breadcrumbs.add :home,root_url,:rel=>"nofollow"
-    if %w(confirmations sessions passwords registrations links users).include? controller_name 
+    if %w(pages confirmations sessions passwords registrations links users).include? controller_name 
       @hide_ad_before = true
       @hide_slotf = true
       @hide_adside = true
