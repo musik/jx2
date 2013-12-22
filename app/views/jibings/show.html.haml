@@ -3,42 +3,33 @@
 -@hide_ad_before= true
 -content_for :primary do
   .sidelink=ubaidu 1420700,'jx-jibing-sidelink'
-  -if @items.size > 4
-    -num = 20
-    -cache "jibings-side-#{num}-#{rand(10)}" do
-      -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
-      %ul.cats
-        -jibings.each do |jibing|
-          %li
-            %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
-              =jibing.name
-              %small= jibing.items_count
-        %li.more
-          <a href="#{jibings_url}" rel="nofollow">更多...</a>
+  -if @items.current_page == 1
+    -if @jibing.description.present? 
+      %h2 #{@jibing.name}
+      .description
+        =@jibing.description
 
 %h1.pd #{@jibing.name}吃什么药好
 .slotb=ubaidu 1363750,'jx-jibing-before'
 -if @items.present?
   =paginate @items
-  %ol.ranks
+  %ol.ranks.ranks-without-vote
     -@items.each do |item|
       -drug = item.drug
       %li
-        .vote
-          .num
-            -i = rand(5)
-            %abbr{:title=>"#{i}人赞"}
-              =i
-          .action
-            %a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
+        -#.vote
+          -#.num
+            -#-i = rand(5)
+            -#%abbr{:title=>"#{i}人赞"}
+              -#=i
+          -#.action
+            -#%a.btn.btn-mini{:href=>"#",:disabled=>"disabled"} 点赞
         .details
           %i #{item.position}. 
-          -#=link_to drug.name,yao_url(drug)
-          -#%small=link_to drug.yaopins_count.to_s + "种","/yaopin#{yao_url(drug)}/pihao"
           =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao",:target=>'_blank'
           %small=drug.yaopins_count.to_s + "种"
           %br
-          -txt = highlight(excerpt(drug.description,@jibing.name,:radius=>30).truncate(34),@jibing.name) rescue drug.description
+          -txt = highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name) rescue drug.description
           %small=txt.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
           -#%small=highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name).gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
         -#.flag

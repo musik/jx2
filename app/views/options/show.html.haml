@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @option.name
+%p
+  %b Data:
+  = @option.data
+%p
+  %b Autoload:
+  = @option.autoload
+
+= link_to 'Edit', edit_option_path(@option)
+\|
+= link_to 'Back', options_path

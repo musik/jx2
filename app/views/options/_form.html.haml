@@ -1,0 +1,10 @@
+= simple_form_for(@option) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :data,input_html: {class: "input-xxlarge"}
+    = f.input :autoload
+
+  .form-actions
+    = f.button :submit

@@ -92,6 +92,9 @@ class HomeController < ApplicationController
     end
 
   end
+  def redirect
+    redirect_to params[:url]
+  end
   def _parse_referer
     @referer = request.referer
     #@referer = 'http://www.baidu.com/s?wd=%E5%9B%BD%E8%8D%AF%E5%87%86%E5%AD%97%E6%9F%A5%E8%AF%A2&rsv_bp=0&ch=33&tn=ppsbaibu_oem_dg&bar=&rsv_spt=3&ie=utf-8&rsv_sug3=2&rsv_sug=0&rsv_sug1=2&rsv_sug4=1248&oq=%E5%9B%BD%E8%8D%AF&rsp=0&f=3&rsv_sug2=1&rsv_sug5=0&inputT=13963' if Rails.env.development?

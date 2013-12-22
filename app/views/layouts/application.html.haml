@@ -64,25 +64,24 @@
       -#.user_agent=request.user_agent
       %footer
         .container
-          %dl.f-widgets
-            %dd.logo
-              =link_to "国药准字查询",root_url
-            %dd.links
-              -if is_home?
-                .siteinfo
+          -if is_home?
+            %dl.f-widgets
+              %dd.logo
+                =link_to "国药准字查询",root_url
+              %dd.links
                 =render "layouts/links"
-              -else
-                =render "parts/jibings"
-              -#-if @hide_subnav
-                -#= render :partial => 'layouts/footlinks_static'
             .clearfix
+          -else
+            =render "layouts/foot_widgets"
+
+
       .bottom
         .container
           .pull-left
             %span &copy; 2010 www.jxjw.net 沪ICP备13034467号-1
             \|
             =link_to "友情链接","/links"
-            联系QQ <a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes">5826-5826</a>
+            联系QQ <a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" target="_blank" rel="nofollow">5826-5826</a>
             \|
 
             =link_to "医药招商",entries_url

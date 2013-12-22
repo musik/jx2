@@ -93,6 +93,10 @@ document.write(\'<A href="mailto:\' + emailE + \'">\' + emailE + \'</a>\')
   def js_link_to str,href
     "<a href='javascript://' class='rl' data='#{href.to_rev}'>#{str}</a>".html_safe
   end
+  def external_links txt
+    return nil if txt.nil?
+    txt.gsub(/<a href="(.+?)">/,'<a href="/redirect?url=\1" target="_blank" rel="nofollow">').html_safe
+  end
   def bdshare
     content_for:footer do
       render :file=>"share/bdshare_js"

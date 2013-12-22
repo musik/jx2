@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  resources :options
+
+
   resources :jibings,:path=>'jibing' do
     member do 
       get 'suggest'
@@ -90,7 +93,8 @@ Yl::Application.routes.draw do
   match 'sitemap' => 'home#sitemap'
   match 'flush' => 'home#flush'
   match 'index' => 'home#index'
-  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg|test/}
+  match 'redirect' => 'home#redirect',as: 'redirect'
+  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg|test|redirect/}
   resque_constraint = lambda do |request|
     Rails.env.development? or 
     (request.env['warden'].authenticate? and

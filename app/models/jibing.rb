@@ -86,6 +86,12 @@ class Jibing < ActiveRecord::Base
     end
     items
   end
+  def self.auto_description
+    find_each do |r|
+      desc = AutoDescription.query(r.name)
+      r.update_attribute(:description, desc) unless desc.nil?
+    end
+  end
   #class Aizhan
     #def self.list
       #base = 'http://ci.aizhan.com/%E5%90%83%E4%BB%80%E4%B9%88%E8%8D%AF/'
