@@ -7,14 +7,11 @@ $linkColor: #47a
 body
   padding-top: 40px
   background: #333
-#main
-  background: #fff
-  padding-top: 10px
 body.c-entries  
   .content
     background: transparent
+    border: 0
   #main
-    padding-top: 10px
 //@import "bootstrap-responsive"
 @import "bootstrap/responsive-utilities"
 @import "bootstrap/responsive-768px-979px"
@@ -28,11 +25,14 @@ a:visited
 .navbar-inverse a.brand
   color: #fff
 
+#main
+  background: #fff
 .content
   background-color: #fff
-  padding: 20px
-  padding-top: 0
-  margin: 0 -20px
+  padding: 0 9px 
+  margin: 0 -10px
+  //border: 1px solid #ddd
+  //border-width: 0 1px 0px
 .box  
   background: #fff
   border: 1px solid #eee
@@ -65,9 +65,11 @@ a:visited
     margin-bottom: 10px
 .required abbr    
   color: #f30
+.inside
+  padding: 10px 0
 .sidebar  
   .inside
-    margin: 15px 0 0
+    padding: 15px 0 0
   h3
     font:
       size: 14px
@@ -178,7 +180,7 @@ h1.sitename
   line-height: 1.5em
   display: inline
 h1#pt
-  margin-top: 20px
+  padding-top: 10px
 h2
   font:
     size: 18px
@@ -212,7 +214,7 @@ th.key
   width: 60px
 
 footer
-  margin-top: 2em
+  margin-top: 0
   //padding: 1em 0
   font-size: 12px
   background: #f8f8f8
@@ -546,7 +548,9 @@ ol.ranks
   .i
     width: 108px
 .toplinks,.bottomlinks
-  margin: 18px 0 0px
+.bottomlinks
+  padding: 15px 9px
+    
 .a328  
   float: left
   width: 340px
@@ -678,3 +682,16 @@ ul.cats
     > span.created
       float: right
       font-size: 10px
+.content-left
+  border: 1px solid #eee
+  border-width: 0 1px 1px
+  padding: 10px
+  min-height: 400px
+.maincol
+  float: right
+  margin-left: 180px
+#primary
+  width: 160px
+  float: left
+  margin-right: -180px
+  margin-left: 0px

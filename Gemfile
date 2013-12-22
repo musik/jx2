@@ -12,16 +12,16 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 gem 'jquery-rails','2.1.3'
-gem "haml", ">= 3.1.6"
-gem "haml-rails", ">= 0.3.4", :group => :development
-gem "rspec-rails", ">= 2.10.1", :group => [:development, :test]
+gem "haml"
+gem "haml-rails" ,:group => :development
+gem "rspec-rails",  :group => [:development, :test]
 gem "database_cleaner", ">= 0.8.0", :group => :test
 # gem "mongoid-rspec", ">= 1.4.4", :group => :test
 gem "factory_girl_rails", ">= 3.3.0", :group => [:development, :test]
-gem "email_spec", ">= 1.2.1", :group => :test
-gem "devise", ">= 2.1.0"
-gem "cancan", ">= 1.6.7"
-gem "rolify", ">= 3.1.0"
+gem "email_spec", :group => :test
+gem "devise"
+gem "cancan"
+gem "rolify"
 gem "bootstrap-sass", ">= 2.3"
 #gem "bootstrap-sass", "~> 3.0.1.0.rc"
 gem "simple_form"
@@ -40,7 +40,7 @@ group :development do
   gem 'capistrano-recipes'
   gem 'capistrano-helpers'
   #gem 'rvm-capistrano'
-  gem 'capistrano-unicorn',:git=>'git://github.com/sosedoff/capistrano-unicorn.git'
+  #gem 'capistrano-unicorn',:git=>'git://github.com/sosedoff/capistrano-unicorn.git'
   gem 'capistrano-resque'
   gem 'thin'
 end
@@ -49,7 +49,7 @@ gem 'breadcrumbs'
 gem 'kaminari','0.14.1'
 gem 'bootstrap-kaminari-views'
 
-gem 'typhoeus','0.3.3'
+gem 'typhoeus','~>0.6.7'
 gem 'nokogiri'
 
 gem "mocha", :group => :test,:require=>false
@@ -81,7 +81,7 @@ gem 'resque-retry'
 gem 'resque-cleaner'
 #gem 'resque-pool'
 
-gem 'rails_admin','0.4.2'
+gem 'rails_admin'
 gem 'RedCloth'
 
 gem 'unicorn'
@@ -100,3 +100,5 @@ gem 'randumb'
 
 gem 'mobile-fu'
 gem 'high_voltage'
+
+gem 'yaml_db'

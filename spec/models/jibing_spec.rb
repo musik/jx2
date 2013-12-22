@@ -14,5 +14,9 @@ describe Jibing do
 
     #d = Drug.create :name=>"度米芬含片",:description=>"本品适用于治疗敏感细菌引起的细菌性结膜炎、细菌性角膜炎"
     #j = Jibing.create(:name=>"角膜炎")
+    #@arr = File.read("#{Rails.root}/db/test/jibings.txt").split(",")
+    #@arr[0,30].each do |j|
+      #pp j,AutoDescription.query(j)
+    #end
   end  
 end

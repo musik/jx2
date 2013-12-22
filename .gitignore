@@ -20,6 +20,7 @@ db/sphinx
 /public/index.html
 
 # minimal Rails specific artifacts
+db/*.yml
 db/*.sqlite3
 /log/*.log
 /log/*.pid

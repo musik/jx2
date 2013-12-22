@@ -4,13 +4,14 @@ class JibingsController < ApplicationController
   # GET /jibings
   # GET /jibings.json
   def index
-    str = params.has_key?(:empty) ? "=" : ">"
-    @jibings = Jibing.where("items_count #{str} 0").all
-    breadcrumbs.add "常见疾病"
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @jibings }
+      format.html {
+        str = params.has_key?(:empty) ? "=" : ">"
+        @jibings = Jibing.where("items_count #{str} 0").all
+        breadcrumbs.add "常见疾病"
+      }
+      format.json { render json: Jibing.pluck(:name) }
+      format.text { render text: Jibing.pluck(:name) }
     end
   end
 
