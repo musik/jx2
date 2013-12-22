@@ -77,8 +77,8 @@ Yl::Application.configure do
     domain: "jxjw.net",
     authentication: "plain",
     enable_starttls_auto: false,
-    user_name: ENV["smtp_user"],
-    password: ENV["smtp_password"]
+    user_name: Settings.smtp_user,
+    password: Settings.smtp_password
   }
 
 

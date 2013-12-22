@@ -1,9 +1,24 @@
 -title @user.name
 
-%b 登录次数
-=@user.sign_in_count
-%b 上次登录
-=@user.last_sign_in_at.to_formatted_s(:db)
-%b 注册于
-=@user.confirmed_at.to_formatted_s(:db)
--#=debug @user
+.post-meta
+  %b 登录次数
+  =@user.sign_in_count
+  %b 上次登录
+  =@user.last_sign_in_at.to_formatted_s(:db)
+  %b 注册于
+  =@user.created_at.to_formatted_s(:db)
+-@entries = @user.entries.limit(10)
+%h2 #{@user.name} 发布的信息
+-if @entries.empty?
+  暂无
+-else
+  #entries-search-results.paginated
+    .results
+      %ul
+        - @entries.each do |entry|
+          %li{'data-id'=> entry.id}
+            %a.star{href: "#"}
+            = link_to entry.title,entry,class: "title",title: entry.title
+            %span.company #{entry.company_name}
+            %span.created{title: "发布于#{entry.created_at.to_formatted_s(:db)}"} #{entry.created_at.strftime("%m-%d")}
+            %span.views{title: "这条信息已被浏览#{entry.views}次"}#{entry.views}次

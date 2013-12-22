@@ -15,9 +15,9 @@ zh-CN:
       reset_password_instructions:
         action: 更改我的密码
         greeting: 你好 %{recipient}!
-        instruction: 有人要求更改密码的链接，并通过下面的链接，你可以做到这一点。
-        instruction_2: 如果你没有要求，请忽略此电子邮件。
-        instruction_3: 您的密码将不会改变，直到你访问上面的链接，并创建一个新的。
+        instruction: "请通过以下链接重置您在[国药准字查询网]的密码: "
+        instruction_2: "你收到这封邮件，是因为在[国药准字查询网]进行了“重置密码”操作。"
+        instruction_3: 如果你并没有进行过上述操作，请忽略本邮件。
         subject: 重设密码的说明
       unlock_instructions:
         action: 帐户解锁

@@ -27,9 +27,9 @@ Yl::Application.configure do
     port: 25,
     domain: "jxjw.net",
     authentication: "plain",
-    enable_starttls_auto: false,
-    user_name: 'noreply@jxjw.net',
-    password: 'Ht4dT6Ny'
+    enable_starttls_auto: true,
+    user_name: Settings.smtp_user,
+    password: Settings.smtp_password
   }
 
 
