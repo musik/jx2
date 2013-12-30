@@ -21,7 +21,9 @@
 %textarea{cols: 40,rows: 10}
   -if @before.present?
     -arr.each do |str|
-      ="#{@q}#{str}.com"
+      #{@q}#{str}.com
+      \
   -else
     -arr.each do |str|
-      ="#{str}#{@q}.com"
+      #{str}#{@q}.com
+      \
