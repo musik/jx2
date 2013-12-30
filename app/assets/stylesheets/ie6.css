@@ -131,6 +131,6 @@ ul.thumbnails {margin-left:-20px;float:none;display:inline-block;zoom:1;clear:bo
 .foot-widgets p.links a,p.cats a,p.stack a{
   white-space: normal;
 }
-#entries-search-results li a,#entries-search-results li span{
-  white-space: normal;
-}
+/*#entries-search-results li a,#entries-search-results li span{*/
+  /*white-space: normal;*/
+/*}*/
