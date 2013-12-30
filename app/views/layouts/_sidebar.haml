@@ -2,7 +2,10 @@
   .h3 赞助商链接
   %ul.sponsers
     =external_links(Option.get(:sponsers))
-    %li.sponsor
-      <a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" class="green" target="_blank" rel="nofollow">赞助位招租</a>
+    -#%li.sponsor
+      -#<a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" class="green" target="_blank" rel="nofollow">赞助位招租</a>
     -#%li.sponsor=link_to "赞助位招租",page_path("sponsor"),class: "green"
-
+-unless @hide_adside
+  .widget.bd-widget
+    -#=ubaidu 1445895,"jx-right-side"
+    =ubaidu 1270008,"jx-global-side-200"
