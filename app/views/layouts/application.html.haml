@@ -92,7 +92,7 @@
           .pull-right
             =yield(:title) || t('appname')
 
-    = javascript_include_tag "application"
+    -#= javascript_include_tag "application"
     =render 'layouts/iefixjs'
     .hidden=render "layouts/tongji" if Rails.env.production?
     = yield(:footer)
