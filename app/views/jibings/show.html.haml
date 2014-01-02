@@ -38,19 +38,27 @@
           -#%small=highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name).gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
         -#.flag
           -#%a{:href=>'#'} 举报
--if @items.size <= 4
-  %h3 其它常见适应症
-  -num = 25
-  -cache "jibings-side-#{num}-#{rand(10)}" do
-    -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
-    %p.links
-      -jibings.each do |jibing|
-        %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
-          =jibing.name
-        %small= jibing.items_count
-      .more
-        <a href="#{jibings_url}" rel="nofollow">更多...</a>
--if @items.size > 4
+-@posts = Post.search(@jibing.name)
+-if @posts.present?
+  %h3 #{@jibing.name}小知识
+  %ul.posts
+    -@posts.each do |p|
+      %li
+        =link_to p.title,p.path
+
+-#-if @items.size <= 4
+  -#%h3 其它常见适应症
+  -#-num = 25
+  -#-cache "jibings-side-#{num}-#{rand(10)}" do
+    -#-jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
+    -#%p.links
+      -#-jibings.each do |jibing|
+        -#%a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+          -#=jibing.name
+        -#%small= jibing.items_count
+      -#.more
+        -#<a href="#{jibings_url}" rel="nofollow">更多...</a>
+-if (@items.size + @posts.size) > 4
   .slotb=ubaidu 1403033,'jx-jibing-bottom'
 -if can? :manage,Jibing        
   .actions

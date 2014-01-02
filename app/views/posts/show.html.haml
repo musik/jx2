@@ -15,5 +15,14 @@
   -#=textilize(@post.content).gsub(/国药准字[A-Z]\d{8}/,'<a href="/pihao/\0" target="_blank">\0</a>').html_safe
   =autolink_content(textilize(@post.content),@post.related)
 
+.navigation
+  -if @next = @post.next
+    .next
+      下一篇:
+      =link_to @next.title,@next.path
+  -if @prev = @post.prev
+    .prev
+      上一篇:
+      =link_to @prev.title,@prev.path
 -if can? :edit,@post
   =link_to "编辑",edit_post_url(@post)

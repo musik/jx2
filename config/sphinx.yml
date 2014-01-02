@@ -12,6 +12,7 @@ development:
     - Yaopin
     - Jibing
     - Drug
+    - Post
 production:
   bin_path: /usr/local/coreseek/bin
   max_children: 4

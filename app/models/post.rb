@@ -6,10 +6,22 @@ class Post < ActiveRecord::Base
     :news => 0,
     :wiki => 1,
     :ask => 2
+  define_index do
+    indexes :name
+    indexes :content
+    indexes :related
+    has :post_type_cd
+  end
   def description
     excerpt.present? ? excerpt : content.truncate(249)
   end
   def path
     "/#{post_type}/#{id}"
+  end
+  def prev
+    self.class.published.recent.where("id < ?",id).first
+  end
+  def next
+    self.class.published.where("id > ?",id).first
   end
 end

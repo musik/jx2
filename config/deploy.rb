@@ -79,9 +79,9 @@ require './lib/recipes/custom.rb'
 #Sphinx
 #before 'deploy:create_symlink', 'sphinx:pi'
 after 'deploy:create_symlink', 'sphinx:symlink'
-#after 'deploy:create_symlink', 'sphinx:config'
+after 'deploy:create_symlink', 'sphinx:config'
+before 'deploy:restart','sphinx:index'
 before 'deploy:start','sphinx:start'
-#before 'deploy:restart','sphinx:index'
 #before 'deploy:restart','sphinx:restart'
 require './lib/recipes/sphinx.rb'
 
