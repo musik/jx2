@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    breadcrumbs.add :news,posts_url
 
     respond_to do |format|
       format.html # new.html.erb

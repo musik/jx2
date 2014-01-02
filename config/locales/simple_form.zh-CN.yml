@@ -21,11 +21,18 @@ zh-CN:
     models:
       posts: 文章
     attributes:
-      posts:
+      post:
         title: 标题
         excerpt: 摘要
         seo_title: SEO标题
         keywords: 关键词
+        post_type: 类型
+    enums:
+      post:
+        post_types:
+          news: 新闻
+          wiki: 知识
+          ask: 问答
 
     errors:
       models:

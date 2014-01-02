@@ -2,6 +2,7 @@
   = f.error_notification
 
   .form-inputs
+    =f.input :post_type,as: "select",collection: Post.post_types_for_select
     = f.input :title,:input_html=>{:class=>"input-xxlarge"}
     = f.input :content,:input_html=>{:rows=>8,:class=>"input-xxlarge"}
     = f.input :excerpt,:as=>:text,:input_html=>{:rows=>3,:class=>"input-xxlarge"}

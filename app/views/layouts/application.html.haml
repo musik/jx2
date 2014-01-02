@@ -64,7 +64,7 @@
       -#.user_agent=request.user_agent
       %footer
         .container
-          -if content_for :foot
+          -if content_for?(:foot)
             =yield :foot
           -else
             -if is_home?

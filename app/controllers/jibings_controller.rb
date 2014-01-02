@@ -11,7 +11,10 @@ class JibingsController < ApplicationController
         breadcrumbs.add "常见疾病"
       }
       format.json { render json: Jibing.pluck(:name) }
-      format.text { render text: Jibing.pluck(:name) }
+      format.text { render text: Jibing.select("name,id").collect{|r|
+        "http://www.jxjw.net/jibing/#{r.id}\t\t#{r.name}\t\t#{r.name}吃什么药\n"
+      }.unshift("网址\t\t\t\t\t百科词条\t\t链接文字\n").join() 
+      }
     end
   end
 
