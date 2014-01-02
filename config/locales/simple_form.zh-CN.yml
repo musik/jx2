@@ -27,6 +27,7 @@ zh-CN:
         seo_title: SEO标题
         keywords: 关键词
         post_type: 类型
+        related: 相关药品
     enums:
       post:
         post_types:

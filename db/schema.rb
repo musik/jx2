@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102054720) do
+ActiveRecord::Schema.define(:version => 20140102150457) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20140102054720) do
     t.string   "keywords"
     t.string   "seo_title"
     t.integer  "post_type_cd", :default => 0
+    t.string   "related"
   end
 
   add_index "posts", ["publish"], :name => "index_posts_on_publish"

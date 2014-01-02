@@ -1,5 +1,6 @@
 #encoding: utf-8
 class PostsController < ApplicationController
+  include PostsHelper
   load_and_authorize_resource :except=>[:index,:show]
   cache_sweeper :post_sweeper
   # GET /posts

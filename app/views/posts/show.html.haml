@@ -1,5 +1,6 @@
 -title @post.title
--meta :description,@post.description
+-meta :description,@post.description.gsub(/\s+/,' ').truncate(120)
+-meta :canonical,po_url(@post.post_type,@post.id)
 -if @post.keywords.present?
   -meta :keywords,@post.keywords
 
@@ -11,7 +12,8 @@
 .entry-content  
   -if @post.excerpt.present?
     .excerpt=@post.excerpt 
-  =textilize(@post.content).gsub(/国药准字[A-Z]\d{8}/,'<a href="/pihao/\0" target="_blank">\0</a>').html_safe
+  -#=textilize(@post.content).gsub(/国药准字[A-Z]\d{8}/,'<a href="/pihao/\0" target="_blank">\0</a>').html_safe
+  =autolink_content(textilize(@post.content),@post.related)
 
 -if can? :edit,@post
   =link_to "编辑",edit_post_url(@post)

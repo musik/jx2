@@ -11,6 +11,7 @@ development:
   indexed_models:
     - Yaopin
     - Jibing
+    - Drug
 production:
   bin_path: /usr/local/coreseek/bin
   max_children: 4

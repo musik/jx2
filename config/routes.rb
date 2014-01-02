@@ -103,6 +103,10 @@ Yl::Application.routes.draw do
   constraints resque_constraint do
     mount Resque::Server.new, :at => "/resque"
   end
+  #match '/(ask|wiki)/:id' => "posts#show",as: "po"
+  match '/:act/:id' => "posts#show",:constraints=>{:act=>/news|ask|wiki/},as: :po
+  #match '/ask/:id' => "posts#show",as: :ask
+  #match '/wiki/:id' => "posts#show",as: :wiki
 
   match '/:id'=>"drugs#show",:as=>"show_yao"
 

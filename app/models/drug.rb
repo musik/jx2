@@ -15,6 +15,9 @@ class Drug < ActiveRecord::Base
 
   
   resourcify
+  define_index do
+    indexes :name
+  end
   
   def to_param
     (name.present? and name.match(/\//).nil?) ? CGI.escape(name) : id
