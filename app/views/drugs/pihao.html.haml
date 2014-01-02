@@ -51,5 +51,13 @@
 
     -#=paginate @pihao
     =xpaginate @pihao
-    -if @pihao.size > 5
+
+    -@posts = Post.search(@drug.name)
+    -if @posts.present?
+      %h3 #{@drug.name}相关资讯
+      %ul.posts
+        -@posts.each do |p|
+          %li
+            =link_to p.title,p.path
+    -if (@pihao.size + @posts.size) > 5
       .slotb=ubaidu 1420750,'jx-dpihao-bottom'

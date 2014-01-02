@@ -40,7 +40,7 @@
           -#%a{:href=>'#'} 举报
 -@posts = Post.search(@jibing.name)
 -if @posts.present?
-  %h3 #{@jibing.name}小知识
+  %h3 #{@jibing.name}相关资讯
   %ul.posts
     -@posts.each do |p|
       %li
