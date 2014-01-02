@@ -1,4 +1,7 @@
--title "#{@jibing.name}吃什么药_治疗#{@jibing.name}的药物",nil,false
+-title "#{@jibing.name}_#{@jibing.name}吃什么药/治疗药物",nil,false
+-meta :keywords,t('.keywords',name: @jibing.name)
+-meta :description,t('.description',name: @jibing.name)
+-@title_suffix = ""
 -@col3 = true
 -@hide_ad_before= true
 -@jibings_section = true
@@ -52,3 +55,7 @@
 -if can? :manage,Jibing        
   .actions
     =link_to "建议",suggest_jibing_path
+-content_for :foot do
+  %h2 #{@jibing.name}频道介绍
+  %p.description=sprintf("本站%1$s频道为你提供<strong>%1$s治疗药物</strong>列表，%1$s简要介绍，并将于后续提供%1$s相关资讯。在此您可以免费查看、筛选和点评%1$s药品信息，据此判断%1$s吃什么药好。%1$s版块内的药品数据均取自国家食品药品监督局,并根据其适应症智能匹配。本网站并不以推荐任何药品牟取利益，亦不对任何药品疗效提供保证，请用户自行选择。",@jibing.name).html_safe
+  = render :partial => 'layouts/jibings'

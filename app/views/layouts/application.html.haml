@@ -62,21 +62,19 @@
       -#.time 当前时间: #{Time.now}
       -#.url=request.url
       -#.user_agent=request.user_agent
-      -if @jibings_section
-        %section.jibings
-          .container
-            = render :partial => 'layouts/jibings'
       %footer
         .container
-          -if is_home?
-            %dl.f-widgets
-              %dd.logo
-                =link_to "国药准字查询",root_url
-              %dd.links
-                =render "layouts/links"
-            .clearfix
+          -if content_for :foot
+            =yield :foot
           -else
-            -unless @jibings_section
+            -if is_home?
+              %dl.f-widgets
+                %dd.logo
+                  =link_to "国药准字查询",root_url
+                %dd.links
+                  =render "layouts/links"
+              .clearfix
+            -else
               =render "layouts/foot_widgets"
 
 

@@ -24,6 +24,10 @@ zh-CN:
       more: "&raquo; 更多%{name}批号"
       keywords: "%{drug},%{drug}批号,%{drug}说明书"
       desc: "%{drug},%{description} %{drug}说明书、功效、用法用量、不良反应、副作用、禁忌，%{drug}的成份，%{drug}的批准文号等信息。"
+  jibings:
+    show:
+      keywords: "%{name},%{name}吃什么药,%{name}吃什么好"
+      description: "%{name}频道根据国家食品药品监督局药品数据，以数万种药品说明书中适应症智能匹配，列出最适宜治疗%{name}的药品，辅于%{name}的简要介绍，作为判断%{name}吃什么药好的有益参考"
   yaopin:
     attrs:
       name: 药名
