@@ -5,6 +5,17 @@
 .row.foot-widgets
   .span3
     =link_to "国药准字查询",root_url,class: "biglogo"
+  .span4
+    -unless @jibings_section
+      -cache "jibings-footer-#{num}-#{token}" do
+        -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
+        %h3
+          常见疾病
+          <a href="#{jibings_url}" rel="nofollow" class="more">更多...</a>
+        %p.links
+          -jibings.each do |jibing|
+            %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+              =jibing.name
   -cache "random-widgets-#{url_key}",:expires_in => 3.day do
     .span3
       %h3 随机药品
@@ -21,14 +32,4 @@
           -next if yaopin.nil?
           %li 
             <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
-  .span4
-    -cache "jibings-footer-#{num}-#{token}" do
-      -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
-      %h3
-        常见疾病
-        <a href="#{jibings_url}" rel="nofollow" class="more">更多...</a>
-      %p.links
-        -jibings.each do |jibing|
-          %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
-            =jibing.name
 

@@ -1,0 +1,16 @@
+.row
+  .span12
+    -cache "jibings-footer-all" do
+      -jibings = Jibing.all_with_az
+      %h3
+        常见疾病
+        <a href="#{jibings_url}" rel="nofollow" class="more">更多...</a>
+      %dl.az
+        -jibings.each do |k,results|
+          -next if results.empty?
+          %dt
+            %span=k.upcase
+          %dd
+            -results.each do |jibing|
+              %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+                #{jibing.name}吃什么药
