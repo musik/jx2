@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
     :wiki => 1,
     :ask => 2
   define_index do
-    indexes :name
+    indexes :title
     indexes :content
     indexes :related
     has :post_type_cd
