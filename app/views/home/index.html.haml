@@ -61,7 +61,7 @@
         -if results.present?
           %ul.unstyled.normal
             -results.each do |r|
-              %li=link_to r.title,r
+              %li=link_to r.title,r.path
     .box
       %h3.head 随机批号
       -limit = 24
