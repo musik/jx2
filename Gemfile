@@ -104,3 +104,4 @@ gem 'mobile-fu'
 gem 'high_voltage'
 
 gem 'yaml_db'
+gem 'newrelic_rpm'

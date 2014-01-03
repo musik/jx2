@@ -200,6 +200,7 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.7.1.182)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -471,6 +472,7 @@ DEPENDENCIES
   mobile-fu
   mocha
   mysql2
+  newrelic_rpm
   nokogiri
   oauth
   oauth_china
