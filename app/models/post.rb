@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
     indexes :content
     indexes :related
     has :post_type_cd
+    set_property :delta => ThinkingSphinx::Deltas::ResqueDelta
   end
   def description
     excerpt.present? ? excerpt : content.truncate(249)

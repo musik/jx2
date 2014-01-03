@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102150457) do
+ActiveRecord::Schema.define(:version => 20140103070651) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -197,13 +197,14 @@ ActiveRecord::Schema.define(:version => 20140102150457) do
     t.string   "laiyuan"
     t.string   "laiyuan_url"
     t.string   "author"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "excerpt"
     t.string   "keywords"
     t.string   "seo_title"
     t.integer  "post_type_cd", :default => 0
     t.string   "related"
+    t.boolean  "delta",        :default => true, :null => false
   end
 
   add_index "posts", ["publish"], :name => "index_posts_on_publish"

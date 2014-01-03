@@ -71,6 +71,7 @@ gem 'redis-rails'
 
 gem 'thinking-sphinx', '2.0.13'
 gem 'ts-datetime-delta', '1.0.3',:require => 'thinking_sphinx/deltas/datetime_delta'
+gem 'ts-resque-delta', '~> 1.2.4'
 gem 'resque'
 gem "resque-async-method"
 #gem "resque-async-method-enhanced", "~> 1.3.2"
