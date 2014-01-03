@@ -1,5 +1,10 @@
+#encoding: utf-8
 require 'spec_helper'
 
 describe Post do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "performance" do
+    it "takes time" do
+      require 'benchmark'
+    end
+  end
 end

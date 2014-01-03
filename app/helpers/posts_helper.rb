@@ -10,7 +10,11 @@ module PostsHelper
       }
     end
     hash = Hash[hash]
-    patt = Regexp.new(hash.keys.join("|"))
-    text.gsub(patt){|s| "<a href=\"#{hash[s]}\">#{s}</a>"}.html_safe
+    hash.each do |k,v|
+      text.sub!(k){|s| "<a href=\"#{hash[s]}\">#{s}</a>"}
+    end
+    text.html_safe
+    #patt = Regexp.new(hash.keys.join("|"))
+    #text.gsub(patt){|s| "<a href=\"#{hash[s]}\">#{s}</a>"}.html_safe
   end
 end

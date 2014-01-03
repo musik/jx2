@@ -53,6 +53,7 @@ gem 'typhoeus','~>0.6.7'
 gem 'nokogiri'
 
 gem "mocha", :group => :test,:require=>false
+gem "ruby-prof", :group => :test,:require=>false
 
 #gem 'daemons'
 #gem 'delayed_job_active_record'
