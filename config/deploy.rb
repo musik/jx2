@@ -79,9 +79,9 @@ require './lib/recipes/custom.rb'
 #Sphinx
 #before 'deploy:create_symlink', 'sphinx:pi'
 after 'deploy:create_symlink', 'sphinx:symlink'
-after 'deploy:create_symlink', 'sphinx:config'
-before 'deploy:restart','sphinx:index'
 before 'deploy:start','sphinx:start'
+#after 'deploy:create_symlink', 'sphinx:config'
+#before 'deploy:restart','sphinx:index'
 #before 'deploy:restart','sphinx:restart'
 require './lib/recipes/sphinx.rb'
 
@@ -107,8 +107,10 @@ role :resque_worker, "gxr"
 role :resque_scheduler, "gxr"
 set :workers, { jibings: 1,sfda: 2 }
 require 'capistrano-resque'
-after "deploy:restart", "resque:restart"
+#after "deploy:restart", "resque:restart"
 after "deploy:restart", "resque:scheduler:restart"
+require './lib/recipes/resque.rb'
+after "deploy:restart", "resque:pool:restart"
 
 require "bundler/capistrano"
 

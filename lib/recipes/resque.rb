@@ -16,7 +16,7 @@ Capistrano::Configuration.instance.load do
       task :restart, :roles => :app do
         run <<-CMD
           if [ -f '#{pool_pid}' ];then
-            kill -QUIT `cat #{pool_pid}`;
+            kill `cat #{pool_pid}`;
           fi;
           cd #{current_path} && RAILS_ENV=production bundle exec resque-pool -p #{pool_pid} --daemon
         CMD
