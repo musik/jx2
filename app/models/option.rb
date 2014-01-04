@@ -4,7 +4,7 @@ class Option < ActiveRecord::Base
     vals[key.to_s]
   end
   def self.html key
-    vals[key.to_s].html_safe
+    vals[key.to_s].html_safe rescue nil
   end
   def self.vals
      Hash[where(autoload: true).all.collect{|r|
