@@ -110,7 +110,7 @@ require 'capistrano-resque'
 #after "deploy:restart", "resque:restart"
 after "deploy:restart", "resque:scheduler:restart"
 require './lib/recipes/resque.rb'
-after "deploy:restart", "resque:pool:restart"
+before 'deploy:restart','resque:pool:restart'
 
 require "bundler/capistrano"
 

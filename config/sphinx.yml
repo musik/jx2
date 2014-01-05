@@ -16,7 +16,7 @@ development:
 production:
   bin_path: /usr/local/coreseek/bin
   max_children: 4
-  mem_limit: 256M
+  mem_limit: 1024M
   # workers: prefork
   charset_type: zh_cn.utf-8
   charset_dictpath: /dat/www/jxjw/current/config/etc/
