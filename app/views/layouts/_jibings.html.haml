@@ -1,10 +1,10 @@
 .row
   .span12
+    %h3
+      #{@jibing.name}相关疾病
+      <a href="#{jibings_url}" rel="nofollow" class="more">全部...</a>
     -cache "jibings-footer-all" do
       -jibings = Jibing.all_with_az
-      %h3
-        #{@jibing.name}相关疾病
-        <a href="#{jibings_url}" rel="nofollow" class="more">全部...</a>
       %dl.az
         -jibings.each do |k,results|
           -next if results.empty?
