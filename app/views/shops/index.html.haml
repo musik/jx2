@@ -44,5 +44,8 @@
       %td {{shop.cert}}
       %td {{shop.reg_in}}
 
-
   -#= link_to 'New Shop', new_shop_path
+
+-content_for :foot do
+  %h2 网上药店大全
+  %p.description=sprintf("本站网上药店频道为你提供获得互联网药品交易服务资格证的%d家正规<strong>网上药店</strong>列表，相应网上药店网站PR、百度权重及排名信息，方便用户排序、筛选，据此判断网上药店哪家好，作为您网上买药购药的参考。",209).html_safe
