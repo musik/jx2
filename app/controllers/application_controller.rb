@@ -43,6 +43,13 @@ class ApplicationController < ActionController::Base
     # @adm_baidu
     #@adm_baidu = true
   end
+  def _noad
+      @hide_ad_before = true
+      @hide_slotf = true
+      @hide_adside = true
+      @hide_xuanfu = true
+      @hide_bottomlinks = true
+  end
   def after_sign_in_path_for(resource)
     url = after_path_for(resource)
     resource.name.blank? ? edit_profile_path(:from=>url) : url

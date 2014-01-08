@@ -13,6 +13,8 @@ Capistrano::Configuration.instance.load do
     desc "|DarkRecipes| ReStarts TS"
     task :restart, :roles => :app do
       run "cd #{current_path} && #{rake_bin} RAILS_ENV=#{rails_env} ts:restart"
+      #run "cd #{current_path} && #{rake_bin} RAILS_ENV=#{rails_env} ts:stop"
+      #run "cd #{current_path} && #{rake_bin} RAILS_ENV=#{rails_env} ts:start"
     end
 
     desc "|DarkRecipes| Stops TS"

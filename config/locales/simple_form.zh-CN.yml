@@ -20,6 +20,7 @@ zh-CN:
   activerecord:
     models:
       posts: 文章
+      shop: 药店
     attributes:
       post:
         title: 标题
@@ -28,6 +29,18 @@ zh-CN:
         keywords: 关键词
         post_type: 类型
         related: 相关药品
+      shop:
+        website: 网站
+        domain: 域名
+        affurl: 推介网址
+        linked: 反链
+        cert: 交易许可证
+        service: 服务范围
+        company_name: 单位名称
+        owner: 法人
+        address: 地址
+        reg_in: 发证日期
+        expires_in: 过期日期
     enums:
       post:
         post_types:

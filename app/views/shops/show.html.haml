@@ -1,0 +1,36 @@
+-title "#{@shop.name}_#{@shop.name}怎么样/点评",nil,false
+%h1=@shop.name
+%ul.unstyled.attrs
+  %li
+    %b 官方网站:
+    = link_to @shop.website,@shop.url,{target: "_blank"}.merge(@shop.rel)
+  %li
+    %b 
+      %abbr{title: "互联网药品交易服务资格证"} 资格证号
+    = @shop.cert
+  %li
+    %b 公司名称:
+    = @shop.company_name
+  %li
+    %b 服务范围:
+    = @shop.service
+  %li
+    %b 法人:
+    = @shop.owner
+  %li
+    %b 注册地址:
+    = @shop.address
+  %li
+    %b 注册域名:
+    = @shop.domain
+  %li
+    %b 审批日期:
+    = @shop.reg_in
+  %li
+    %b 到期日期:
+    = @shop.expires_in
+
+-if can? :edit,@shop
+  = link_to 'Edit', edit_shop_path(@shop)
+  \|
+= link_to '返回', shops_path

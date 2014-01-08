@@ -1,0 +1,48 @@
+-title "网上药店排名_中国十大正规网络药店/网上平价买药购药/网上药店哪个好",nil,false
+-meta :keywords,"网上药店,药店,网上药店排名,买药网,网上购药,网络药店,药店网,网络药店,网上十大正规药店,中国最大网上药店,平价药店"
+-@title_suffix = ""
+-@col1 = true
+
+%h1
+  网上药店排名
+%div{"ng-controller"=>"ShopsCtrl"}
+  .form-inline.form-filter.hide-on-ie6
+    %label 在名称/网址/许可证中搜索&nbsp;
+    %input{"ng-model"=> "shopq",type: "text"}
+  -if is_ie6?
+    .alert
+      %span.text-error 你使用的是IE6浏览器，以下表格的筛选、排序功能将无法启用。
+    -#%input{"ng-model"=> "shopq",type: "text","ng-change"=>"search()"}
+  = render :partial => 'list'
+  %table.table.table-bordered-bottom.hide-on-ie6{"ng-show"=>"hide_table"}
+    %tr
+      %th
+      -%w(name website pr br alexa cert reg_in).each do |k|
+        %th{class: k == "alexa" ? "text-right" : ""}
+          -if %(pr br).include? k
+            -asc = ""
+            -desc = '-'
+          -else
+            -asc = "-"
+            -desc = ''
+          <a href="" ng-click="predicate = '#{desc}#{k}'" ng-hide="predicate == '#{desc}#{k}'">#{t("shop.#{k}")}</a>
+          <a href="" ng-click="predicate = '#{asc}#{k}'" ng-show="predicate == '#{desc}#{k}'">#{t("shop.#{k}")}</a>
+          <a href="" ng-click="predicate = '#{k}'" ng-show="predicate == '-#{k}'">&or;</a>
+          <a href="" ng-click="predicate = '-#{k}'" ng-show="predicate == '#{k}'">&and;</a>
+
+    %tr{"ng-repeat"=>"shop in shops|filter:shopq |orderBy:predicate"}
+      %td {{$index + 1}}
+      %td
+        %a{href: "/yaodian/{{shop.id}}",title: "{{shop.name}}",target: "_blank"} {{shop.name|truncate}}
+      %td
+        %a{href: "{{shop.affurl || shop.website}}",title: "访问官网",target: "_blank"} {{shop.domain}}
+      %td
+        .rank.rank-pr {{shop.pr == -1 ? "-" : shop.pr}}
+      %td
+        .rank.rank-br {{shop.br == -1 ? "-" : shop.br}}
+      %td.text-right {{shop.alexa == 999999999 ? "-" : (shop.alexa|number)}}
+      %td {{shop.cert}}
+      %td {{shop.reg_in}}
+
+
+  -#= link_to 'New Shop', new_shop_path

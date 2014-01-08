@@ -10,9 +10,10 @@
   %input{a}
 -classes = nav_classes
 .nav-collapse.collapse
-  %ul.nav.nav-small
+  %ul.nav
     %li{:class=>classes[:drugs]}=link_to "药品",drugs_url,:title=>"药品查询"
     %li{class: classes[:yaopins]}=link_to "批号",yaopins_url,:title=>"药品批号查询"
+    %li{class: [classes[:shops],"focus"]}=link_to "网上药店",shops_url
     %li{class: classes[:entries]}=link_to "医药招商",entries_url
     %li{:class=>classes[:jibings]}=link_to "适应症",jibings_url
     -#%li{:class=>"focus"}=link_to "医药网站大全","http://hao.jxjw.net",:target=>"_blank"

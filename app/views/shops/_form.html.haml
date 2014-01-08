@@ -1,0 +1,22 @@
+= simple_form_for(@shop) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :website
+    = f.input :domain
+    = f.input :pr
+    = f.input :br
+    = f.input :alexa
+    = f.input :affurl
+    = f.input :linked
+    = f.input :cert
+    = f.input :company_name
+    = f.input :service
+    = f.input :owner
+    = f.input :address
+    = f.input :reg_in
+    = f.input :expires_in
+
+  .form-actions
+    = f.button :submit

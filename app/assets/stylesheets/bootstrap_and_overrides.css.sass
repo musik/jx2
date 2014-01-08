@@ -1,17 +1,22 @@
 // Set the correct sprite paths
 
+//@import url('//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic')
 //$iconSpritePath: asset-url('glyphicons-halflings.png', image)
 //$iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image)
+//$iconExternal: asset-url('external.png', image)
+$iconExternal: url('/images/external.png')
 $linkColor: #47a
+@import "readable/variables"
+@import "readable/bootswatch"
 @import "bootstrap"
 body
-  padding-top: 40px
+  padding-top: 50px
   background: #333
 body.c-entries  
+  padding-top: 86px
   .content
     background: transparent
     border: 0
-  #main
 //@import "bootstrap-responsive"
 @import "bootstrap/responsive-utilities"
 @import "bootstrap/responsive-768px-979px"
@@ -153,7 +158,10 @@ body.bdapp
 .navbar-form  
   margin-right: 1em
 .navbar .nav-small > li > a  
-  padding: 10px 5px
+  padding: 15px 5px 0
+.navbar .nav-small > li.active > a  
+  padding: 15px 15px
+  margin: 0 10px
 .page-header-2
   border: none
   margin: 10px 0 5px
@@ -163,7 +171,7 @@ body.bdapp
   margin: 2em 0 0
 h1,h2,h3
   font-family: "microsoft yahei","Helvetica Neue", Helvetica, Arial, sans-serif
-  line-height: 1.5
+  //line-height: 1.5
 h3
   font-size: 14px
 h1.appname
@@ -175,14 +183,14 @@ h1.appname
     color: #999
 h1
   font-size: 24px
-  line-height: 1.5
-  margin: 0
 h1.sitename    
   font-size: 14px
   line-height: 1.5em
   display: inline
 h1#pt
   padding-top: 10px
+h1.first,h1.pd
+  margin-top: 0
 h2
   font:
     size: 18px
@@ -572,10 +580,8 @@ ol.ranks-without-vote
 .jibing      
   .i
     width: 108px
-.toplinks,.bottomlinks
 .bottomlinks
   padding: 15px 9px
-    
 .a328  
   float: left
   width: 340px
@@ -771,3 +777,36 @@ p.description
     font-weight: 500
 ul.posts
   margin-bottom: 10px
+ul.attrs
+  border-top: 1px solid #ddd
+  li
+    line-height: 2.5em
+    height: 2.5em
+    border-bottom: 1px solid #ddd
+    b
+      float: left
+      width: 100px
+      text-indent: 5px
+      font-weight: 500
+a.external
+  padding-left: 18px
+  background: $iconExternal 0 50% no-repeat
+.form-filter
+  padding: 5px 
+  background: #f8f8f8
+  border-top: 1px solid #eee
+.table td.text-right,.table th.text-right
+  text-align: right
+.table td.br,.table th.br
+  text-align: center
+.rank
+  width: 45px
+  height: 20px
+  text-indent: 28px
+.rank-pr
+  background: url(/images/pr.gif) 0 0 no-repeat
+.rank-br
+  background: url(/images/br.gif) 0 0 no-repeat
+  
+.table-bordered-bottom
+  border-bottom: 1px solid #ddd

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103070651) do
+ActiveRecord::Schema.define(:version => 20140108093816) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -232,6 +232,29 @@ ActiveRecord::Schema.define(:version => 20140103070651) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "shops", :force => true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.string   "affurl"
+    t.boolean  "linked"
+    t.string   "cert"
+    t.string   "company_name"
+    t.string   "service"
+    t.string   "owner"
+    t.string   "address"
+    t.string   "domain"
+    t.date     "reg_in"
+    t.date     "expires_in"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "pr",           :limit => 1
+    t.integer  "br",           :limit => 1
+    t.integer  "alexa"
+    t.integer  "priority",     :limit => 1
+  end
+
+  add_index "shops", ["domain"], :name => "index_shops_on_domain"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

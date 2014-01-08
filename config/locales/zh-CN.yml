@@ -4,6 +4,11 @@ zh-CN:
   search: 搜索
   appname: 国药准字查询
   appname_short: 国药准字
+  date:
+    order:
+      - :year
+      - :month
+      - :day
   breadcrumbs:
     home: 首页
     drugs: 药品查询
@@ -28,6 +33,15 @@ zh-CN:
     show:
       keywords: "%{name},%{name}吃什么药,%{name}吃什么好"
       description: "%{name}频道根据国家食品药品监督局药品数据，以数万种药品说明书中适应症智能匹配，列出最适宜治疗%{name}的药品，辅于%{name}的简要介绍，作为判断%{name}吃什么药好的有益参考"
+  shop:
+    name: 名称
+    website: 官方网站
+    pr: Pr
+    br: 百度权重
+    alexa: Alexa排名
+    cert: 资格证号
+    reg_in: 审批日期
+
   yaopin:
     attrs:
       name: 药名

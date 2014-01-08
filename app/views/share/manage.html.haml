@@ -1,0 +1,30 @@
+-title "网上药店排名_中国十大正规网络药店/网上平价买药购药/网上药店哪个好",nil,false
+-meta :keywords,"网上药店,药店,网上药店排名,买药网,网上购药,网络药店,药店网,网络药店,网上十大正规药店,中国最大网上药店,平价药店"
+-@title_suffix = ""
+-@col1 = true
+
+%h1 网上药店排名
+%table.table
+  %tr
+    %th
+    %th 名称
+    %th 官网
+    %th 资格证
+    %th 过期日期
+    %th
+
+  - @shops.each_with_index do |shop,i|
+    %tr
+      %td= i + 1
+      %td= link_to shop.name.truncate(12),shop_url(shop),title: "#{shop.name}"
+      %td= link_to shop.website.sub('http://',''),shop.url,{target: "_blank",class: "external"}.merge(shop.rel)
+      %td= shop.cert
+      %td= shop.expires_in
+      %td
+        = link_to 'Edit', edit_shop_path(shop)
+        \|
+        = link_to 'Destroy', shop, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Shop', new_shop_path

@@ -1,6 +1,11 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  resources :shops,path: "yaodian" do
+    get "redirect",on: :member
+  end
+
+
   resources :options
 
 

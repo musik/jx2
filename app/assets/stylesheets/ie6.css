@@ -11,11 +11,11 @@ body {background:#ffffff;background-image:none; padding:0}
 .nav li a {display: block}
 .navbar .nav .active  a, .navbar .nav .active  a:hover {background-color:#000;color: #FFFFFF;text-decoration: none}
     .navbar .nav li {display:block;float:left}
-        .navbar .nav li a {float:none;line-height:19px;padding:10px 10px 11px}
-        .navbar .nav li a:hover {background-color:transparent;color:#ffffff;text-decoration:none}
+        .navbar .nav li a {float:none;line-height:19px;padding:15px 10px 16px}
+        .navbar .nav li a:hover {background-color:transparent;color:#666;text-decoration:none}
 
         .navbar .nav .active a,
-            .navbar .nav .active a:hover {color:#ffffff;text-decoration:none;background-color:#222222;background-color:#000}
+            .navbar .nav .active a:hover {color:#666;text-decoration:none;background-color:#eee}
         .navbar .nav .open .dropdown-toggle,
             .navbar .nav .active .dropdown-toggle,
             .navbar .nav .open.active .dropdown-toggle{background-color:transparent}
@@ -107,6 +107,7 @@ ul.thumbnails {margin-left:-20px;float:none;display:inline-block;zoom:1;clear:bo
     .modal-header a.close {cursor: pointer}
 
 /*custom*/
+body.c-entries{padding: 0}
 .navbar{
   border-bottom: 0px solid #aaa;
 }
@@ -116,6 +117,9 @@ ul.thumbnails {margin-left:-20px;float:none;display:inline-block;zoom:1;clear:bo
 
 #main{
   margin-top: 20px;
+}
+body.c-entries #main{
+  margin-top: 0
 }
 #main .container{
 	border: 1px solid #ccc;
@@ -134,3 +138,10 @@ ul.thumbnails {margin-left:-20px;float:none;display:inline-block;zoom:1;clear:bo
 /*#entries-search-results li a,#entries-search-results li span{*/
   /*white-space: normal;*/
 /*}*/
+.hide-on-ie6{
+  display: none;
+}
+
+
+.subnav a{
+  padding: 10px 18px

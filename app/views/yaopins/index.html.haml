@@ -14,7 +14,7 @@
         -Yaopin.all_leibie.each do |str|
           %li=link_to str,leibie_url(str) unless str.nil?
   .span9
-    %h1.pd=yield :header
+    %h1.first=yield :header
     .slotb=ubaidu 1420733,'jx-pihaos-before'
     %ul.pihao-list
       - @yaopins.each do |yaopin|

@@ -7,6 +7,7 @@ gem 'mysql2'
 gem 'execjs'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
@@ -93,6 +94,7 @@ gem 'prawn_rails'
 
 gem 'settingslogic'
 gem 'figaro'
+gem 'rails-i18n'
 gem 'devise-i18n-views'
 
 gem 'acts_as_commentable_with_threading'
@@ -105,3 +107,6 @@ gem 'high_voltage'
 
 gem 'yaml_db'
 gem 'newrelic_rpm'
+gem 'angularjs-rails'
+gem 'letsrate'
+gem 'PageRankr'

@@ -1,6 +1,6 @@
 class CreateJiItems < ActiveRecord::Migration
   def change
-    create_table :ji_items do |t|
+    create_table :ji_items  do |t|
       t.references :jibing
       t.references :drug
       t.integer :position,:default=>1

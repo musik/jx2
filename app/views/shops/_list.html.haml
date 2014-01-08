@@ -1,0 +1,19 @@
+%table.table{"ng-hide"=>"hide_table"}
+  %tr
+    %th
+    -%w(name website pr br alexa cert reg_in).each do |k|
+      %th{class: k == "alexa" ? "text-right" : ""}
+        =t("shop.#{k}")
+
+  - @shops.each_with_index do |shop,i|
+    %tr
+      %td= i + 1
+      %td= link_to shop.name.truncate(12),shop_url(shop),title: "#{shop.name}"
+      %td= link_to shop.website.sub('http://','').sub(/^www\./,''),shop.url,{target: "_blank",class: "external"}.merge(shop.rel)
+      %td
+        .rank.rank-pr= shop.pr || '-'
+      %td
+        .rank.rank-br= shop.br || '-'
+      %td.text-right= shop.alexa? ? number_with_delimiter(shop.alexa) : '-'
+      %td= shop.cert
+      %td= shop.expires_in

@@ -98,7 +98,7 @@ document.write(\'<A href="mailto:\' + emailE + \'">\' + emailE + \'</a>\')
     txt.gsub(/<a href="(.+?)">/,'<a href="/redirect?url=\1" target="_blank" rel="nofollow">').html_safe
   end
   def is_ie6?
-    request.env['HTTP_USER_AGENT'].match(/MSIE 6\.0/).present?
+    request.env['HTTP_USER_AGENT'].present? and request.env['HTTP_USER_AGENT'].match(/MSIE 6\.0/).present?
   end
   def bdshare
     content_for:footer do
