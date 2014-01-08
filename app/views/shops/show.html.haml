@@ -1,4 +1,6 @@
 -title "#{@shop.name}_#{@shop.name}怎么样/点评",nil,false
+-meta :keywords,t('.keywords',name: @shop.name)
+-meta :description,t('.description',name: @shop.name,cert: @shop.cert)
 %h1=@shop.name
 %ul.unstyled.attrs
   %li
@@ -34,3 +36,14 @@
   = link_to 'Edit', edit_shop_path(@shop)
   \|
 = link_to '返回', shops_path
+-content_for :foot do
+  %h2 #{@shop.name}介绍
+  %p.description=sprintf("%1$s是由国家食品药品监督局颁发互联网药品交易服务资格证的正规网上药店，资格证号为%2$s。",@shop.name,@shop.cert).html_safe
+  %h3 #{@shop.name}相关药店
+  -token = Digest::MD5.hexdigest(request.url)[0,2]
+  -cache "related-shops-#{token}" do
+    -shops = Shop.order("rand()").limit(42)
+    %p.links
+      -shops.each do |shop|
+        =link_to shop.name.truncate(10),shop,title: shop.name
+
