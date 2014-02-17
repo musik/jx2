@@ -4,6 +4,16 @@
 -@title_suffix = ""
 -@col1 = true
 
+-content_for :banner do
+  =ubaidu 1470606,"药店频道首页960*90，创建于2014-2-17" 
+  .mt1e
+    .leftlinks
+      =ubaidu 1470620,"药店频道左侧头部链接620*160，创建于2014-2-17"
+    .righttext
+      .well
+        %strong 网上药店频道介绍
+        =t('.description')
+    .clearfix
 %h1
   网上药店排名
 %div{"ng-controller"=>"ShopsCtrl"}

@@ -1,6 +1,11 @@
 -title "#{@shop.name}_#{@shop.name}怎么样/点评",nil,false
 -meta :keywords,t('.keywords',name: @shop.name)
 -meta :description,t('.description',name: @shop.name,cert: @shop.cert)
+-@spans = 8
+-content_for :banner do
+  =ubaidu 1470606,"药店频道首页960*90，创建于2014-2-17" 
+-content_for :before_links do
+  =ubaidu 1470651,"药店单页左上链接610*140，创建于2014-2-17"
 %h1=@shop.name
 %ul.unstyled.attrs
   %li

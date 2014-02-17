@@ -2,6 +2,9 @@
 -#=adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"toplinks"
 .row
   %div{:class=>"span#{@spans}"}
+    -if content_for? :before_links
+      .before_links
+        =yield :before_links
     .content-left
       =slotb unless @hide_ad_before
       -if show_title?

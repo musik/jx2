@@ -35,6 +35,9 @@
         .container
           .subnav.subnav-fixed
             = render :partial => 'layouts/zhaoshang'
+      -if content_for? :banner
+        .banner
+          =yield :banner
       .container
         -if is_ie6?
           = render :partial => 'layouts/ie6_warning'
@@ -92,9 +95,11 @@
 
             =link_to "医药招商",entries_url
             \|
-            =link_to "按批准日期规档",archive_url
+            =link_to "批准日期",archive_url
             \|
             =link_to "资讯",posts_url
+            \|
+            =link_to "医药网站大全","http://hao.jxjw.net",:target=>"_blank",class: "external"
           .pull-right
             =yield(:title) || t('appname')
 
