@@ -1,0 +1,75 @@
+-title t('home.index.title'),nil,false
+-meta_desc t('home.index.desc')
+-keywords t('home.index.keywords')
+-@hide_bread = true
+-@hide_cjyp = true
+-@hide_ad_before = true
+-@hide_slotf = true
+-@hide_title_suffix = true
+-@title_suffix = ""
+-@hide_toplinks = true
+
+-@col1 = true
+
+-#-if @ref_keywords.present?
+  -#.alert
+    -#你是不是要找
+    -#-@ref_keywords.each do |str|
+      -#=link_to CGI.unescape(str),"/pihao/search?q=#{str}",:target=>'_blank'
+    -#?
+
+.clearfix
+.row
+  .span8
+    =ubaidu 1270004,'jx-home-before'
+    %section
+      -cache "home-cjjb",:expires_in=>1.day do 
+        .jibings_all
+          %h2.hd2 常见疾病吃什么药
+          -@jibings = Jibing.all_with_az
+          -@jibings.each do |k,jibings|
+            -next if jibings.empty?
+            %dl{:class=>cycle('a','b')}
+              %dt=k.upcase
+              %dd
+                -jibings.each do |jibing|
+                  = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药",:target=>'_blank'
+    .slot=ubaidu 1420254,"jx-home-bottom-500"
+  .span4.sidebar
+    .boxa
+      <!-- 广告位：jxjw.net首页右侧栏顶部 -->
+      -#<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "827835";</script>
+      -#<script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
+      -#<script type="text/javascript" >document.write('<div class="" style="width:200px;margin: 10px 0 10px;"><a href="javascript://" title="首页广告位300*100px.￥200一月，有意请洽QQ58265826.">购买此处广告</a></div>')</script>
+      =ubaidu 1398557,'jx-home-cloud-300x200'
+    .box
+      -limit= 50
+      -cache "home-sjyp-#{limit}",:expires_in=>13.minutes do
+        %h3.head 随机药品
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+        .normal.links
+          -#-Drug.random_by_id_shuffle(limit).each do |d|
+          -results.each do |d|
+            -next if d.nil?
+            <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
+          .clearfix
+    .boxa=ubaidu 1263949,"jx-home-side-300x250"
+    .box
+      %h3.head 资讯更新
+      -cache "recent-posts-15",:expires_in=>17.minutes do
+        -results = Post.published.recent.limit(15).all
+        -if results.present?
+          %ul.unstyled.normal
+            -results.each do |r|
+              %li=link_to r.title,r.path
+    .box
+      %h3.head 随机批号
+      -limit = 24
+      -cache "random-yaopin-#{limit}",:expires_in=>33.minutes do
+        -#-results = Yaopin.random_by_id_shuffle(limit)
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+        .unstyled.links
+          -results.each do |yaopin|
+            -next if yaopin.nil?
+            <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
+

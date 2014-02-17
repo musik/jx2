@@ -6,7 +6,9 @@ class HomeController < ApplicationController
   def index
     #_parse_referer
     @adm_baidu = false
-    render 'index',:layout=>"application"
+    @ab = %w(a b).sample
+    #@ab = 'b'
+    render "index_#{@ab}",:layout=>"application"
   end
   def mmseg
     @results = Drug.mmseg
