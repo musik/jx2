@@ -1,7 +1,7 @@
 -allow_guests = true
 #comment
   -if allow_guests || user_signed_in?
-    -@comment = Comment.new
+    -@comment ||= Comment.new
     -if user_signed_in?
       -@comment.author_name = current_user.name
       -@comment.author_email = current_user.email

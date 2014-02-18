@@ -1,3 +1,4 @@
+#encoding: utf-8
 class CommentsController < ApplicationController
   authorize_resource
   # GET /comments
@@ -26,7 +27,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.json
   def new
-    @comment = Comment.new
+    @comment ||= Comment.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,14 +52,19 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to params[:aurl], notice: 'Comment was successfully created.' }
+        format.html { redirect_to params[:aurl], notice: '留言成功' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
+        logger.debug @comment.errors.inspect
         format.html { 
-          logger.debug @comment.errors.inspect
-          #render action: "new" 
-          redirect_to params[:aurl]
-        
+          @name = @obj.respond_to?(:wenhao) ? @obj.wenhao : @obj.name
+          if @obj.is_a?(Yaopin)
+            @link = "/pihao/#{CGI.escape @obj.wenhao}"
+          end
+          breadcrumbs.add @name,@link
+          @hide_bread = false
+          render action: "new" 
+          #redirect_to params[:aurl]
         }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end

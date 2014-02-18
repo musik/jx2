@@ -1,5 +1,6 @@
+#encoding: utf-8
 class Comment < ActiveRecord::Base
-  include Rakismet::Model
+  #include Rakismet::Model
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates_presence_of :author_name
@@ -18,6 +19,13 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   #rakismet_attrs :author=>proc{user.name},:author_email=>proc{user.email}
   #rakismet_attrs :author=>'Sacramento computer repair',:author_email=>'leroy_denny@hotmail.de',:content=>:body
+  validate :must_have_chinese_word
+  def must_have_chinese_word
+    errors.add(:body,'必须含有中文') unless chinese_body?
+  end
+  def chinese_body?
+    body.match(/[\u4e00-\u9fa5]+/).present?
+  end
 
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text

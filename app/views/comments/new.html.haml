@@ -1,5 +1,4 @@
-%h1 New comment
+%h1 评论"<a href='#{@link}'>#{@name}</a>"
+%br
+= render partial: 'form',locals: {obj: @obj}
 
-= render 'form'
-
-= link_to 'Back', comments_path

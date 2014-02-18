@@ -5,7 +5,7 @@
     %strong 网友跟贴
     %ul.comments
       -comments.each do |c|
-        %li{:class=>c.spam? ? "spam" : nil}
+        %li
           %cite #{c.author_name}
           %date.muted #{c.created_at.to_formatted_s(:db)}
           %p #{c.body}
