@@ -51,6 +51,13 @@
 
     -#=paginate @pihao
     =xpaginate @pihao
+    -@related = Drug.search(@drug.name,match_mode: :any)
+    -if @related.size > 1
+      %h2 #{@drug.name}相关药品
+      .drugs
+        -@related.each do |drug|
+          .drug
+            <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
 
     -@posts = Post.search(@drug.name)
     -if @posts.present?
