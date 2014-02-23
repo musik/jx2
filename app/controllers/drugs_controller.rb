@@ -124,7 +124,12 @@ class DrugsController < ApplicationController
         if @drug.category.present?
           set_category_crumbs @drug.category,false
         end
-        breadcrumbs.add @drug.name,nil
+        if params[:page].nil?
+          breadcrumbs.add @drug.name,nil
+        else
+          breadcrumbs.add @drug.name,"/yaopin/#{CGI.escape @drug.name}/pihao"
+          breadcrumbs.add "第#{params[:page]}页",nil
+        end
         @pihao = @drug.yaopins.newest.page(params[:page] || 1).per(100)
       }
       format.pdf
