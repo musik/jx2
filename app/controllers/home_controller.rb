@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     #_parse_referer
     @adm_baidu = false
     @ab = %w(a b).sample
-    #@ab = 'b'
+    @ab = 'b'
     render "index_#{@ab}",:layout=>"application"
   end
   def mmseg

@@ -6,10 +6,7 @@
 -@hide_adside = true if @pihao.empty?
 .row-fluid
   .span3.sidebar
-    -scopes = %w(kad yaofangcn dada360 jxdyf)
-    -@items = @drug.items.select("items.scope,price,url").all.sort{|a,b| scopes.index(a.scope)<=>scopes.index(b.scope)}
-    -@items.reject!{|a| a.scope != 'kad'} if @items.collect{|r| r.scope}.include?("kad")
-    -@items.reject!{|a| a.scope == 'dada360'}
+    -@items = @drug.nice_items
     -if @items.present?
       #buylink
       .price-widget

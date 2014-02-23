@@ -48,6 +48,13 @@ class Drug < ActiveRecord::Base
   def update_items_count
     update_attribute :items_count,items.count
   end
+  def nice_items
+    scopes = %w(kad yaofangcn dada360 jxdyf)
+    results = items.select("items.scope,price,url").all.sort{|a,b| scopes.index(a.scope)<=>scopes.index(b.scope)}
+    results.reject!{|a| a.scope != 'kad'} if results.collect{|r| r.scope}.include?("kad")
+    results.reject!{|a| a.scope == 'dada360'}
+    results
+  end
 
   class << self
     def find *args
