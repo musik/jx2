@@ -6,30 +6,42 @@
 -@hide_adside = true if @pihao.empty?
 .row-fluid
   .span3.sidebar
+    -unless @pihao.empty?
+      .sidelink=ubaidu 1420705,'jx-dpihao-sidelink'
+    -#-if @items.empty?
+      -##buylink
+      -#%h3.small #{@drug.name.truncate(9)}购买链接
+      -#%p
+        -#%span 搜索: 
+        -#=link_to_360kad @drug.name
+  .span9
+    %h1.pd=@drug.name
     -@items = @drug.nice_items
     -if @items.present?
       #buylink
-      .price-widget
-        %h2 #{@drug.name}价格
-        %table.table
-          -@items.each do |item|
-            %tr
-              %td=eval("item_link_#{item.scope}(item)")
-              %td
+      .buylinks
+        .proprice
+          %span.pricetype 参考价格
+          %span.price=number_to_currency(@items.first.price)
+        .proprice
+          %span.pricetype 商家报价
+          %ul.prices
+            -@items.each do |item|
+              %li
+                =eval("item_link_#{item.scope}(item)")
                 %span.price=number_to_currency(item.price)
     -unless @pihao.empty?
-      .sidelink=ubaidu 1420705,'jx-dpihao-sidelink'
+      .slotb=ubaidu 1420702,'jx-dpihao-before'
     -if @items.empty?
       #buylink
-      %h3.small #{@drug.name.truncate(9)}购买链接
-      %p
-        %span 搜索: 
-        =link_to_360kad @drug.name
-  .span9
-    %h1.pd=@drug.name
-    -unless @pihao.empty?
-      .slotb=ubaidu 1420702,'jx-dpihao-before'
-    -if @drug.description.present?
+      .buylinks
+        .proprice
+          %span.pricetype 参考价格
+          %span.price 暂无报价
+        .proprice
+          %span.pricetype 商家报价
+          =link_to_360kad @drug.name
+    -if is_first? && @drug.description.present?
       -@jibings = @drug.jibings.all
       -if @jibings.present?
         %strong 适应症
@@ -48,20 +60,25 @@
 
     -#=paginate @pihao
     =xpaginate @pihao
-    -@related = Drug.search(@drug.name,match_mode: :any)
-    -if @related.size > 1
-      %h2 #{@drug.name}相关药品
-      .drugs
-        -@related.each do |drug|
-          .drug
-            <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+    -if is_first?
+      -@related = Drug.search(@drug.name,match_mode: :any)
+      -if @related.size > 1
+        %h2 #{@drug.name}相关药品
+        .drugs
+          -@related.each do |drug|
+            .drug
+              <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+        .clearfix
 
-    -@posts = Post.search(@drug.name)
-    -if @posts.present?
-      %h3 #{@drug.name}相关资讯
-      %ul.posts
-        -@posts.each do |p|
-          %li
-            =link_to p.title,p.path
+      -@posts = Post.search(@drug.name)
+      -if @posts.present?
+        %h3 #{@drug.name}相关资讯
+        %ul.posts
+          -@posts.each do |p|
+            %li
+              =link_to p.title,p.path
+    -else
+      -@posts = []
+
     -if (@pihao.size + @posts.size) > 5
       .slotb=ubaidu 1420750,'jx-dpihao-bottom'

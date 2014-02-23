@@ -100,6 +100,9 @@ document.write(\'<A href="mailto:\' + emailE + \'">\' + emailE + \'</a>\')
   def is_ie6?
     request.env['HTTP_USER_AGENT'].present? and request.env['HTTP_USER_AGENT'].match(/MSIE 6\.0/).present?
   end
+  def is_first?
+    params[:page].nil?
+  end
   def bdshare
     content_for:footer do
       render :file=>"share/bdshare_js"

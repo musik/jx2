@@ -51,8 +51,12 @@ class Drug < ActiveRecord::Base
   def nice_items
     scopes = %w(kad yaofangcn dada360 jxdyf)
     results = items.select("items.scope,price,url").all.sort{|a,b| scopes.index(a.scope)<=>scopes.index(b.scope)}
-    results.reject!{|a| a.scope != 'kad'} if results.collect{|r| r.scope}.include?("kad")
-    results.reject!{|a| a.scope == 'dada360'}
+    if results.collect{|r| r.scope}.include?("kad")
+        results.reject!{|a| a.scope != 'kad'} 
+        results.sort!{|a,b| a.price <=> b.price}
+      else
+        results.reject!{|a| a.scope == 'dada360'}
+    end
     results
   end
 
