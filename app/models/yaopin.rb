@@ -102,6 +102,7 @@ class Yaopin < ActiveRecord::Base
       #doc = get_doc(@url + "base.jsp?tableId=#{table}&curstart=#{page}") 
       @total_page ||= doc.text.match(/共(\d+)页 共\d+条/)[1].to_i
       #pp doc if Rails.env.test?
+      #todo: 检查药品是否存在
       doc.css('p[align=left] a').each do |node|
         ms = node.attr("href").match(/tableId=(\d+).+?Id=(\d+)/)
         next if ms.nil?

@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  get "settings/index"
+
   resources :shops,path: "yaodian" do
     get "redirect",on: :member
   end
@@ -106,6 +108,7 @@ Yl::Application.routes.draw do
       request.env['warden'].user.has_role?(:admin))
   end
   constraints resque_constraint do
+    match '/settings(/:action(/:id))'=>"settings"
     mount Resque::Server.new, :at => "/resque"
   end
   #match '/(ask|wiki)/:id' => "posts#show",as: "po"

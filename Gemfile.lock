@@ -80,6 +80,10 @@ GEM
       resque-scheduler
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    china_region_fu (0.0.6)
+      actionpack
+      activesupport
+      httparty
     chronic (0.9.1)
     coderay (1.1.0)
     coffee-rails (3.2.2)
@@ -472,6 +476,7 @@ DEPENDENCIES
   capistrano-helpers
   capistrano-recipes
   capistrano-resque
+  china_region_fu
   coffee-rails (~> 3.2.1)
   database_cleaner (>= 0.8.0)
   devise

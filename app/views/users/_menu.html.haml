@@ -6,6 +6,7 @@
       = link_to('设置', edit_user_registration_path)
     - if current_user.has_role? :admin
       %li= link_to('管',rails_admin_path)
+      %li= link_to('设','/settings')
     %li
       = link_to('登出', destroy_user_session_path, :method=>'delete')
   -else
