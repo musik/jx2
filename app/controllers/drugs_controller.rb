@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 #encoding: utf-8
 class DrugsController < ApplicationController
+  has_mobile_fu 
+  has_mobile_fu_for :index,:shouzi,:category
   caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },
     :cache_path => Proc.new{params}
   load_and_authorize_resource :except=>[:category,:pihao,:shuomingshu,:track,:shouzi]
@@ -18,13 +20,19 @@ class DrugsController < ApplicationController
       @drugs = @drugs.where(:abbr=>params[:abbr])
       @title = "#{@abbr}开头的药品"
       breadcrumbs.add "#{@abbr}开头"
+      @hide_shouzis = true
     elsif params[:shouzi].present?
       @shouzi = params[:shouzi]
       @title = "#{@shouzi}字开头的药品"
       @drugs = @drugs.where(:shouzi=>params[:shouzi]) 
       breadcrumbs.add "#{@shouzi}字开头"
+      @hide_shouzis = true
     else
-      @categories = Category.roots
+      if params[:page].present?
+        @hide_shouzis = true
+      else
+        @categories = Category.roots
+      end
     end
     breadcrumbs.add "第#{params[:page]}页",nil if params[:page]
     respond_to do |format|
@@ -70,6 +78,7 @@ class DrugsController < ApplicationController
     set_category_crumbs @category
 
     @drugs = @drugs.page(params[:page] || 1).per(100)
+    @hide_shouzis = true
 
     @title = @category.name
     render :index

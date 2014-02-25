@@ -1,0 +1,40 @@
+-@title_suffix = @title ? "_药品查询" : ""
+-title (@title || "药品查询"),nil,false
+%h1=yield :header
+-unless @hide_az
+  <b>首字母索引</b>
+  .btn-group
+    -("A".."Z").to_a.each do |s|
+      =link_to s,drugs_url(:abbr=>s),:title=>"#{s}开头药品",class: "btn"
+  %hr
+-if @categories
+  %ul.nav.nav-tabs.nav-stacked
+    %li.active
+      %a{href: "#"}
+        %h3.head 类别
+    -@categories.each do |c|
+      -if @category.present? and c.id == @category.id
+        %li= c.name
+      -else
+        %li=link_to c.name,c,:title=>c.name
+-unless @hide_shouzis
+  -min = 50
+  -cache "drug-shouzi-mobile-#{min}" do
+    -groups = Drug.shouzis(min)
+    %h3 首字索引
+    .btns
+      -groups.each do |g|
+        %a.btn{href: drugs_url(:shouzi=>g[0])}
+          =g[0]
+          %small=g[1]
+      %p.more
+        =link_to "更多..",shouzi_drugs_url,class: "btn btn-success"
+-if @drugs
+  =xpaginate @drugs,:window=>20
+  .clearfix
+  %ul.nav.nav-tabs.nav-stacked
+    - @drugs.each do |drug|
+      %li
+        <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+  =xpaginate @drugs,:window=>20
+  .clearfix

@@ -16,9 +16,11 @@
           = render 'layouts/navigation'
     #main.container{:role => "main"}
       .content
+        =ubaidu 1402997,'mobile','m'
         -if show_title?
           %h1=yield :header
         = yield
+        =ubaidu 1402999,'mobile-bottom','m'
       %footer
     = javascript_include_tag "mobile"
     = yield(:footer)
