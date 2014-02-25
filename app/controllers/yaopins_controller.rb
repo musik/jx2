@@ -10,8 +10,8 @@ class YaopinsController < ApplicationController
   # GET /yaopins
   # GET /yaopins.json
   def index
+    @yaopins = Yaopin.order("id desc").page(params[:page] || 1).per(params[:per] || 100)
     if params[:name].present?
-      @yaopins = Yaopin.order("id desc").page(params[:page] || 1).per(params[:per] || 100)
       @yaopins = @yaopins.where(:name=>params[:name])
     end
 
