@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 class HomeController < ApplicationController
-  #caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 }
   has_mobile_fu 
   has_mobile_fu_for :index
+  caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 && !in_mobile_view?}
   def index
     #_parse_referer
     @adm_baidu = false
