@@ -46,7 +46,7 @@
       %td
         %a{href: "/yaodian/{{shop.id}}",title: "{{shop.name}}",target: "_blank"} {{shop.name|truncate}}
       %td
-        %a{href: "{{shop.affurl || shop.website}}",title: "访问官网",target: "_blank"} {{shop.domain}}
+        %a{href: "{{shop.affurl || shop.website}}",'ng-click'=> "track(shop.domain)",title: "访问官网",target: "_blank"} {{shop.domain}}
       %td
         .rank.rank-pr {{shop.pr == -1 ? "-" : shop.pr}}
       %td

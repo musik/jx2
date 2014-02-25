@@ -16,6 +16,9 @@ function ShopsCtrl($scope,$http) {
       $scope.shops =  data;
     })
   }
+  $scope.track = function(name){
+    _hmt.push(['_trackEvent','yaodian','home',name]);
+  }
 }
 var App = angular.module('Shops',['filters']);
 //angular.module('myApp', ['filters']);

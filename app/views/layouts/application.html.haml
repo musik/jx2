@@ -10,7 +10,7 @@
       -else
         =t('appname')
     = stylesheet_link_tag    "application", :media => "all"
-    -#=javascript_tag 'var _hmt = _hmt || [];'
+    =javascript_tag 'var _hmt = _hmt || [];'
     = csrf_meta_tags
     = yield(:head)
     -@js ||= 'application'
@@ -104,7 +104,6 @@
             =yield(:title) || t('appname')
 
     = javascript_include_tag @js unless is_ie6?
-    .hidden=render "layouts/tongji" if Rails.env.production?
     = yield(:footer)
     -unless @hide_xuanfu
       <script type="text/javascript">
@@ -112,3 +111,4 @@
       var cpro_id = "u1398295";
       </script>
       <script src="http://cpro.baidustatic.com/cpro/ui/f.js" type="text/javascript"></script>
+    .hidden=render "layouts/tongji" if Rails.env.production?
