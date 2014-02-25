@@ -1,0 +1,22 @@
+-@title_suffix = @title ? "_药品批号查询" : ""
+-title (@title || "药品批号查询"),nil
+%ul.nav.nav-tabs.nav-stacked
+  %li=link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
+  %li=link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
+  %li=link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
+  %li=link_to "国药试字",search_yaopins_url(:q=>"国药试字")
+  -unless @hide_leibie
+    -Yaopin.all_leibie.each do |str|
+      %li=link_to str,leibie_url(str) unless str.nil?
+-if @yaopins
+  %ul.pihao-list
+    - @yaopins.each do |yaopin|
+      %li.pihao{:class=>cycle('odd','even')}
+        .fn
+          =link_to yaopin.wenhao,yaopin,:target=>'_blank'
+          -unless yaopin.name.nil?
+            \-
+            =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao",:target=>'_blank'
+            .pull-right
+              =link_to_360kad yaopin.name,"购买"
+  =xpaginate @yaopins,:window=>100

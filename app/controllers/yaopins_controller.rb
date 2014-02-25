@@ -3,15 +3,15 @@ class YaopinsController < ApplicationController
   load_and_authorize_resource :except=>%w(name jixing leibie auto_complete search track map)
 
   has_mobile_fu
-  has_mobile_fu_for :search
+  has_mobile_fu_for :index,:leibie,:search
   caches_action :index,:search,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },:cache_path => Proc.new{ params.merge :format=>request.format }
   before_filter :init_breadcrumbs#,:except=>[:show]
 
   # GET /yaopins
   # GET /yaopins.json
   def index
-    @yaopins = Yaopin.order("id desc").page(params[:page] || 1).per(params[:per] || 100)
     if params[:name].present?
+      @yaopins = Yaopin.order("id desc").page(params[:page] || 1).per(params[:per] || 100)
       @yaopins = @yaopins.where(:name=>params[:name])
     end
 
