@@ -61,7 +61,7 @@
     -#=paginate @pihao
     =xpaginate @pihao
     -if is_first?
-      -@related = Drug.search(@drug.name,match_mode: :any)
+      -@related = Drug.search(@drug.name,without: {id: @drug.id},match_mode: :any)
       -if @related.size > 1
         %h2 #{@drug.name}相关药品
         .drugs

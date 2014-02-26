@@ -24,5 +24,12 @@
     .prev
       上一篇:
       =link_to @prev.title,@prev.path
+-@posts = Post.search(@post.title,without: {id: @post.id} ,match_mode: :any)
+-if @posts.present?
+  %h3 #{@post.title}相关资讯
+  %ul.posts
+    -@posts.each do |p|
+      %li
+        =link_to p.title,p.path
 -if can? :edit,@post
   =link_to "编辑",edit_post_url(@post)

@@ -17,6 +17,7 @@ class Drug < ActiveRecord::Base
   resourcify
   define_index do
     indexes :name
+    has :id
   end
   
   def to_param

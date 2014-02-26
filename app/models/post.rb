@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
     indexes :title
     indexes :content
     indexes :related
+    has :id
     has :post_type_cd
     set_property :delta => ThinkingSphinx::Deltas::ResqueDelta
   end
