@@ -104,6 +104,9 @@ class Yaopin < ActiveRecord::Base
       #pp doc if Rails.env.test?
       #todo: 检查药品是否存在
       doc.css('p[align=left] a').each do |node|
+        wenhao = node.text().match(/国药.字(\w\d+)/)[0] rescue nil
+        next if wenhao.nil?
+        next if Yaopin.exists?(wenhao: wenhao)
         ms = node.attr("href").match(/tableId=(\d+).+?Id=(\d+)/)
         next if ms.nil?
         #delay.get_item ms[1],ms[2]

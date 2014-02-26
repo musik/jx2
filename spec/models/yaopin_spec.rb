@@ -5,7 +5,7 @@ describe Yaopin do
   it "should sdfa" do
     #Yaopin::Sfda.new.run
     #Yaopin::Sfda.new.process 8
-    Yaopin::Sfda.new.get_list(25,3)
+    #Yaopin::Sfda.new.get_list(25,3)
     #Yaopin::Sfda.new.search('H2013')
     #Yaopin::Sfda.new.get_item(25,78298)
     # Drug.import_yaopins  
