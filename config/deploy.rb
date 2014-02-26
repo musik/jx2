@@ -109,9 +109,9 @@ role :resque_scheduler, "gxr"
 set :workers, { jibings: 1,sfda: 2 , ts_delta: 1}
 require 'capistrano-resque'
 #after "deploy:restart", "resque:restart"
-#after "deploy:restart", "resque:scheduler:restart"
-#require './lib/recipes/resque.rb'
-#before 'deploy:restart','resque:pool:restart'
+after "deploy:restart", "resque:scheduler:restart"
+require './lib/recipes/resque.rb'
+after 'deploy:restart','resque:pool:restart'
 
 require "bundler/capistrano"
 
