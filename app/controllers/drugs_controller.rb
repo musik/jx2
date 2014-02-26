@@ -3,8 +3,8 @@
 class DrugsController < ApplicationController
   has_mobile_fu 
   has_mobile_fu_for :index,:shouzi,:category
-  caches_action :index,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },
-    :cache_path => Proc.new{params}
+  caches_action :index,:pihao,
+    :expires_in => 1.day, :if => Proc.new { flash.count == 0 },:cache_path => Proc.new{params}
   load_and_authorize_resource :except=>[:category,:pihao,:shuomingshu,:track,:shouzi]
 
   before_filter :this_init

@@ -1,6 +1,7 @@
 #encoding: utf-8
 class JibingsController < ApplicationController
   load_and_authorize_resource :except=>%w()
+  caches_action :index,:show,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },:cache_path => Proc.new{ params}
   # GET /jibings
   # GET /jibings.json
   def index

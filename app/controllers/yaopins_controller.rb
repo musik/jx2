@@ -4,7 +4,7 @@ class YaopinsController < ApplicationController
 
   has_mobile_fu
   has_mobile_fu_for :index,:leibie,:search
-  caches_action :index,:search,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },:cache_path => Proc.new{ params.merge :format=>request.format }
+  caches_action :index,:search,:show,:expires_in => 1.day, :if => Proc.new { flash.count == 0 },:cache_path => Proc.new{ params}
   before_filter :init_breadcrumbs#,:except=>[:show]
 
   # GET /yaopins
