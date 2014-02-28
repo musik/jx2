@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
     end
   end
   def init_breadcrumbs
+    logger.debug request.subdomain
     return if request.url.match "admin"
     session["init"] = true
     breadcrumbs.add :home,root_url,:rel=>"nofollow"

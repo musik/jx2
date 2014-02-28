@@ -1,6 +1,15 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
 
+  constraints(CoSubdomain) do
+    root to: "companies#home"
+  end
+  constraints :subdomain => 'co' do
+    root to: "companies#index"
+    resources :companies,path: '',except: %(show)
+  end
+
+
   get "settings/index"
 
   resources :shops,path: "yaodian" do

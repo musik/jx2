@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224060945) do
+ActiveRecord::Schema.define(:version => 20140226132025) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -85,30 +85,18 @@ ActiveRecord::Schema.define(:version => 20140224060945) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "companies", :force => true do |t|
-    t.integer  "oid"
     t.string   "name"
-    t.string   "address"
-    t.string   "address1"
-    t.string   "contact"
-    t.string   "sn"
-    t.string   "capital"
-    t.string   "postal"
-    t.string   "email"
-    t.string   "website"
-    t.string   "phone"
-    t.string   "scopes"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "slug"
-    t.string   "pinyin"
-    t.string   "abbr"
     t.string   "short"
     t.integer  "city_id"
-    t.integer  "stores_count"
+    t.integer  "province_id"
+    t.string   "address"
+    t.integer  "yaopins_count"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "companies", ["city_id"], :name => "index_companies_on_city_id"
-  add_index "companies", ["slug"], :name => "index_companies_on_slug"
+  add_index "companies", ["province_id"], :name => "index_companies_on_province_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -230,9 +218,11 @@ ActiveRecord::Schema.define(:version => 20140224060945) do
   end
 
   create_table "options", :force => true do |t|
-    t.string  "name"
-    t.text    "data"
-    t.boolean "autoload"
+    t.string   "name"
+    t.text     "data"
+    t.boolean  "autoload"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "page_views", :force => true do |t|
@@ -323,26 +313,6 @@ ActiveRecord::Schema.define(:version => 20140224060945) do
   end
 
   add_index "shops", ["domain"], :name => "index_shops_on_domain"
-
-  create_table "stores", :force => true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "contact"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "tousu"
-    t.integer  "company_id"
-    t.integer  "city_id"
-    t.integer  "province_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "district_id"
-  end
-
-  add_index "stores", ["city_id"], :name => "index_stores_on_city_id"
-  add_index "stores", ["company_id"], :name => "index_stores_on_company_id"
-  add_index "stores", ["district_id"], :name => "index_stores_on_district_id"
-  add_index "stores", ["province_id"], :name => "index_stores_on_province_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
