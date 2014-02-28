@@ -1,24 +1,30 @@
 -title t('.title',short: @company.short,name: @company.name),@company.short
+-@hide_ad_before = true
+
+%ul.unstyled.attrs
+  %li
+    %b 公司全称:
+    = @company.name
+  %li
+    %b 所在:
+    -if @company.province.present?
+      =@company.province.short_name
+      = @company.city.name if @company.city.present?
+  %li
+    %b 地址:
+    = @company.address
+  %li
+    %b 注册药品数:
+    = @company.yaopins_count
 
 %p
-  %b Name:
-  = @company.name
-%p
-  %b Short:
-  = @company.short
-%p
-  %b City:
-  = @company.city
-%p
-  %b Province:
-  = @company.province
-%p
-  %b Address:
-  = @company.address
-%p
-  %b Yaopins count:
-  = @company.yaopins_count
-
-= link_to 'Edit', edit_company_path(@company)
-\|
-= link_to 'Back', companies_path
+  -if can? :edit,@company
+    = link_to 'Edit', edit_company_path(@company)
+    \|
+  = link_to '返回', companies_path
+-unless @pihao.empty?
+  %h2 #{@company.name}注册生产的药品
+  = render :partial => 'yaopins/list_in_company',:locals=>{:results=>@pihao}
+  =xpaginate @pihao
+-else
+  没有相应的记录

@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   belongs_to :city
   belongs_to :province
   attr_accessible :address, :name, :short, :yaopins_count,:city_id,:province_id
+  has_many :yaopins
   def detect_data
     str = [name , address].join(',')
     hash = Province.detect_province_and_city(str)

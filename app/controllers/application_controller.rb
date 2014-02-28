@@ -21,10 +21,9 @@ class ApplicationController < ActionController::Base
     end
   end
   def init_breadcrumbs
-    logger.debug request.subdomain
     return if request.url.match "admin"
     session["init"] = true
-    breadcrumbs.add :home,root_url,:rel=>"nofollow"
+    breadcrumbs.add :home,root_url(subdomain: "www"),:rel=>"nofollow"
     if %w(settings pages confirmations sessions passwords registrations links users options comments).include? controller_name 
       @hide_ad_before = true
       @hide_slotf = true

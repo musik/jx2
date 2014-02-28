@@ -13,6 +13,7 @@
         = company.province.short_name if company.province.present?
         = company.city.name if company.city.present?
       %td= company.yaopins_count
-%br
 
-=paginate @companies
+.clearfix
+=xpaginate @companies
+.clearfix

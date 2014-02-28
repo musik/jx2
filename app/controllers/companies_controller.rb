@@ -1,17 +1,27 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
+  before_filter :_init
+  def _init
+    @title_suffix = ""
+    @hide_subnav = true
+    @hide_foot = true
+  end
   def index
     @companies = Company.order('yaopins_count desc').includes(:province,:city).limit(50)
     breadcrumbs.add "制药企业大全",nil
   end
   def all
     @companies = Company.includes(:province,:city).page(params[:page])
+    breadcrumbs.add "制药企业大全",root_url(subdomain: 'c')
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
     @company = Company.find(params[:id])
+    @pihao = @company.yaopins.page(params[:page])
+    breadcrumbs.add "制药企业大全",root_url(subdomain: 'c')
+    breadcrumbs.add @company.short,(params[:page].nil? ? nil : company_url(@company))
 
     respond_to do |format|
       format.html # show.html.erb

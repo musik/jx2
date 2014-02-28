@@ -1,0 +1,6 @@
+%ul.pihao-list
+  - results.each do |yaopin|
+    %li.pihao{:class=>cycle('odd','even')}
+      =link_to yaopin.wenhao,yaopin_url(yaopin,subdomain: 'www')
+      \-
+      =link_to yaopin.name,"http://www.#{request.domain}/yaopin/#{CGI.escape yaopin.name}/pihao"

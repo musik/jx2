@@ -10,7 +10,7 @@ zh-CN:
       - :month
       - :day
   breadcrumbs:
-    home: 首页
+    home: 国药准字
     drugs: 药品查询
     yaopin: 药品批号查询
     jixing: 剂型
@@ -39,6 +39,9 @@ zh-CN:
     show:
       keywords: "%{name},%{name}怎么样,%{name}官网"
       description: "%{name}是由国家食品药品监督局颁发互联网药品交易服务资格证的正规网上药店，资格证号为%{cert}，此处页面为%{name}的简要介绍、官方网站网址、链接、公司名称、服务范围、注册地址等信息。"
+  companies:
+    show:
+      title: "%{short}_%{name}"
   shop:
     name: 名称
     website: 官方网站

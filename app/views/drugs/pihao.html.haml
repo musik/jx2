@@ -59,7 +59,7 @@
       没有相应的记录
 
     -#=paginate @pihao
-    =xpaginate @pihao
+    =nofollow_sub(paginate @pihao)
     -if is_first?
       -@related = Drug.search(@drug.name,without: {id: @drug.id},match_mode: :any)
       -if @related.size > 1
