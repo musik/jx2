@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @company.name
+%p
+  %b Short:
+  = @company.short
+%p
+  %b City:
+  = @company.city
+%p
+  %b Province:
+  = @company.province
+%p
+  %b Address:
+  = @company.address
+%p
+  %b Yaopins count:
+  = @company.yaopins_count
+
+= link_to 'Edit', edit_company_path(@company)
+\|
+= link_to 'Back', companies_path

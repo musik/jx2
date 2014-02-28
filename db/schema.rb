@@ -218,11 +218,9 @@ ActiveRecord::Schema.define(:version => 20140226132025) do
   end
 
   create_table "options", :force => true do |t|
-    t.string   "name"
-    t.text     "data"
-    t.boolean  "autoload"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string  "name"
+    t.text    "data"
+    t.boolean "autoload"
   end
 
   create_table "page_views", :force => true do |t|
@@ -369,8 +367,10 @@ ActiveRecord::Schema.define(:version => 20140226132025) do
     t.datetime "updated_at",      :null => false
     t.integer  "drug_id"
     t.datetime "found_at"
+    t.integer  "company_id"
   end
 
+  add_index "yaopins", ["company_id"], :name => "index_yaopins_on_company_id"
   add_index "yaopins", ["drug_id"], :name => "index_drug_id"
   add_index "yaopins", ["wenhao"], :name => "index_yaopins_on_wenhao"
 
