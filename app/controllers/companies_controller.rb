@@ -1,19 +1,11 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
-  def welcome
-    @companies = Company.order('yaopins_count desc').includes(:province,:city).limit(10)
+  def index
+    @companies = Company.order('yaopins_count desc').includes(:province,:city).limit(50)
     breadcrumbs.add "制药企业大全",nil
   end
-  # GET /companies
-  # GET /companies.json
-  def index
-    @companies = Company.order('yaopins_count desc').includes(:province,:city).page(params[:page])
-    breadcrumbs.add "制药企业大全",nil
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @companies }
-    end
+  def all
+    @companies = Company.includes(:province,:city).page(params[:page])
   end
 
   # GET /companies/1

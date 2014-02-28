@@ -1,10 +1,5 @@
--title "制药企业大全"
--provs = Province.all_in_neidi
--if provs.present?
-  .well
-    -provs.each do |p|
-      =link_to p.short_name,nil,class: ""
-%h2 制药企业排名
+-title "制药企业名录"
+
 %table.table
   %tr
     %th 名称
@@ -18,7 +13,6 @@
         = company.province.short_name if company.province.present?
         = company.city.name if company.city.present?
       %td= company.yaopins_count
-
 %br
 
-=link_to "全部制药公司名录",all_companies_url
+=paginate @companies

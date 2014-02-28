@@ -38,6 +38,7 @@
         rewrite  ^(.*)$  /system/maintenance.html last;
         break;
       }
+      include global/block.conf;
       
       location @app {
         <% if is_using_passenger %>
@@ -53,11 +54,8 @@
         break;
         <% end %>
       }
-      location ~ ^/(categories|topics|mai)/ {
-           return 410;
-      }
       location ~ ^/(images|javascripts|stylesheets|system)/ {
-        root <%deploy_to%>/current/public;
+        root <%=deploy_to%>/current/public;
         expires max;
         break;
       }

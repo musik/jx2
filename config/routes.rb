@@ -4,9 +4,11 @@ Yl::Application.routes.draw do
   constraints(CoSubdomain) do
     root to: "companies#home"
   end
-  constraints :subdomain => 'co' do
-    root to: "companies#welcome"
-    resources :companies,path: '',except: %(show)
+  constraints :subdomain => 'c' do
+    root to: "companies#index"
+    resources :companies,path: '' do
+      get :all,on: :collection
+    end
   end
 
 
