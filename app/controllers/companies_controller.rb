@@ -1,5 +1,6 @@
 #encoding: utf-8
 class CompaniesController < ApplicationController
+  load_and_authorize_resource :only=>%w(new edit update create destroy)
   before_filter :_init
   before_filter :_bc,only: %w(all province show)
   def _init

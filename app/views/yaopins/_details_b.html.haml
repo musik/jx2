@@ -14,9 +14,14 @@
       %td
         -@jibings.each do |jibing|
           =link_to jibing.name,jibing
-  -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_name changjia_name changjia_guojia changjia_dizhi guige jixing leibie pizhunri daoqiri).each do |key|
+  -%w(en wenhao yuanwenhao benweima benweima_beizhu shangpin_nameguige jixing leibie pizhunri daoqiri).each do |key|
     -if @yaopin[key].present? and @yaopin[key] != '－－－－'
       %tr
         %th=t("yaopin.attrs.#{key}")
         %td=yaopin_column key,@yaopin.send(key)
+-if @yaopin.company.present?
+  %ul.unstyled.attrs
+    %li
+      %b 厂家
+      =link_to @yaopin.company.name,company_url(@yaopin.company,subdomain: 'c')
 .slotb=ubaidu 1420696,'jx-yaopin-bottom'
