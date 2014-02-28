@@ -5,7 +5,7 @@ Yl::Application.routes.draw do
     root to: "companies#home"
   end
   constraints :subdomain => 'co' do
-    root to: "companies#index"
+    root to: "companies#welcome"
     resources :companies,path: '',except: %(show)
   end
 

@@ -6,7 +6,13 @@ class Province < ActiveRecord::Base
 
   has_many :cities, dependent: :destroy
   has_many :districts, through: :cities
+  def short_name
+    name.gsub(/省|市|自治区|特别行政区|回族|壮族|维吾尔/,'')
+  end
 
+  def self.all_in_neidi
+    all.reject{|r| %(xg am tw).include?(r.pinyin_abbr)}
+  end
   def self.find_from_string str
     str = str.join(',') if str.is_a?(Array)
     patt = /上海|云南|内蒙古|北京|台湾|吉林|四川|天津|宁夏|安徽|山东|山西|广东|广西|新疆|江苏|江西|河北|河南|浙江|海南|湖北|湖南|澳门|甘肃|福建|西藏|贵州|辽宁|重庆|陕西|青海|香港|黑龙江/
