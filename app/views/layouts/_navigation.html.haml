@@ -4,7 +4,7 @@
 <span class="icon-bar"></span>
 </button>
 = link_to t('appname'), root_url(subdomain: "www"), :class => 'brand'
-%form.navbar-form.pull-left{:action=>'/pihao/search',:method=>'get'}
+%form.navbar-form.pull-left{:action=>search_yaopins_url(subdomain: 'www'),:method=>'get'}
   -a={:id=>'q',:type=>"text",:name=>"q"}
   -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
   %input{a}

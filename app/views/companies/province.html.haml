@@ -1,0 +1,17 @@
+-title "#{@province.short_name}的制药企业"
+%table.table
+  %tr
+    %th 名称
+    %th 所在
+    %th 注册药品数量
+
+  - @companies.each do |company|
+    %tr
+      %td= link_to company.short,company
+      %td
+        = company.city.name if company.city.present?
+      %td= company.yaopins_count
+
+.clearfix
+=xpaginate @companies
+.clearfix

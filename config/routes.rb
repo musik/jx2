@@ -6,6 +6,7 @@ Yl::Application.routes.draw do
   end
   constraints :subdomain => 'c' do
     root to: "companies#index"
+    get '/p-:id' => "companies#province",as: "province"
     resources :companies,path: '' do
       get :all,on: :collection
     end
