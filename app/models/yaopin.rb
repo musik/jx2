@@ -5,10 +5,10 @@ class Yaopin < ActiveRecord::Base
     :changjia_dizhi, :changjia_name, :changjia_guojia, 
     :en, :guige, :jixing, :leibie, :name, :shangpin_name, 
     :wenhao, :yuanwenhao, :pizhunri,:daoqiri,:meta,
-    :drug_id,:found_at
+    :drug_id,:found_at, :company_id
   resourcify
   belongs_to :drug,:counter_cache=>true
-  belongs_to :company
+  belongs_to :company,:counter_cache=>true
   has_many :items
   
   # default_scope order("wenhao asc")
@@ -195,6 +195,12 @@ class Yaopin < ActiveRecord::Base
         r.update_attributes data
         Rails.logger.debug ["Exists",r.id,r.wenhao,r.pizhunri]
       end
+      if data[:changjia_name].present? && data[:changjia_name] != '----'
+        company = Company.where(name: data[:changjia_name]).first_or_create(address: data[:changjia_dizhi])
+        r.company = company
+        r.save
+      end
+      r
     end
     #async_method :get_list#,:get_item
     def get_doc url

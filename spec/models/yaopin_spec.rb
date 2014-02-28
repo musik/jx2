@@ -7,7 +7,8 @@ describe Yaopin do
     #Yaopin::Sfda.new.process 8
     #Yaopin::Sfda.new.get_list(25,3)
     #Yaopin::Sfda.new.search('H2013')
-    #Yaopin::Sfda.new.get_item(25,78298)
+    #pp Yaopin::Sfda.new.get_item(25,25)
+    #pp Yaopin::Sfda.new.get_item(25,25)
     # Drug.import_yaopins  
     #Yaopin::Sfda.new.get_table_lists 25,10,1
     #pp Typhoeus::Request.get 'https://api.weibo.com/2/search/statuses.json?source=2280610509&q=ruby'

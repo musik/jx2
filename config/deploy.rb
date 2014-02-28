@@ -82,7 +82,7 @@ after 'deploy:create_symlink', 'sphinx:symlink'
 #after 'deploy:create_symlink','sphinx:stop'
 #after 'deploy:create_symlink','sphinx:start'
 #after 'deploy:create_symlink', 'sphinx:config'
-before 'deploy:restart','sphinx:index'
+#before 'deploy:restart','sphinx:index'
 before 'deploy:restart','sphinx:restart'
 require './lib/recipes/sphinx.rb'
 
@@ -92,7 +92,7 @@ set :unicorn_user,:muzik
 require './lib/recipes/unicorn.rb'
 
 after "deploy:create_symlink","unicorn:symlink"
-after "deploy:create_symlink","app:whenever"
+#after "deploy:create_symlink","app:whenever"
 after 'deploy:start','unicorn:start'
 after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
 #require 'recipes/unicorn'
@@ -111,7 +111,7 @@ require 'capistrano-resque'
 #after "deploy:restart", "resque:restart"
 #after "deploy:restart", "resque:scheduler:restart"
 require './lib/recipes/resque.rb'
-#after 'deploy:restart','resque:pool:restart'
+after 'deploy:restart','resque:pool:restart'
 
 require "bundler/capistrano"
 
