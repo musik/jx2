@@ -3,14 +3,22 @@
     %h3
       #{@jibing.name}相关疾病
       <a href="#{jibings_url}" rel="nofollow" class="more">全部...</a>
-    -cache "jibings-footer-all" do
-      -jibings = Jibing.all_with_az
-      %dl.az
-        -jibings.each do |k,results|
-          -next if results.empty?
-          %dt
-            %span=k.upcase
-          %dd
-            -results.each do |jibing|
-              %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
-                #{jibing.name}吃什么药
+    -token = Digest::MD5.hexdigest(request.url)[0,2]
+    -num ||= 50
+    -cache "jibings-footer-#{num}-#{token}" do
+      -jibings = Jibing.order("rand()").where("items_count > 0").limit(num)
+      %p.links
+        -jibings.each do |jibing|
+          %a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+            =jibing.name
+    -#-cache "jibings-footer-all" do
+      -#-jibings = Jibing.all_with_az
+      -#%dl.az
+        -#-jibings.each do |k,results|
+          -#-next if results.empty?
+          -#%dt
+            -#%span=k.upcase
+          -#%dd
+            -#-results.each do |jibing|
+              -#%a{:href=>jibing_url(jibing),:title=>"#{jibing.name}吃什么药"}
+                -##{jibing.name}

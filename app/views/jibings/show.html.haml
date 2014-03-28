@@ -7,11 +7,6 @@
 -@jibings_section = true
 -content_for :primary do
   .sidelink=ubaidu 1420700,'jx-jibing-sidelink'
-  -if @items.current_page == 1
-    -if @jibing.description.present? 
-      %h2 #{@jibing.name}
-      .description
-        =@jibing.description
 
 %h1.pd #{@jibing.name}吃什么药好
 .slotb=ubaidu 1363750,'jx-jibing-before'
@@ -33,11 +28,16 @@
           =link_to drug.name,"/yaopin#{yao_url(drug)}/pihao",:target=>'_blank'
           %small=drug.yaopins_count.to_s + "种"
           %br
-          -txt = highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name) rescue drug.description
+          -txt = highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name,highlighter: '<span class="highlight">\1</span>') rescue drug.description
           %small=txt.gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
           -#%small=highlight(excerpt(drug.description,@jibing.name,:radius=>30),@jibing.name).gsub(@names){|s| "<a href=\"/jibing/#{@jibings.key(s)}\" target=\"_blank\">#{s}</a>"}.html_safe
         -#.flag
           -#%a{:href=>'#'} 举报
+-if @items.current_page == 1
+  -if @jibing.description.present? 
+    %h2 #{@jibing.name}简介
+    .description
+      =highlight(@jibing.description,@jibing.name)
 -@posts = Post.search(@jibing.name)
 -if @posts.present?
   %h3 #{@jibing.name}相关资讯
