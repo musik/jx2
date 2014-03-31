@@ -14,8 +14,13 @@ class HomeController < ApplicationController
     @results = Drug.mmseg
   end
   def flush
-    expire_action :action=>:index
-    redirect_to root_url
+    if params[:f].present?
+      expire_fragment request.url.match(/ttp:\/\/(.+\/)flush/)[1] + params[:f]
+      redirect_to "/" + params[:f]
+      else
+      expire_action :action=>:index
+      redirect_to root_url
+    end
   end
   def sitemap
     @files = Dir.entries("#{Rails.root}/public/sitemap")
