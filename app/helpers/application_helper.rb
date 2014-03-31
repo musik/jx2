@@ -71,4 +71,7 @@ var sogou_ad_width=#{width};
         #adsense('5659159841','jx-bottom')
   end
 
+  def search_options
+    {pihao: "批号",yaopin: "药品"}.invert
+  end
 end

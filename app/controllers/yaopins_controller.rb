@@ -10,7 +10,7 @@ class YaopinsController < ApplicationController
   # GET /yaopins
   # GET /yaopins.json
   def index
-    @yaopins = Yaopin.order("id desc").page(params[:page] || 1).per(params[:per] || 100)
+    @yaopins = Yaopin.order("id desc").page(params[:page]).per(params[:per] || 100)
     if params[:name].present?
       @yaopins = @yaopins.where(:name=>params[:name])
     end
@@ -36,7 +36,7 @@ class YaopinsController < ApplicationController
   end
   def search
     @q = params[:q]
-    #@yaopins = Yaopin.search @q,:per_page=>20, :page=>params[:page] || 1
+    @qby = :pihao
     if @q.match(/[a-z0-9]/i)
       @yaopins = Yaopin.where(["name like ? or wenhao like ?","%#{params[:q]}%","%#{params[:q]}%"]).page(params[:page] || 1).per(20)
     else

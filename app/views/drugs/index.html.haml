@@ -4,39 +4,54 @@
 -#-@col1= true
 -@hide_ad_before = true
 -@hide_slotf = true
+-content_for :banner do
+  =ubaidu 1507381,"药品首960*90，创建于2014-3-31" 
+.slotb.before_links
+  =ubaidu 1470899,"首页左上链接610*140，创建于2014-2-17"
+%section
+  .box
+    .box-header 
+      %h1.sitename 药品查询
+    %form.welcome{:action=>url_for(action: "search"),:method=>'get',onsubmit: "return chaxun()"}
+      =select_tag :qby,options_for_select(search_options,:yaopin),class: "input-small"
+      -a={:id=>'q',:type=>"text",:name=>"q",value: @q}
+      %input{a}
+      %button.btn{onclick: 'chaxun()'} 查询
 .row-fluid
   .span3.sidebar
-    .sidelink=ubaidu 1420726,'jx-drugs-sidelink'
-    -min = 10
-    -cache "drug-shouzi-#{min}" do
-      -groups = Drug.shouzis(62)
-      .shouzi.boxx
-        %h3 首字索引
-        -groups.each do |g|
+    -if @root_cats
+      %ul.nav.nav-tabs.nav-stacked
+        -@root_cats.each do |c|
+          %li=link_to c.name.truncate(12),c,:title=>c.name
+  .span9
+    .box
+      .box-header 
+        %h2 药品首字母索引
+      -("A".."Z").to_a.each do |s|
+        =link_to s,drugs_url(:abbr=>s),:title=>"#{s}开头药品"
+    -num = 80
+    -cache "drug-shouzi-#{num}" do
+      -groups = Drug.shouzis(40)
+      .shouzi.box
+        .box-header 
+          %h2 药品汉字索引
+        -groups[0,num].each do |g|
           .i
             =link_to g[0],drugs_url(:shouzi=>g[0])
             %small=g[1]
         .clearfix
         .more
           =link_to "更多..",shouzi_drugs_url
-  .span9
-    %h1.pd=yield :header
     .slotb=ubaidu 1420724,'jx-drugs-before'
-    -if @categories
-      %p.links
-        %strong 类别:
-        -@categories.each do |c|
-          -if @category.present? and c.id == @category.id
-            = c.name.truncate(10)
-          -else
-            =link_to c.name.truncate(10),c,:title=>c.name
-        %hr
-    .drugs
-      - @drugs.each do |drug|
-        .drug
-          <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
-    .clearfix
-    =xpaginate @drugs,:window=>20
-    .slotb=ubaidu 1420725,'jx-drugs-bottom'
+%section
+  %h2 最新药品
+  .drugs
+    - @drugs.each do |drug|
+      .drug
+        <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+  .clearfix
+  =xpaginate @drugs,:window=>20
+  .clearfix
+  .slotb=ubaidu 1420725,'jx-drugs-bottom'
 
 

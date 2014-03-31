@@ -5,42 +5,54 @@ class DrugsController < ApplicationController
   has_mobile_fu_for :index,:shouzi,:category
   caches_action :index,:pihao,
     :expires_in => 1.day, :if => Proc.new { flash.count == 0 },:cache_path => Proc.new{params}
-  load_and_authorize_resource :except=>[:category,:pihao,:shuomingshu,:track,:shouzi]
+  load_and_authorize_resource :except=>[:search,:category,:pihao,:shuomingshu,:track,:shouzi]
 
   before_filter :this_init
   def this_init
     breadcrumbs.add :drugs,drugs_url,:rel=>"nofollow"
   end
+  def search
+    @q = params[:q]
+    @qby = "yaopin" 
+    @results = Drug.search @q,per_page: 100
+    breadcrumbs.add @q
+  end
   # GET /drugs
   # GET /drugs.json
   def index
     @drugs = Drug.inlist.includes(:category).page(params[:page] || 1).per(params[:per] || 200)
+    breadcrumbs.add "第#{params[:page]}页",nil if params[:page]
     if params[:abbr]
       @abbr = params[:abbr]
       @drugs = @drugs.where(:abbr=>params[:abbr])
       @title = "#{@abbr}开头的药品"
       breadcrumbs.add "#{@abbr}开头"
       @hide_shouzis = true
+      render :list
     elsif params[:shouzi].present?
       @shouzi = params[:shouzi]
       @title = "#{@shouzi}字开头的药品"
       @drugs = @drugs.where(:shouzi=>params[:shouzi]) 
+      breadcrumbs.add "汉字索引",shouzi_drugs_url
       breadcrumbs.add "#{@shouzi}字开头"
       @hide_shouzis = true
+      render :list
     else
+      @drugs = Drug.recent.inlist.page(params[:page]).per(params[:per] || 100)
       if params[:page].present?
         @hide_shouzis = true
+        render :list
       else
-        @categories = Category.roots
+        @drug_index = true
+        @root_cats = Category.roots
       end
     end
-    breadcrumbs.add "第#{params[:page]}页",nil if params[:page]
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @drugs }
-      format.text { render text: Drug.yaopin_order.page(params[:page] || 1).per(params[:per] || 100).pluck(:name).join("\r\n") }
-    end
-    @page_title = "药品" if @title.nil?
+    #respond_to do |format|
+      #format.html # index.html.erb
+      #format.json { render json: @drugs }
+      #format.text { render text: Drug.yaopin_order.page(params[:page] || 1).per(params[:per] || 100).pluck(:name).join("\r\n") }
+    #end
+    #@page_title = "药品" if @title.nil?
   end
   def desc
     @drugs = Drug.select(:description).where("description is not null").page(params[:page] || 1).per(100)
@@ -51,8 +63,21 @@ class DrugsController < ApplicationController
     render :layout=>false
   end
   def shouzi
-    @groups = Drug.group(:shouzi).count.sort{|a,b| b[1] <=> a[1]}
-    @title = "药品首字索引"
+    @groups = Drug.group(:shouzi).count.sort{|a,b| a[0] <=> b[0]}
+    @az = {"0-9"=>[]}
+    ("a".."z").each do |k|
+      @az[k] = []
+    end
+    @groups.each do |g|
+      a = g[0].to_url[0]
+      if a.nil?
+        a = "y" if g[0] == "一"
+      end
+      a = "0-9" if ("0".."9").include?(a)
+      @az[a] = [] if !@az.key?(a)
+      @az[a] << g
+    end
+    @title = "药品汉字索引"
     breadcrumbs.add @title
   end
   def track
@@ -79,9 +104,10 @@ class DrugsController < ApplicationController
 
     @drugs = @drugs.page(params[:page] || 1).per(100)
     @hide_shouzis = true
+    @root_cats = Category.roots
 
     @title = @category.name
-    render :index
+    render :list
   end
   def manage
     @drugs = Drug.inlist.page(params[:page] || 1).per(100)

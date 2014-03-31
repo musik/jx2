@@ -2,10 +2,21 @@
 -title (@title || "药品批号查询"),nil,false
 
 -@hide_ad_before = true
+-content_for :banner do
+  =ubaidu 1507381,"药品首960*90，创建于2014-3-31" 
+%section
+  .box
+    .box-header 
+      %h1.sitename 药品批号查询
+    %form.welcome{:action=>url_for(subdomain: 'www',action: "search"),:method=>'get',onsubmit: "return chaxun()"}
+      =select_tag :qby,options_for_select(search_options,@qby),class: "input-small"
+      -a={:id=>'q',:type=>"text",:name=>"q",value: @q}
+      %input{a}
+      %button.btn 查询
 .row-fluid
   .span3.sidebar
     .sidelink=ubaidu 1420736,'jx-yaopins-sidelink'
-    %ul.cats
+    %ul.nav.nav-tabs.nav-stacked
       %li=link_to "国药准字B",search_yaopins_url(:q=>"国药准字B")
       %li=link_to "国药准字H",search_yaopins_url(:q=>"国药准字H")
       %li=link_to "国药准字Z",search_yaopins_url(:q=>"国药准字Z")
@@ -14,7 +25,6 @@
         -Yaopin.all_leibie.each do |str|
           %li=link_to str,leibie_url(str) unless str.nil?
   .span9
-    %h1.first=yield :header
     .slotb=ubaidu 1420733,'jx-pihaos-before'
     %ul.pihao-list
       - @yaopins.each do |yaopin|

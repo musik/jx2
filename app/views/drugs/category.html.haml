@@ -1,0 +1,30 @@
+-@title_suffix = @title ? "_药品查询" : ""
+-title (@title || "药品查询"),nil,false
+
+-#-@col1= true
+-@hide_ad_before = true
+-@hide_slotf = true
+-content_for :banner do
+  =ubaidu 1507381,"药品首960*90，创建于2014-3-31" 
+%h1=yield :header
+.slotb.before_links
+  =ubaidu 1470899,"首页左上链接610*140，创建于2014-2-17"
+%section
+  -if @categories
+    %p.links
+      %strong 药品类别
+      -@categories.each do |c|
+        -if @category.present? and c.id == @category.id
+          = c.name.truncate(10)
+        -else
+          =link_to c.name.truncate(10),c,:title=>c.name
+  .drugs
+    - @drugs.each do |drug|
+      .drug
+        <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+  .clearfix
+  =xpaginate @drugs,:window=>20
+  .clearfix
+  .slotb=ubaidu 1420725,'jx-drugs-bottom'
+
+

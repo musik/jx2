@@ -10,3 +10,15 @@ $(function(){
     $(this).next().addClass('active')
   })
 })
+function chaxun(){
+  q = $('#q').val();
+  qby = $('#qby').val();
+  if(qby == 'yaopin'){
+    path = '/yaopin/search'
+  }else{
+    path = '/pihao/search'
+  }
+  url = "http://" + window.location.host + path + "?q=" + q;
+  window.location.href  = url;
+  return false;
+}

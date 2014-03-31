@@ -6,21 +6,35 @@ class HomeController < ApplicationController
   def index
     #_parse_referer
     @adm_baidu = false
-    @ab = %w(a b).sample
-    @ab = 'b'
-    render "index_#{@ab}",:layout=>"application"
+    #@ab = %w(a b).sample
+    #@ab = 'b'
+    #render "index_#{@ab}",:layout=>"application"
   end
   def mmseg
     @results = Drug.mmseg
   end
   def flush
-    if params[:f].present?
-      expire_fragment request.url.match(/ttp:\/\/(.+\/)flush/)[1] + params[:f]
-      redirect_to "/" + params[:f]
-      else
+    if params[:a].present?
+      expire_fragment request.url.match(/ttp:\/\/(.+\/)flush/)[1] + params[:a]
+      redirect_to "/" + params[:a]
+    elsif params[:f].present?
+      expire_fragment params[:a]
+      redirect_to root_url
+    else
       expire_action :action=>:index
       redirect_to root_url
     end
+  end
+  def chaxun
+    @q = params[:q]
+    @qby = params[:qby]
+    if @qby == 'yaopin'
+      path = '/yaopin/search'
+    else
+      path = '/pihao/search'
+    end
+    url = path + "?q=" + @q
+    redirect_to url
   end
   def sitemap
     @files = Dir.entries("#{Rails.root}/public/sitemap")

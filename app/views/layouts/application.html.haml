@@ -23,13 +23,13 @@
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
-    -unless @hide_subnav
-      .navbar-sub
-        .container
-          -if is_home?
-            %h1.sitename= t('appname')
-            =t('home.index.desc')
-          = render :partial => 'layouts/footlinks_static'
+    -#-unless @hide_subnav
+      -#.navbar-sub
+        -#.container
+          -#-if is_home?
+            -#%h1.sitename= t('appname')
+            -#=t('home.index.desc')
+          -#= render :partial => 'layouts/footlinks_static'
     #main{:role => "main"}
       -if is_zhaoshang?
         .container

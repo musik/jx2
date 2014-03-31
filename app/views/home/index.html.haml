@@ -18,10 +18,23 @@
       -#=link_to CGI.unescape(str),"/pihao/search?q=#{str}",:target=>'_blank'
     -#?
 
+-content_for :banner do
+  =ubaidu 1470897,"首页960*90，创建于2014-2-17" 
 .clearfix
+
 .row
   .span8
-    =ubaidu 1270004,'jx-home-before'
+    .box
+      .box-header 
+        %h1.sitename= t('appname')
+        =t('home.index.desc')
+      %form.welcome{:action=>url_for(subdomain: 'www',action: "chaxun"),:method=>'get',onsubmit: "return chaxun()"}
+        =select_tag :qby,options_for_select(search_options,"批号"),class: "input-small"
+        -a={:id=>'q',:type=>"text",:name=>"q"}
+        %input{a}
+        %button.btn{onclick: 'chaxun()'} 查询
+    .before_links
+      =ubaidu 1470899,"首页左上链接610*140，创建于2014-2-17"
     %section
       -cache "home-cjjb",:expires_in=>1.day do 
         .jibings_all
@@ -34,42 +47,52 @@
               %dd
                 -jibings.each do |jibing|
                   = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药",:target=>'_blank'
-    .slot=ubaidu 1420254,"jx-home-bottom-500"
+    .after_links
+      =ubaidu 1470914,"首页左下链接610*140，创建于2014-2-17"
   .span4.sidebar
-    .boxa
-      <!-- 广告位：jxjw.net首页右侧栏顶部 -->
-      -#<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "827835";</script>
-      -#<script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
-      -#<script type="text/javascript" >document.write('<div class="" style="width:200px;margin: 10px 0 10px;"><a href="javascript://" title="首页广告位300*100px.￥200一月，有意请洽QQ58265826.">购买此处广告</a></div>')</script>
-      =ubaidu 1398557,'jx-home-cloud-300x200'
+    -#.box
+      -#%h3.head 推荐网上药店
+      -#%a.btn{href: "http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com",target: "_blank",rel: "nofollow"} 康爱多网上药店
+    -#%ul.nav.nav-tabs.nav-stacked
+      -#%li.active
+        -#%a{href: "#"}
+          -#%h3.head 推荐网上药店
+      -#%li
+        -#%a{href: "http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com",target: "_blank",rel: "nofollow",onclick: "_hmt.push(['_trackEvent', 'home', 'yaodian', 'kad'])"} 康爱多网上药店
+      -#%li
+        -#%a{href: "http://p.yiqifa.com/c?s=7638421e&w=653687&c=5951&i=23462&l=0&e=welcome&t=http://www.yaofang.cn",target: "_blank", rel: "nofollow",onclick: "_hmt.push(['_trackEvent', 'home', 'yaodian', 'yaofang'])"} 药房网
+      -#%li
+        -#%a{href: "http://p.yiqifa.com/c?s=59bf93ed&w=653687&c=6502&i=20123&l=0&e=welcome&t=http://www.star365.com",target: "_blank", rel: "nofollow",onclick: "_hmt.push(['_trackEvent', 'home', 'yaodian', 'star365'])"} 海王星辰
+    .boxa=ubaidu 1470920,"首页右侧栏300*250，创建于2014-2-17"
     .box
-      -limit= 50
-      -cache "home-sjyp-#{limit}",:expires_in=>13.minutes do
-        %h3.head 随机药品
-        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+      -limit= 30
+      -cache "home-zxyp-#{limit}",:expires_in=>1.day do
+        %h3.head 最新药品
+        -results = Drug.select("name").order('id desc').limit(limit)
         .normal.links
-          -#-Drug.random_by_id_shuffle(limit).each do |d|
           -results.each do |d|
-            -next if d.nil?
             <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
           .clearfix
-    .boxa=ubaidu 1263949,"jx-home-side-300x250"
+    .boxb
+      =ubaidu 1470918,"首页右侧链接288*160，创建于2014-2-17"
     .box
       %h3.head 资讯更新
-      -cache "recent-posts-15",:expires_in=>17.minutes do
-        -results = Post.published.recent.limit(15).all
+      -limit = 30
+      -cache "recent-posts-#{limit}",:expires_in=>17.minutes do
+        -results = Post.published.recent.limit(limit).all
         -if results.present?
           %ul.unstyled.normal
             -results.each do |r|
               %li=link_to r.title,r.path
     .box
-      %h3.head 随机批号
+      %h3.head 最新批号
       -limit = 24
-      -cache "random-yaopin-#{limit}",:expires_in=>33.minutes do
-        -#-results = Yaopin.random_by_id_shuffle(limit)
-        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+      -cache "zuixin-yaopin-#{limit}",:expires_in=>1.day do
+        -results = Yaopin.select('wenhao').newest.limit(limit)
         .unstyled.links
           -results.each do |yaopin|
             -next if yaopin.nil?
             <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
+    .boxb
+      做便捷易用的药品批准文号查询
 

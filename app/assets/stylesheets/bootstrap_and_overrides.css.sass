@@ -46,6 +46,19 @@ a.green
   margin: 0 0 20px 
   padding: 10px
   @include border-radius(3px)
+  .box-header
+    background: #eee
+    color: #666
+    margin: -10px -10px 10px
+    text-indent: 10px
+    font-size: 14px
+    line-height: 30px
+    height: 30px
+    overflow: hidden
+    h2
+      margin: 0 
+      font-size: 14px
+      line-height: 30px
   h3
     font-size: 14px
     line-height: 30px
@@ -417,6 +430,8 @@ p.stack
   margin: 0 0 10px
   color: #999
   
+section
+  margin: 10px 0 20px
 .span8
   section
     //margin-right: 20px
@@ -579,10 +594,18 @@ ol.ranks-without-vote
 .shouzi    
   .i
     float: left
-    width: 40px
-    margin-right: 1em
+    width: 46px
+    font-size: 12px
+    margin-right: 10px
+    margin-bottom: 5px
+    background: #f8f8f8
+    border: 1px solid #eee
+    text-indent: 3px
+    a
+      color: #444
     small
-      font-size: 9px
+      font-size: 8px
+      color: #aaa
   .more
     text-align: right
     padding-right: 24px
@@ -859,3 +882,7 @@ ul.prices
       width: 80px
     span.price
       margin-left: 10px
+button.btn
+  margin-bottom: 10px
+form.welcome
+  margin: 0

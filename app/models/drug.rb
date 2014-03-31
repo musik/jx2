@@ -9,6 +9,7 @@ class Drug < ActiveRecord::Base
   
   scope :inlist,select([:id,:en, :name,:yaopins_count,:category_id,:has_shuoming])
   scope :yaopin_order,order("yaopins_count desc")
+  scope :recent,order("id desc")
   scope :items_empty,where("items_count = 0")
   has_many :ji_items,:include=>:jibing
   has_many :jibings,:through=>:ji_items,:uniq=>true

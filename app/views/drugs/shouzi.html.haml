@@ -1,9 +1,14 @@
 -title @title
 -@col1 = true
-.shouzi
-  -@groups.each do |g|
-    -next if g[0].nil?
-    .i
-      =link_to g[0],drugs_url(:shouzi=>g[0])
-      %small=g[1]
-  .clearfix
+-@az.each do |k,vs|
+  -next if vs.empty?
+  .box
+    .box-header=k.upcase if k.present?
+    .shouzi
+      -vs.each do |g|
+        -next if g[0].nil?
+        .i
+          =link_to g[0],drugs_url(:shouzi=>g[0])
+          %small=g[1]
+      .clearfix
+

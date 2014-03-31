@@ -8,6 +8,7 @@
   -unless @hide_leibie
     -Yaopin.all_leibie.each do |str|
       %li=link_to str,leibie_url(str) unless str.nil?
+-@yaopins = @yaopins.per(10)
 -if @yaopins
   %ul.pihao-list
     - @yaopins.each do |yaopin|
@@ -17,6 +18,4 @@
           -unless yaopin.name.nil?
             \-
             =link_to yaopin.name,"/yaopin/#{CGI.escape yaopin.name}/pihao",:target=>'_blank'
-            .pull-right
-              =link_to_360kad yaopin.name,"购买"
-  =xpaginate @yaopins,:window=>100
+  =paginate @yaopins

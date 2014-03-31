@@ -1,0 +1,50 @@
+-@title_suffix = @title ? "_药品查询" : ""
+-title (@title || "药品查询"),nil,false
+
+-#-@col1= true
+-@hide_ad_before = true
+-@hide_slotf = true
+-content_for :banner do
+  =ubaidu 1507381,"药品首960*90，创建于2014-3-31" 
+.row-fluid
+  .span3.sidebar
+    .sidelink=ubaidu 1420726,'jx-drugs-sidelink'
+    -unless @hide_shouzis
+      -min = 10
+      -cache "drug-shouzi-#{min}" do
+        -groups = Drug.shouzis(62)
+        .shouzi.boxx
+          %h3 首字索引
+          -groups.each do |g|
+            .i
+              =link_to g[0],drugs_url(:shouzi=>g[0])
+              %small=g[1]
+          .clearfix
+          .more
+            =link_to "更多..",shouzi_drugs_url
+    -if @root_cats
+      %ul.nav.nav-tabs.nav-stacked
+        -@root_cats.each do |c|
+          %li=link_to c.name.truncate(12),c,:title=>c.name
+  .span9
+    %h1.pd=yield :header
+    .slotb=ubaidu 1420724,'jx-drugs-before'
+    -if @categories
+      %p.links
+        %strong 类别:
+        -@categories.each do |c|
+          -if @category.present? and c.id == @category.id
+            = c.name.truncate(10)
+          -else
+            =link_to c.name.truncate(10),c,:title=>c.name
+        %hr
+    .drugs
+      - @drugs.each do |drug|
+        .drug
+          <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+    .clearfix
+    =xpaginate @drugs,:window=>20
+    -if @drugs.size > 12
+      .slotb=ubaidu 1420725,'jx-drugs-bottom'
+
+

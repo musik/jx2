@@ -98,6 +98,7 @@ Yl::Application.routes.draw do
     collection do
       get :manage
       get :shouzi
+      get :search
       get :desc
       get :desc_preview
     end
@@ -113,7 +114,7 @@ Yl::Application.routes.draw do
   match 'flush' => 'home#flush'
   match 'index' => 'home#index'
   match 'redirect' => 'home#redirect',as: 'redirect'
-  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg|test|redirect/}
+  match ':action' => "home",:constraints=>{:action=>/sitemap|flush|souyao|stats|mmseg|test|redirect|chaxun/}
   resque_constraint = lambda do |request|
     Rails.env.development? or 
     (request.env['warden'].authenticate? and
