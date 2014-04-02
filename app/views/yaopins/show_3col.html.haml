@@ -26,11 +26,11 @@
               %td
                 %span.price=number_to_currency(item.price)
     .sidelink=ubaidu 1420650,'jx-yaopin-sidelink'
-    -if @items.empty?
-      %h3.small #{@yaopin.name}购买链接
-      %p
-        %span 搜索: 
-        =link_to_360kad @drug.name
+    -#-if @items.empty?
+      -#%h3.small #{@yaopin.name}购买链接
+      -#%p
+        -#%span 搜索: 
+        -#=link_to_360kad @drug.name
   .span9
     = render :partial => 'details_b'
 

@@ -38,9 +38,9 @@
         .proprice
           %span.pricetype 参考价格
           %span.price 暂无报价
-        .proprice
-          %span.pricetype 商家报价
-          =link_to_360kad @drug.name
+        -#.proprice
+          -#%span.pricetype 商家报价
+          -#=link_to_360kad @drug.name
     -if is_first? && @drug.description.present?
       -@jibings = @drug.jibings.all
       -if @jibings.present?

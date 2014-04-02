@@ -1,0 +1,25 @@
+-@items = @drug.nice_items
+-if @items.present?
+  #buylink
+  .buylinks
+    .proprice
+      %span.pricetype 参考价格
+      %span.price=number_to_currency(@items.first.price)
+    .proprice
+      %span.pricetype 商家报价
+      %ul.prices
+        -@items.each do |item|
+          %li
+            =eval("item_link_#{item.scope}(item)")
+            %span.price=number_to_currency(item.price)
+-if @pihao.present?
+  .slotb=ubaidu 1420702,'jx-dpihao-before'
+-if @items.empty?
+  #buylink
+  .buylinks
+    .proprice
+      %span.pricetype 参考价格
+      %span.price 暂无报价
+    -#.proprice
+      -#%span.pricetype 商家报价
+      -#=link_to_360kad @drug.name
