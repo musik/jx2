@@ -1,5 +1,7 @@
 .widget.sponser-widget
-  .h3 赞助商链接
+  %a{href: 'http://un.koolearn.com/alliance/click?userid=ff808081454537fc01454537fc880000&url=http%3A%2F%2Fyixue.koolearn.com%2Fzhuanti%2F2014zyysbaoming%2F',target:'_blank',rel: 'nofollow',onclick: "_htm.push(['_trackEvent','ref','zyys',#{request.url}])"}
+    =image_tag "/images/koolearn.jpg",width:200,height: 200
+  .h3.mt1 赞助商链接
   %ul.sponsers
     =external_links(Option.get(:sponsers))
     -#%li.sponsor
