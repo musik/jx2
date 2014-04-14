@@ -1,0 +1,21 @@
+<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+-#%form.navbar-form.pull-left{:action=>search_yaopins_url(subdomain: 'www'),:method=>'get'}
+  -#-a={:id=>'q',:type=>"text",:name=>"q"}
+  -#-a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
+  -#%input{a}
+-classes = nav_classes
+.nav-collapse.collapse
+  %ul.nav
+    %li{:class=>classes[:jibings]}=link_to "适应症",jibings_url(subdomain: "www")
+    %li{:class=>classes[:drugs]}=link_to "药品",drugs_url(subdomain: "www"),:title=>"药品查询"
+    %li{class: classes[:yaopins]}=link_to "批号",yaopins_url(subdomain: "www"),:title=>"药品批号查询"
+    %li{class: classes[:shops]}=link_to "网上药店",shops_url(subdomain: "www")
+    %li.last
+    -#%li{class: classes[:entries]}=link_to "医药招商",entries_url
+    -#%li.nav-small{:class=>"focus"}=link_to "医药网站大全","http://hao.jxjw.net",:target=>"_blank"
+
+-#= render :partial => 'users/menu'

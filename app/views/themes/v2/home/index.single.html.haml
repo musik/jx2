@@ -1,0 +1,40 @@
+-title t('.title'),nil,false
+-meta_desc t('.desc')
+-keywords t('.keywords')
+
+%h1.appname= link_to t('appname'), root_url
+%form.forum-search.pull-left{:action=>'/pihao/search',:method=>'get'}
+  -a={:id=>'q',:type=>"text",:name=>"q"}
+  -a.merge! @q.nil?  ? {:placeholder=>t('search')} : {:value=>@q}
+  %input.search-query{a}
+.clear
+-#= bdlike
+=bdshare
+.clearfix
+='<script type="text/javascript">BAIDU_CLB_fillSlot("458022");</script>'.html_safe if @adm_baidu
+.bda
+  .pull-left
+    ='<script type="text/javascript">/*360*300，创建于2012-9-21*/var cpro_id = "u1068402";</script><script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>'.html_safe
+  .clearfix
+-limit =20
+.sec
+  -cache ["pv-recent",limit],:expires_in=>1.minute do
+    -views = PageView.recent.limit(limit)
+    -if views.present?
+      %span.label 最近访问
+      %ul.unstyled.mlist
+        -views.each do |view|
+          -r = view.viewable
+          -if r.is_a?(Drug)
+            %li=link_to r.name,yao_url(r)
+          -else
+            %li=link_to [0,1,2,3,4,5,6,7].sample.zero? ? r.wenhao : r.wenhao.sub(/国药/,''),r
+        .clearfix
+.sec
+  -cache "home-cjyp-80" do
+    %span.label 常见药品
+    %ul.unstyled.mlist
+      -TOPDRUGS.keys.slice(0,80).each do |str|
+        %li=link_to str,yao_url_str(str)
+      .clearfix
+%p=t('.desc')

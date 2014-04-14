@@ -1,0 +1,14 @@
+-title "按批准日期规档"
+-#%h1#pt 存档
+-year = nil
+%ul.archive
+  -@groups.each do |v|
+    -date = Date.parse("#{v[0]}01")
+    -if year.nil? or year != date.year
+      -year = date.year
+      %li.header
+        = year == 1970 ? "未知" : "#{year}年"
+    %li
+      =link_to "#{date.month}月","/archive/#{v[0]}",:title=>date.strftime("%Y-%m")
+      %small=v[1]
+.clearfix

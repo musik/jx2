@@ -1,0 +1,32 @@
+-@spans ||= 9
+-#=adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"toplinks"
+.row
+  %div{:class=>"span#{@spans}"}
+    -if content_for? :before_links
+      .before_links
+        =yield :before_links
+    .content-left
+      =slotb unless @hide_ad_before
+      -if show_title?
+        %h1=yield :header
+      -unless @hide_bread
+        .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
+      = yield
+      =slotf unless @hide_slotf
+  .sidebar{:class=>"span#{12-@spans}"}
+    .inside
+      =yield :sidebar
+      -#-unless @liubai
+        -#.liubai
+      -#.sponsor=link_to image_tag("/images/ggw200.jpg"),"/pages/ad"
+      -#.sponsor
+        <!-- 广告位：jxjw.net右侧栏 -->
+        -#<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "827834";</script>
+        -#<script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
+        -#<script type="text/javascript" >document.write('<div class="" style="width:200px"><a href="javascript://" title="全站(首页除外)广告位200*200px.￥200一月，有意请洽QQ58265826.">购买此处广告</a></div>')</script>
+      = render 'layouts/sidebar' unless @hide_sidebar
+      -#-unless @hide_adside
+        -#=ubaidu 1270008,"jx-global-side-200"
+      -#-unless @hide_adside
+        -#=ubaidu 1270011,"jx-global-side-2"
+-#=adsense 3773405445,'jx-links',:width=>468,:height=>15,:cls=>"botlinks"

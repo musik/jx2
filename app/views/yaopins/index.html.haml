@@ -4,15 +4,15 @@
 -@hide_ad_before = true
 -content_for :banner do
   =ubaidu 1507381,"药品首960*90，创建于2014-3-31" 
-%section
-  .box
-    .box-header 
-      %h1.sitename 药品批号查询
-    %form.welcome{:action=>url_for(subdomain: 'www',action: "search"),:method=>'get',onsubmit: "return chaxun()"}
-      =select_tag :qby,options_for_select(search_options,@qby),class: "input-small"
-      -a={:id=>'q',:type=>"text",:name=>"q",value: @q}
-      %input{a}
-      %button.btn 查询
+-#%section
+  -#.box
+    -#.box-header 
+      -#%h1.sitename 药品批号查询
+    -#%form.welcome{:action=>url_for(subdomain: 'www',action: "search"),:method=>'get',onsubmit: "return chaxun()"}
+      -#=select_tag :qby,options_for_select(search_options,@qby),class: "input-small"
+      -#-a={:id=>'q',:type=>"text",:name=>"q",value: @q}
+      -#%input{a}
+      -#%button.btn 查询
 .row-fluid
   .span3.sidebar
     .sidelink=ubaidu 1420736,'jx-yaopins-sidelink'

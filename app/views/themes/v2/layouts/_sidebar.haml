@@ -1,0 +1,14 @@
+.widget.sponser-widget
+  %a{href: 'http://un.koolearn.com/alliance/click?userid=ff808081454537fc01454537fc880000&url=http%3A%2F%2Fyixue.koolearn.com%2Fzhuanti%2F2014zyysbaoming%2F',target:'_blank',rel: 'nofollow',onclick: "_htm.push(['_trackEvent','ref','zyys',#{request.url}])"}
+    =image_tag "/images/koolearn.jpg",width:200,height: 200
+  .h3.mt1 赞助商链接
+  %ul.sponsers
+    =external_links(Option.get(:sponsers))
+    -#%li.sponsor
+      -#<a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" class="green" target="_blank" rel="nofollow">赞助位招租</a>
+    -#%li.sponsor=link_to "赞助位招租",page_path("sponsor"),class: "green"
+
+-unless @hide_adside or is_ie6?
+  .widget.bd-widget
+    -#=ubaidu 1445895,"jx-right-side"
+    =ubaidu 1270008,"jx-global-side-200"

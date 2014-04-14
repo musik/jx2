@@ -1,0 +1,115 @@
+!!!
+%html{"ng-app"=>@ng_app}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title
+      -if content_for?(:title)
+        =[yield(:title),@title_suffix || "_国药准字查询网"].join()
+      -else
+        =t('appname')
+    = stylesheet_link_tag    current_theme_stylesheet_path("application"), :media => "all"
+    =javascript_tag 'var _hmt = _hmt || [];'
+    = csrf_meta_tags
+    = yield(:head)
+    -@js ||= 'application'
+    = javascript_include_tag @js unless is_ie6?
+    =render 'layouts/iefix'
+    -#=javascript_include_tag 'http://cbjs.baidu.com/js/m.js'
+    <link rel="shortcut icon" href="http://www.jxjw.net/favicon.ico" type="image/x-icon">
+  -@hide_ad_before = true if %w(new edit).include? action_name
+  %body{:class=>@body_class}
+    = render :file => 'layouts/head'
+    %header.navbar.navbar-static-top
+      %nav.navbar-inner
+        .container
+          = render 'layouts/navigation'
+    -#-unless @hide_subnav
+      -#.navbar-sub
+        -#.container
+          -#-if is_home?
+            -#%h1.sitename= t('appname')
+            -#=t('home.index.desc')
+          -#= render :partial => 'layouts/footlinks_static'
+    #main{:role => "main"}
+      -if is_zhaoshang?
+        .container
+          .subnav.subnav-fixed
+            = render :partial => 'layouts/zhaoshang'
+      -if content_for? :banner
+        .banner
+          =yield :banner
+      .container
+        -if is_ie6?
+          = render :partial => 'layouts/ie6_warning'
+        .content
+          = render 'layouts/messages'
+          -#-unless @hide_toplinks
+            -#.toplinks=ubaidu 1363378,'jx-top-links'
+          -if @col1 
+            .inside
+              -unless @hide_ad_before
+                =slotb
+              -if show_title?
+                %h1#pt=yield :header
+              -unless @hide_bread
+                .breadcrumb= breadcrumbs.render :format=>:inline, :separator => '/'
+              = yield
+              .clearfix
+              =slotf unless @hide_slotf
+          -elsif @col3 or content_for?(:primary)
+            = render :partial => 'layouts/cols3'
+          -else
+            = render :partial => 'layouts/cols2'
+
+      -unless @hide_bottomlinks
+        .container
+          .content.hidden-phone.bottomlinks=ubaidu 1363390,'jx-bottom-links'
+      -#.debug.text-right
+      -#.time 当前时间: #{Time.now}
+      -#.url=request.url
+      -#.user_agent=request.user_agent
+      %footer
+        .container
+          -if content_for?(:foot)
+            =yield :foot
+          -elsif !@hide_foot
+            -if is_home?
+              %dl.f-widgets
+                %dd.logo
+                  =link_to "国药准字查询",root_url
+                %dd.links
+                  =render "layouts/links"
+              .clearfix
+            -else
+              =render "layouts/foot_widgets"
+
+
+      .bottom
+        .container
+          .pull-left
+            %span &copy; 2010 www.jxjw.net 沪ICP备13034467号-1
+            \|
+            =link_to "友情链接",links_url(subdomain: "www")
+            联系QQ <a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&uin=58265826&site=qq&menu=yes" target="_blank" rel="nofollow">5826-5826</a>
+            \|
+
+            =link_to "医药招商",entries_url(subdomain: 'www')
+            \|
+            =link_to "批准日期",archive_url(subdomain: 'www')
+            \|
+            =link_to "资讯",posts_url(subdomain: 'www')
+            \|
+            =link_to "医药网站大全","http://hao.jxjw.net",:target=>"_blank",class: "external"
+          .pull-right
+            =yield(:title) || t('appname')
+
+    = yield(:footer)
+    -unless @hide_xuanfu
+      <script type="text/javascript">
+      -#*jx-xuanfu*/
+      var cpro_id = "u1398295";
+      </script>
+      <script src="http://cpro.baidustatic.com/cpro/ui/f.js" type="text/javascript"></script>
+    .hidden=render "layouts/tongji" if Rails.env.production?

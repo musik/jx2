@@ -1,0 +1,19 @@
+-#-@col1 = true
+-@hide_ad_before = true
+%section
+  .box
+    .box-header 
+      %strong= t('appname')
+    %form.welcome{:action=>url_for(subdomain: 'www',action: "chaxun"),:method=>'get',onsubmit: "return chaxun()"}
+      =select_tag :qby,options_for_select(search_options,@qby),class: "input-small"
+      -a={:id=>'q',:type=>"text",:name=>"q",value: @q}
+      %input{a}
+      %button.btn 查询
+    .results
+      -if @qby == 'yaopin'
+        .drugs
+          - @results.each do |drug|
+            .drug
+              <a href="/yaopin/#{CGI.escape(drug.name)}/pihao" title="#{drug.name}">#{drug.name.truncate(9,:omission=>'..')}</a>
+        .clearfix
+        =paginate @results

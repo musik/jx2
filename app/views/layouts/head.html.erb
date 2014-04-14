@@ -1,0 +1,21 @@
+<div class="container xhead">
+  <div class="sc">
+    <ul class="sclist">
+      <li<% if !@qby or @qby == 'pihao'%> class="now"<%end%> t="pihao">批号</li>
+      <li<%if @qby == 'yaopin'%> class="now"<%end %> t="yaopin" class="">药品</li></ul>
+    <div class="txtbox"><span id="sx"></span><input type="hidden" name="qby" id="qby" value="<%=@qby || "pihao"%>"><input type="text" id="q" name="q" class="sctxt searchTxt iSct iSctIndex g9" placeholder="批号查询" autocomplete="off" value="<%=@q%>"></div><input type="button" id="btnSiteSearch" class="scbtn" value="查询" onclick='chaxun();'>
+  </div>
+  <div class="logo"><a href="/"><img src="/logo.gif" alt=""></a></div>
+</div>
+<script type="text/javascript">
+  $('.sclist li').on('click',function(){
+        $('.sclist li.now').removeClass('now') 
+        $(this).addClass('now')
+        var t = $(this).attr('t')
+        $('#qby').val(t)
+        if(t == 'yaopin') 
+          $('#q').attr('placeholder','药品查询')
+        else
+          $('#q').attr('placeholder','批号查询')
+      })
+</script>

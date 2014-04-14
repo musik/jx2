@@ -1,0 +1,90 @@
+-title t('home.index.title'),nil,false
+-meta_desc t('home.index.desc')
+-keywords t('home.index.keywords')
+-@hide_bread = true
+-@hide_cjyp = true
+-@hide_ad_before = true
+-@hide_slotf = true
+-@hide_title_suffix = true
+-@title_suffix = ""
+-@hide_toplinks = true
+
+-@col1 = true
+
+-#-if @ref_keywords.present?
+  -#.alert
+    -#你是不是要找
+    -#-@ref_keywords.each do |str|
+      -#=link_to CGI.unescape(str),"/pihao/search?q=#{str}",:target=>'_blank'
+    -#?
+
+-content_for :banner do
+  =ubaidu 1470897,"首页960*90，创建于2014-2-17" 
+.clearfix
+.row
+  .span8
+    .before_links
+      =ubaidu 1470899,"首页左上链接610*140，创建于2014-2-17"
+    %section
+      -cache "home-cjjb",:expires_in=>1.day do 
+        .jibings_all
+          %h2.hd2 常见疾病吃什么药
+          -@jibings = Jibing.all_with_az
+          -@jibings.each do |k,jibings|
+            -next if jibings.empty?
+            %dl{:class=>cycle('a','b')}
+              %dt=k.upcase
+              %dd
+                -jibings.each do |jibing|
+                  = link_to  jibing.name,jibing,:title=>"#{jibing.name}吃什么药",:target=>'_blank'
+    .after_links
+      =ubaidu 1470914,"首页左下链接610*140，创建于2014-2-17"
+  .span4.sidebar
+    -#.box
+      -#%h3.head 推荐网上药店
+      -#%a.btn{href: "http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com",target: "_blank",rel: "nofollow"} 康爱多网上药店
+    %ul.nav.nav-tabs.nav-stacked
+      %li.active
+        %a{href: "#"}
+          %h3.head 推荐网上药店
+      %li
+        %a{href: "http://cps.360kad.com/cpstransfer.php?unid=j1008&urlto=http://user.360kad.com/webapi/TrackZaoPai?url=http://www.360kad.com",target: "_blank",rel: "nofollow",onclick: "_hmt.push(['_trackEvent', 'home', 'yaodian', 'kad'])"} 康爱多网上药店
+      %li
+        %a{href: "http://p.yiqifa.com/c?s=7638421e&w=653687&c=5951&i=23462&l=0&e=welcome&t=http://www.yaofang.cn",target: "_blank", rel: "nofollow",onclick: "_hmt.push(['_trackEvent', 'home', 'yaodian', 'yaofang'])"} 药房网
+      %li
+        %a{href: "http://p.yiqifa.com/c?s=59bf93ed&w=653687&c=6502&i=20123&l=0&e=welcome&t=http://www.star365.com",target: "_blank", rel: "nofollow",onclick: "_hmt.push(['_trackEvent', 'home', 'yaodian', 'star365'])"} 海王星辰
+    .boxa=ubaidu 1470920,"首页右侧栏300*250，创建于2014-2-17"
+    .box
+      -limit= 50
+      -cache "home-sjyp-#{limit}",:expires_in=>13.minutes do
+        %h3.head 随机药品
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+        .normal.links
+          -#-Drug.random_by_id_shuffle(limit).each do |d|
+          -results.each do |d|
+            -next if d.nil?
+            <a href="/yaopin/#{CGI.escape d.name}/pihao" title="#{d.name}">#{d.name.truncate(10)}</a>
+          .clearfix
+    .boxb
+      =ubaidu 1470918,"首页右侧链接288*160，创建于2014-2-17"
+    .box
+      %h3.head 资讯更新
+      -cache "recent-posts-15",:expires_in=>17.minutes do
+        -results = Post.published.recent.limit(15).all
+        -if results.present?
+          %ul.unstyled.normal
+            -results.each do |r|
+              %li=link_to r.title,r.path
+    .box
+      %h3.head 随机批号
+      -limit = 24
+      -cache "random-yaopin-#{limit}",:expires_in=>33.minutes do
+        -#-results = Yaopin.random_by_id_shuffle(limit)
+        -results = Yaopin.search(:order=>'@random',:per_page=>limit)
+        .unstyled.links
+          -results.each do |yaopin|
+            -next if yaopin.nil?
+            <a href="/pihao/#{CGI.escape yaopin.wenhao}" title="#{yaopin.wenhao}">#{yaopin.wenhao[4,9]}</a>
+    .boxb
+      做便捷易用的药品批准文号查询
+

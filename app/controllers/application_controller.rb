@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_url , :alert => I18n.t("unauthorized.sign_in")
     end
   end
+  theme "v2"
   before_filter :init_breadcrumbs,:_tablet_to_mobile
   #after_filter :store_location
   #def store_location

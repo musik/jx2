@@ -1,0 +1,899 @@
+// Set the correct sprite paths
+
+//@import url('//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic')
+//$iconSpritePath: asset-url('glyphicons-halflings.png', image)
+//$iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image)
+//$iconExternal: asset-url('external.png', image)
+$iconExternal: url('/images/external.png')
+$linkColor: #47a
+@import "readable/variables"
+@import "readable/bootswatch"
+@import "bootstrap"
+body
+  background: #fff
+body.c-entries  
+  .content
+    background: transparent
+    border: 0
+//@import "bootstrap-responsive"
+@import "bootstrap/responsive-utilities"
+@import "bootstrap/responsive-768px-979px"
+@import "bootstrap/responsive-767px-max"
+@import "bootstrap/responsive-navbar"
+
+a
+  color: #47a
+a:visited
+  color: #999
+a.green
+  color: #080
+.navbar-inverse a.brand
+  color: #fff
+
+#main
+  background: #fff
+.content
+  background-color: #fff
+  padding: 0 9px 
+  margin: 0 -10px
+  //border: 1px solid #ddd
+  //border-width: 0 1px 0px
+.box  
+  background: #fff
+  border: 1px solid #eee
+  margin: 0 0 20px 
+  padding: 10px
+  @include border-radius(3px)
+  .box-header
+    background: #eee
+    color: #666
+    margin: -10px -10px 10px
+    text-indent: 10px
+    font-size: 14px
+    line-height: 30px
+    height: 30px
+    overflow: hidden
+    h2
+      margin: 0 
+      font-size: 14px
+      line-height: 30px
+  h3
+    font-size: 14px
+    line-height: 30px
+    margin: 10px -10px 10px
+    text-indent: 10px
+    border-bottom: 1px solid #eee
+    background: #eee
+    color: #666
+    //@include box-shadow(1px 1px 2px rgba(0,0,0,.15))
+  h3.head
+    margin-top: -10px
+  b
+    color: #666
+li h3.head
+  margin: 0
+.box-gray    
+  background: #eee
+  border-color: #eee
+.box-c  
+  margin-top: 15px
+.boxa
+  margin: 0 0 20px
+.boxb
+  margin: 10px 0
+  border: 1px solid #ececec
+  padding: 5px
+.sidebar
+  font-size: 12px
+  .box,.boxa
+    margin-bottom: 10px
+.required abbr    
+  color: #f30
+.inside
+  padding: 10px 0
+.sidebar  
+  .inside
+    padding: 15px 0 0
+  h3
+    font:
+      size: 14px
+      weight: 500
+    line-height: 26px
+  h3.small
+    font-size: 12px
+.sites
+  margin-left: -20px
+.site
+  float: left
+  width: 167px
+  margin-left: 20px
+  small a
+    color: #ccc
+.breadcrumb
+  background: transparent
+  border-width: 0
+  padding: 0
+  margin: 0
+  color: #999
+  font-size: 12px
+  @include box-shadow(none)
+  a
+    color: #444
+    text-decoration: underline
+.container-small
+  width: 728px
+  margin: 0 auto
+.container-mini
+  //width: 540px
+  //margin: 0 auto
+  margin: 3px
+body.bdapp
+  width: 540px
+  margin: 0 auto
+  padding: 0px 0 0
+  max-height: 540px
+  overflow: hidden
+  font-size: 12px
+  border: 1px solid #ccc
+  border-width: 0  
+  #page
+    //border: 1px solid #ccc
+  h1
+    font-size: 14px
+    line-height: 18px
+    margin: 0
+  #main
+    margin: 8px 8px
+    //border: 1px solid #ccc
+    //border-top: 1px solid #eee
+  table
+    margin-bottom: 0
+  .pagination
+    height: 20px
+    margin: 5px 0 0
+  .pagination a, .pagination span
+    padding: 0 8px
+    line-height: 20px
+  .table th, .table td
+    padding: 4px
+    line-height: 17px
+  .navbar-inner
+    @include border-radius(0) 
+    border-width: 0 0 1px
+  header,.header
+    width: 540px
+    margin: 0 auto
+  footer,.footer
+    margin-top: 5px
+    padding: 0
+.nav-small    
+  font-size: 12px
+.navbar .nav
+  border-left: 1px solid #0f893d
+  a
+    font-size: 16px
+    font-family: '微软雅黑'
+    min-width: 88px
+    text-align: center
+    border-right: 1px solid #0f893d
+    border-left: 1px solid #1aa850
+  li.last
+    border-left: 1px solid #1aa850
+    height: 42px
+  > li.focus
+    > a
+      color: #080
+.navbar-form  
+  margin-right: 1em
+.navbar .nav-small > li > a  
+  padding: 15px 5px 0
+.navbar .nav-small > li.active > a  
+  padding: 15px 15px
+  margin: 0 10px
+.page-header-2
+  border: none
+  margin: 10px 0 5px
+  padding-bottom: 0
+.navbar-static-top .navbar-inner
+  border-width: 1px 0
+
+.sec
+  margin: 2em 0 0
+h1,h2,h3
+  font-family: "microsoft yahei","Helvetica Neue", Helvetica, Arial, sans-serif
+  //line-height: 1.5
+h3
+  font-size: 14px
+h1.appname
+  margin: 0 auto
+  a
+    color: #aaa
+    text-decoration: none
+  a:hover
+    color: #999
+h1
+  font-size: 24px
+h1.sitename    
+  font-size: 14px
+  line-height: 1.5em
+  display: inline
+h1#pt
+  padding-top: 10px
+h1.first,h1.pd
+  margin-top: 0
+h2
+  font:
+    size: 18px
+  small
+    // font-size: 14px
+.yaopin
+  .name
+    width: 140px
+  .pihao
+    width: 120px
+  .benweima
+    width: 100px
+  .changjia
+    width: 200px
+  .jixing
+    width: 70px
+  .leibie
+    width: 70px
+.table-yao
+  .category
+    width: 190px
+  .count
+    width: 80px
+th.actions
+  width: 60px
+.yaopin-single
+  th
+    width: 80px
+  line-height: 2em
+th.key
+  width: 60px
+
+footer
+  margin-top: 0
+  //padding: 1em 0
+  font-size: 12px
+  background: #f8f8f8
+  border-top: 1px solid #eee
+  //color: #666
+  a
+    color: #444
+  a:hover
+    color: #888
+.price-widget
+  background: #ffc
+  margin: 5px 0 20px
+  border: 1px solid #fc9
+  h2
+    font-size: 14px
+    line-height: 2
+    margin: 0
+    text-indent: 6px
+    color: #f60
+    border-top: 1px solid #f60
+  .table
+    margin: 0
+  .table td
+    border-top: 0
+    border-top: 1px solid #fc9
+dl.f-widgets
+  float: left
+  width: 100%
+  margin: 0
+  padding: 0
+  dd
+    border-left: 1px solid #eee
+    padding: 20px 0 20px 0
+    margin: 0
+    //width: 30%
+  strong
+    color: #808080
+    margin-right: 20px
+  dd.logo
+    float: left
+    width: 160px
+    border: none 
+    text-align: center
+    padding-bottom: 0
+    a
+      font-size: 36px
+      line-height: 1.3em
+      text-decoration: none
+  dd.jibings,dd.links
+    //width: 50%
+    margin-left: 180px
+    padding-left: 20px
+  dd.jibings
+    width: 240px
+    a
+      white-space: nowrap
+    //width: auto
+    //border: 0
+    //padding-left: 0
+
+.foot-widgets
+  margin-top: 1em
+  margin-bottom: 1em
+
+a.biglogo
+  font-size: 36px
+  line-height: 1.1em
+  display: block
+  width: 160px
+  margin: 30px auto 0
+  text-decoration: none
+  color: #444
+    
+.hidden
+  display: none
+.bottom
+  background: #333
+  height: 36px
+  line-height: 36px
+  color: #666
+  font-size: 12px
+  a,span
+    color: #ccc
+    margin: 0 5px
+
+ul.mlist
+  list-style: none
+  margin-left: -20px
+  li
+    float: left
+    margin-left: 20px
+    height: 1.5em
+    overflow: hidden
+
+.padding-mini
+  padding: 5px
+ul.drugs-2cols
+  li
+    float: left
+    width: 45%
+    margin-right: 1em
+
+.alert-like
+  .bdlikebutton
+    float: left
+    margin-right: 1em
+  .message
+    line-height: 25px
+#yaofang
+  margin: 0
+.clear
+  clear: both    
+.mt1e
+  margin-top: 1em
+.mb1e
+  margin-bottom: 1em
+.mt-1e  
+  margin-top: -2em
+ul.pihao-list
+  margin: 10px 0
+  font-size: 12px
+  max-height: 540px
+  overflow-y: scroll
+  border: 1px solid #ccc
+  border-width: 1px 0
+  li 
+    padding: 8px 8px
+    list-style: none
+    .meta
+      font-size: 12px
+  li.odd
+    background: #eee
+
+.pagination
+  height: 28px
+  margin: 5px 0 10px
+  a
+    padding: 0 5px
+  a,span
+    line-height: 28px
+
+p.cats
+  a
+    font-size: 12px
+    margin-right: 10px
+    white-space: nowrap
+  border-bottom: 1px solid #eee
+p.stack
+  a
+    margin-right: 10px
+    white-space: nowrap
+.belt
+  font-size: 12px
+  a
+    color: #666
+.drugs  
+  margin-right: -10px
+  .drug
+    //display: inline
+    float: left
+    width: 118px
+    margin-right: 10px
+    font-size: 12px
+    small
+      color: #ccc
+      a
+        color: #ccc
+.entry-meta
+  line-height: 2em
+  font-weight: 600
+  color: #06c
+.entry-content
+  margin: 1em 0
+.post-meta
+  color: #ccc
+  font-size: 12px
+.post  
+  padding: 10px 0
+  border-top: 1px solid #eee
+.excerpt
+  background: #f8f8f8
+  border: 1px solid #eee
+  padding: 10px
+  margin: 0 0 10px
+  color: #999
+  
+section
+  margin: 10px 0 20px
+.span8
+  section
+    //margin-right: 20px
+.slot
+  margin: 20px 0
+.bros  
+  margin: 0 0 10px
+  .slot
+    margin: 0px 20px 0px 0
+#slotb  
+  height: 205px
+#slotf  
+  height: 305px
+.slotb  
+  margin: 10px 0
+  
+.liubai  
+  height: 330px
+.pdf  
+  .h1
+    text-align: center
+    font-size: 32px
+.align-center    
+  text-align: center
+.align-right    
+  text-align: right
+.in-center
+  margin-left:  auto
+  margin-right:  auto
+.mt1    
+  margin-top: 10px
+.ml1    
+  margin-left: 10px
+.bgwhite  
+  background: #fff
+.nav  
+  .smart a
+    color: #080
+.navbar .nav > li.smart > a    
+  color: #080
+.navbar-inverse .nav > li.focus
+  > a
+    color: #0cf
+  > a:hover
+    color: #0ef
+.navbar-sub
+  background: #eee
+  //height: 24px
+  line-height: 24px
+  padding: 5px 0
+  border-bottom: 1px solid #d0d0d0
+  color: #666
+  b,h1
+    color: #666
+.navbar-zhaoshang
+  background: #eee
+  border-bottom: 1px solid #d0d0d0
+    
+.c-entries  
+  table
+    thead
+      background: #f8f8f8
+    th.title
+      width: 60%
+    .num
+      text-align: center
+.yaopin-table      
+  margin-left: 350px
+.sub_nav    
+  .nav
+    margin-bottom: 10px
+ul.comments    
+  margin: 1em 0
+  li
+    list-style: none
+  cite
+    color: #06c
+  date
+    font-size: .85em
+  .spam
+    background: #eee
+.buylink    
+  color: #080
+#buylink  
+  margin-top: 0px
+ul.archive  
+  margin-left: 0
+  li
+    list-style: none
+    float: left
+    width: 15%
+  li.header
+    font-weight: 600
+    margin: 1em 0 5px 
+    width: 100%
+    border-bottom: 1px solid #dedede
+    text-indent: 3px
+    line-height: 2
+  
+ol.ranks  
+  list-style: none
+  margin: 1em 0
+  border-bottom: 1px solid #eee
+  li
+    //padding-left: 60px
+    position: relative
+    //margin: 0 0 2em
+    border-top: 1px solid #eee
+    padding: 1em
+  .flag
+    position: absolute
+    right: 0 
+    top: 0
+    a
+      color: #ccc
+  .details
+    margin-left: 55px
+    small a
+      color: #666
+    p
+      margin: 5px 0 0
+    //float: left
+  .vote
+    text-align: center
+    float: left
+    .num
+      line-height: 14px
+      width: 40px
+      padding: 5px 0
+      //height: 40px
+      background: #999
+      color: #fff
+      @include border-radius(4px 4px 0 0)
+      span
+        display: block
+        font-size: 12px
+    .action
+      //background: #999
+      margin: 2px 0 0
+      font-size: 12px
+      a
+        display: block
+        @include border-radius(0 0 4px 4px)
+        //color: #ccc
+ol.ranks-without-vote
+  .details
+    margin-left: 0
+    height: 42px
+    overflow: hidden
+
+    
+.linklist    
+  margin-right: -10px
+  .i  
+    float: left
+    width: 40px
+    margin-right: 10px
+    small
+      font-size: 9px
+.shouzi    
+  .i
+    float: left
+    width: 46px
+    font-size: 12px
+    margin-right: 10px
+    margin-bottom: 5px
+    background: #f8f8f8
+    border: 1px solid #eee
+    text-indent: 3px
+    a
+      color: #444
+    small
+      font-size: 8px
+      color: #aaa
+  .more
+    text-align: right
+    padding-right: 24px
+
+.jibing      
+  .i
+    width: 108px
+.bottomlinks
+  padding: 15px 9px
+.a328  
+  float: left
+  width: 340px
+  margin: 10px 0
+.ma328
+  margin-left: 350px
+  margin-top: 10px
+ul.cats  
+  margin: 10px 0
+  list-style: none
+  li
+    margin: 1px 0
+  a
+    display: block
+    border: 1px solid #eee
+    position: relative
+    padding: 0 3px
+    small
+      position: absolute
+      right: 3px
+      top: 1px
+      color: #ccc
+      font-size: 9px
+  li.more a
+    border: none
+    text-align: right
+
+  
+.highlight  
+  color: #c60
+.jibings_all
+  h2.hd2
+    font-weight: 500
+    border-bottom: 1px solid #c10d0c
+    border-color: #dedede
+    padding: 0 10px 0 8px
+    margin: 20px 0 0
+  dl
+    margin: 0
+    padding: 8px 0
+    border-bottom: 1px solid #dedede
+  dt
+    float: left
+    color: #080
+    font-size: 14px
+    padding: 1px 0 0 8px
+    color: #c10d0c
+  dd
+    padding-left: 34px
+    font-size: 13px
+    margin-left: 0
+    a
+      color: #444
+      margin-right: 5px
+    a:visited
+      color: #ccc
+  dl.b
+    a
+      //color: #777
+.normal
+  font-size: 12px
+.links
+  a
+    margin-right: 5px
+.sidelink
+  margin: 10px 0 10px
+.sidebar
+  .h3
+    font-size: 14px
+    color: #06c
+ul.sponsers
+  margin: 10px 0
+  li
+    list-style: none
+    overflow: hidden
+    height: 20px
+    line-height: 20px
+  li.sponsor
+    margin-top: 5px
+    
+.xpagination    
+  ul
+    margin-left: -8px
+    float: left
+    width: 100%
+    .clearfix
+      height: 20px
+      clear: both
+    li
+      float: left
+      margin-left: 8px
+      margin-bottom: 4px
+      width: 39px
+      list-style: none
+      a
+        float: left
+        border: 1px solid #06c
+        width: 36px
+        text-align: center
+        line-height: 1.5em
+        text-decoration: none
+      a:hover
+        background: #def
+    li.active a
+      background: #06c
+      color: #fff
+      
+#entries-search-results 
+  ul
+    margin: 0
+    border-bottom: 1px solid #dedede
+  li 
+    position: relative
+    list-style: none
+    display: block
+    height: 39px
+    border-top: 1px solid #dedede
+    overflow: hidden
+    a,span
+      float: left
+      height: 26px
+      padding: 10px 0
+      vertical-align: text-top
+      //color: #242424
+      text-decoration: none
+      overflow: hidden
+      white-space: nowrap
+      padding-left: 2px
+      margin-right: 5px
+    span
+      //color: #242424
+    > a:visited
+      color: #ccc
+    a.title
+      width: 238px
+    .company
+      width: 148px
+    > span.views
+      float: right
+      font-size: 10px
+    > span.created
+      float: right
+      font-size: 10px
+.content-left
+  border: 1px solid #eee
+  border-width: 0 1px 1px
+  padding: 10px
+  min-height: 400px
+.maincol
+  float: right
+  margin-left: 180px
+#primary
+  width: 160px
+  float: left
+  margin-right: -180px
+  margin-left: 0px
+h3
+  a.more
+    font-size: 12px
+    font-weight: 500
+.bd-widget
+  border-top: 1px solid #eee
+  padding-top: 1em
+  margin-top: 2em
+dl.az
+  position: relative
+  height: 8em
+  dt
+    float: left
+    margin-right: 3px
+    span
+      display: inline-block
+      padding: 0 7px
+      cursor: pointer
+  dt.active
+    span
+      background: #eee
+      
+  dd
+    display: none
+  dd.active
+    display: block
+    position: absolute
+    background: transparent
+    left: 0
+    top: 2em
+    margin: 0
+    font-size: 12px
+    a
+      margin-right: 10px
+p.description
+  strong
+    font-weight: 500
+ul.posts
+  margin-bottom: 10px
+ul.attrs
+  border-top: 1px solid #ddd
+  li
+    line-height: 2.5em
+    height: 2.5em
+    border-bottom: 1px solid #ddd
+    b
+      float: left
+      width: 100px
+      text-indent: 5px
+      font-weight: 500
+a.external
+  padding-left: 18px
+  background: $iconExternal 0 50% no-repeat
+.form-filter
+  padding: 5px 
+  background: #f8f8f8
+  border-top: 1px solid #eee
+.table td.text-right,.table th.text-right
+  text-align: right
+.table td.br,.table th.br
+  text-align: center
+.rank
+  width: 45px
+  height: 20px
+  text-indent: 28px
+.rank-pr
+  background: url(/images/pr.gif) 0 0 no-repeat
+.rank-br
+  background: url(/images/br.gif) 0 0 no-repeat
+  
+.table-bordered-bottom
+  border-bottom: 1px solid #ddd
+.banner
+  margin: 0px auto 10px
+  padding-top: 10px
+  width: 960px
+.leftlinks
+  float: left
+  border: 1px solid #ececec
+  iframe
+    margin: 5px
+.before_links,.after_links
+  padding: 5px
+  border: 1px solid #ececec
+.after_links
+  margin: 1em 0 0
+.righttext
+  margin-left: 650px
+  height: 150px
+.buylinks
+  border-top: 1px solid #eee
+  padding-top: 8px
+.proprice
+  position: relative
+  padding-left: 72px
+  .pricetype
+    position: absolute
+    left: 0
+    top: 0
+  .price
+    color: #f60
+ul.prices
+  margin: 0
+  padding: 0
+  list-style: none
+  li
+    a
+      float: left
+      width: 80px
+    span.price
+      margin-left: 10px
+button.btn
+  margin-bottom: 10px
+form.welcome
+  margin: 0

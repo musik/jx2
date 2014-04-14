@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 Yl::Application.routes.draw do
+  themes_for_rails
 
   constraints(CoSubdomain) do
     root to: "companies#home"

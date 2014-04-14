@@ -1,0 +1,9 @@
+-title 'Stats'
+-meta "robots","noindex"
+=debug @data    
+%ul
+  -@items.each do |item|
+    %li 
+      #{item.scope} :
+      =link_to item.yaopin.name,yaopin_url(item.yaopin),:target=>'_blank'
+=link_to_360kad "c"

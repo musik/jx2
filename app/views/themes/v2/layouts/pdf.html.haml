@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    %title
+      -if content_for?(:title)
+        =[yield(:title),@title_suffix || "_国药准字查询网"].join()
+      -else
+        =t('appname')
+    =wicked_pdf_stylesheet_link_tag "pdf"
+    = yield(:head)
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  %body.pdf
+    %header.navbar.navbar-fixed-top.navbar-inverse
+      %nav.navbar-inner
+        .container
+    #main{:role => "main"}
+      .container
+        .content
+          -if show_title?
+            %h3=yield :header
+          = yield
+
+      %hr
+      %footer
+        &copy; 2012 www.jxjw.net 
+        <a href="http://www.jxjw.net">国药准字查询</a>
+        蜀ICP备12023975号-3
+    = yield(:footer)

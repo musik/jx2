@@ -1,0 +1,3 @@
+-title "批准于#{@date.strftime(@format)}"
+=paginate @yaopins,:window=>10
+= render :partial => 'yaopins/list',:locals=>{:results=>@yaopins}

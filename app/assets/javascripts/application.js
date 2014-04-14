@@ -12,6 +12,7 @@ $(function(){
 })
 function chaxun(){
   q = $('#q').val();
+  if(q == '') return;
   qby = $('#qby').val();
   if(qby == 'yaopin'){
     path = '/yaopin/search'
